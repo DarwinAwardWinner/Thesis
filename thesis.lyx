@@ -1,0 +1,880 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass extbook
+\begin_preamble
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\rhead{}
+\lhead{}
+\rfoot{}
+\lfoot{}
+\cfoot{\thepage}
+\usepackage{draftwatermark}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing double
+\use_hyperref false
+\papersize letterpaper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1.5in
+\topmargin 1in
+\rightmargin 1in
+\bottommargin 1in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Bioinformatic analysis of complex, high-throughput genomic and epigenomic
+ data in the context of immunology and transplant rejection
+\end_layout
+
+\begin_layout Author
+A thesis presented 
+\begin_inset Newline newline
+\end_inset
+
+by
+\begin_inset Newline newline
+\end_inset
+
+ Ryan C.
+ Thompson
+\begin_inset Newline newline
+\end_inset
+
+ to
+\begin_inset Newline newline
+\end_inset
+
+ The Scripps Research Institute Graduate Program 
+\begin_inset Newline newline
+\end_inset
+
+in partial fulfillment of the requirements for the degree of
+\begin_inset Newline newline
+\end_inset
+
+ Doctor of Philosophy in the subject of Biology
+\begin_inset Newline newline
+\end_inset
+
+ for
+\begin_inset Newline newline
+\end_inset
+
+ The Scripps Research Institute
+\begin_inset Newline newline
+\end_inset
+
+ La Jolla, California
+\end_layout
+
+\begin_layout Date
+May 2019
+\end_layout
+
+\begin_layout Standard
+[Copyright notice]
+\end_layout
+
+\begin_layout Standard
+[Thesis acceptance form]
+\end_layout
+
+\begin_layout Standard
+[Dedication]
+\end_layout
+
+\begin_layout Standard
+[Acknowledgements]
+\end_layout
+
+\begin_layout Standard
+[TOC]
+\end_layout
+
+\begin_layout Standard
+[List of Tables]
+\end_layout
+
+\begin_layout Standard
+[List of Figures]
+\end_layout
+
+\begin_layout Standard
+[List of Abbreviations]
+\end_layout
+
+\begin_layout Standard
+[Abstract]
+\end_layout
+
+\begin_layout Chapter*
+Abstract
+\end_layout
+
+\begin_layout Chapter*
+Introduction
+\end_layout
+
+\begin_layout Section*
+Background & Significance
+\end_layout
+
+\begin_layout Subsection*
+Biological motivation
+\end_layout
+
+\begin_layout Itemize
+Rejection is the major long-term threat to organ and tissue grafts
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Common mechanisms of rejection 
+\end_layout
+
+\begin_layout Itemize
+Effective immune suppression requires monitoring for rejection and tuning
+ 
+\end_layout
+
+\begin_layout Itemize
+Current tests for rejection (tissue biopsy) are invasive and biased 
+\end_layout
+
+\begin_layout Itemize
+A blood test based on microarrays would be less biased and invasive
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Memory cells are resistant to immune suppression
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Mechanisms of resistance in memory cells are poorly understood 
+\end_layout
+
+\begin_layout Itemize
+A better understanding of immune memory formation is needed
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Mesenchymal stem cell infusion is a promising new treatment to prevent/delay
+ rejection
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Demonstrated in mice, but not yet in primates
+\end_layout
+
+\begin_layout Itemize
+Mechanism currently unknown, but MSC are known to be immune modulatory
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+Overview of bioinformatic analysis methods
+\end_layout
+
+\begin_layout Standard
+An overview of all the methods used, including what problem they solve,
+ what assumptions they make, and a basic description of how they work.
+\end_layout
+
+\begin_layout Itemize
+ChIP-seq Peak calling
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Cross-correlation analysis to determine fragment size
+\end_layout
+
+\begin_layout Itemize
+Broad vs narrow peaks
+\end_layout
+
+\begin_layout Itemize
+SICER for broad peaks
+\end_layout
+
+\begin_layout Itemize
+IDR for biologically reproducible peaks
+\end_layout
+
+\begin_layout Itemize
+csaw peak filtering guidelines for unbiased downstream analysis
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Normalization is non-trivial and application-dependant
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Expression arrays: RMA & fRMA; why fRMA is needed
+\end_layout
+
+\begin_layout Itemize
+Methylation arrays: M-value transformation approximates normal data but
+ induces heteroskedasticity
+\end_layout
+
+\begin_layout Itemize
+RNA-seq: normalize based on assumption that the average gene is not changing
+\end_layout
+
+\begin_layout Itemize
+ChIP-seq: complex with many considerations, dependent on experimental methods,
+ biological system, and analysis goals
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Limma: The standard linear modeling framework for genomics
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+empirical Bayes variance modeling: limma's core feature
+\end_layout
+
+\begin_layout Itemize
+edgeR & DESeq2: Extend with negative bonomial GLM for RNA-seq and other
+ count data
+\end_layout
+
+\begin_layout Itemize
+voom: Extend with precision weights to model mean-variance trend
+\end_layout
+
+\begin_layout Itemize
+arrayWeights and duplicateCorrelation to handle complex variance structures
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+sva and ComBat for batch correction
+\end_layout
+
+\begin_layout Itemize
+Factor analysis: PCA, MDS, MOFA
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Batch-corrected PCA is informative, but careful application is required
+ to avoid bias
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Gene set analysis: camera and SPIA
+\end_layout
+
+\begin_layout Section*
+Innovation
+\end_layout
+
+\begin_layout Itemize
+MSC infusion to improve transplant outcomes (prevent/delay rejection)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Characterize MSC response to interferon gamma
+\end_layout
+
+\begin_layout Itemize
+IFN-g is thought to stimulate their function
+\end_layout
+
+\begin_layout Itemize
+Test IFN-g treated MSC infusion as a therapy to delay graft rejection in
+ cynomolgus monkeys
+\end_layout
+
+\begin_layout Itemize
+Monitor animals post-transplant using blood RNA-seq at serial time points
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Investigate dynamics of histone marks in CD4 T-cell activation and memory
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Previous studies have looked at single snapshots of histone marks
+\end_layout
+
+\begin_layout Itemize
+Instead, look at changes in histone marks across activation and memory
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+High-throughput sequencing and microarray technologies
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Powerful methods for assaying gene expression and epigenetics across entire
+ genomes
+\end_layout
+
+\begin_layout Itemize
+Proper analysis requires finding and exploiting systematic genome-wide trends
+\end_layout
+
+\end_deeper
+\begin_layout Chapter*
+1.
+ Reproducible genome-wide epigenetic analysis of H3K4 and H3K27 methylation
+ in naive and memory CD4 T-cell activation
+\end_layout
+
+\begin_layout Section*
+Approach
+\end_layout
+
+\begin_layout Itemize
+CD4 T-cells are central to all adaptive immune responses and memory
+\end_layout
+
+\begin_layout Itemize
+H3K4 and H3K27 methylation are major epigenetic regulators of gene expression
+\end_layout
+
+\begin_layout Itemize
+Canonically, H3K4 is activating and H3K27 is inhibitory, but the reality
+ is complex
+\end_layout
+
+\begin_layout Itemize
+Looking at these marks during CD4 activation and memory should reveal new
+ mechanistic details
+\end_layout
+
+\begin_layout Itemize
+Test 
+\begin_inset Quotes eld
+\end_inset
+
+poised promoter
+\begin_inset Quotes erd
+\end_inset
+
+ hypothesis in which H3K4 and H3K27 are both methylated
+\end_layout
+
+\begin_layout Itemize
+Expand scope of analysis beyond simple promoter counts
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Analyze peaks genome-wide, including in intergenic regions
+\end_layout
+
+\begin_layout Itemize
+Analysis of coverage distribution shape within promoters, e.g.
+ upstream vs downstream coverage
+\end_layout
+
+\end_deeper
+\begin_layout Section*
+Methods
+\end_layout
+
+\begin_layout Itemize
+Re-analyze previously published CD4 ChIP-seq & RNA-seq data 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "LaMere2016,Lamere2017"
+literal "true"
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Completely reimplement analysis from scratch as a reproducible workflow
+\end_layout
+
+\begin_layout Itemize
+Use newly published methods & algorithms not available during the original
+ analysis: SICER, csaw, MOFA, ComBat, sva, GREAT, and more
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+SICER, IDR, csaw, & GREAT to call ChIP-seq peaks genome-wide, perform differenti
+al abundance analysis, and relate those peaks to gene expression
+\end_layout
+
+\begin_layout Itemize
+Promoter counts in sliding windows around each gene's highest-expressed
+ TSS to investigate coverage distribution within promoters
+\end_layout
+
+\begin_layout Section*
+Results
+\end_layout
+
+\begin_layout Itemize
+Different histone marks have different effective promoter radii
+\end_layout
+
+\begin_layout Itemize
+H3K4 and RNA-seq data show clear evidence of naive convergence with memory
+ between days 1 and 5
+\end_layout
+
+\begin_layout Itemize
+Promoter coverage distribution affects gene expression independent of total
+ promoter count
+\end_layout
+
+\begin_layout Itemize
+Remaining analyses to complete:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Look for naive-to-memory convergence in H3K27 data
+\end_layout
+
+\begin_layout Itemize
+Look at enriched pathways for day 0 to day 1 (activation) compared to day
+ 1 to day 5 (putative naive-to-memory differentiation)
+\end_layout
+
+\begin_layout Itemize
+Find genes with different expression patterns in naive vs.
+ memory and try to explain the difference with the Day 0 histone mark data
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Determine whether co-occurrence of H3K4me3 and H3K27me3 (proposed 
+\begin_inset Quotes eld
+\end_inset
+
+poised
+\begin_inset Quotes erd
+\end_inset
+
+ state) has effects on post-activation expression dynamics
+\end_layout
+
+\begin_layout Itemize
+Promoter coverage distribution dynamics throughout activation for interesting
+ subsets of genes
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+(Backup) Compare and contrast behavior of promoter peaks vs intergenic (putative
+ enhancer) peaks (GREAT analysis)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Put results in context of important T-cell pathways & gene expression data
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Section*
+Discussion
+\end_layout
+
+\begin_layout Itemize
+"Promoter radius" is not constant and must be defined empirically for a
+ given data set
+\end_layout
+
+\begin_layout Itemize
+Evaluate evidence for poised promoters and enhancer effects on gene expression
+ dynamics of naive-to-memory differentiation
+\end_layout
+
+\begin_layout Itemize
+Compare to published work on other epigenetic marks (e.g.
+ chromatin accessibility)
+\end_layout
+
+\begin_layout Chapter*
+2.
+ Improving array-based analyses of transplant rejection by optimizing data
+ preprocessing
+\end_layout
+
+\begin_layout Section*
+Approach
+\end_layout
+
+\begin_layout Itemize
+Machine-learning applications demand a "single-channel" normalization method
+\end_layout
+
+\begin_layout Itemize
+frozen RMA is a good solution, but not trivial to apply
+\end_layout
+
+\begin_layout Itemize
+Methylation array data preprocessing induces heteroskedasticity
+\end_layout
+
+\begin_layout Itemize
+Need to account for this mean-variance dependency in analysis
+\end_layout
+
+\begin_layout Section*
+Methods
+\end_layout
+
+\begin_layout Itemize
+Expression array normalization for detecting acute rejection
+\end_layout
+
+\begin_layout Itemize
+Use frozen RMA, a single-channel variant of RMA
+\end_layout
+
+\begin_layout Itemize
+Generate custom fRMA normalization vectors for each tissue (biopsy, blood)
+\end_layout
+
+\begin_layout Itemize
+Methylation arrays for differential methylation in rejection vs.
+ healthy transplant
+\end_layout
+
+\begin_layout Itemize
+Adapt voom method originally designed for RNA-seq to model mean-variance
+ dependence
+\end_layout
+
+\begin_layout Itemize
+Use sample precision weighting and sva to adjust for other confounding factors
+\end_layout
+
+\begin_layout Section*
+Results
+\end_layout
+
+\begin_layout Itemize
+custom fRMA normalization improved cross-validated classifier performance
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Kurian2014"
+literal "true"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+voom, precision weights, and sva improved model fit
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Also increased sensitivity for detecting differential methylation
+\end_layout
+
+\end_deeper
+\begin_layout Section*
+Discussion
+\end_layout
+
+\begin_layout Itemize
+fRMA enables classifying new samples without re-normalizing the entire data
+ set
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Critical for translating a classifier into clinical practice
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Methods like voom designed for RNA-seq can also help with array analysis
+\end_layout
+
+\begin_layout Itemize
+Extracting and modeling confounders common to many features improves model
+ correspondence to known biology
+\end_layout
+
+\begin_layout Chapter*
+3.
+ Globin-blocking for more effective blood RNA-seq analysis in primate animal
+ model
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Paper title: Optimizing yield of deep RNA sequencing for gene expression
+ profiling by globin reduction of peripheral blood samples from cynomolgus
+ monkeys (Macaca fascicularis).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+How to integrate/credit sections written by others (e.g.
+ wetlab methods)? (Majority of paper text is written by me.)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Move paper's Background section into thesis Introduction section?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Approach
+\end_layout
+
+\begin_layout Itemize
+Cynomolgus monkeys as a model organism
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Highly related to humans
+\end_layout
+
+\begin_layout Itemize
+Small size and short life cycle - good research animal
+\end_layout
+
+\begin_layout Itemize
+Genomics resources still in development
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Inadequacy of existing blood RNA-seq protocols
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Existing protocols use a separate globin pulldown step, slowing down processing
+\end_layout
+
+\end_deeper
+\begin_layout Section*
+Methods
+\end_layout
+
+\begin_layout Itemize
+New blood RNA-seq protocol to block reverse transcription of globin genes
+\end_layout
+
+\begin_layout Itemize
+Blood RNA-seq time course after transplants with/without MSC infusion
+\end_layout
+
+\begin_layout Section*
+Results
+\end_layout
+
+\begin_layout Itemize
+New blood RNA-seq protocol increases effective yield 2-fold while maintaining
+ sample quality (paper)
+\end_layout
+
+\begin_layout Itemize
+MSC treatment signature is swamped by much larger post-transplant stress/injury
+ response (analysis to demonstrate application of developed protocol to
+ real data)
+\end_layout
+
+\begin_layout Section*
+Discussion
+\end_layout
+
+\begin_layout Itemize
+Globin-blocking is highly effective and efficient for blood RNA-seq
+\end_layout
+
+\begin_layout Itemize
+More work required to tease out subtle post-transplant MSC signature in
+ living animals
+\end_layout
+
+\begin_layout Part*
+Future Directions
+\end_layout
+
+\begin_layout Itemize
+Study other epigenetic marks in more contexts
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+DNA methylation, histone marks, chromatin accessibility & conformation in
+ CD4 T-cells
+\end_layout
+
+\begin_layout Itemize
+Also look at other types lymphocytes: CD8 T-cells, B-cells, NK cells
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Investigate epigenetic regulation of lifespan extension in 
+\emph on
+C.
+ elegans
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+ChIP-seq of important transcriptional regulators to see how transcriptional
+ drift is prevented
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+% Use "References" instead of "Bibliography" 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+bibname}{References}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "refs"
+options "plain"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
