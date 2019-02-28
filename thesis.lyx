@@ -46,6 +46,9 @@
 \makeatother
 \end_preamble
 \use_default_options true
+\begin_modules
+todonotes
+\end_modules
 \maintain_unincluded_children false
 \language english
 \language_package default
@@ -222,16 +225,23 @@ LatexCommand tableofcontents
 \end_layout
 
 \begin_layout Standard
-[List of Abbreviations] 
-\begin_inset Note Note
+[List of Abbreviations]
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
 status open
 
 \begin_layout Plain Layout
-https://wiki.lyx.org/Tips/Nomenclature
+Look into auto-generated nomenclature list: https://wiki.lyx.org/Tips/Nomenclature
 \end_layout
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout List of TODOs
 
 \end_layout
 
@@ -470,7 +480,7 @@ Reproducible genome-wide epigenetic analysis of H3K4 and H3K27 methylation
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
+\begin_inset Flex TODO Note (inline)
 status open
 
 \begin_layout Plain Layout
@@ -780,13 +790,13 @@ Globin-blocking for more effective blood RNA-seq analysis in primate animal
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
+\begin_inset Flex TODO Note (inline)
 status open
 
 \begin_layout Plain Layout
-TODO Choose between above and the paper title: Optimizing yield of deep
- RNA sequencing for gene expression profiling by globin reduction of peripheral
- blood samples from cynomolgus monkeys (Macaca fascicularis).
+Choose between above and the paper title: Optimizing yield of deep RNA sequencin
+g for gene expression profiling by globin reduction of peripheral blood
+ samples from cynomolgus monkeys (Macaca fascicularis).
 \end_layout
 
 \end_inset
@@ -795,24 +805,26 @@ TODO Choose between above and the paper title: Optimizing yield of deep
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
+\begin_inset Flex TODO Note (inline)
 status open
 
 \begin_layout Plain Layout
-How to integrate/credit sections written by others (e.g.
- wetlab methods)? (Majority of paper text is written by me.)Preprint the
- paper, then cite it.
- Every chapter has an author list, which may or may not be part of a citation
- to a published/preprinted paper.
+Chapter author list: https://tex.stackexchange.com/questions/156862/displaying-aut
+hor-for-each-chapter-in-book Every chapter gets an author list, which may
+ or may not be part of a citation to a published/preprinted paper.
 \end_layout
 
-\begin_layout Plain Layout
-TODO: Preprint the paper, then cite it.
+\end_inset
+
+
 \end_layout
 
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
 \begin_layout Plain Layout
-TODO: Chapter author list: https://tex.stackexchange.com/questions/156862/displayi
-ng-author-for-each-chapter-in-book
+Preprint then cite the paper
 \end_layout
 
 \end_inset
@@ -1253,7 +1265,6 @@ Results
 
 \begin_layout Subsection*
 Globin blocking yields a larger and more consistent fraction of useful reads
- 
 \end_layout
 
 \begin_layout Standard
@@ -1282,7 +1293,6 @@ The objective of the present study was to validate a new protocol for deep
  to all other genes increased to 50.4%.
  Thus, globin blocking resulted in a 92.2% reduction in globin reads and
  a 91.6% increase in yield of useful non-globin reads.
- 
 \end_layout
 
 \begin_layout Standard
@@ -2040,11 +2050,11 @@ Globin blocking lowers the noise floor and allows detection of about 2000
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status collapsed
+\begin_inset Flex TODO Note (inline)
+status open
 
 \begin_layout Plain Layout
-TODO Remove extraneous titles from figures
+Remove redundant titles from figures
 \end_layout
 
 \end_inset
@@ -2363,11 +2373,11 @@ noprefix "false"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
+\begin_inset Flex TODO Note (inline)
 status open
 
 \begin_layout Plain Layout
-TODO Standardize on 
+Standardize on 
 \begin_inset Quotes eld
 \end_inset
 
@@ -3192,11 +3202,11 @@ bibname}{References}
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
+\begin_inset Flex TODO Note (inline)
 status open
 
 \begin_layout Plain Layout
-TODO: Check bib entry formatting & sort order
+Check bib entry formatting & sort order
 \end_layout
 
 \end_inset
@@ -3209,7 +3219,7 @@ TODO: Check bib entry formatting & sort order
 LatexCommand bibtex
 btprint "btPrintCited"
 bibfiles "refs"
-options "plain"
+options "bibtotoc,unsrt"
 
 \end_inset
 
