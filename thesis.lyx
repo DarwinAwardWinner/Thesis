@@ -6,6 +6,12 @@
 \origin unavailable
 \textclass extbook
 \begin_preamble
+% Add a DRAFT watermark
+\usepackage{draftwatermark}
+\SetWatermarkLightness{0.97}
+\SetWatermarkScale{1}
+
+% Set up required header format
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \renewcommand{\headrulewidth}{0pt}
@@ -13,8 +19,28 @@
 \lhead{}
 \rfoot{}
 \lfoot{}
-\cfoot{\thepage}
-\usepackage{draftwatermark}
+\cfoot{\thepage} % Page number bottom center
+
+% https://tex.stackexchange.com/questions/65680/automatically-bold-first-sentence-of-a-floats-caption
+\usepackage{xstring}
+\usepackage{etoolbox}
+\usepackage{caption}
+
+\captionsetup{labelfont=bf,tableposition=top}
+
+\makeatletter
+\newcommand\formatlabel[1]{%
+    \noexpandarg
+    \IfSubStr{#1}{.}{%
+      \StrBefore{#1}{.}[\firstcaption]%
+      \StrBehind{#1}{.}[\secondcaption]%
+      \textbf{\firstcaption.} \secondcaption}{%
+      #1}%
+      }
+
+
+\patchcmd{\@caption}{#3}{\formatlabel{#3}}
+\makeatother
 \end_preamble
 \use_default_options true
 \maintain_unincluded_children false
@@ -35,13 +61,22 @@
 \use_microtype false
 \use_dash_ligatures true
 \graphics default
-\default_output_format default
+\default_output_format pdf4
 \output_sync 0
 \bibtex_command default
 \index_command default
 \paperfontsize 12
 \spacing double
-\use_hyperref false
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
 \papersize letterpaper
 \use_geometry true
 \use_package amsmath 1
@@ -159,19 +194,42 @@ May 2019
 \end_layout
 
 \begin_layout Standard
-[TOC]
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-[List of Tables]
+\begin_inset FloatList table
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-[List of Figures]
+\begin_inset FloatList figure
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-[List of Abbreviations]
+[List of Abbreviations] 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+https://wiki.lyx.org/Tips/Nomenclature
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -182,15 +240,15 @@ May 2019
 Abstract
 \end_layout
 
-\begin_layout Chapter*
+\begin_layout Chapter
 Introduction
 \end_layout
 
-\begin_layout Section*
+\begin_layout Section
 Background & Significance
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Subsection
 Biological motivation
 \end_layout
 
@@ -246,7 +304,7 @@ Mechanism currently unknown, but MSC are known to be immune modulatory
 \end_layout
 
 \end_deeper
-\begin_layout Subsection*
+\begin_layout Subsection
 Overview of bioinformatic analysis methods
 \end_layout
 
@@ -347,7 +405,7 @@ Batch-corrected PCA is informative, but careful application is required
 Gene set analysis: camera and SPIA
 \end_layout
 
-\begin_layout Section*
+\begin_layout Section
 Innovation
 \end_layout
 
@@ -403,13 +461,12 @@ Proper analysis requires finding and exploiting systematic genome-wide trends
 \end_layout
 
 \end_deeper
-\begin_layout Chapter*
-1.
- Reproducible genome-wide epigenetic analysis of H3K4 and H3K27 methylation
+\begin_layout Chapter
+Reproducible genome-wide epigenetic analysis of H3K4 and H3K27 methylation
  in naive and memory CD4 T-cell activation
 \end_layout
 
-\begin_layout Section*
+\begin_layout Section
 Approach
 \end_layout
 
@@ -458,7 +515,7 @@ Analysis of coverage distribution shape within promoters, e.g.
 \end_layout
 
 \end_deeper
-\begin_layout Section*
+\begin_layout Section
 Methods
 \end_layout
 
@@ -495,7 +552,7 @@ Promoter counts in sliding windows around each gene's highest-expressed
  TSS to investigate coverage distribution within promoters
 \end_layout
 
-\begin_layout Section*
+\begin_layout Section
 Results
 \end_layout
 
@@ -563,7 +620,7 @@ Put results in context of important T-cell pathways & gene expression data
 
 \end_deeper
 \end_deeper
-\begin_layout Section*
+\begin_layout Section
 Discussion
 \end_layout
 
@@ -582,13 +639,12 @@ Compare to published work on other epigenetic marks (e.g.
  chromatin accessibility)
 \end_layout
 
-\begin_layout Chapter*
-2.
- Improving array-based analyses of transplant rejection by optimizing data
+\begin_layout Chapter
+Improving array-based analyses of transplant rejection by optimizing data
  preprocessing
 \end_layout
 
-\begin_layout Section*
+\begin_layout Section
 Approach
 \end_layout
 
@@ -608,7 +664,7 @@ Methylation array data preprocessing induces heteroskedasticity
 Need to account for this mean-variance dependency in analysis
 \end_layout
 
-\begin_layout Section*
+\begin_layout Section
 Methods
 \end_layout
 
@@ -638,7 +694,7 @@ Adapt voom method originally designed for RNA-seq to model mean-variance
 Use sample precision weighting and sva to adjust for other confounding factors
 \end_layout
 
-\begin_layout Section*
+\begin_layout Section
 Results
 \end_layout
 
@@ -665,7 +721,7 @@ Also increased sensitivity for detecting differential methylation
 \end_layout
 
 \end_deeper
-\begin_layout Section*
+\begin_layout Section
 Discussion
 \end_layout
 
@@ -689,9 +745,8 @@ Extracting and modeling confounders common to many features improves model
  correspondence to known biology
 \end_layout
 
-\begin_layout Chapter*
-3.
- Globin-blocking for more effective blood RNA-seq analysis in primate animal
+\begin_layout Chapter
+Globin-blocking for more effective blood RNA-seq analysis in primate animal
  model
 \end_layout
 
@@ -700,9 +755,9 @@ Extracting and modeling confounders common to many features improves model
 status open
 
 \begin_layout Plain Layout
-Paper title: Optimizing yield of deep RNA sequencing for gene expression
- profiling by globin reduction of peripheral blood samples from cynomolgus
- monkeys (Macaca fascicularis).
+TODO Choose between above and the paper title: Optimizing yield of deep
+ RNA sequencing for gene expression profiling by globin reduction of peripheral
+ blood samples from cynomolgus monkeys (Macaca fascicularis).
 \end_layout
 
 \end_inset
@@ -716,20 +771,19 @@ status open
 
 \begin_layout Plain Layout
 How to integrate/credit sections written by others (e.g.
- wetlab methods)? (Majority of paper text is written by me.)
+ wetlab methods)? (Majority of paper text is written by me.)Preprint the
+ paper, then cite it.
+ Every chapter has an author list, which may or may not be part of a citation
+ to a published/preprinted paper.
 \end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
 
 \begin_layout Plain Layout
-Move paper's Background section into thesis Introduction section?
+TODO: Preprint the paper, then cite it.
+\end_layout
+
+\begin_layout Plain Layout
+TODO: Chapter author list: https://tex.stackexchange.com/questions/156862/displayi
+ng-author-for-each-chapter-in-book
 \end_layout
 
 \end_inset
@@ -738,6 +792,56 @@ Move paper's Background section into thesis Introduction section?
 \end_layout
 
 \begin_layout Section*
+Abstract
+\end_layout
+
+\begin_layout Paragraph
+Background
+\end_layout
+
+\begin_layout Standard
+Primate blood contains high concentrations of globin messenger RNA.
+ Globin reduction is a standard technique used to improve the expression
+ results obtained by DNA microarrays on RNA from blood samples.
+ However, with whole transcriptome RNA-sequencing (RNA-seq) quickly replacing
+ microarrays for many applications, the impact of globin reduction for RNA-seq
+ has not been previously studied.
+ Moreover, no off-the-shelf kits are available for globin reduction in nonhuman
+ primates.
+ 
+\end_layout
+
+\begin_layout Paragraph
+Results
+\end_layout
+
+\begin_layout Standard
+Here we report a protocol for RNA-seq in primate blood samples that uses
+ complimentary oligonucleotides to block reverse transcription of the alpha
+ and beta globin genes.
+ In test samples from cynomolgus monkeys (Macaca fascicularis), this globin
+ blocking protocol approximately doubles the yield of informative (non-globin)
+ reads by greatly reducing the fraction of globin reads, while also improving
+ the consistency in sequencing depth between samples.
+ The increased yield enables detection of about 2000 more genes, significantly
+ increases the correlation in measured gene expression levels between samples,
+ and increases the sensitivity of differential gene expression tests.
+\end_layout
+
+\begin_layout Paragraph
+Conclusions
+\end_layout
+
+\begin_layout Standard
+These results show that globin blocking significantly improves the cost-effectiv
+eness of mRNA sequencing in primate blood samples by doubling the yield
+ of useful reads, allowing detection of more genes, and improving the precision
+ of gene expression measurements.
+ Based on these results, a globin reducing or blocking protocol is recommended
+ for all RNA-seq studies of primate blood samples.
+\end_layout
+
+\begin_layout Section
 Approach
 \end_layout
 
@@ -769,9 +873,337 @@ Existing protocols use a separate globin pulldown step, slowing down processing
 \end_layout
 
 \end_deeper
-\begin_layout Section*
+\begin_layout Standard
+Increasingly, researchers are turning to high-throughput mRNA sequencing
+ technologies (RNA-seq) in preference to expression microarrays for analysis
+ of gene expression 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Mutz2012"
+literal "false"
+
+\end_inset
+
+.
+ The advantages are even greater for study of model organisms with no well-estab
+lished array platforms available, such as the cynomolgus monkey (Macaca
+ fascicularis).
+ High fractions of globin mRNA are naturally present in mammalian peripheral
+ blood samples (up to 70% of total mRNA) and these are known to interfere
+ with the results of array-based expression profiling 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Winn2010"
+literal "false"
+
+\end_inset
+
+.
+ The importance of globin reduction for RNA-seq of blood has only been evaluated
+ for a deepSAGE protocol on human samples 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Mastrokolias2012"
+literal "false"
+
+\end_inset
+
+.
+ In the present report, we evaluated globin reduction using custom blocking
+ oligonucleotides for deep RNA-seq of peripheral blood samples from a nonhuman
+ primate, cynomolgus monkey, using the Illumina technology platform.
+ We demonstrate that globin reduction significantly improves the cost-effectiven
+ess of RNA-seq in blood samples.
+ Thus, our protocol offers a significant advantage to any investigator planning
+ to use RNA-seq for gene expression profiling of nonhuman primate blood
+ samples.
+ Our method can be generally applied to any species by designing complementary
+ oligonucleotide blocking probes to the globin gene sequences of that species.
+ Indeed, any highly expressed but biologically uninformative transcripts
+ can also be blocked to further increase sequencing efficiency and value
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Arnaud2016"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
 Methods
 \end_layout
+
+\begin_layout Subsection*
+Sample collection
+\end_layout
+
+\begin_layout Standard
+All research reported here was done under IACUC-approved protocols at the
+ University of Miami and complied with all applicable federal and state
+ regulations and ethical principles for nonhuman primate research.
+ Blood draws occurred between 16 April 2012 and 18 June 2015.
+ The experimental system involved intrahepatic pancreatic islet transplantation
+ into Cynomolgus monkeys with induced diabetes mellitus with or without
+ concomitant infusion of mesenchymal stem cells.
+ Blood was collected at serial time points before and after transplantation
+ into PAXgene Blood RNA tubes (PreAnalytiX/Qiagen, Valencia, CA) at the
+ precise volume:volume ratio of 2.5 ml whole blood into 6.9 ml of PAX gene
+ additive.
+\end_layout
+
+\begin_layout Subsection*
+Globin Blocking
+\end_layout
+
+\begin_layout Standard
+Four oligonucleotides were designed to hybridize to the 3’ end of the transcript
+s for Cynomolgus HBA1, HBA2 and HBB, with two hybridization sites for HBB
+ and 2 sites for HBA (the chosen sites were identical in both HBA genes).
+ All oligos were purchased from Sigma and were entirely composed of 2’O-Me
+ bases with a C3 spacer positioned at the 3’ ends to prevent any polymerase
+ mediated primer extension.
+\end_layout
+
+\begin_layout Quote
+HBA1/2 site 1: GCCCACUCAGACUUUAUUCAAAG-C3spacer
+\end_layout
+
+\begin_layout Quote
+HBA1/2 site 2: GGUGCAAGGAGGGGAGGAG-C3spacer
+\end_layout
+
+\begin_layout Quote
+HBB site 1: AAUGAAAAUAAAUGUUUUUUAUUAG-C3spacer
+\end_layout
+
+\begin_layout Quote
+HBB site 2: CUCAAGGCCCUUCAUAAUAUCCC-C3spacer
+\end_layout
+
+\begin_layout Subsection*
+RNA-seq Library Preparation 
+\end_layout
+
+\begin_layout Standard
+Sequencing libraries were prepared with 200ng total RNA from each sample.
+ Polyadenylated mRNA was selected from 200 ng aliquots of cynomologus blood-deri
+ved total RNA using Ambion Dynabeads Oligo(dT)25 beads (Invitrogen) following
+ manufacturer’s recommended protocol.
+ PolyA selected RNA was then combined with 8 pmol of HBA1/2 (site 1), 8
+ pmol of HBA1/2 (site 2), 12 pmol of HBB (site 1) and 12 pmol of HBB (site
+ 2) oligonucleotides.
+ In addition, 20 pmol of RT primer containing a portion of the Illumina
+ adapter sequence (B-oligo-dTV: GAGTTCCTTGGCACCCGAGAATTCCATTTTTTTTTTTTTTTTTTTV)
+ and 4 µL of 5X First Strand buffer (250 mM Tris-HCl pH 8.3, 375 mM KCl,
+ 15mM MgCl2) were added in a total volume of 15 µL.
+ The RNA was fragmented by heating this cocktail for 3 minutes at 95°C and
+ then placed on ice.
+ This was followed by the addition of 2 µL 0.1 M DTT, 1 µL RNaseOUT, 1 µL
+ 10mM dNTPs 10% biotin-16 aminoallyl-2’- dUTP and 10% biotin-16 aminoallyl-2’-
+ dCTP (TriLink Biotech, San Diego, CA), 1 µL Superscript II (200U/ µL, Thermo-Fi
+sher).
+ A second “unblocked” library was prepared in the same way for each sample
+ but replacing the blocking oligos with an equivalent volume of water.
+ The reaction was carried out at 25°C for 15 minutes and 42°C for 40 minutes,
+ followed by incubation at 75°C for 10 minutes to inactivate the reverse
+ transcriptase.
+\end_layout
+
+\begin_layout Standard
+The cDNA/RNA hybrid molecules were purified using 1.8X Ampure XP beads (Agencourt
+) following supplier’s recommended protocol.
+ The cDNA/RNA hybrid was eluted in 25 µL of 10 mM Tris-HCl pH 8.0, and then
+ bound to 25 µL of M280 Magnetic Streptavidin beads washed per recommended
+ protocol (Thermo-Fisher).
+ After 30 minutes of binding, beads were washed one time in 100 µL 0.1N NaOH
+ to denature and remove the bound RNA, followed by two 100 µL washes with
+ 1X TE buffer.
+\end_layout
+
+\begin_layout Standard
+Subsequent attachment of the 5-prime Illumina A adapter was performed by
+ on-bead random primer extension of the following sequence (A-N8 primer:
+ TTCAGAGTTCTACAGTCCGACGATCNNNNNNNN).
+ Briefly, beads were resuspended in a 20 µL reaction containing 5 µM A-N8
+ primer, 40mM Tris-HCl pH 7.5, 20mM MgCl2, 50mM NaCl, 0.325U/µL Sequenase
+ 2.0 (Affymetrix, Santa Clara, CA), 0.0025U/µL inorganic pyrophosphatase (Affymetr
+ix) and 300 µM each dNTP.
+ Reaction was incubated at 22°C for 30 minutes, then beads were washed 2
+ times with 1X TE buffer (200µL).
+\end_layout
+
+\begin_layout Standard
+The magnetic streptavidin beads were resuspended in 34 µL nuclease-free
+ water and added directly to a PCR tube.
+ The two Illumina protocol-specified PCR primers were added at 0.53 µM (Illumina
+ TruSeq Universal Primer 1 and Illumina TruSeq barcoded PCR primer 2), along
+ with 40 µL 2X KAPA HiFi Hotstart ReadyMix (KAPA, Willmington MA) and thermocycl
+ed as follows: starting with 98°C (2 min-hold); 15 cycles of 98°C, 20sec;
+ 60°C, 30sec; 72°C, 30sec; and finished with a 72°C (2 min-hold).
+\end_layout
+
+\begin_layout Standard
+PCR products were purified with 1X Ampure Beads following manufacturer’s
+ recommended protocol.
+ Libraries were then analyzed using the Agilent TapeStation and quantitation
+ of desired size range was performed by “smear analysis”.
+ Samples were pooled in equimolar batches of 16 samples.
+ Pooled libraries were size selected on 2% agarose gels (E-Gel EX Agarose
+ Gels; Thermo-Fisher).
+ Products were cut between 250 and 350 bp (corresponding to insert sizes
+ of 130 to 230 bps).
+ Finished library pools were then sequenced on the Illumina NextSeq500 instrumen
+t with 75 base read lengths.
+ 
+\end_layout
+
+\begin_layout Subsection*
+Read alignment and counting
+\end_layout
+
+\begin_layout Standard
+Reads were aligned to the cynomolgus genome using STAR 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Dobin2013,Wilson2013"
+literal "false"
+
+\end_inset
+
+.
+ Counts of uniquely mapped reads were obtained for every gene in each sample
+ with the “featureCounts” function from the Rsubread package, using each
+ of the three possibilities for the “strandSpecific” option: sense, antisense,
+ and unstranded 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Liao2014"
+literal "false"
+
+\end_inset
+
+.
+ A few artifacts in the cynomolgus genome annotation complicated read counting.
+ First, no ortholog is annotated for alpha globin in the cynomolgus genome,
+ presumably because the human genome has two alpha globin genes with nearly
+ identical sequences, making the orthology relationship ambiguous.
+ However, two loci in the cynomolgus genome are as “hemoglobin subunit alpha-lik
+e” (LOC102136192 and LOC102136846).
+ LOC102136192 is annotated as a pseudogene while LOC102136846 is annotated
+ as protein-coding.
+ Our globin reduction protocol was designed to include blocking of these
+ two genes.
+ Indeed, these two genes have almost the same read counts in each library
+ as the properly-annotated HBB gene and much larger counts than any other
+ gene in the unblocked libraries, giving confidence that reads derived from
+ the real alpha globin are mapping to both genes.
+ Thus, reads from both of these loci were counted as alpha globin reads
+ in all further analyses.
+ The second artifact is a small, uncharacterized non-coding RNA gene (LOC1021365
+91), which overlaps the HBA-like gene (LOC102136192) on the opposite strand.
+ If counting is not performed in stranded mode (or if a non-strand-specific
+ sequencing protocol is used), many reads mapping to the globin gene will
+ be discarded as ambiguous due to their overlap with this ncRNA gene, resulting
+ in significant undercounting of globin reads.
+ Therefore, stranded sense counts were used for all further analysis in
+ the present study to insure that we accurately accounted for globin transcript
+ reduction.
+ However, we note that stranded reads are not necessary for RNA-seq using
+ our protocol in standard practice.
+ 
+\end_layout
+
+\begin_layout Subsection*
+Normalization and Exploratory Data Analysis
+\end_layout
+
+\begin_layout Standard
+Libraries were normalized by computing scaling factors using the edgeR package’s
+ Trimmed Mean of M-values method 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Robinson2010"
+literal "false"
+
+\end_inset
+
+.
+ Log2 counts per million values (logCPM) were calculated using the cpm function
+ in edgeR for individual samples and aveLogCPM function for averages across
+ groups of samples, using those functions’ default prior count values to
+ avoid taking the logarithm of 0.
+ Genes were considered “present” if their average normalized logCPM values
+ across all libraries were at least -1.
+ Normalizing for gene length was unnecessary because the sequencing protocol
+ is 3’-biased and hence the expected read count for each gene is related
+ to the transcript’s copy number but not its length.
+\end_layout
+
+\begin_layout Standard
+In order to assess the effect of blocking on reproducibility, Pearson and
+ Spearman correlation coefficients were computed between the logCPM values
+ for every pair of libraries within the globin-blocked (GB) and unblocked
+ (non-GB) groups, and edgeR's “estimateDisp” function was used to compute
+ negative binomial dispersions separately for the two groups 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Chen2014"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+Differential Expression Analysis
+\end_layout
+
+\begin_layout Standard
+All tests for differential gene expression were performed using edgeR, by
+ first fitting a negative binomial generalized linear model to the counts
+ and normalization factors and then performing a quasi-likelihood F-test
+ with robust estimation of outlier gene dispersions 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Lund2012,Phipson2016"
+literal "false"
+
+\end_inset
+
+.
+ To investigate the effects of globin blocking on each gene, an additive
+ model was fit to the full data with coefficients for globin blocking and
+ SampleID.
+ To test the effect of globin blocking on detection of differentially expressed
+ genes, the GB samples and non-GB samples were each analyzed independently
+ as follows: for each animal with both a pre-transplant and a post-transplant
+ time point in the data set, the pre-transplant sample and the earliest
+ post-transplant sample were selected, and all others were excluded, yielding
+ a pre-/post-transplant pair of samples for each animal (N=7 animals with
+ paired samples).
+ These samples were analyzed for pre-transplant vs.
+ post-transplant differential gene expression while controlling for inter-animal
+ variation using an additive model with coefficients for transplant and
+ animal ID.
+ In all analyses, p-values were adjusted using the Benjamini-Hochberg procedure
+ for FDR correction 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Benjamini1995"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
 
 \begin_layout Itemize
 New blood RNA-seq protocol to block reverse transcription of globin genes
@@ -781,35 +1213,1901 @@ New blood RNA-seq protocol to block reverse transcription of globin genes
 Blood RNA-seq time course after transplants with/without MSC infusion
 \end_layout
 
-\begin_layout Section*
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
 Results
 \end_layout
 
-\begin_layout Itemize
-New blood RNA-seq protocol increases effective yield 2-fold while maintaining
- sample quality (paper)
+\begin_layout Subsection*
+Globin blocking yields a larger and more consistent fraction of useful reads
+ 
 \end_layout
 
-\begin_layout Itemize
-MSC treatment signature is swamped by much larger post-transplant stress/injury
- response (analysis to demonstrate application of developed protocol to
- real data)
+\begin_layout Standard
+The objective of the present study was to validate a new protocol for deep
+ RNA-seq of whole blood drawn into PaxGene tubes from cynomolgus monkeys
+ undergoing islet transplantation, with particular focus on minimizing the
+ loss of useful sequencing space to uninformative globin reads.
+ The details of the analysis with respect to transplant outcomes and the
+ impact of mesenchymal stem cell treatment will be reported in a separate
+ manuscript (in preparation).
+ To focus on the efficacy of our globin blocking protocol, 37 blood samples,
+ 16 from pre-transplant and 21 from post-transplant time points, were each
+ prepped once with and once without globin blocking oligos, and were then
+ sequenced on an Illumina NextSeq500 instrument.
+ The number of reads aligning to each gene in the cynomolgus genome was
+ counted.
+ Table 1 summarizes the distribution of read fractions among the GB and
+ non-GB libraries.
+ In the libraries with no globin blocking, globin reads made up an average
+ of 44.6% of total input reads, while reads assigned to all other genes made
+ up an average of 26.3%.
+ The remaining reads either aligned to intergenic regions (that include
+ long non-coding RNAs) or did not align with any annotated transcripts in
+ the current build of the cynomolgus genome.
+ In the GB libraries, globin reads made up only 3.48% and reads assigned
+ to all other genes increased to 50.4%.
+ Thus, globin blocking resulted in a 92.2% reduction in globin reads and
+ a 91.6% increase in yield of useful non-globin reads.
+ 
 \end_layout
 
-\begin_layout Section*
+\begin_layout Standard
+This reduction is not quite as efficient as the previous analysis showed
+ for human samples by DeepSAGE (<0.4% globin reads after globin reduction)
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Mastrokolias2012"
+literal "false"
+
+\end_inset
+
+.
+ Nonetheless, this degree of globin reduction is sufficient to nearly double
+ the yield of useful reads.
+ Thus, globin blocking cuts the required sequencing effort (and costs) to
+ achieve a target coverage depth by almost 50%.
+ Consistent with this near doubling of yield, the average difference in
+ un-normalized logCPM across all genes between the GB libraries and non-GB
+ libraries is approximately 1 (mean = 1.01, median = 1.08), an overall 2-fold
+ increase.
+ Un-normalized values are used here because the TMM normalization correctly
+ identifies this 2-fold difference as biologically irrelevant and removes
+ it.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/Globin Paper/figure1 - globin-fractions.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Fraction of genic reads in each sample aligned to non-globin genes, with
+ and without globin blocking (GB).
+ 
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Fraction-of-genic-reads"
+
+\end_inset
+
+Fraction of genic reads in each sample aligned to non-globin genes, with
+ and without globin blocking (GB).
+
+\series default
+ All reads in each sequencing library were aligned to the cyno genome, and
+ the number of reads uniquely aligning to each gene was counted.
+ For each sample, counts were summed separately for all globin genes and
+ for the remainder of the genes (non-globin genes), and the fraction of
+ genic reads aligned to non-globin genes was computed.
+ Each point represents an individual sample.
+ Gray + signs indicate the means for globin-blocked libraries and unblocked
+ libraries.
+ The overall distribution for each group is represented as a notched box
+ plots.
+ Points are randomly spread vertically to avoid excessive overlapping.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement p
+wide false
+sideways true
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="7">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Percent of Total Reads
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Percent of Genic Reads
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Non-globin Reads
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Globin Reads
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+All Genic Reads
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+All Aligned Reads
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Non-globin Reads
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Globin Reads
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Yes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+50.4% ± 6.82
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+3.48% ± 2.94
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+53.9% ± 6.81
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+89.7% ± 2.40
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+93.5% ± 5.25
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+6.49% ± 5.25
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+26.3% ± 8.95
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+44.6% ± 16.6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+70.1% ± 9.38
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+90.7% ± 5.16
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+38.8% ± 17.1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+61.2% ± 17.1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Fractions of reads mapping to genomic features in GB and non-GB samples.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Fractions-of-reads"
+
+\end_inset
+
+Fractions of reads mapping to genomic features in GB and non-GB samples.
+ 
+\series default
+All values are given as mean ± standard deviation.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Another important aspect is that the standard deviations in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Fractions-of-reads"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ are uniformly smaller in the GB samples than the non-GB ones, indicating
+ much greater consistency of yield.
+ This is best seen in the percentage of non-globin reads as a fraction of
+ total reads aligned to annotated genes (genic reads).
+ For the non-GB samples, this measure ranges from 10.9% to 80.9%, while for
+ the GB samples it ranges from 81.9% to 99.9% (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Fraction-of-genic-reads"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ This means that for applications where it is critical that each sample
+ achieve a specified minimum coverage in order to provide useful information,
+ it would be necessary to budget up to 10 times the sequencing depth per
+ sample without globin blocking, even though the average yield improvement
+ for globin blocking is only 2-fold, because every sample has a chance of
+ being 90% globin and 10% useful reads.
+ Hence, the more consistent behavior of GB samples makes planning an experiment
+ easier and more efficient because it eliminates the need to over-sequence
+ every sample in order to guard against the worst case of a high-globin
+ fraction.
+\end_layout
+
+\begin_layout Subsection*
+Globin blocking lowers the noise floor and allows detection of about 2000
+ more genes
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+TODO Remove extraneous titles from figures
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/Globin Paper/figure2 - aveLogCPM-colored.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Distributions of average group gene abundances when normalized separately
+ or together.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:logcpm-dists"
+
+\end_inset
+
+Distributions of average group gene abundances when normalized separately
+ or together.
+
+\series default
+ All reads in each sequencing library were aligned to the cyno genome, and
+ the number of reads uniquely aligning to each gene was counted.
+ Genes with zero counts in all libraries were discarded.
+ Libraries were normalized using the TMM method.
+ Libraries were split into globin-blocked (GB) and non-GB groups and the
+ average abundance for each gene in both groups, measured in log2 counts
+ per million reads counted, was computed using the aveLogCPM function.
+ The distribution of average gene logCPM values was plotted for both groups
+ using a kernel density plot to approximate a continuous distribution.
+ The logCPM GB distributions are marked in red, non-GB in blue.
+ The black vertical line denotes the chosen detection threshold of -1.
+ Top panel: Libraries were split into GB and non-GB groups first and normalized
+ separately.
+ Bottom panel: Libraries were all normalized together first and then split
+ into groups.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Since globin blocking yields more usable sequencing depth, it should also
+ allow detection of more genes at any given threshold.
+ When we looked at the distribution of average normalized logCPM values
+ across all libraries for genes with at least one read assigned to them,
+ we observed the expected bimodal distribution, with a high-abundance "signal"
+ peak representing detected genes and a low-abundance "noise" peak representing
+ genes whose read count did not rise above the noise floor (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:logcpm-dists"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ Consistent with the 2-fold increase in raw counts assigned to non-globin
+ genes, the signal peak for GB samples is shifted to the right relative
+ to the non-GB signal peak.
+ When all the samples are normalized together, this difference is normalized
+ out, lining up the signal peaks, and this reveals that, as expected, the
+ noise floor for the GB samples is about 2-fold lower.
+ This greater separation between signal and noise peaks in the GB samples
+ means that low-expression genes should be more easily detected and more
+ precisely quantified than in the non-GB samples.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/Globin Paper/figure3 - detection.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Gene detections as a function of abundance thresholds in globin-blocked
+ (GB) and non-GB samples.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Gene-detections"
+
+\end_inset
+
+Gene detections as a function of abundance thresholds in globin-blocked
+ (GB) and non-GB samples.
+
+\series default
+ Average abundance (logCPM, 
+\begin_inset Formula $\log_{2}$
+\end_inset
+
+ counts per million reads counted) was computed by separate group normalization
+ as described in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:logcpm-dists"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ for both the GB and non-GB groups, as well as for all samples considered
+ as one large group.
+ For each every integer threshold from -2 to 3, the number of genes detected
+ at or above that logCPM threshold was plotted for each group.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Based on these distributions, we selected a detection threshold of -1, which
+ is approximately the leftmost edge of the trough between the signal and
+ noise peaks.
+ This represents the most liberal possible detection threshold that doesn't
+ call substantial numbers of noise genes as detected.
+ Among the full dataset, 13429 genes were detected at this threshold, and
+ 22276 were not.
+ When considering the GB libraries and non-GB libraries separately and re-comput
+ing normalization factors independently within each group, 14535 genes were
+ detected in the GB libraries while only 12460 were detected in the non-GB
+ libraries.
+ Thus, GB allowed the detection of 2000 extra genes that were buried under
+ the noise floor without GB.
+ This pattern of at least 2000 additional genes detected with GB was also
+ consistent across a wide range of possible detection thresholds, from -2
+ to 3 (see Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Gene-detections"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Subsection*
+Globin blocking does not add significant additional noise or decrease sample
+ quality
+\end_layout
+
+\begin_layout Standard
+One potential worry is that the globin blocking protocol could perturb the
+ levels of non-globin genes.
+ There are two kinds of possible perturbations: systematic and random.
+ The former is not a major concern for detection of differential expression,
+ since a 2-fold change in every sample has no effect on the relative fold
+ change between samples.
+ In contrast, random perturbations would increase the noise and obscure
+ the signal in the dataset, reducing the capacity to detect differential
+ expression.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/Globin Paper/figure4 - maplot-colored.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+MA plot showing effects of globin blocking on each gene's abundance.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:MA-plot"
+
+\end_inset
+
+
+\series bold
+MA plot showing effects of globin blocking on each gene's abundance.
+ 
+\series default
+All libraries were normalized together as described in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:logcpm-dists"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, and genes with an average logCPM below -1 were filtered out.
+ Each remaining gene was tested for differential abundance with respect
+ to globin blocking (GB) using edgeR’s quasi-likelihod F-test, fitting a
+ negative binomial generalized linear model to table of read counts in each
+ library.
+ For each gene, edgeR reported average abundance (logCPM), 
+\begin_inset Formula $\log_{2}$
+\end_inset
+
+ fold change (logFC), p-value, and Benjamini-Hochberg adjusted false discovery
+ rate (FDR).
+ Each gene's logFC was plotted against its logCPM, colored by FDR.
+ Red points are significant at ≤10% FDR, and blue are not significant at
+ that threshold.
+ The alpha and beta globin genes targeted for blocking are marked with large
+ triangles, while all other genes are represented as small points.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+TODO Standardize on 
+\begin_inset Quotes eld
+\end_inset
+
+log2
+\begin_inset Quotes erd
+\end_inset
+
+ notation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The data do indeed show small systematic perturbations in gene levels (Figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:MA-plot"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ Other than the 3 designated alpha and beta globin genes, two other genes
+ stand out as having especially large negative log fold changes: HBD and
+ LOC1021365.
+ HBD, delta globin, is most likely targeted by the blocking oligos due to
+ high sequence homology with the other globin genes.
+ LOC1021365 is the aforementioned ncRNA that is reverse-complementary to
+ one of the alpha-like genes and that would be expected to be removed during
+ the globin blocking step.
+ All other genes appear in a cluster centered vertically at 0, and the vast
+ majority of genes in this cluster show an absolute log2(FC) of 0.5 or less.
+ Nevertheless, many of these small perturbations are still statistically
+ significant, indicating that the globin blocking oligos likely cause very
+ small but non-zero systematic perturbations in measured gene expression
+ levels.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/Globin Paper/figure5 - corrplot.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Comparison of inter-sample gene abundance correlations with and without
+ globin blocking.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:gene-abundance-correlations"
+
+\end_inset
+
+Comparison of inter-sample gene abundance correlations with and without
+ globin blocking (GB).
+
+\series default
+ All libraries were normalized together as described in Figure 2, and genes
+ with an average abundance (logCPM, log2 counts per million reads counted)
+ less than -1 were filtered out.
+ Each gene’s logCPM was computed in each library using the edgeR cpm function.
+ For each pair of biological samples, the Pearson correlation between those
+ samples' GB libraries was plotted against the correlation between the same
+ samples’ non-GB libraries.
+ Each point represents an unique pair of samples.
+ The solid gray line shows a quantile-quantile plot of distribution of GB
+ correlations vs.
+ that of non-GB correlations.
+ The thin dashed line is the identity line, provided for reference.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To evaluate the possibility of globin blocking causing random perturbations
+ and reducing sample quality, we computed the Pearson correlation between
+ logCPM values for every pair of samples with and without GB and plotted
+ them against each other (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:gene-abundance-correlations"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ The plot indicated that the GB libraries have higher sample-to-sample correlati
+ons than the non-GB libraries.
+ Parametric and nonparametric tests for differences between the correlations
+ with and without GB both confirmed that this difference was highly significant
+ (2-sided paired t-test: t = 37.2, df = 665, P ≪ 2.2e-16; 2-sided Wilcoxon
+ sign-rank test: V = 2195, P ≪ 2.2e-16).
+ Performing the same tests on the Spearman correlations gave the same conclusion
+ (t-test: t = 26.8, df = 665, P ≪ 2.2e-16; sign-rank test: V = 8781, P ≪ 2.2e-16).
+ The edgeR package was used to compute the overall biological coefficient
+ of variation (BCV) for GB and non-GB libraries, and found that globin blocking
+ resulted in a negligible increase in the BCV (0.417 with GB vs.
+ 0.400 without).
+ The near equality of the BCVs for both sets indicates that the higher correlati
+ons in the GB libraries are most likely a result of the increased yield
+ of useful reads, which reduces the contribution of Poisson counting uncertainty
+ to the overall variance of the logCPM values 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "McCarthy2012"
+literal "false"
+
+\end_inset
+
+.
+ This improves the precision of expression measurements and more than offsets
+ the negligible increase in BCV.
+\end_layout
+
+\begin_layout Subsection*
+More differentially expressed genes are detected with globin blocking
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+No Globin Blocking
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Up
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+NS
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Down
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Globin-Blocking
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Up
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+231
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+515
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+2
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+NS
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+160
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+11235
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+136
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Down
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+548
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+127
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Comparison of significantly differentially expressed genes with and without
+ globin blocking.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Comparison-of-significant"
+
+\end_inset
+
+Comparison of significantly differentially expressed genes with and without
+ globin blocking.
+
+\series default
+ Up, Down: Genes significantly up/down-regulated in post-transplant samples
+ relative to pre-transplant samples, with a false discovery rate of 10%
+ or less.
+ NS: Non-significant genes (false discovery rate greater than 10%).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To compare performance on differential gene expression tests, we took subsets
+ of both the GB and non-GB libraries with exactly one pre-transplant and
+ one post-transplant sample for each animal that had paired samples available
+ for analysis (N=7 animals, N=14 samples in each subset).
+ The same test for pre- vs.
+ post-transplant differential gene expression was performed on the same
+ 7 pairs of samples from GB libraries and non-GB libraries, in each case
+ using an FDR of 10% as the threshold of significance.
+ Out of 12954 genes that passed the detection threshold in both subsets,
+ 358 were called significantly differentially expressed in the same direction
+ in both sets; 1063 were differentially expressed in the GB set only; 296
+ were differentially expressed in the non-GB set only; 2 genes were called
+ significantly up in the GB set but significantly down in the non-GB set;
+ and the remaining 11235 were not called differentially expressed in either
+ set.
+ These data are summarized in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Comparison-of-significant"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ The differences in BCV calculated by EdgeR for these subsets of samples
+ were negligible (BCV = 0.302 for GB and 0.297 for non-GB).
+\end_layout
+
+\begin_layout Standard
+The key point is that the GB data results in substantially more differentially
+ expressed calls than the non-GB data.
+ Since there is no gold standard for this dataset, it is impossible to be
+ certain whether this is due to under-calling of differential expression
+ in the non-GB samples or over-calling in the GB samples.
+ However, given that both datasets are derived from the same biological
+ samples and have nearly equal BCVs, it is more likely that the larger number
+ of DE calls in the GB samples are genuine detections that were enabled
+ by the higher sequencing depth and measurement precision of the GB samples.
+ Note that the same set of genes was considered in both subsets, so the
+ larger number of differentially expressed gene calls in the GB data set
+ reflects a greater sensitivity to detect significant differential gene
+ expression and not simply the larger total number of detected genes in
+ GB samples described earlier.
+\end_layout
+
+\begin_layout Section
 Discussion
 \end_layout
 
-\begin_layout Itemize
-Globin-blocking is highly effective and efficient for blood RNA-seq
+\begin_layout Standard
+The original experience with whole blood gene expression profiling on DNA
+ microarrays demonstrated that the high concentration of globin transcripts
+ reduced the sensitivity to detect genes with relatively low expression
+ levels, in effect, significantly reducing the sensitivity.
+ To address this limitation, commercial protocols for globin reduction were
+ developed based on strategies to block globin transcript amplification
+ during labeling or physically removing globin transcripts by affinity bead
+ methods 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Winn2010"
+literal "false"
+
+\end_inset
+
+.
+ More recently, using the latest generation of labeling protocols and arrays,
+ it was determined that globin reduction was no longer necessary to obtain
+ sufficient sensitivity to detect differential transcript expression 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "NuGEN2010"
+literal "false"
+
+\end_inset
+
+.
+ However, we are not aware of any publications using these currently available
+ protocols the with latest generation of microarrays that actually compare
+ the detection sensitivity with and without globin reduction.
+ However, in practice this has now been adopted generally primarily driven
+ by concerns for cost control.
+ The main objective of our work was to directly test the impact of globin
+ gene transcripts and a new globin blocking protocol for application to
+ the newest generation of differential gene expression profiling determined
+ using next generation sequencing.
+ 
 \end_layout
 
-\begin_layout Itemize
-More work required to tease out subtle post-transplant MSC signature in
- living animals
+\begin_layout Standard
+The challenge of doing global gene expression profiling in cynomolgus monkeys
+ is that the current available arrays were never designed to comprehensively
+ cover this genome and have not been updated since the first assemblies
+ of the cynomolgus genome were published.
+ Therefore, we determined that the best strategy for peripheral blood profiling
+ was to do deep RNA-seq and inform the workflow using the latest available
+ genome assembly and annotation 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Wilson2013"
+literal "false"
+
+\end_inset
+
+.
+ However, it was not immediately clear whether globin reduction was necessary
+ for RNA-seq or how much improvement in efficiency or sensitivity to detect
+ differential gene expression would be achieved for the added cost and work.
+ 
 \end_layout
 
-\begin_layout Part*
+\begin_layout Standard
+We only found one report that demonstrated that globin reduction significantly
+ improved the effective read yields for sequencing of human peripheral blood
+ cell RNA using a DeepSAGE protocol 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Mastrokolias2012"
+literal "false"
+
+\end_inset
+
+.
+ The approach to DeepSAGE involves two different restriction enzymes that
+ purify and then tag small fragments of transcripts at specific locations
+ and thus, significantly reduces the complexity of the transcriptome.
+ Therefore, we could not determine how DeepSAGE results would translate
+ to the common strategy in the field for assaying the entire transcript
+ population by whole-transcriptome 3’-end RNA-seq.
+ Furthermore, if globin reduction is necessary, we also needed a globin
+ reduction method specific to cynomolgus globin sequences that would work
+ an organism for which no kit is available off the shelf.
+\end_layout
+
+\begin_layout Standard
+As mentioned above, the addition of globin blocking oligos has a very small
+ impact on measured expression levels of gene expression.
+ However, this is a non-issue for the purposes of differential expression
+ testing, since a systematic change in a gene in all samples does not affect
+ relative expression levels between samples.
+ However, we must acknowledge that simple comparisons of gene expression
+ data obtained by GB and non-GB protocols are not possible without additional
+ normalization.
+ 
+\end_layout
+
+\begin_layout Standard
+More importantly, globin blocking not only nearly doubles the yield of usable
+ reads, it also increases inter-sample correlation and sensitivity to detect
+ differential gene expression relative to the same set of samples profiled
+ without blocking.
+ In addition, globin blocking does not add a significant amount of random
+ noise to the data.
+ Globin blocking thus represents a cost-effective way to squeeze more data
+ and statistical power out of the same blood samples and the same amount
+ of sequencing.
+ In conclusion, globin reduction greatly increases the yield of useful RNA-seq
+ reads mapping to the rest of the genome, with minimal perturbations in
+ the relative levels of non-globin genes.
+ Based on these results, globin transcript reduction using sequence-specific,
+ complementary blocking oligonucleotides is recommended for all deep RNA-seq
+ of cynomolgus and other nonhuman primate blood samples.
+ 
+\end_layout
+
+\begin_layout Chapter
 Future Directions
 \end_layout
 
@@ -858,6 +3156,19 @@ status open
 renewcommand{
 \backslash
 bibname}{References}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+TODO: Check bib entry formatting
 \end_layout
 
 \end_inset
