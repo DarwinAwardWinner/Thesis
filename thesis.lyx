@@ -6,6 +6,9 @@
 \origin unavailable
 \textclass extbook
 \begin_preamble
+% List all used files in log output
+\listfiles
+
 % Add a DRAFT watermark
 \usepackage{draftwatermark}
 \SetWatermarkLightness{0.97}
@@ -46,7 +49,7 @@
 \maintain_unincluded_children false
 \language english
 \language_package default
-\inputencoding auto
+\inputencoding utf8
 \fontencoding global
 \font_roman "default" "default"
 \font_sans "default" "default"
@@ -466,6 +469,19 @@ Reproducible genome-wide epigenetic analysis of H3K4 and H3K27 methylation
  in naive and memory CD4 T-cell activation
 \end_layout
 
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Author list: Me, Sarah, Dan
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Approach
 \end_layout
@@ -642,6 +658,19 @@ Compare to published work on other epigenetic marks (e.g.
 \begin_layout Chapter
 Improving array-based analyses of transplant rejection by optimizing data
  preprocessing
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Author list: Me, Sunil, Padma, Dan
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -2027,7 +2056,7 @@ TODO Remove extraneous titles from figures
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -3104,7 +3133,6 @@ More importantly, globin blocking not only nearly doubles the yield of usable
  Based on these results, globin transcript reduction using sequence-specific,
  complementary blocking oligonucleotides is recommended for all deep RNA-seq
  of cynomolgus and other nonhuman primate blood samples.
- 
 \end_layout
 
 \begin_layout Chapter
@@ -3168,7 +3196,7 @@ bibname}{References}
 status open
 
 \begin_layout Plain Layout
-TODO: Check bib entry formatting
+TODO: Check bib entry formatting & sort order
 \end_layout
 
 \end_inset
@@ -3179,6 +3207,7 @@ TODO: Check bib entry formatting
 \begin_layout Standard
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
+btprint "btPrintCited"
 bibfiles "refs"
 options "plain"
 
