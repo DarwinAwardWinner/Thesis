@@ -6,12 +6,11 @@ import regex
 import urllib.parse
 import os.path
 
-from collections import Iterable, Mapping  # in Python 3 use from collections.abc
+from collections.abc import Iterable, Mapping
 from distutils.spawn import find_executable
 from fnmatch import fnmatch
 from subprocess import check_output, check_call
 from tempfile import NamedTemporaryFile
-from TexSoup import TexSoup
 
 try:
     from os import scandir, walk
@@ -58,11 +57,42 @@ def check_output_decode(*args, encoding=locale.getpreferredencoding(), **kwargs)
 
 def find_mac_app(name):
     try:
-        return check_output_decode(
-            ['mdfind',
-             'kMDItemDisplayName=={name}&&kMDItemKind==Application'.format(name=name)]).split('\n')[0]
+        result = \
+            check_output_decode(
+                ['mdfind',
+                'kMDItemDisplayName=={name}.app&&kMDItemKind==Application'.format(name=name)]).split('\n')[0] or \
+            check_output_decode(
+                ['mdfind',
+                 'kMDItemDisplayName=={name}&&kMDItemKind==Application'.format(name=name)]).split('\n')[0]
+        if result:
+            return result
+        else:
+            raise Exception("Not found")
     except Exception:
         return None
+
+def find_lyx():
+    lyx_finders = [
+        lambda: find_executable('lyx'),
+        lambda: os.path.join(find_mac_app('LyX'), 'Contents/MacOS/lyx'),
+        lambda: '/Applications/Lyx.app/Contents/MacOS/lyx',
+    ]
+    for finder in lyx_finders:
+        try:
+            lyxpath = finder()
+            if not lyxpath:
+                continue
+            elif not os.access(lyxpath, os.X_OK):
+                continue
+            else:
+                return lyxpath
+        except Exception:
+            pass
+    else:
+        # Fallback which will just trigger an error when run
+        return '/bin/false'
+
+LYXPATH = find_lyx()
 
 def glob_recursive(pattern, top='.', include_hidden=False, *args, **kwargs):
     '''Combination of glob.glob and os.walk.
@@ -78,9 +108,7 @@ os.walk.'''
             if fnmatch(f, pattern):
                 yield os.path.normpath(os.path.join(path, f))
 
-LYXPATH = find_executable('lyx') or \
-    os.path.join(find_mac_app('LyX'), 'Contents/MacOS/lyx') or \
-    '/bin/false'
+LYXPATH = find_lyx()
 
 def rsync_list_files(*paths, extra_rsync_args=(), include_dirs=False):
     '''Iterate over the files in path that rsync would copy.
