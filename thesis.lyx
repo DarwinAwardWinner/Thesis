@@ -582,6 +582,20 @@ Promoter counts in sliding windows around each gene's highest-expressed
 Results
 \end_layout
 
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Focus on what hypotheses were tested, then select figures that show how
+ those hypotheses were tested, even if the result is a negative.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Itemize
 Different histone marks have different effective promoter radii
 \end_layout
@@ -750,6 +764,30 @@ literal "true"
 
 \end_layout
 
+\begin_deeper
+\begin_layout Itemize
+Note: Distinguish between the data set for the paper, using pre-generated
+ fRMA vectors for standard array platform, vs.
+ the other data set, generating custom tissue-specific fRMA vectors for
+ niche platform.
+\end_layout
+
+\begin_layout Itemize
+Figure: MA plot, RMA vs fRMA, to show that the normalization is appreciably
+ and non-linearly different
+\end_layout
+
+\begin_layout Itemize
+Figure MA plot, fRMA vs fRMA with different randomly-chosen sample subsets
+ to show consistency
+\end_layout
+
+\begin_layout Itemize
+Figure showing trade-off between more samples per group and fewer groups
+ with that may samples, to justify choice of number of samples per group
+\end_layout
+
+\end_deeper
 \begin_layout Itemize
 voom, precision weights, and sva improved model fit
 \end_layout
