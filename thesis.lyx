@@ -53,7 +53,7 @@ todonotes
 \language english
 \language_package default
 \inputencoding utf8
-\fontencoding global
+\fontencoding default
 \font_roman "default" "default"
 \font_sans "default" "default"
 \font_typewriter "default" "default"
@@ -596,70 +596,189 @@ Focus on what hypotheses were tested, then select figures that show how
 
 \end_layout
 
+\begin_layout Subsection
+H3K4 and H3K27 methylation occur in broad regions and are enriched near
+ promoters
+\end_layout
+
 \begin_layout Itemize
-Different histone marks have different effective promoter radii
+Figures comparing MACS (non-broad peak caller) to SICER/epic (broad peak
+ caller)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Compare peak sizes and number of called peaks
+\end_layout
+
+\begin_layout Itemize
+Show representative IDR consistency plots for both
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+IDR analysis shows that SICER-called peaks are much more reproducible between
+ biological replicates
+\end_layout
+
+\begin_layout Itemize
+Each histone mark is enriched within a certain radius of gene TSS positions,
+ but that radius is different for each mark (figure)
+\end_layout
+
+\begin_layout Subsection
+RNA-seq has a large confounding batch effect
+\end_layout
+
+\begin_layout Itemize
+RNA-seq batch effect can be partially corrected, but still induces uncorrectable
+ biases in downstream analysis
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Figure showing MDS plot before & after ComBat
+\end_layout
+
+\begin_layout Itemize
+Figure relating sample weights to batches, cell types, time points, etc.,
+ showing that one batch is significantly worse quality
+\end_layout
+
+\begin_layout Itemize
+Figures showing p-value histograms for within-batch and cross-batch contrasts,
+ showing that cross-batch contrasts have attenuated signal, as do comparisons
+ within the bad batch
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+ChIP-seq must be corrected for hidden confounding factors
+\end_layout
+
+\begin_layout Itemize
+Figures showing pre- and post-SVA MDS plots for each histone mark
+\end_layout
+
+\begin_layout Itemize
+Figures showing BCV plots with and without SVA for each histone mark
+\end_layout
+
+\begin_layout Subsection
+H3K4 and H3K27 promoter methylation has broadly the expected correlation
+ with gene expression
+\end_layout
+
+\begin_layout Itemize
+H3K4 is correlated with higher expression, and H3K27 is correlated with
+ lower expression genome-wide
+\end_layout
+
+\begin_layout Itemize
+Figures showing these correlations: box/violin plots of expression distributions
+ with every combination of peak presence/absence in promoter
+\end_layout
+
+\begin_layout Itemize
+Appropriate statistical tests showing significant differences in expected
+ directions
+\end_layout
+
+\begin_layout Subsection
+MOFA recovers biologically relevant variation from blind analysis by correlating
+ across datasets
+\end_layout
+
+\begin_layout Itemize
+MOFA 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Argelaguet2018"
+literal "false"
+
+\end_inset
+
+ successfully separates biologically relevant patterns of variation from
+ technical confounding factors without knowing the sample labels, by finding
+ latent factors that explain variation across multiple data sets.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Figure: show percent-variance-explained plot from MOFA and PCA-like plots
+ for the relevant latent factors
+\end_layout
+
+\begin_layout Itemize
+MOFA analysis also shows that batch effect correction can't get much better
+ than it already is (Figure comparing blind MOFA batch correction to ComBat
+ correction)
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Naive-to-memory convergence observed in H3K4 and RNA-seq data, not in H3K27me3
 \end_layout
 
 \begin_layout Itemize
 H3K4 and RNA-seq data show clear evidence of naive convergence with memory
- between days 1 and 5
-\end_layout
+ between days 1 and 5 (MDS plot figure, also compare with last figure from
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "LaMere2016"
+literal "false"
 
-\begin_layout Itemize
-Promoter coverage distribution affects gene expression independent of total
- promoter count
-\end_layout
-
-\begin_layout Itemize
-Remaining analyses to complete:
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-Look for naive-to-memory convergence in H3K27 data
-\end_layout
-
-\begin_layout Itemize
-Look at enriched pathways for day 0 to day 1 (activation) compared to day
- 1 to day 5 (putative naive-to-memory differentiation)
-\end_layout
-
-\begin_layout Itemize
-Find genes with different expression patterns in naive vs.
- memory and try to explain the difference with the Day 0 histone mark data
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-Determine whether co-occurrence of H3K4me3 and H3K27me3 (proposed 
-\begin_inset Quotes eld
 \end_inset
 
-poised
-\begin_inset Quotes erd
+)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Get explicit permission from Sarah to include the figure
+\end_layout
+
 \end_inset
 
- state) has effects on post-activation expression dynamics
+
 \end_layout
 
 \begin_layout Itemize
-Promoter coverage distribution dynamics throughout activation for interesting
- subsets of genes
+Table of numbers of genes different between N & M at each time point, showing
+ dwindling differences at later time points, consistent with convergence
 \end_layout
 
-\end_deeper
 \begin_layout Itemize
-(Backup) Compare and contrast behavior of promoter peaks vs intergenic (putative
- enhancer) peaks (GREAT analysis)
+Similar figure for H3K27me3 showing lack of convergence
 \end_layout
 
-\begin_deeper
+\begin_layout Subsection
+Effect of promoter coverage upstream vs downstream of TSS
+\end_layout
+
 \begin_layout Itemize
-Put results in context of important T-cell pathways & gene expression data
+H3K4me peaks seem to correlate with increased expression as long as they
+ are anywhere near the TSS
 \end_layout
 
-\end_deeper
-\end_deeper
+\begin_layout Itemize
+H3K27me3 peaks can have different correlations to gene expression depending
+ on their position relative to TSS (e.g.
+ upstream vs downstream) Results consistent with 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Young2011"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Discussion
 \end_layout
@@ -670,13 +789,37 @@ Discussion
 \end_layout
 
 \begin_layout Itemize
-Evaluate evidence for poised promoters and enhancer effects on gene expression
- dynamics of naive-to-memory differentiation
+MOFA shows great promise for accelerating discovery of major biological
+ effects in multi-omics datasets
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+MOFA was added to this analysis late and played primarily a confirmatory
+ role, but it was able to confirm earlier conclusions with much less prior
+ information (no sample labels) and much less analyst effort
 \end_layout
 
 \begin_layout Itemize
-Compare to published work on other epigenetic marks (e.g.
- chromatin accessibility)
+MOFA confirmed that the already-implemented batch correction in the RNA-seq
+ data was already performing as well as possible given the limitations of
+ the data
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Naive-to-memory convergence implies that naive cells are differentiating
+ into memory cells, and that gene expression and H3K4 methylation are involved
+ in this differentiation while H3K27me3 is less involved
+\end_layout
+
+\begin_layout Itemize
+H3K27me3, canonically regarded as a deactivating mark, seems to have a more
+ complex
+\end_layout
+
+\begin_layout Itemize
+Discuss advantages of developing using a reproducible workflow
 \end_layout
 
 \begin_layout Chapter
@@ -689,7 +832,7 @@ Improving array-based analyses of transplant rejection by optimizing data
 status open
 
 \begin_layout Plain Layout
-Author list: Me, Sunil, Padma, Dan
+Author list: Me, Sunil, Tom, Padma, Dan
 \end_layout
 
 \end_inset
@@ -701,24 +844,213 @@ Author list: Me, Sunil, Padma, Dan
 Approach
 \end_layout
 
+\begin_layout Subsection
+fRMA for classifiers
+\end_layout
+
+\begin_layout Itemize
+RMA makes the normalization of every sample depend on all other samples
+ due to the quantile normalization and median polish steps
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+This makes standard RMA impractical to apply in a machine learning context,
+ because adding in the new sample(s) to be classified changes the normalization
+ of all samples
+\end_layout
+
+\end_deeper
 \begin_layout Itemize
 Machine-learning applications demand a "single-channel" normalization method
 \end_layout
 
 \begin_layout Itemize
-frozen RMA is a good solution, but not trivial to apply
+Frozen RMA (fRMA) addresses these concerns by replacing the quantile normalizati
+on and median polish with alternatives that do not introduce inter-array
+ dependence, allowing each array to be normalized independently of all others
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "McCall2010"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Quantile normalization is performed against a pre-generated set of quantiles
+ learned from a large collection of publically available array data in GEO
+\end_layout
+
+\begin_layout Itemize
+Median polish is replaced with a weighted average of probes, using weights
+ learned form the same public GEO data
+\end_layout
+
+\begin_layout Itemize
+With fRMA, there is no difference between normalizaing 
+\begin_inset Quotes eld
+\end_inset
+
+together
+\begin_inset Quotes erd
+\end_inset
+
+ or separately, and any normalized sample can be compared to any other
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+frozen RMA is a good solution for common array platforms with large amounts
+ of publically available data, but for less common platforms, ready-made
+ normalization vectors are not provided, so custom vectors must be learned
+ from in-house data
+\end_layout
+
+\begin_layout Subsection
+Adapting voom to model heteroskedasticity in methylation array data
 \end_layout
 
 \begin_layout Itemize
 Methylation array data preprocessing induces heteroskedasticity
 \end_layout
 
+\begin_deeper
 \begin_layout Itemize
-Need to account for this mean-variance dependency in analysis
+β
+\series bold
+ 
+\series default
+values, interpreted as fraction of copies methylated, range from 0 to 1.
+\end_layout
+
+\begin_layout Itemize
+β
+\series bold
+ 
+\series default
+values, with their constrained range, are highly non-normal and not suitable
+ for linear modeling
+\end_layout
+
+\begin_layout Itemize
+M-values, interpreted as ratio of methyled to unmethylated copies, maps
+ the beta values from 
+\begin_inset Formula $[0,1]$
+\end_inset
+
+ onto 
+\begin_inset Formula $(-\infty,+\infty)$
+\end_inset
+
+, also transforming them to have approximately normally distributed error
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename graphics/methylvoom/sigmoid.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Sigmoid-beta-m-mapping"
+
+\end_inset
+
+
+\series bold
+Sigmoid shape of the mapping between β and M values
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+However, the sigmoid transformation (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Sigmoid-beta-m-mapping"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+) over-exaggerates the variance of extreme values, leading to a U-shaped
+ trend in the mean-variance curve
+\end_layout
+
+\begin_layout Itemize
+This mean-variance dependency must be accounted for when fitting the linear
+ model for differential methylation
+\end_layout
+
+\begin_layout Itemize
+Voom method, originally developed for RNA-seq data, can model mean-variance
+ dependence
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Standard implementation of voom assumes the input is read counts, and adjustment
+s are required to run it on M-values.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Put code on Github and reference it
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Other methods, such as duplicateCorrelation and arrayWeights, are also applicabl
+e with no need for custom adaptation
 \end_layout
 
 \begin_layout Section
 Methods
+\end_layout
+
+\begin_layout Subsection
+fRMA
 \end_layout
 
 \begin_layout Itemize
@@ -733,6 +1065,10 @@ Use frozen RMA, a single-channel variant of RMA
 Generate custom fRMA normalization vectors for each tissue (biopsy, blood)
 \end_layout
 
+\begin_layout Subsubsection
+Methylation arrays
+\end_layout
+
 \begin_layout Itemize
 Methylation arrays for differential methylation in rejection vs.
  healthy transplant
@@ -744,15 +1080,36 @@ Adapt voom method originally designed for RNA-seq to model mean-variance
 \end_layout
 
 \begin_layout Itemize
-Use sample precision weighting and sva to adjust for other confounding factors
+Use sample precision weighting, duplicateCorrelation, and sva to adjust
+ for other confounding factors
 \end_layout
 
 \begin_layout Section
 Results
 \end_layout
 
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Improve subsection titles in this section
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+fRMA eliminates unwanted dependence of classifier training on normalization
+ strategy caused by RMA
+\end_layout
+
 \begin_layout Itemize
-custom fRMA normalization improved cross-validated classifier performance
+Data set consists of training set (23 TX, 35 AR, 21 ADNR), validation set
+ (23 TX, 34 AR, 21 ADNR), and external validation set gathered from public
+ GEO data (37 TX, 38 AR, no ADNR), all on standard hgu133plus2 Affy arrays
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -764,14 +1121,154 @@ literal "true"
 
 \end_layout
 
-\begin_deeper
-\begin_layout Itemize
-Note: Distinguish between the data set for the paper, using pre-generated
- fRMA vectors for standard array platform, vs.
- the other data set, generating custom tissue-specific fRMA vectors for
- niche platform.
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename graphics/PAM/predplot.pdf
+
+\end_inset
+
+
 \end_layout
 
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Classifier-probabilities-RMA"
+
+\end_inset
+
+
+\series bold
+Classifier probabilities on validation samples when normalized with RMA
+ together vs.
+ separately.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+When validation samples are normalized separately from training samples,
+ the classifier becomes biased relative to normalizing all samples together
+ (Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Classifier-probabilities-RMA"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+Normalizing all samples together is not feasible in a clinical context,
+ so ordinary RMA is unsuitable
+\end_layout
+
+\begin_layout Itemize
+fRMA eliminates this issue by normalizing each sample independently to the
+ same quantile distribution and summarizing probes using the same weights.
+\end_layout
+
+\begin_layout Itemize
+Classifier performance on validation set is identical for 
+\begin_inset Quotes eld
+\end_inset
+
+RMA together
+\begin_inset Quotes erd
+\end_inset
+
+ and fRMA, so switching to clinically applicable normalization does not
+ sacrifice accuracy
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Check the published paper for any other possibly relevant figures to include
+ here.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+fRMA with custom-generated vectors
+\end_layout
+
+\begin_layout Itemize
+Non-standard platform hthgu133pluspm - no pre-built fRMA vectors available,
+ so custom vectors must be learned from in-house data
+\end_layout
+
+\begin_layout Itemize
+Large body of data available for training fRMA: 341 kidney graft biopsy
+ samples, 965 blood samples from graft recipients
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+But not all samples can be used (see trade-off figure)
+\end_layout
+
+\begin_layout Itemize
+Figure showing trade-off between more samples per group and fewer groups
+ with that may samples, to justify choice of number of samples per group
+\end_layout
+
+\begin_layout Itemize
+pre-generated normalization vectors use ~850 samples
+\begin_inset Flex TODO Note (Margin)
+status collapsed
+
+\begin_layout Plain Layout
+Look up the exact numbers
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "McCall2010"
+literal "false"
+
+\end_inset
+
+, but are designed to be general across all tissues.
+ The samples we have are suitable for tissue-specific normalization vectors.
+\end_layout
+
+\end_deeper
 \begin_layout Itemize
 Figure: MA plot, RMA vs fRMA, to show that the normalization is appreciably
  and non-linearly different
@@ -783,11 +1280,27 @@ Figure MA plot, fRMA vs fRMA with different randomly-chosen sample subsets
 \end_layout
 
 \begin_layout Itemize
-Figure showing trade-off between more samples per group and fewer groups
- with that may samples, to justify choice of number of samples per group
+custom fRMA normalization improved cross-validated classifier performance
 \end_layout
 
-\end_deeper
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Get a figure from Tom showing classifier performance improvement (compared
+ to all-sample RMA, I guess?), if possible
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Adapting voom to methylation array data improves model fit
+\end_layout
+
 \begin_layout Itemize
 voom, precision weights, and sva improved model fit
 \end_layout
@@ -798,6 +1311,24 @@ Also increased sensitivity for detecting differential methylation
 \end_layout
 
 \end_deeper
+\begin_layout Itemize
+Figure showing (a) heteroskedasticy without voom, (b) voom-modeled mean-variance
+ trend, and (c) homoskedastic mean-variance trend after running voom
+\end_layout
+
+\begin_layout Itemize
+Figure showing sample weights and their relations to
+\end_layout
+
+\begin_layout Itemize
+Figure showing MDS plot with and without SVA correction
+\end_layout
+
+\begin_layout Itemize
+Figure and/or table showing improved p-value historgrams/number of significant
+ genes (might need to get this from Padma)
+\end_layout
+
 \begin_layout Section
 Discussion
 \end_layout
@@ -924,6 +1455,14 @@ eness of mRNA sequencing in primate blood samples by doubling the yield
 Approach
 \end_layout
 
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Consider putting some of this in the Intro chapter
+\end_layout
+
 \begin_layout Itemize
 Cynomolgus monkeys as a model organism
 \end_layout
@@ -952,6 +1491,11 @@ Existing protocols use a separate globin pulldown step, slowing down processing
 \end_layout
 
 \end_deeper
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 Increasingly, researchers are turning to high-throughput mRNA sequencing
  technologies (RNA-seq) in preference to expression microarrays for analysis
