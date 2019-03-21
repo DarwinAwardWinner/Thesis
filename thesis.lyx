@@ -1064,7 +1064,7 @@ However, the steep slope of the sigmoid transformation near 0 and 1 tends
 \end_layout
 
 \begin_layout Subsubsection
-The voom method for RNA-seq data can model the heteroskedasticity
+The voom method for RNA-seq data can model this heteroskedasticity
 \end_layout
 
 \begin_layout Standard
@@ -1080,17 +1080,12 @@ literal "false"
 \end_inset
 
 .
- While methylation array data are not derived from counts,
-\end_layout
-
-\begin_layout Standard
-Voom method, originally developed for RNA-seq data, can model mean-variance
- dependence
-\end_layout
-
-\begin_layout Standard
-Standard implementation of voom assumes the input is read counts, and adjustment
-s are required to run it on M-values.
+ While methylation array data are not derived from counts and the mean-variance
+ trend in M-values has a different shape than that of RNA-seq count data,
+ the voom method is sufficiently general to model any smooth mean-variance
+ trend, so is applicable to M-values from methylation array data.
+ However, some implementation details of the method must be adapted to allow
+ voom to accept M-values rather than read counts as input.
 \end_layout
 
 \begin_layout Standard
@@ -1104,11 +1099,6 @@ Put code on Github and reference it
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-Other methods, such as duplicateCorrelation and arrayWeights, are also applicabl
-e with no need for custom adaptation
 \end_layout
 
 \begin_layout Section
@@ -1172,26 +1162,15 @@ fRMA eliminates unwanted dependence of classifier training on normalization
  strategy caused by RMA
 \end_layout
 
-\begin_layout Standard
-The initial data set for testing fRMA consisted of 157 hgu133plus2 arrays,
- split into a training set (23 TX, 35 AR, 21 ADNR), validation set (23 TX,
- 34 AR, 21 ADNR), and external validation set gathered from public GEO data
- (37 TX, 38 AR, no ADNR), all on standard hgu133plus2 Affy arrays 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Kurian2014"
-literal "true"
-
-\end_inset
-
-
+\begin_layout Subsubsection
+Separate normalization with RMA introduces unwanted biases in classification
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -1224,19 +1203,45 @@ Classifier probabilities on validation samples when normalized with RMA
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
 \end_layout
 
-\begin_layout Itemize
-When validation samples are normalized separately from training samples,
- the classifier becomes biased relative to normalizing all samples together
- (Fig.
+\begin_layout Standard
+The initial data set for testing fRMA consisted of 157 hgu133plus2 arrays,
+ split into a training set (23 TX, 35 AR, 21 ADNR) and a validation set
+ (23 TX, 34 AR, 21 ADNR), along with an external validation set gathered
+ from public GEO data (37 TX, 38 AR, no ADNR), all on standard hgu133plus2
+ Affy arrays 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Kurian2014"
+literal "true"
+
+\end_inset
+
+.
+ 
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Find out if PAX or BX
+\end_layout
+
+\end_inset
+
+ To demonstrate the problem, we considered the problem of training a classifier
+ to distinguish TX from AR using the TX and AR samples from the training
+ set and validation set as training data, evaluating performance on the
+ external validation set.
+ First, training and evaluation were performed after normalizing all array
+ samples together as a single set using RMA, and second, the internal samples
+ were normalized separately from the external samples and the training and
+ evaluation were repeated.
+ For each sample in the validation set, the classifier probabilities from
+ both classifiers were plotted against each other (Fig.
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1247,12 +1252,31 @@ noprefix "false"
 
 \end_inset
 
-)
+).
+ As expected, separate normalization biases the classifier probabilities,
+ resulting in several misclassifications.
+ In this case, the bias from separate normalization causes the classifier
+ to assign a lower probability of AR to every sample.
+ Because it is not feasible to normalize all samples together in a clinical
+ context, this shows that an alternative to RMA is required.
 \end_layout
 
-\begin_layout Itemize
-Normalizing all samples together is not feasible in a clinical context,
- so ordinary RMA is unsuitable
+\begin_layout Subsubsection
+fRMA achieves equal classification performance while eliminating dependence
+ on normalization strategy
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Figure of ROC curves for each of RMA together, RMA separate, fRMA
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -1294,6 +1318,106 @@ fRMA with custom-generated vectors
 \begin_layout Itemize
 Non-standard platform hthgu133pluspm - no pre-built fRMA vectors available,
  so custom vectors must be learned from in-house data
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename graphics/frma-pax-bx/batchsize_batches.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Number of batches included as a function of batch size
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename graphics/frma-pax-bx/batchsize_samples.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Number of samples included as a function of batch size
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Effect of batch size selection on number of batches and number of samples
+ included in fRMA probe weight learning
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
