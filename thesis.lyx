@@ -845,27 +845,64 @@ Approach
 \end_layout
 
 \begin_layout Subsection
-fRMA for classifiers
+Frozen RMA for clinical microarray classifiers
 \end_layout
 
-\begin_layout Itemize
-RMA makes the normalization of every sample depend on all other samples
- due to the quantile normalization and median polish steps
+\begin_layout Subsubsection
+Standard normalization methods are unsuitable for clinical application
 \end_layout
 
-\begin_deeper
-\begin_layout Itemize
-This makes standard RMA impractical to apply in a machine learning context,
- because adding in the new sample(s) to be classified changes the normalization
- of all samples
+\begin_layout Standard
+As the cost of performing microarray assays falls, there is increasing interest
+ in using genomic assays for diagnostic purposes, such as distinguishing
+ healthy transplants (TX) from transplants undergoing acute rejection (AR)
+ or acute dysfunction with no rejection (ADNR).
+ However, the the standard normalization algorithm used for microarray data,
+ Robust Multi-chip Average (RMA) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Irizarry2003a"
+literal "false"
+
+\end_inset
+
+, is not applicable in a clinical setting.
+ Two of the steps in RMA, quantile normalization and probe summarization
+ by median polish, depend on every array in the data set being normalized.
+ This means that adding or removing any arrays from a data set changes the
+ normalized values for all arrays, and data sets that have been normalized
+ separately cannot be compared to each other.
+ Hence, when using RMA, any arrays to be analyzed together must also be
+ normalized together, and the set of arrays included in the data set must
+ be held constant throughout an analysis.
 \end_layout
 
-\end_deeper
-\begin_layout Itemize
-Machine-learning applications demand a "single-channel" normalization method
+\begin_layout Standard
+These limitations present serious impediments to the use of arrays as a
+ diagnostic tool.
+ When training a classifier, the samples to be classified must not be involved
+ in any step of the training process, lest their inclusion bias the training
+ process.
+ Once a classifier is deployed in a clinical setting, the samples to be
+ classified will not even 
+\emph on
+exist
+\emph default
+ at the time of training, so including them would be impossible even if
+ it were statistically justifiable.
+ Therefore, any machine learning application for microarrays demands that
+ the normalized expression values computed for an array must depend only
+ on information contained within that array.
+ This would ensure that each array's normalization is independent of every
+ other array, and that arrays normalized separately can still be compared
+ to each other without bias.
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Subsubsection
+Frozen RMA satisfies clinical normalization requirements
+\end_layout
+
+\begin_layout Standard
 Frozen RMA (fRMA) addresses these concerns by replacing the quantile normalizati
 on and median polish with alternatives that do not introduce inter-array
  dependence, allowing each array to be normalized independently of all others
@@ -878,84 +915,65 @@ literal "false"
 \end_inset
 
 .
+ Quantile normalization is performed against a pre-generated set of quantiles
+ learned from a collection of 850 publically available arrays sampled from
+ a wide variety of tissues in the Gene Expression Omnibus (GEO).
+ Each array's probe intensity distribution is normalized against these pre-gener
+ated quantiles.
+ The median polish step is replaced with a robust weighted average of probe
+ intensities, using inverse variance weights learned from the same public
+ GEO data.
+ The result is a normalization that satisfies the requirements mentioned
+ above: each array is normalized independently of all others, and any two
+ normalized arrays can be compared directly to each other.
 \end_layout
 
-\begin_deeper
-\begin_layout Itemize
-Quantile normalization is performed against a pre-generated set of quantiles
- learned from a large collection of publically available array data in GEO
-\end_layout
+\begin_layout Standard
+One important limitation of fRMA is that it requires a separate reference
+ data set from which to learn the parameters (reference quantiles and probe
+ weights) that will be used to normalize each array.
+ These parameters are specific to a given array platform, and pre-generated
+ parameters are only provided for the most common platforms, such as Affymetrix
+ hgu133plus2.
+ For a less common platform, is is necessary to learn custom parameters
+ from in-house data before fRMA can be used to normalize samples on that
+ platform 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "HudsonK.&RemediosC.2010"
+literal "false"
 
-\begin_layout Itemize
-Median polish is replaced with a weighted average of probes, using weights
- learned form the same public GEO data
-\end_layout
-
-\begin_layout Itemize
-With fRMA, there is no difference between normalizaing 
-\begin_inset Quotes eld
 \end_inset
 
-together
-\begin_inset Quotes erd
-\end_inset
-
- or separately, and any normalized sample can be compared to any other
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-frozen RMA is a good solution for common array platforms with large amounts
- of publically available data, but for less common platforms, ready-made
- normalization vectors are not provided, so custom vectors must be learned
- from in-house data
+.
 \end_layout
 
 \begin_layout Subsection
 Adapting voom to model heteroskedasticity in methylation array data
 \end_layout
 
-\begin_layout Itemize
-Methylation array data preprocessing induces heteroskedasticity
+\begin_layout Subsubsection
+Methylation array preprocessing induces heteroskedasticity
 \end_layout
 
-\begin_deeper
-\begin_layout Itemize
-β
-\series bold
- 
-\series default
-values, interpreted as fraction of copies methylated, range from 0 to 1.
+\begin_layout Standard
+DNA methylation arrays are a relatively new kind of assay that uses microarrays
+ to measure the degree of methylation on cytosines in specific regions arrayed
+ across the genome.
+ First, bisulfite treatment converts all unmethylated cytosines to uracil
+ (which then become thymine after amplication) while leaving methylated
+ cytosines unaffected.
+ Then, each target region is interrogated with two probes: one binds to
+ the original genomic sequence and interrogates the level of methylated
+ DNA, and the other binds to the sequence with all Cs replaced by Ts and
+ interrogates the level of unmethylated DNA.
 \end_layout
 
-\begin_layout Itemize
-β
-\series bold
- 
-\series default
-values, with their constrained range, are highly non-normal and not suitable
- for linear modeling
-\end_layout
-
-\begin_layout Itemize
-M-values, interpreted as ratio of methyled to unmethylated copies, maps
- the beta values from 
-\begin_inset Formula $[0,1]$
-\end_inset
-
- onto 
-\begin_inset Formula $(-\infty,+\infty)$
-\end_inset
-
-, also transforming them to have approximately normally distributed error
-\end_layout
-
-\end_deeper
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -986,17 +1004,37 @@ Sigmoid shape of the mapping between β and M values
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
 \end_layout
 
-\begin_layout Itemize
-However, the sigmoid transformation (Figure 
+\begin_layout Standard
+After normalization, these two probe intensities are summarized in one of
+ two ways, each with advantages and disadvantages.
+ β
+\series bold
+ 
+\series default
+values, interpreted as fraction of DNA copies methylated, range from 0 to
+ 1.
+ β
+\series bold
+ 
+\series default
+values are conceptually easy to interpret, but the constrained range makes
+ them unsuitable for linear modeling, and their error distributions are
+ highly non-normal, which also frustrates linear modeling.
+ M-values, interpreted as the log ratio of methylated to unmethylated copies,
+ are computed by mapping the beta values from 
+\begin_inset Formula $[0,1]$
+\end_inset
+
+ onto 
+\begin_inset Formula $(-\infty,+\infty)$
+\end_inset
+
+ using a sigmoid curve (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Sigmoid-beta-m-mapping"
@@ -1006,27 +1044,56 @@ noprefix "false"
 
 \end_inset
 
-) over-exaggerates the variance of extreme values, leading to a U-shaped
- trend in the mean-variance curve
+).
+ This transformation results in values with better statistical perperties:
+ the unconstrained range is suitable for linear modeling, and the error
+ distributions are more normal.
+ Hence, most linear modeling and other statistical testing on methylation
+ arrays is performed using M-values.
 \end_layout
 
-\begin_layout Itemize
-This mean-variance dependency must be accounted for when fitting the linear
- model for differential methylation
+\begin_layout Standard
+However, the steep slope of the sigmoid transformation near 0 and 1 tends
+ to over-exaggerate small differences in β values near those extremes, which
+ in turn amplifies the error in those values, leading to a U-shaped trend
+ in the mean-variance curve.
+ This mean-variance dependency must be accounted for when fitting the linear
+ model for differential methylation, or else the variance will be systematically
+ overestimated for probes with moderate M-values and underestimated for
+ probes with extreme M-values.
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Subsubsection
+The voom method for RNA-seq data can model the heteroskedasticity
+\end_layout
+
+\begin_layout Standard
+RNA-seq read count data are also known to show heteroskedasticity, and the
+ voom method was developed for modeling this heteroskedasticity by estimating
+ the mean-variance trend in the data and using this trend to assign precision
+ weights to each observation 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Law2013"
+literal "false"
+
+\end_inset
+
+.
+ While methylation array data are not derived from counts,
+\end_layout
+
+\begin_layout Standard
 Voom method, originally developed for RNA-seq data, can model mean-variance
  dependence
 \end_layout
 
-\begin_deeper
-\begin_layout Itemize
+\begin_layout Standard
 Standard implementation of voom assumes the input is read counts, and adjustment
 s are required to run it on M-values.
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Standard
 \begin_inset Flex TODO Note (inline)
 status open
 
@@ -1039,8 +1106,7 @@ Put code on Github and reference it
 
 \end_layout
 
-\end_deeper
-\begin_layout Itemize
+\begin_layout Standard
 Other methods, such as duplicateCorrelation and arrayWeights, are also applicabl
 e with no need for custom adaptation
 \end_layout
@@ -1106,11 +1172,11 @@ fRMA eliminates unwanted dependence of classifier training on normalization
  strategy caused by RMA
 \end_layout
 
-\begin_layout Itemize
-Data set consists of training set (23 TX, 35 AR, 21 ADNR), validation set
- (23 TX, 34 AR, 21 ADNR), and external validation set gathered from public
- GEO data (37 TX, 38 AR, no ADNR), all on standard hgu133plus2 Affy arrays
- 
+\begin_layout Standard
+The initial data set for testing fRMA consisted of 157 hgu133plus2 arrays,
+ split into a training set (23 TX, 35 AR, 21 ADNR), validation set (23 TX,
+ 34 AR, 21 ADNR), and external validation set gathered from public GEO data
+ (37 TX, 38 AR, no ADNR), all on standard hgu133plus2 Affy arrays 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Kurian2014"
