@@ -1080,12 +1080,16 @@ literal "false"
 \end_inset
 
 .
- While methylation array data are not derived from counts and the mean-variance
- trend in M-values has a different shape than that of RNA-seq count data,
- the voom method is sufficiently general to model any smooth mean-variance
- trend, so is applicable to M-values from methylation array data.
- However, some implementation details of the method must be adapted to allow
- voom to accept M-values rather than read counts as input.
+ While methylation array data are not derived from counts and have a very
+ different mean-variance relationship from that of typical RNA-seq data,
+ the voom method makes no specific assumptions on the shape of the mean-variance
+ relationship - it only assumes that the relationship is smooth enough to
+ model using a lowess curve.
+ Hence, the method is sufficiently general to model the mean-variance relationsh
+ip in methylation array data.
+ However, the standard implementation of voom assumes that the input is
+ given in raw read counts, and minor adjustments are required to run it
+ on methylation M-values.
 \end_layout
 
 \begin_layout Standard
