@@ -1402,12 +1402,6 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
 \begin_inset Graphics
 	filename graphics/frma-pax-bx/batchsize_batches.pdf
 
@@ -1420,7 +1414,14 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Number of batches included as a function of batch size
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:batch-size-batches"
+
+\end_inset
+
+Effect of batch size selection on number of batches included in fRMA probe
+ weight learning
 \end_layout
 
 \end_inset
@@ -1428,16 +1429,12 @@ Number of batches included as a function of batch size
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -1456,37 +1453,18 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Number of samples included as a function of batch size
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:batch-size-samples"
+
+\end_inset
+
+Effect of batch size selection on number of samples included in fRMA probe
+ weight learning
 \end_layout
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Effect of batch size selection on number of batches and number of samples
- included in fRMA probe weight learning
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
