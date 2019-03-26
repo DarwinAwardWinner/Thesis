@@ -845,6 +845,51 @@ Approach
 \end_layout
 
 \begin_layout Subsection
+Proper pre-processing is essential for array data
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+This section could probably use some citations
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Microarrays, bead ararys, and similar assays produce raw data in the form
+ of fluorescence intensity measurements, with the each intensity measurement
+ proportional to the abundance of some fluorescently-labelled target DNA
+ or RNA sequence that base pairs to a specific probe sequence.
+ However, these measurements for each probe are also affected my many technical
+ confounding factors, such as the concentration of target material, strength
+ of off-target binding, and the sensitivity of the imaging sensor.
+ Some array designs also use multiple probe sequences for each target.
+ Hence, extensive pre-processing of array data is necessary to normalize
+ out the effects of these technical factors and summarize the information
+ from multiple probes to arrive at a single usable estimate of abundance
+ or other relevant quantity, such as a ratio of two abundances, for each
+ target.
+\end_layout
+
+\begin_layout Standard
+The choice of pre-processing algorithms used in the analysis of an array
+ data set can have a large effect on the results of that analysis.
+ However, despite their importance, these steps are often neglected or rushed
+ in order to get to the more scientifically interesting analysis steps involving
+ the actual biology of the system under study.
+ Hence, it is often possible to achieve substantial gains in statistical
+ power, model goodness-of-fit, or other relevant performance measures, by
+ checking the assumptions made by each preprocessing step and choosing specific
+ normalization methods tailored to the specific goals of the current analysis.
+\end_layout
+
+\begin_layout Subsection
 Frozen RMA for clinical microarray classifiers
 \end_layout
 
@@ -935,9 +980,9 @@ One important limitation of fRMA is that it requires a separate reference
  These parameters are specific to a given array platform, and pre-generated
  parameters are only provided for the most common platforms, such as Affymetrix
  hgu133plus2.
- For a less common platform, is is necessary to learn custom parameters
- from in-house data before fRMA can be used to normalize samples on that
- platform 
+ For a less common platform, such as hthgu133pluspm, is is necessary to
+ learn custom parameters from in-house data before fRMA can be used to normalize
+ samples on that platform 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "HudsonK.&RemediosC.2010"
@@ -1271,11 +1316,37 @@ fRMA achieves equal classification performance while eliminating dependence
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
+\begin_inset Float figure
+wide false
+sideways false
 status open
 
 \begin_layout Plain Layout
-Figure of ROC curves for each of RMA together, RMA separate, fRMA
+\begin_inset Graphics
+	filename graphics/PAM/external-roc-frma.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ROC-curve-PAM"
+
+\end_inset
+
+ROC curve for PAM on external validation data, normalizing with RMA and
+ fRMA
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
