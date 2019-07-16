@@ -1101,7 +1101,8 @@ noprefix "false"
 However, the steep slope of the sigmoid transformation near 0 and 1 tends
  to over-exaggerate small differences in β values near those extremes, which
  in turn amplifies the error in those values, leading to a U-shaped trend
- in the mean-variance curve.
+ in the mean-variance curve: extreme values have higher variances than values
+ near the middle.
  This mean-variance dependency must be accounted for when fitting the linear
  model for differential methylation, or else the variance will be systematically
  overestimated for probes with moderate M-values and underestimated for
@@ -1109,7 +1110,7 @@ However, the steep slope of the sigmoid transformation near 0 and 1 tends
 \end_layout
 
 \begin_layout Subsubsection
-The voom method for RNA-seq data can model this heteroskedasticity
+The voom method for RNA-seq data can model M-value heteroskedasticity
 \end_layout
 
 \begin_layout Standard
@@ -1133,8 +1134,8 @@ literal "false"
  Hence, the method is sufficiently general to model the mean-variance relationsh
 ip in methylation array data.
  However, the standard implementation of voom assumes that the input is
- given in raw read counts, and minor adjustments are required to run it
- on methylation M-values.
+ given in raw read counts, and it must be adapted to run on methylation
+ M-values.
 \end_layout
 
 \begin_layout Standard
