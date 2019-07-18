@@ -1159,6 +1159,39 @@ Methods
 fRMA
 \end_layout
 
+\begin_layout Standard
+For testing RMA against fRMA, a data set of 157 hgu133plus2 arrays was used,
+ consisting of blood samples from kidney transplant patients whose grafts
+ had been graded as TX, AR, or ADNR via biopsy and histology 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Kurian2014"
+literal "true"
+
+\end_inset
+
+.
+ These were split into a training set (23 TX, 35 AR, 21 ADNR) and a validation
+ set (23 TX, 34 AR, 21 ADNR).
+ Additionally, an external validation was gathered from public GEO data
+ (37 TX, 38 AR, no ADNR).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status collapsed
+
+\begin_layout Plain Layout
+Find appropriate GEO identifiers if possible.
+ Kurian 2014 says GSE15296, but this seems to be different data.
+ I also need to look up the GEO accession for the external validation set.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Itemize
 Expression array normalization for detecting acute rejection
 \end_layout
@@ -1262,8 +1295,7 @@ Classifier probabilities on validation samples when normalized with RMA
 The initial data set for testing fRMA consisted of 157 hgu133plus2 arrays,
  split into a training set (23 TX, 35 AR, 21 ADNR) and a validation set
  (23 TX, 34 AR, 21 ADNR), along with an external validation set gathered
- from public GEO data (37 TX, 38 AR, no ADNR), all on standard hgu133plus2
- Affy arrays 
+ from public GEO data (37 TX, 38 AR, no ADNR) 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Kurian2014"
@@ -1272,16 +1304,6 @@ literal "true"
 \end_inset
 
 .
- 
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Find out if PAX or BX
-\end_layout
-
-\end_inset
-
  To demonstrate the problem, we considered the problem of training a classifier
  to distinguish TX from AR using the TX and AR samples from the training
  set and validation set as training data, evaluating performance on the
@@ -1400,7 +1422,7 @@ Non-standard platform hthgu133pluspm - no pre-built fRMA vectors available,
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -1439,7 +1461,7 @@ Effect of batch size selection on number of batches included in fRMA probe
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
