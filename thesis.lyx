@@ -1339,6 +1339,24 @@ fRMA achieves equal classification performance while eliminating dependence
 \end_layout
 
 \begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Cite ROCR: bioinformatics.oxfordjournals.org/cgi/content/abstract/21/20/3940
+\end_layout
+
+\begin_layout Plain Layout
+Or maybe pROC? https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-21
+05-12-77
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
