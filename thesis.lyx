@@ -5322,6 +5322,20 @@ More importantly, globin blocking not only nearly doubles the yield of usable
 Future Directions
 \end_layout
 
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Consider per-chapter future directions.
+ Check instructions.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Itemize
 Study other epigenetic marks in more contexts
 \end_layout
