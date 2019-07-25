@@ -1047,6 +1047,7 @@ sideways false
 status collapsed
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename graphics/methylvoom/sigmoid.pdf
 
@@ -1413,11 +1414,14 @@ Separate normalization with RMA introduces unwanted biases in classification
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename graphics/PAM/predplot.pdf
+	width 100col%
+	groupId colwidth
 
 \end_inset
 
@@ -1492,6 +1496,7 @@ sideways false
 status collapsed
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename graphics/PAM/ROC-TXvsAR-internal.pdf
 	width 100col%
@@ -1533,6 +1538,7 @@ sideways false
 status collapsed
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="7" columns="4">
 <features tabularvalignment="middle">
@@ -1567,7 +1573,7 @@ Normalization
 \begin_inset Text
 
 \begin_layout Plain Layout
-Single-channel
+Single-channel?
 \end_layout
 
 \end_inset
@@ -1589,7 +1595,8 @@ Single-channel
 \uwave off
 \noun off
 \color none
-Internal Validation AUC
+Internal Val.
+ AUC
 \end_layout
 
 \end_inset
@@ -1598,7 +1605,8 @@ Internal Validation AUC
 \begin_inset Text
 
 \begin_layout Plain Layout
-External Validation AUC
+External Val.
+ AUC
 \end_layout
 
 \end_inset
@@ -2140,9 +2148,10 @@ noprefix "false"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename graphics/PAM/ROC-TXvsAR-external.pdf
 	width 100col%
@@ -2224,6 +2233,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename graphics/frma-pax-bx/batchsize_batches.pdf
 
@@ -2270,6 +2280,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename graphics/frma-pax-bx/batchsize_samples.pdf
 
@@ -2379,12 +2390,14 @@ literal "false"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename graphics/frma-pax-bx/M-BX-violin.pdf
-	lyxscale 30
+	lyxscale 40
+	height 80theight%
 	groupId m-violin
 
 \end_inset
@@ -2459,9 +2472,10 @@ noprefix "false"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename graphics/frma-pax-bx/MA-BX-RMA.fRMA.pdf
 	lyxscale 50
@@ -2507,9 +2521,10 @@ Averages and log ratios were computed for every probe in each of 20 biopsy
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename graphics/frma-pax-bx/MA-BX-fRMA.fRMA.pdf
 	lyxscale 50
@@ -2650,12 +2665,14 @@ noprefix "false"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename graphics/frma-pax-bx/M-PAX-violin.pdf
-	lyxscale 30
+	lyxscale 40
+	height 80theight%
 	groupId m-violin
 
 \end_inset
@@ -2698,9 +2715,10 @@ Each of 20 randomly selected blood samples was normalized with RMA and with
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename graphics/frma-pax-bx/MA-PAX-RMA.fRMA.pdf
 	lyxscale 50
@@ -2750,9 +2768,10 @@ Averages and log ratios were computed for every probe in each of 20 blood
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename graphics/frma-pax-bx/MA-PAX-fRMA.fRMA.pdf
 	lyxscale 50
