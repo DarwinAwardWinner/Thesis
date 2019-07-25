@@ -890,7 +890,7 @@ The choice of pre-processing algorithms used in the analysis of an array
 \end_layout
 
 \begin_layout Subsection
-Frozen RMA for clinical microarray classifiers
+Normalization for clinical microarray classifiers must be single-channel
 \end_layout
 
 \begin_layout Subsubsection
@@ -941,10 +941,19 @@ exist
  This would ensure that each array's normalization is independent of every
  other array, and that arrays normalized separately can still be compared
  to each other without bias.
+ Such a normalization is commonly referred to as 
+\begin_inset Quotes eld
+\end_inset
+
+single-channel normalization
+\begin_inset Quotes erd
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsubsection
-Frozen RMA satisfies clinical normalization requirements
+Several strategies are available to meet clinical normalization requirements
 \end_layout
 
 \begin_layout Standard
@@ -985,7 +994,7 @@ One important limitation of fRMA is that it requires a separate reference
  samples on that platform 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "HudsonK.&RemediosC.2010"
+key "McCall2011"
 literal "false"
 
 \end_inset
@@ -993,8 +1002,25 @@ literal "false"
 .
 \end_layout
 
+\begin_layout Standard
+One other option is the aptly-named Single Channel Array Normalization (SCAN),
+ which adapts a normalization method originally designed for tiling arrays
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Piccolo2012"
+literal "false"
+
+\end_inset
+
+.
+ SCAN is truly single-channel in that it does not require a set of normalization
+ paramters estimated from an external set of reference samples like fRMA
+ does.
+\end_layout
+
 \begin_layout Subsection
-Adapting voom to model heteroskedasticity in methylation array data
+Heteroskedasticity must be accounted for in methylation array data 
 \end_layout
 
 \begin_layout Subsubsection
@@ -1156,13 +1182,14 @@ Methods
 \end_layout
 
 \begin_layout Subsection
-fRMA
+Evaluation of classifier performance with different normalization methods
 \end_layout
 
 \begin_layout Standard
-For testing RMA against fRMA, a data set of 157 hgu133plus2 arrays was used,
- consisting of blood samples from kidney transplant patients whose grafts
- had been graded as TX, AR, or ADNR via biopsy and histology 
+For testing different normalizations, a data set of 157 hgu133plus2 arrays
+ was used, consisting of blood samples from kidney transplant patients whose
+ grafts had been graded as TX, AR, or ADNR via biopsy and histology (46
+ TX, 69 AR, 42 ADNR) 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Kurian2014"
@@ -1171,10 +1198,9 @@ literal "true"
 \end_inset
 
 .
- These were split into a training set (23 TX, 35 AR, 21 ADNR) and a validation
- set (23 TX, 34 AR, 21 ADNR).
- Additionally, an external validation was gathered from public GEO data
- (37 TX, 38 AR, no ADNR).
+ Additionally, an external validation set of 75 samples was gathered from
+ public GEO data (37 TX, 38 AR, no ADNR).
+ 
 \end_layout
 
 \begin_layout Standard
@@ -1192,20 +1218,154 @@ Find appropriate GEO identifiers if possible.
 
 \end_layout
 
-\begin_layout Itemize
-Expression array normalization for detecting acute rejection
+\begin_layout Standard
+To evaluate the effect of each normalization on classifier performance,
+ the same classifier training and validation procedure was used after each
+ normalization method.
+ The PAM package was used to train a nearest shrunken centroid classifier
+ on the training set and select the appropriate threshold for centroid shrinking.
+ Then the trained classifier was used to predict the class probabilities
+ of each validation sample.
+ From these class probabilities, ROC curves and area-under-curve (AUC) values
+ were generated 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Turck2011"
+literal "false"
+
+\end_inset
+
+.
+ Each normalization was tested on two different sets of training and validation
+ samples.
+ For internal validation, the 115 TX and AR arrays in the internal set were
+ split at random into two equal sized sets, one for training and one for
+ validation, each containing the same numbers of TX and AR samples as the
+ other set.
+ For external validation, the full set of 115 TX and AR samples were used
+ as a training set, and the 75 external TX and AR samples were used as the
+ validation set.
+ Thus, 2 ROC curves and AUC values were generated for each normalization
+ method: one internal and one external.
+ Because the external validation set contains no ADNR samples, only classificati
+on of TX and AR samples was considered.
+ The ADNR samples were included during normalization but excluded from all
+ classifier training and validation.
+ This ensures that the performance on internal and external validation sets
+ is directly comparable.
 \end_layout
 
-\begin_layout Itemize
-Use frozen RMA, a single-channel variant of RMA
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status collapsed
+
+\begin_layout Plain Layout
+Summarize the get.best.threshold algorithm for PAM threshold selection
 \end_layout
 
-\begin_layout Itemize
-Generate custom fRMA normalization vectors for each tissue (biopsy, blood)
+\end_inset
+
+
 \end_layout
 
-\begin_layout Subsubsection
-Methylation arrays
+\begin_layout Standard
+Six different normalization strategies were evaluated.
+ First, 2 well-known non-single-channel normalization methods were considered:
+ RMA and dChip 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Li2001,Irizarry2003a"
+literal "false"
+
+\end_inset
+
+.
+ Since RMA produces expression values on a log2 scale and dChip does not,
+ the values from dChip were log2 transformed after normalization.
+ Next, RMA and dChip followed by Global Rank-invariant Set Normalization
+ (GRSN) were tested 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Pelz2008"
+literal "false"
+
+\end_inset
+
+.
+ Post-processing with GRSN does not turn RMA or dChip into single-channel
+ methods, but it may help mitigate batch effects and is therefore useful
+ as a benchmark.
+ Lastly, the two single-channel normalization methods, fRMA and SCAN, were
+ tested 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "McCall2010,Piccolo2012"
+literal "false"
+
+\end_inset
+
+.
+ When evaluting internal validation performance, only the 157 internal samples
+ were normalized; when evaluating external validation performance, all 157
+ internal samples and 75 external samples were normalized together.
+\end_layout
+
+\begin_layout Standard
+For demonstrating the problem with separate normalization of training and
+ validation data, one additional normalization was performed: the internal
+ and external sets were each normalized separately using RMA, and the normalized
+ data for each set were combined into a single set with no further attempts
+ at normalizing between the two sets.
+ The represents approximately how RMA would have to be used in a clinical
+ setting, where the samples to be classified are not available at the time
+ the classifier is trained.
+\end_layout
+
+\begin_layout Subsection
+Generating custom fRMA vectors for hthgu133pluspm array platform
+\end_layout
+
+\begin_layout Standard
+In order to enable fRMA normalization for the hthgu133pluspm array platform,
+ custom fRMA normalization vectors were trained using the frmaTools package
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "McCall2011"
+literal "false"
+
+\end_inset
+
+.
+ Separate vectors were created for two types of samples: kidney graft biopsy
+ samples and blood samples from graft recipients.
+ For training, a 341 kidney biopsy samples from 2 data sets and 965 blood
+ samples from 5 data sets were used as the reference set.
+ Arrays were groups into batches based on unique combinations of sample
+ type (blood or biopsy), diagnosis (TX, AR, etc.), data set, and scan date.
+ Thus, each batch represents arrays of the same kind that were run together
+ on the same day.
+ For estimating the probe inverse variance weights, frmaTools requires equal-siz
+ed batches, which means a batch size must be chosen, and then batches smaller
+ than that size must be ignored, while batches larger than the chosen size
+ must be downsampled.
+ This downsampling is performed randomly, so the sampling process is repeated
+ 5 times and the resulting normalizations are compared to each other.
+\end_layout
+
+\begin_layout Standard
+To evaluate the consistency of the generated normalization vectors, the
+ 5 fRMA vector sets generated from 5 random batch samplings were each used
+ to normalize the same 20 randomly selected samples from each tissue.
+ Then the normalized expression values for each probe on each array were
+ compared across all normalizations.
+ Each fRMA normalization was also compared against the normalized expression
+ values obtained by normalizing the same 20 samples with ordinary RMA.
+\end_layout
+
+\begin_layout Subsection
+Modeling methylation array M-value heteroskedasticy with modified voom implement
+ation
 \end_layout
 
 \begin_layout Itemize
@@ -1292,22 +1452,10 @@ Classifier probabilities on validation samples when normalized with RMA
 \end_layout
 
 \begin_layout Standard
-The initial data set for testing fRMA consisted of 157 hgu133plus2 arrays,
- split into a training set (23 TX, 35 AR, 21 ADNR) and a validation set
- (23 TX, 34 AR, 21 ADNR), along with an external validation set gathered
- from public GEO data (37 TX, 38 AR, no ADNR) 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Kurian2014"
-literal "true"
-
-\end_inset
-
-.
- To demonstrate the problem, we considered the problem of training a classifier
- to distinguish TX from AR using the TX and AR samples from the training
- set and validation set as training data, evaluating performance on the
- external validation set.
+To demonstrate the problem with non-single-channel methods, we considered
+ the problem of training a classifier to distinguish TX from AR using the
+ samples from the internal set as training data, evaluating performance
+ on the external set.
  First, training and evaluation were performed after normalizing all array
  samples together as a single set using RMA, and second, the internal samples
  were normalized separately from the external samples and the training and
@@ -1329,42 +1477,25 @@ noprefix "false"
  resulting in several misclassifications.
  In this case, the bias from separate normalization causes the classifier
  to assign a lower probability of AR to every sample.
- Because it is not feasible to normalize all samples together in a clinical
- context, this shows that an alternative to RMA is required.
+ 
 \end_layout
 
 \begin_layout Subsubsection
-fRMA achieves equal classification performance while eliminating dependence
- on normalization strategy
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Cite ROCR: bioinformatics.oxfordjournals.org/cgi/content/abstract/21/20/3940
-\end_layout
-
-\begin_layout Plain Layout
-Or maybe pROC? https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-21
-05-12-77
-\end_layout
-
-\end_inset
-
-
+fRMA and SCAN achieve maintain classification performance while eliminating
+ dependence on normalization strategy
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename graphics/PAM/external-roc-frma.pdf
+	filename graphics/PAM/ROC-TXvsAR-internal.pdf
+	width 100col%
+	groupId colwidth
 
 \end_inset
 
@@ -1377,12 +1508,12 @@ status open
 \begin_layout Plain Layout
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:ROC-curve-PAM"
+name "fig:ROC-PAM-int"
 
 \end_inset
 
-ROC curve for PAM on external validation data, normalizing with RMA and
- fRMA
+ROC curves for PAM on internal validation data using different normalization
+ strategies
 \end_layout
 
 \end_inset
@@ -1393,33 +1524,573 @@ ROC curve for PAM on external validation data, normalizing with RMA and
 \end_inset
 
 
-\end_layout
-
-\begin_layout Itemize
-fRMA eliminates this issue by normalizing each sample independently to the
- same quantile distribution and summarizing probes using the same weights.
-\end_layout
-
-\begin_layout Itemize
-Classifier performance on validation set is identical for 
-\begin_inset Quotes eld
-\end_inset
-
-RMA together
-\begin_inset Quotes erd
-\end_inset
-
- and fRMA, so switching to clinically applicable normalization does not
- sacrifice accuracy
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
+\begin_inset Float table
+wide false
+sideways false
+status collapsed
 
 \begin_layout Plain Layout
-Check the published paper for any other possibly relevant figures to include
- here.
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Normalization
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Single-channel
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Internal Validation AUC
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+External Validation AUC
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+RMA
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+0.852
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+0.713
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+dChip
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+0.891
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+0.657
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+RMA + GRSN
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+0.816
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+0.750
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+dChip + GRSN
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+0.875
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+0.642
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+fRMA
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+0.863
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+0.718
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+SCAN
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+0.853
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+0.689
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:AUC-PAM"
+
+\end_inset
+
+
+\series bold
+AUC values for internal and external validation with 6 different normalization
+ strategies.
+
+\series default
+ Only fRMA and SCAN are single-channel normalizations.
+ The other 4 normalizations are for comparison.
 \end_layout
 
 \end_inset
@@ -1427,13 +2098,42 @@ Check the published paper for any other possibly relevant figures to include
 
 \end_layout
 
-\begin_layout Subsection
-fRMA with custom-generated vectors
+\end_inset
+
+
 \end_layout
 
-\begin_layout Itemize
-Non-standard platform hthgu133pluspm - no pre-built fRMA vectors available,
- so custom vectors must be learned from in-house data
+\begin_layout Standard
+For internal validation, the 6 methods' AUC values ranged from 0.816 to 0.891,
+ as shown in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:AUC-PAM"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Among the non-single-channel normalizations, dChip outperformed RMA, while
+ GRSN reduced the AUC values for both dChip and RMA.
+ Both single-channel methods, fRMA and SCAN, slightly outperformed RMA,
+ with fRMA ahead of SCAN.
+ However, the difference between RMA and fRMA is still quite small.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ROC-PAM-int"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows that the ROC curves for RMA, dChip, and fRMA look very similar and
+ relatively smooth, while both GRSN curves and the curve for SCAN have a
+ more jagged appearance.
 \end_layout
 
 \begin_layout Standard
@@ -1441,6 +2141,87 @@ Non-standard platform hthgu133pluspm - no pre-built fRMA vectors available,
 wide false
 sideways false
 status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename graphics/PAM/ROC-TXvsAR-external.pdf
+	width 100col%
+	groupId colwidth
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ROC-PAM-ext"
+
+\end_inset
+
+ROC curve for PAM on external validation data using different normalization
+ strategies
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For external validation, as expected, all the AUC values are lower than
+ the internal validations, ranging from 0.642 to 0.750 (Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:AUC-PAM"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ With or without GRSN, RMA shows its dominance over dChip in this more challengi
+ng test.
+ Unlike in the internal validation, GRSN actually improves the classifier
+ performance for RMA, although it does not for dChip.
+ Once again, both single-channel methods perform about on par with RMA,
+ with fRMA performing slightly better and SCAN performing a bit worse.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ROC-PAM-ext"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows the ROC curves for the external validation test.
+ As expected, none of them are as clean-looking as the internal validation
+ ROC curves.
+ The curves for RMA, RMA+GRSN, and fRMA all look similar, while the other
+ curves look more divergent.
+\end_layout
+
+\begin_layout Subsection
+fRMA with custom-generated vectors enables normalization on hthgu133pluspm
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -1461,8 +2242,15 @@ name "fig:batch-size-batches"
 
 \end_inset
 
+
+\series bold
 Effect of batch size selection on number of batches included in fRMA probe
- weight learning
+ weight learning.
+ 
+\series default
+For batch sizes ranging from 3 to 15, the number of batches with at least
+ that many samples was plotted for biopsy (BX) and blood (PAX) samples.
+ The selected batch size, 5, is marked with a dotted vertical line.
 \end_layout
 
 \end_inset
@@ -1479,7 +2267,7 @@ Effect of batch size selection on number of batches included in fRMA probe
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -1500,8 +2288,15 @@ name "fig:batch-size-samples"
 
 \end_inset
 
+
+\series bold
 Effect of batch size selection on number of samples included in fRMA probe
- weight learning
+ weight learning.
+ 
+\series default
+For batch sizes ranging from 3 to 15, the number of samples included in
+ probe weight training was plotted for biopsy (BX) and blood (PAX) samples.
+ The selected batch size, 5, is marked with a dotted vertical line.
 \end_layout
 
 \end_inset
@@ -1514,66 +2309,485 @@ Effect of batch size selection on number of samples included in fRMA probe
 
 \end_layout
 
-\begin_layout Itemize
-Large body of data available for training fRMA: 341 kidney graft biopsy
- samples, 965 blood samples from graft recipients
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-But not all samples can be used (see trade-off figure)
-\end_layout
-
-\begin_layout Itemize
-Figure showing trade-off between more samples per group and fewer groups
- with that may samples, to justify choice of number of samples per group
-\end_layout
-
-\begin_layout Itemize
-pre-generated normalization vectors use ~850 samples
-\begin_inset Flex TODO Note (Margin)
-status collapsed
-
-\begin_layout Plain Layout
-Look up the exact numbers
-\end_layout
+\begin_layout Standard
+In order to enable use of fRMA to normalize hthgu133pluspm, a custom set
+ of fRMA vectors was created.
+ First, an appropriate batch size was chosen by looking at the number of
+ batches and number of samples included as a function of batch size (Figures
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:batch-size-batches"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:batch-size-samples"
+plural "false"
+caps "false"
+noprefix "false"
 
+\end_inset
+
+, respectively).
+ For a given batch size, all batches with fewer samples that the chosen
+ size must be ignored during training, while larger batches must be randomly
+ downsampled to the chosen size.
+ Hence, the number of samples included for a given batch size equals the
+ batch size times the number of batches with at least that many samples.
+ From Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:batch-size-samples"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, it is apparent that that a batch size of 8 maximizes the number of samples
+ included in training.
+ Increasing the batch size beyond this causes too many smaller batches to
+ be excluded, reducing the total number of samples for both tissue types.
+ However, a batch size of 8 is not necessarily optimal.
+ The article introducing frmaTools concluded that it was highly advantageous
+ to use a smaller batch size in order to include more batches, even at the
+ expense of including fewer total samples in training 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "McCall2010"
+key "McCall2011"
 literal "false"
 
 \end_inset
 
-, but are designed to be general across all tissues.
- The samples we have are suitable for tissue-specific normalization vectors.
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-Figure: MA plot, RMA vs fRMA, to show that the normalization is appreciably
- and non-linearly different
-\end_layout
-
-\begin_layout Itemize
-Figure MA plot, fRMA vs fRMA with different randomly-chosen sample subsets
- to show consistency
-\end_layout
-
-\begin_layout Itemize
-custom fRMA normalization improved cross-validated classifier performance
+.
+ To strike an appropriate balance between more batches and more samples,
+ a batch size of 5 was chosen.
+ For both blood and biopsy samples, this increased the number of batches
+ included by 10, with only a modest reduction in the number of samples compared
+ to a batch size of 8.
+ With a batch size of 5, 26 batches of biopsy samples and 46 batches of
+ blood samples were available.
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
 
 \begin_layout Plain Layout
-Get a figure from Tom showing classifier performance improvement (compared
- to all-sample RMA, I guess?), if possible
+\begin_inset Graphics
+	filename graphics/frma-pax-bx/M-BX-violin.pdf
+	lyxscale 30
+	groupId m-violin
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:m-bx-violin"
+
+\end_inset
+
+
+\series bold
+Violin plot of log ratios between normalizations for 20 biopsy samples.
+ 
+\series default
+Each of 20 randomly selected biopsy samples was normalized with RMA and
+ with 5 different sets of fRMA vectors.
+ This shows the distribution of log ratios between normalized expression
+ values, aggregated across all 20 arrays.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Since fRMA training requires equal-size batches, larger batches are downsampled
+ randomly.
+ This introduces a nondeterministic step in the generation of normalization
+ vectors.
+ To show that this randomness does not substantially change the outcome,
+ the random downsampling and subsequent vector learning was repeated 5 times,
+ with a different random seed each time.
+ 20 samples were selected at random as a test set and normalized with each
+ of the 5 sets of fRMA normalization vectors as well as ordinary RMA, and
+ the normalized expression values were compared across normalizations.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:m-bx-violin"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows a summary of these comparisons for biopsy samples.
+ Comparing RMA to each of the 5 fRMA normalizations, the distribution of
+ log ratios is somewhat wide, indicating that the normalizations disagree
+ on the expression values of a fair number of probe sets.
+ In contrast, comparisons of fRMA against fRMA, the vast mojority of probe
+ sets have very small log ratios, indicating a very high agreement between
+ the normalized values generated by the two normalizations.
+ This shows that the fRMA normalization's behavior is not very sensitive
+ to the random downsampling of larger batches during training.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename graphics/frma-pax-bx/MA-BX-RMA.fRMA.pdf
+	lyxscale 50
+	groupId ma-frma
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ma-bx-rma-frma"
+
+\end_inset
+
+
+\series bold
+Representative MA plot comparing RMA against fRMA for 20 biopsy samples.
+ 
+\series default
+Averages and log ratios were computed for every probe in each of 20 biopsy
+ samples between RMA normalization and fRMA.
+ Density of points is represented by darkness of shading, and individual
+ outlier points are plotted.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename graphics/frma-pax-bx/MA-BX-fRMA.fRMA.pdf
+	lyxscale 50
+	groupId ma-frma
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ma-bx-frma-frma"
+
+\end_inset
+
+
+\series bold
+Representative MA plot comparing different fRMA vectors for 20 biopsy samples.
+ 
+\series default
+Averages and log ratios were computed for every probe in each of 20 biopsy
+ samples between fRMA normalizations using vectors from two different batch
+ samplings.
+ Density of points is represented by darkness of shading, and individual
+ outlier points are plotted.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ma-bx-rma-frma"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows an MA plot of the RMA-normalized values against the fRMA-normalized
+ values for the same probe sets and arrays, corresponding to the first row
+ of Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:m-bx-violin"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ This MA plot shows that not only is there a wide distribution of M-values,
+ but the trend of M-values is dependent on the average normalized intensity.
+ This is expected, since the overall trend represents the differences in
+ the quantile normalization step.
+ When running RMA, only the quantiles for these specific 20 arrays are used,
+ while for fRMA the quantile distribution is taking from all arrays used
+ in training.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ma-bx-frma-frma"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows a similar MA plot comparing 2 different fRMA normalizations, correspondin
+g to the 6th row of Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:m-bx-violin"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ The MA plot is very tightly centered around zero with no visible trend.
+ Figures 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:m-pax-violin"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:MA-PAX-rma-frma"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ma-bx-frma-frma"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ show exactly the same information for the blood samples, once again comparing
+ the normalized expression values between normalizations for all probe sets
+ across 20 randomly selected test arrays.
+ Once again, there is a wider distribution of log ratios between RMA-normalized
+ values and fRMA-normalized, and a much tighter distribution when comparing
+ different fRMA normalizations to each other, indicating that the fRMA training
+ process is robust to random batch downsampling for the blood samples as
+ well.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename graphics/frma-pax-bx/M-PAX-violin.pdf
+	lyxscale 30
+	groupId m-violin
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:m-pax-violin"
+
+\end_inset
+
+
+\series bold
+Violin plot of log ratios between normalizations for 20 blood samples.
+ 
+\series default
+Each of 20 randomly selected blood samples was normalized with RMA and with
+ 5 different sets of fRMA vectors.
+ This shows the distribution of log ratios between normalized expression
+ values, aggregated across all 20 arrays.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename graphics/frma-pax-bx/MA-PAX-RMA.fRMA.pdf
+	lyxscale 50
+	groupId ma-frma
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:MA-PAX-rma-frma"
+
+\end_inset
+
+
+\series bold
+Representative MA plot comparing RMA against fRMA for 20 blood samples.
+ 
+\series default
+Averages and log ratios were computed for every probe in each of 20 blood
+ samples between RMA normalization and fRMA.
+ Density of points is represented by darkness of shading, and individual
+ outlier points are plotted.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename graphics/frma-pax-bx/MA-PAX-fRMA.fRMA.pdf
+	lyxscale 50
+	groupId ma-frma
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:MA-PAX-frma-frma"
+
+\end_inset
+
+
+\series bold
+Representative MA plot comparing different fRMA vectors for 20 blood samples.
+ 
+\series default
+Averages and log ratios were computed for every probe in each of 20 blood
+ samples between fRMA normalizations using vectors from two different batch
+ samplings.
+ Density of points is represented by darkness of shading, and individual
+ outlier points are plotted.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1617,17 +2831,110 @@ Figure and/or table showing improved p-value historgrams/number of significant
 Discussion
 \end_layout
 
-\begin_layout Itemize
-fRMA enables classifying new samples without re-normalizing the entire data
- set
+\begin_layout Subsection
+fRMA achieves clinically applicable normalization without sacrificing classifica
+tion performance
 \end_layout
 
-\begin_deeper
-\begin_layout Itemize
-Critical for translating a classifier into clinical practice
+\begin_layout Standard
+As shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Classifier-probabilities-RMA"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, improper normalization, particularly separate normalization of training
+ and test samples, leads to unwanted biases in classification.
+ In a controlled experimental context, it is always possible to correct
+ this issue by normalizing all experimental samples together.
+ However, because it is not feasible to normalize all samples together in
+ a clinical context, a single-channel normalization is required is required.
+ 
 \end_layout
 
-\end_deeper
+\begin_layout Standard
+The major concern in using a single-channel normalization is that non-single-cha
+nnel methods can share information between arrays to improve the normalization,
+ and single-channel methods risk sacrificing the gains in normalization
+ accuracy that come from this information sharing.
+ In the case of RMA, this information sharing is accomplished through quantile
+ normalization and median polish steps.
+ The need for information sharing in quantile normalization can easily be
+ removed by learning a fixed set of quantiles from external data and normalizing
+ each array to these fixed quantiles, instead of the quantiles of the data
+ itself.
+ As long as the fixed quantiles are reasonable, the result will be similar
+ to standard RMA.
+ However, there is no analogous way to eliminate cross-array information
+ sharing in the median polish step, so fRMA replaces this with a weighted
+ average of probes on each array, with the weights learned from external
+ data.
+ This step of fRMA has the greatest potential to diverge from RMA un undesirable
+ ways.
+\end_layout
+
+\begin_layout Standard
+However, when run on real data, fRMA performed at least as well as RMA in
+ both the internal validation and external validation tests.
+ This shows that fRMA can be used to normalize individual clinical samples
+ in a class prediction context without sacrificing the classifier performance
+ that would be obtained by using the more well-established RMA for normalization.
+ The other single-channel normalization method considered, SCAN, showed
+ some loss of AUC in the external validation test.
+ Based on these results, fRMA is the preferred normalization for clinical
+ samples in a class prediction context.
+\end_layout
+
+\begin_layout Subsection
+Robust fRMA vectors can be generated for new array platforms
+\end_layout
+
+\begin_layout Standard
+The published fRMA normalization vectors for the hgu133plus2 platform were
+ generated from a set of about 850 samples 
+\begin_inset Flex TODO Note (Margin)
+status collapsed
+
+\begin_layout Plain Layout
+Look up the exact numbers
+\end_layout
+
+\end_inset
+
+ chosen from a wide range of tissues, which the authors determined was sufficien
+t to generate a robust set of normalization vectors that could be applied
+ across all tissues 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "McCall2010"
+literal "false"
+
+\end_inset
+
+.
+ Since we only had hthgu133pluspm for 2 tissues of interest, our needs were
+ more modest.
+ Even using only 130 samples in 26 batches of 5 samples each for kidney
+ biopsies, we were able to train a robust set of fRMA normalization vectors
+ that were not meaningfully affected by the random selection of 5 samples
+ from each batch.
+ As expected, the training process was just as robust for the blood samples
+ with 230 samples in 46 batches of 5 samples each.
+ Because these vectors were each generated using training samples from a
+ single tissue, they are not suitable for general use, unlike the vectors
+ provided with fRMA itself.
+ They are purpose-build for normalizing a specific type of sample on a specific
+ platform.
+\end_layout
+
+\begin_layout Subsection
+voom
+\end_layout
+
 \begin_layout Itemize
 Methods like voom designed for RNA-seq can also help with array analysis
 \end_layout
@@ -4031,19 +5338,9 @@ Also look at other types lymphocytes: CD8 T-cells, B-cells, NK cells
 
 \end_deeper
 \begin_layout Itemize
-Investigate epigenetic regulation of lifespan extension in 
-\emph on
-C.
- elegans
+Use CV or bootstrap to better evaluate classifiers
 \end_layout
 
-\begin_deeper
-\begin_layout Itemize
-ChIP-seq of important transcriptional regulators to see how transcriptional
- drift is prevented
-\end_layout
-
-\end_deeper
 \begin_layout Standard
 \begin_inset ERT
 status open
