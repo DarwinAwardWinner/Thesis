@@ -179,8 +179,10 @@ rsync_common_args = ['-rL', '--size-only', '--delete', '--exclude', '.DS_Store',
 rule build_all:
     input: 'thesis.pdf'
 
-# Currently assumes the lyx file always exists.
+# Currently assumes the lyx file always exists, because it is required
+# to get the gfx and bib dependencies
 rule lyx_to_pdf:
+    '''Produce PDF output for a LyX file.'''
     input: lyxfile = '{basename}.lyx',
            gfx_deps = lambda wildcards: lyx_gfx_deps(wildcards.basename + '.lyx'),
            bib_deps = lambda wildcards: lyx_bib_deps(wildcards.basename + '.lyx'),
@@ -188,18 +190,21 @@ rule lyx_to_pdf:
     output: pdf='{basename,(?!graphics/).*}.pdf'
     shell: '{LYXPATH:q} --export-to pdf4 {output.pdf:q} {input.lyxfile:q}'
 
-# rule create_resume_html:
-#     input: lyxfile='ryan_thompson_resume.lyx',
-#            bibfiles=list(lyx_bib_deps('ryan_thompson_resume.lyx')),
-#            example_files=list(resume_example_deps('ryan_thompson_resume.lyx')),
-#            headshot='headshot-crop.jpg',
-#     output: html='ryan_thompson_resume.html'
-#     run:
-#         with NamedTemporaryFile() as tempf:
-#             shell('{LYXPATH:q} --export-to xhtml {tempf.name:q} {input.lyxfile:q}')
-#             shell('''cat {tempf.name:q} | perl -lape 's[<span class="flex_cv_image">(.*?)</span>][<span class="flex_cv_image"><img src="$1" width="100"></span>]g' > {output.html:q}''')
+rule pdf_extract_page:
+    '''Extract a single page from a multi-page PDF.'''
+    # Input is a PDF whose basename doesn't already have a page number
+    input: pdf = 'graphics/{basename,.*(?!PAGE[0-9]+)}.pdf'
+    output: pdf = 'graphics/{basename}-PAGE{pagenum,[1-9][0-9]*}.pdf'
+    shell: 'pdfseparate -f {wildcards.pagenum:q} -l {wildcards.pagenum:q} {input:q} {output:q}'
+
+rule pdf_raster:
+    '''Rasterize PDF to PNG at 600 PPI.'''
+    input: pdf = 'graphics/{basename}.pdf'
+    output: png = 'graphics/{basename}-RASTER.png'
+    shell: 'pdftoppm -r 600 {input:q} | convert - {output:q}'
 
 rule R_to_html:
+    '''Render an R script as syntax-hilighted HTML.'''
     input: '{dirname}/{basename,[^/]+}.R'
     output: '{dirname}/{basename}.R.html'
     shell: 'pygmentize -f html -O full -l R -o {output:q} {input:q}'
