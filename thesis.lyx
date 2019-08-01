@@ -44,6 +44,9 @@
 
 \patchcmd{\@caption}{#3}{\formatlabel{#3}}
 \makeatother
+
+% Allow FloatBarrier command
+\usepackage{placeins}
 \end_preamble
 \use_default_options true
 \begin_modules
@@ -2468,6 +2471,22 @@ noprefix "false"
  curves look more divergent.
 \end_layout
 
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+FloatBarrier
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 fRMA with custom-generated vectors enables normalization on hthgu133pluspm
 \end_layout
@@ -2725,6 +2744,7 @@ status open
 \begin_inset Graphics
 	filename graphics/frma-pax-bx/MA-BX-RMA.fRMA.pdf
 	lyxscale 50
+	width 100text%
 	groupId ma-frma
 
 \end_inset
@@ -2774,6 +2794,7 @@ status open
 \begin_inset Graphics
 	filename graphics/frma-pax-bx/MA-BX-fRMA.fRMA.pdf
 	lyxscale 50
+	width 100text%
 	groupId ma-frma
 
 \end_inset
@@ -2968,6 +2989,7 @@ status open
 \begin_inset Graphics
 	filename graphics/frma-pax-bx/MA-PAX-RMA.fRMA.pdf
 	lyxscale 50
+	width 100text%
 	groupId ma-frma
 
 \end_inset
@@ -3021,6 +3043,7 @@ status open
 \begin_inset Graphics
 	filename graphics/frma-pax-bx/MA-PAX-fRMA.fRMA.pdf
 	lyxscale 50
+	width 100text%
 	groupId ma-frma
 
 \end_inset
@@ -3060,6 +3083,22 @@ Averages and log ratios were computed for every probe in each of 20 blood
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+FloatBarrier
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Adapting voom to methylation array data improves model fit
 \end_layout
@@ -3087,6 +3126,7 @@ status open
 \begin_inset Graphics
 	filename graphics/methylvoom/unadj.dupcor/meanvar-trends-PAGE1-RASTER.png
 	lyxscale 15
+	width 100col%
 	groupId raster-600ppi
 
 \end_inset
@@ -3129,6 +3169,7 @@ status open
 \begin_inset Graphics
 	filename graphics/methylvoom/unadj.dupcor.sva.aw/meanvar-trends-PAGE1-RASTER.png
 	lyxscale 15
+	width 100col%
 	groupId raster-600ppi
 
 \end_inset
@@ -3171,6 +3212,7 @@ status open
 \begin_inset Graphics
 	filename graphics/methylvoom/unadj.dupcor.sva.voomaw/meanvar-trends-PAGE1-RASTER.png
 	lyxscale 15
+	width 100col%
 	groupId raster-600ppi
 
 \end_inset
@@ -3214,6 +3256,7 @@ status open
 \begin_inset Graphics
 	filename graphics/methylvoom/unadj.dupcor.sva.voomaw/meanvar-trends-PAGE2-RASTER.png
 	lyxscale 15
+	width 100col%
 	groupId raster-600ppi
 
 \end_inset
@@ -3490,6 +3533,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="5" columns="4">
 <features tabularvalignment="middle">
@@ -3739,6 +3783,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="5" columns="4">
 <features tabularvalignment="middle">
@@ -6543,6 +6588,10 @@ Also look at other types lymphocytes: CD8 T-cells, B-cells, NK cells
 \end_deeper
 \begin_layout Itemize
 Use CV or bootstrap to better evaluate classifiers
+\end_layout
+
+\begin_layout Itemize
+fRMAtools could be adapted to not require equal-sized groups
 \end_layout
 
 \begin_layout Standard
