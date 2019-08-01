@@ -1740,6 +1740,7 @@ fRMA and SCAN achieve maintain classification performance while eliminating
 
 \begin_layout Standard
 \begin_inset Float figure
+placement tb
 wide false
 sideways false
 status collapsed
@@ -2395,6 +2396,7 @@ noprefix "false"
 
 \begin_layout Standard
 \begin_inset Float figure
+placement tb
 wide false
 sideways false
 status open
@@ -2473,7 +2475,7 @@ noprefix "false"
 
 \begin_layout Standard
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -2493,6 +2495,7 @@ fRMA with custom-generated vectors enables normalization on hthgu133pluspm
 
 \begin_layout Standard
 \begin_inset Float figure
+placement tb
 wide false
 sideways false
 status open
@@ -2540,6 +2543,7 @@ For batch sizes ranging from 3 to 15, the number of batches with at least
 
 \begin_layout Standard
 \begin_inset Float figure
+placement tb
 wide false
 sideways false
 status open
@@ -3085,7 +3089,7 @@ Averages and log ratios were computed for every probe in each of 20 blood
 
 \begin_layout Standard
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -6582,7 +6586,7 @@ DNA methylation, histone marks, chromatin accessibility & conformation in
 \end_layout
 
 \begin_layout Itemize
-Also look at other types lymphocytes: CD8 T-cells, B-cells, NK cells
+Also look at other types of lymphocytes: CD8 T-cells, B-cells, NK cells
 \end_layout
 
 \end_deeper
@@ -6600,7 +6604,7 @@ status open
 
 \begin_layout Plain Layout
 
-% Use "References" instead of "Bibliography" 
+% Call it "References" instead of "Bibliography" 
 \end_layout
 
 \begin_layout Plain Layout
