@@ -2,8 +2,8 @@
 /thesis.pdf
 
 # Generated graphics
-/graphics/*RASTER.pdf
-/graphics/*PAGE*.pdf
+*RASTER.png
+*PAGE*.pdf
 
 # Data doesn't go in git
 /data
