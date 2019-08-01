@@ -739,7 +739,7 @@ literal "false"
 status open
 
 \begin_layout Plain Layout
-Get explicit permission from Sarah to include the figure
+Note that Sarah has granted permission to use her figures
 \end_layout
 
 \end_inset
@@ -1036,8 +1036,8 @@ DNA methylation arrays are a relatively new kind of assay that uses microarrays
  cytosines unaffected.
  Then, each target region is interrogated with two probes: one binds to
  the original genomic sequence and interrogates the level of methylated
- DNA, and the other binds to the sequence with all Cs replaced by Ts and
- interrogates the level of unmethylated DNA.
+ DNA, and the other binds to the same sequence with all cytosines replaced
+ by thymidines and interrogates the level of unmethylated DNA.
 \end_layout
 
 \begin_layout Standard
@@ -1165,19 +1165,6 @@ ip in methylation array data.
  M-values.
 \end_layout
 
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Put code on Github and reference it
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Section
 Methods
 \end_layout
@@ -1187,10 +1174,10 @@ Evaluation of classifier performance with different normalization methods
 \end_layout
 
 \begin_layout Standard
-For testing different normalizations, a data set of 157 hgu133plus2 arrays
- was used, consisting of blood samples from kidney transplant patients whose
- grafts had been graded as TX, AR, or ADNR via biopsy and histology (46
- TX, 69 AR, 42 ADNR) 
+For testing different expression microarray normalizations, a data set of
+ 157 hgu133plus2 arrays was used, consisting of blood samples from kidney
+ transplant patients whose grafts had been graded as TX, AR, or ADNR via
+ biopsy and histology (46 TX, 69 AR, 42 ADNR) 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Kurian2014"
@@ -1253,7 +1240,8 @@ on of TX and AR samples was considered.
  The ADNR samples were included during normalization but excluded from all
  classifier training and validation.
  This ensures that the performance on internal and external validation sets
- is directly comparable.
+ is directly comparable, since both are performing the same task: distinguising
+ TX from AR.
 \end_layout
 
 \begin_layout Standard
@@ -1365,23 +1353,151 @@ To evaluate the consistency of the generated normalization vectors, the
 \end_layout
 
 \begin_layout Subsection
-Modeling methylation array M-value heteroskedasticy with modified voom implement
-ation
+Modeling methylation array M-value heteroskedasticy in linear models with
+ modified voom implementation
 \end_layout
 
-\begin_layout Itemize
-Methylation arrays for differential methylation in rejection vs.
- healthy transplant
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Put code on Github and reference it.
 \end_layout
 
-\begin_layout Itemize
-Adapt voom method originally designed for RNA-seq to model mean-variance
- dependence
+\end_inset
+
+
 \end_layout
 
-\begin_layout Itemize
-Use sample precision weighting, duplicateCorrelation, and sva to adjust
- for other confounding factors
+\begin_layout Standard
+To investigate the whether DNA methylation could be used to distinguish
+ between healthy and dysfunctional transplants, a data set of 78 Illumina
+ 450k methylation arrays from human kidney graft biopsies was analyzed for
+ differential metylation between 4 transplant statuses: healthy transplant
+ (TX), transplants undergoing acute rejection (AR), acute dysfunction with
+ no rejection (ADNR), and chronic allograpft nephropathy (CAN).
+ The data consisted of 33 TX, 9 AR, 8 ADNR, and 28 CAN samples.
+ The uneven group sizes are a result of taking the biopsy samples before
+ the eventual fate of the transplant was known.
+ Each sample was additionally annotated with a donor ID (anonymized), Sex,
+ Age, Ethnicity, Creatinine Level, and Diabetes diagnosois (all samples
+ in this data set came from patients with either Type 1 or Type 2 diabetes).
+ 
+\end_layout
+
+\begin_layout Standard
+The intensity data were first normalized using subset-quantile within array
+ normalization (SWAN) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Maksimovic2012"
+literal "false"
+
+\end_inset
+
+, then converted to intensity ratios (beta values) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Aryee2014"
+literal "false"
+
+\end_inset
+
+.
+ Any probes binding to loci that overlapped annotated SNPs were dropped,
+ and the annotated sex of each sample was verified against the sex inferred
+ from the ratio of median probe intensities for the X and Y chromosomes.
+ Then, the ratios were transformed to M-values.
+\end_layout
+
+\begin_layout Standard
+From the M-values, a series of parallel analyses was performed, each adding
+ an additional step into the model fit to accomodate a feature of the data.
+ First, a 
+\begin_inset Quotes eld
+\end_inset
+
+basic
+\begin_inset Quotes erd
+\end_inset
+
+ linear modeling analysis was performed, compensating for known features
+ of the data using existing tools.
+ A design matrix was prepared including terms for the factor of interest
+ as well as the known biological confounders: sex, age, ethnicity, and diabetes.
+ Since some samples came from the same patients at differen times, the intra-pat
+ient correlation was modeled as a random effect, estimating a shared correlation
+ value across all probes 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Smyth2005a"
+literal "false"
+
+\end_inset
+
+.
+ Then the linear model was fit, and the variance was modeled using empirical
+ Bayes squeezing toward the mean-variance trend 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Ritchie2015"
+literal "false"
+
+\end_inset
+
+.
+ Finally, t-tests or F-tests were performed a appropriate for each test:
+ t-tests for single contrasts, and F-tests for multiple contrasts.
+\end_layout
+
+\begin_layout Standard
+For the second analysis, surrogate variable analysis (SVA) was used to infer
+ additional unobserved sources of heterogeneity in the data 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Leek2007"
+literal "false"
+
+\end_inset
+
+.
+ These surrogate variables were added to the design matrix before fitting
+ the linear model.
+ For the third analysis, SVA was used, and in addition sample quality weights
+ were estimated from the data and used during linear modeling to down-weight
+ the controbution of highly variable arrays while increasing the weight
+ to arrays with lower variability
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Ritchie2006"
+literal "false"
+
+\end_inset
+
+.
+ Lastly, the voom method was adapted to run on methylation array data and
+ used to model the mean-variance trend as individual observation weights
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Law2013"
+literal "false"
+
+\end_inset
+
+, which were combined with the sample weights 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Liu2015"
+literal "false"
+
+\end_inset
+
+.
+ Each time weights were used, they were estimated once before estimating
+ the random effect correlation value, and then the weights were re-estimated
+ taking the random effect into account.
 \end_layout
 
 \begin_layout Section
@@ -2833,6 +2949,48 @@ Figure showing (a) heteroskedasticy without voom, (b) voom-modeled mean-variance
  trend, and (c) homoskedastic mean-variance trend after running voom
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename graphics/methylvoom/unadj.naive/meanvar-trends-RASTER.png
+	lyxscale 15
+	groupId raster-600ppi
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:meanvar-naive"
+
+\end_inset
+
+Mean-variance trend with no adjustment
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Itemize
 Figure showing sample weights and their relations to
 \end_layout
@@ -2913,20 +3071,31 @@ Robust fRMA vectors can be generated for new array platforms
 \end_layout
 
 \begin_layout Standard
-The published fRMA normalization vectors for the hgu133plus2 platform were
- generated from a set of about 850 samples 
-\begin_inset Flex TODO Note (Margin)
-status collapsed
+\begin_inset Flex TODO Note (inline)
+status open
 
 \begin_layout Plain Layout
-Look up the exact numbers
+Look up the exact numbers, do a find & replace for 
+\begin_inset Quotes eld
+\end_inset
+
+850
+\begin_inset Quotes erd
+\end_inset
+
+
 \end_layout
 
 \end_inset
 
- chosen from a wide range of tissues, which the authors determined was sufficien
-t to generate a robust set of normalization vectors that could be applied
- across all tissues 
+
+\end_layout
+
+\begin_layout Standard
+The published fRMA normalization vectors for the hgu133plus2 platform were
+ generated from a set of about 850 samples chosen from a wide range of tissues,
+ which the authors determined was sufficient to generate a robust set of
+ normalization vectors that could be applied across all tissues 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "McCall2010"
