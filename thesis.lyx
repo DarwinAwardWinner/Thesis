@@ -682,7 +682,6 @@ literal "false"
 \end_inset
 
 .
- 
 \end_layout
 
 \begin_layout Itemize
@@ -3065,21 +3064,6 @@ Averages and log ratios were computed for every probe in each of 20 blood
 Adapting voom to methylation array data improves model fit
 \end_layout
 
-\begin_layout Itemize
-voom, precision weights, and sva improved model fit
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-Also increased sensitivity for detecting differential methylation
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-Figure showing (a) heteroskedasticy without voom, (b) voom-modeled mean-variance
- trend, and (c) homoskedastic mean-variance trend after running voom
-\end_layout
-
 \begin_layout Standard
 \begin_inset Flex TODO Note (inline)
 status open
@@ -3263,6 +3247,29 @@ Residual mean-variance trend after modeling with SVA, sample weights, and
 
 \end_layout
 
+\begin_layout Itemize
+U-shaped mean-var trend visible in data, even after accounting for unobserved
+ confounders (SVA) and array quality (sample weights)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+vooma
+\begin_inset Quotes erd
+\end_inset
+
+ models this trend, and after voom, the mean-variance trend is flat and
+ the median varaiance is approximately 1 (0 on log scale)
+\end_layout
+
+\begin_layout Itemize
+M-value distribution is bimodal - expected if most CpG methylation states
+ are homogeneous among cell populations, either all methylated or all unmethylat
+ed.
+\end_layout
+
 \begin_layout Standard
 \begin_inset Float table
 wide false
@@ -3408,6 +3415,72 @@ Association of sample weights with clinical covariates.
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Redo the sample weight boxplot with notches and without fill colors
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename graphics/methylvoom/unadj.dupcor.sva.voomaw/sample-weights-PAGE3.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:diabetes-sample-weights"
+
+\end_inset
+
+
+\series bold
+Boxplot of sample quality weights grouped by diabetes diagnosis.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Based on estimated sample weights, T2D samples are significantly more variable
+ than T1D samples (t-test p = 1.06e-3)
+\end_layout
+
+\begin_layout Itemize
+Should not affect further analysis
 \end_layout
 
 \begin_layout Standard
@@ -3906,6 +3979,31 @@ Re-generate p-value histograms for all relevant contrasts in a single figure.
 \end_inset
 
 
+\end_layout
+
+\begin_layout Itemize
+Better variance properties in analyses B and C give more significant probes
+ (10% FDR)
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:methyl-num-signif"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, more probes estimated to be differentially methylated 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:methyl-est-nonnull"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, and better looking p-value distributions [histogram figures].
 \end_layout
 
 \begin_layout Section
