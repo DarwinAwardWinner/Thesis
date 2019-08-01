@@ -588,8 +588,16 @@ Dependency graph of steps in reproducible workflow
 \end_layout
 
 \begin_layout Standard
-A reproducible workflow was written to analyze the raw ChIP-seq and RNA-seq
- data from previous studies 
+A reproducible workflow 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "gh-cd4-csaw"
+literal "false"
+
+\end_inset
+
+ was written to analyze the raw ChIP-seq and RNA-seq data from previous
+ studies 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "LaMere2016,LaMere2017"
@@ -598,8 +606,21 @@ literal "true"
 \end_inset
 
 .
- The workflow starts by retrieving the sequence reads from the Sequence
- Read Archive (SRA) 
+ Briefly, this data consists of RNA-seq and ChIP-seq from CD4 T-cells cultured
+ from 4 donors.
+ From each donor, naive and memory CD4 T-cells were isolated separately.
+ Then cultures of both cells were activated [how?], and samples were taken
+ at 4 time points: Day 0 (pre-activation), Day 1 (early activation), Day
+ 5 (peak activation), and Day 14 (post-activation).
+ For each combination of cell type and time point, RNA was isolated, and
+ ChIP-seq was performed for each of 3 histone marks: H3K4me2, H3K4me3, and
+ H3K27me3.
+ The ChIP-seq input was also sequenced for each sample.
+ The result was 32 samples for each assay.
+\end_layout
+
+\begin_layout Standard
+Sequence reads were retrieved from the Sequence Read Archive (SRA) 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Leinonen2011"
@@ -608,6 +629,60 @@ literal "false"
 \end_inset
 
 .
+ ChIP-seq (and input) reads were aligned to CRCh38 genome assembly using
+ Bowtie 2 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Langmead2012,Schneider2017,gh-hg38-ref"
+literal "false"
+
+\end_inset
+
+.
+ Artifact regions were annotated using a custom implementation of the GreyListCh
+IP algorithm, and these 
+\begin_inset Quotes eld
+\end_inset
+
+greylists
+\begin_inset Quotes erd
+\end_inset
+
+ were merged with the ENCODE blacklist 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "greylistchip,Amemiya2019,Dunham2012"
+literal "false"
+
+\end_inset
+
+.
+ Any read or peak overlapping one of these regions was regarded as artifactual
+ and excluded from downstream analyses.
+ 
+\end_layout
+
+\begin_layout Standard
+Peaks are called using epic, an implementation of the SICER algorithm 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Zang2009,gh-epic"
+literal "false"
+
+\end_inset
+
+.
+ Peaks are also called separately using MACS, but MACS was determined to
+ be a poor fit for the data, and these peak calls are not used further 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Zhang2008"
+literal "false"
+
+\end_inset
+
+.
+ 
 \end_layout
 
 \begin_layout Itemize
@@ -6412,7 +6487,7 @@ Check bib entry formatting & sort order
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 btprint "btPrintCited"
-bibfiles "refs"
+bibfiles "refs,code-refs"
 options "bibtotoc,unsrt"
 
 \end_inset
