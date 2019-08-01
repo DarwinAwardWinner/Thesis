@@ -3085,7 +3085,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename graphics/methylvoom/unadj.dupCor/meanvar-trends-PAGE1-RASTER.png
+	filename graphics/methylvoom/unadj.dupcor/meanvar-trends-PAGE1-RASTER.png
 	lyxscale 15
 	groupId raster-600ppi
 
@@ -3148,7 +3148,7 @@ name "fig:meanvar-sva-aw"
 
 \end_inset
 
-Mean-variance trend with no SVA and sample quality weights.
+Mean-variance trend with SVA and sample quality weights.
 \end_layout
 
 \end_inset
@@ -3169,7 +3169,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename graphics/methylvoom/unadj.dupCor.sva.voomaw/meanvar-trends-PAGE1-RASTER.png
+	filename graphics/methylvoom/unadj.dupcor.sva.voomaw/meanvar-trends-PAGE1-RASTER.png
 	lyxscale 15
 	groupId raster-600ppi
 
@@ -3212,7 +3212,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename graphics/methylvoom/unadj.dupCor.sva.voomaw/meanvar-trends-PAGE2-RASTER.png
+	filename graphics/methylvoom/unadj.dupcor.sva.voomaw/meanvar-trends-PAGE2-RASTER.png
 	lyxscale 15
 	groupId raster-600ppi
 
