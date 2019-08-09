@@ -197,6 +197,12 @@ rule pdf_extract_page:
     output: pdf = 'graphics/{basename}-PAGE{pagenum,[1-9][0-9]*}.pdf'
     shell: 'pdfseparate -f {wildcards.pagenum:q} -l {wildcards.pagenum:q} {input:q} {output:q}'
 
+rule pdf_crop:
+    '''Crop away margins from a PDF.'''
+    input: pdf = 'graphics/{basename,.*(?!CROP).*}.pdf'
+    output: pdf = 'graphics/{basename}-CROP.pdf'
+    shell: 'pdfcrop --resolution 300 {input:q} {output:q}'
+
 rule pdf_raster:
     '''Rasterize PDF to PNG at 600 PPI.'''
     input: pdf = 'graphics/{basename}.pdf'

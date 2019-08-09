@@ -1546,9 +1546,297 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="6">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Analysis
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+patient random effect
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+empirical Bayes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SVA
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+sample weights
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+voom
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+B
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+C
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Summary-of-meth-analysis"
+
+\end_inset
+
+Summary of analysis variants for methylation array data.
+ 
+\series default
+Each analysis included a different set of steps to adjust or account for
+ various systematic features of the data.
+ See the text for a more detailed explanation of each step.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 From the M-values, a series of parallel analyses was performed, each adding
- additional steps into the model fit to accomodate a feature of the data.
- First, a 
+ additional steps into the model fit to accomodate a feature of the data
+ (see Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Summary-of-meth-analysis"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ For analysis A, a 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1556,13 +1844,12 @@ basic
 \begin_inset Quotes erd
 \end_inset
 
- linear modeling analysis was performed, compensating for known features
- of the data using existing tools.
- A design matrix was prepared including terms for the factor of interest
- as well as the known biological confounders: sex, age, ethnicity, and diabetes.
- Since some samples came from the same patients at differen times, the intra-pat
-ient correlation was modeled as a random effect, estimating a shared correlation
- value across all probes 
+ linear modeling analysis was performed, compensating for known confounders
+ by including terms for the factor of interest (transplant status) as well
+ as the known biological confounders: sex, age, ethnicity, and diabetes.
+ Since some samples came from the same patients at different times, the
+ intra-patient correlation was modeled as a random effect, estimating a
+ shared correlation value across all probes 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Smyth2005a"
@@ -1581,12 +1868,22 @@ literal "false"
 \end_inset
 
 .
- Finally, t-tests or F-tests were performed a appropriate for each test:
+ Finally, t-tests or F-tests were performed as appropriate for each test:
  t-tests for single contrasts, and F-tests for multiple contrasts.
+ P-values were corrected for multiple testing using the Benjamini-Hochberg
+ procedure for FDR control 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Benjamini1995"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
-For the second analysis, surrogate variable analysis (SVA) was used to infer
+For the analysis B, surrogate variable analysis (SVA) was used to infer
  additional unobserved sources of heterogeneity in the data 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1609,9 +1906,10 @@ literal "false"
 \end_inset
 
 .
- For the third analysis, the voom method was adapted to run on methylation
- array data and used to model the mean-variance trend as individual observation
- weights 
+ The remainder of the analysis proceeded as in analysis A.
+ For analysis C, the voom method was adapted to run on methylation array
+ data and used to model and correct for the mean-variance trend using individual
+ observation weights 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Law2013"
@@ -1631,6 +1929,7 @@ literal "false"
  Each time weights were used, they were estimated once before estimating
  the random effect correlation value, and then the weights were re-estimated
  taking the random effect into account.
+ The remainder of the analysis proceeded as in analysis B.
 \end_layout
 
 \begin_layout Section
@@ -1655,6 +1954,19 @@ fRMA eliminates unwanted dependence of classifier training on normalization
  strategy caused by RMA
 \end_layout
 
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Write figure legends
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsubsection
 Separate normalization with RMA introduces unwanted biases in classification
 \end_layout
@@ -1663,7 +1975,7 @@ Separate normalization with RMA introduces unwanted biases in classification
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1705,10 +2017,10 @@ Classifier probabilities on validation samples when normalized with RMA
 \end_layout
 
 \begin_layout Standard
-To demonstrate the problem with non-single-channel methods, we considered
- the problem of training a classifier to distinguish TX from AR using the
- samples from the internal set as training data, evaluating performance
- on the external set.
+To demonstrate the problem with non-single-channel normalization methods,
+ we considered the problem of training a classifier to distinguish TX from
+ AR using the samples from the internal set as training data, evaluating
+ performance on the external set.
  First, training and evaluation were performed after normalizing all array
  samples together as a single set using RMA, and second, the internal samples
  were normalized separately from the external samples and the training and
@@ -1761,6 +2073,8 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+
+\series bold
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:ROC-PAM-int"
@@ -2399,7 +2713,7 @@ noprefix "false"
 placement tb
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -2417,6 +2731,8 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+
+\series bold
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:ROC-PAM-ext"
@@ -2498,7 +2814,7 @@ fRMA with custom-generated vectors enables normalization on hthgu133pluspm
 placement tb
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -2546,7 +2862,7 @@ For batch sizes ranging from 3 to 15, the number of batches with at least
 placement tb
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -2659,7 +2975,7 @@ literal "false"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -2741,7 +3057,7 @@ noprefix "false"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -2791,7 +3107,7 @@ Averages and log ratios were computed for every probe in each of 20 biopsy
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -2936,7 +3252,7 @@ noprefix "false"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -2986,7 +3302,7 @@ Each of 20 randomly selected blood samples was normalized with RMA and with
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -3040,7 +3356,7 @@ Averages and log ratios were computed for every probe in each of 20 blood
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -3104,15 +3420,30 @@ FloatBarrier
 \end_layout
 
 \begin_layout Subsection
-Adapting voom to methylation array data improves model fit
+SVA, voom, and array weights improve model fit for methylation array data
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Flex TODO Note (inline)
 status open
 
 \begin_layout Plain Layout
-Write figure legends
+Fix axis labels: 
+\begin_inset Quotes eld
+\end_inset
+
+log2 M-value
+\begin_inset Quotes erd
+\end_inset
+
+ is redundant because M-values are already log scale
 \end_layout
 
 \end_inset
@@ -3120,15 +3451,10 @@ Write figure legends
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
-	filename graphics/methylvoom/unadj.dupcor/meanvar-trends-PAGE1-RASTER.png
+	filename graphics/methylvoom/unadj.dupcor/meanvar-trends-PAGE1-CROP-RASTER.png
 	lyxscale 15
 	width 100col%
 	groupId raster-600ppi
@@ -3150,7 +3476,15 @@ name "fig:meanvar-basic"
 
 \end_inset
 
-Mean-variance trend with no SVA or weights
+Mean-variance trend for analysis A.
+ 
+\series default
+The log2(standard deviation) for each probe is plotted against the probe's
+ average M-value across all samples as a black point, with some transparency
+ to make overplotting more visible, since there are about 450,000 points.
+ Density of points is also indicated by the dark blue contour lines.
+ The prior variance trend estimated by eBayes is shown in light blue, while
+ the lowess trend of the points is shown in red.
 \end_layout
 
 \end_inset
@@ -3164,6 +3498,50 @@ Mean-variance trend with no SVA or weights
 \end_layout
 
 \begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:meanvar-basic"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows the relationship between the mean M-value and the standard deviation
+ calculated for each probe in the methylation array data set.
+ A few features of the data are apparent.
+ First, the data are very strongly bimodal, with peaks in the density around
+ M-values of +4 and -4.
+ These modes correspond to methylation sites that are nearly 100% methylated
+ and nearly 100% unmethylated, respectively.
+ The strong bomodality indicates that a majority of probes interrogate sites
+ that fall into one of these two categories.
+ The points in between these modes represent sites that are either partially
+ methylated in many samples, or are fully methylated in some samples and
+ fully unmethylated in other samples, or some combination.
+ The next visible feature of the data is the W-shaped variance trend.
+ The upticks in the variance trend on either side are expected, based on
+ the sigmoid transformation exaggerating small differences at extreme M-values
+ (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Sigmoid-beta-m-mapping"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ However, the uptick in the center is interesting: it indicates that sites
+ that are not constitutitively methylated or unmethylated have a higher
+ variance.
+ This could be a genuine biological effect, or it could be spurious noise
+ that is only observable at sites with varying methylation.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -3171,7 +3549,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename graphics/methylvoom/unadj.dupcor.sva.aw/meanvar-trends-PAGE1-RASTER.png
+	filename graphics/methylvoom/unadj.dupcor.sva.aw/meanvar-trends-PAGE1-CROP-RASTER.png
 	lyxscale 15
 	width 100col%
 	groupId raster-600ppi
@@ -3193,7 +3571,20 @@ name "fig:meanvar-sva-aw"
 
 \end_inset
 
-Mean-variance trend with SVA and sample quality weights.
+Mean-variance trend for analysis B.
+ 
+\series default
+Interpretation is as in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:meanvar-basic"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
 \end_layout
 
 \end_inset
@@ -3207,58 +3598,51 @@ Mean-variance trend with SVA and sample quality weights.
 \end_layout
 
 \begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename graphics/methylvoom/unadj.dupcor.sva.voomaw/meanvar-trends-PAGE1-RASTER.png
-	lyxscale 15
-	width 100col%
-	groupId raster-600ppi
+In Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:meanvar-sva-aw"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:voom-sva-voomaw"
-
+, we see the mean-variance trend for the same methylation array data, this
+ time with surrogate variables and sample quality weights estimated from
+ the data and included in the model.
+ As expected, the overall average variance is smaller, since the surrogate
+ variables account for some of the variance.
+ In addition, the uptick in variance in the middle of the M-value range
+ has disappeared, turning the W shape into a wide U shape.
+ This indicates that the excess variance in the probes with intermediate
+ M-values was explained by systematic variations not correlated with known
+ covariates, and these variations were modeled by the surrogate variables.
+ The result is a nearly flat variance trend for the entire intermediate
+ M-value range from about -3 to +3.
+ In contrast, the excess variance at the extremes was not 
+\begin_inset Quotes eld
 \end_inset
 
-Mean-variance trend modelled by voom, with SVA and sample weights.
+absorbed
+\begin_inset Quotes erd
+\end_inset
+
+ by the surrogate variables and remains in the plot, indicating that this
+ variation has no systematic component: probes with extreme M-values are
+ uniformly more variable across all samples, as expected.
  
-\series default
-The y-axis is the square root of the standard deviation for each probe,
- because this is the scale on which voom fits its lowess curve.
 \end_layout
 
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
+\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename graphics/methylvoom/unadj.dupcor.sva.voomaw/meanvar-trends-PAGE2-RASTER.png
+	filename graphics/methylvoom/unadj.dupcor.sva.voomaw/meanvar-trends-PAGE2-CROP-RASTER.png
 	lyxscale 15
 	width 100col%
 	groupId raster-600ppi
@@ -3280,8 +3664,20 @@ name "fig:meanvar-sva-voomaw"
 
 \end_inset
 
-Residual mean-variance trend after modeling with SVA, sample weights, and
- voom.
+Mean-variance trend after voom modeling in analysis C.
+ 
+\series default
+Interpretation is as in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:meanvar-basic"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
 \end_layout
 
 \end_inset
@@ -3294,40 +3690,53 @@ Residual mean-variance trend after modeling with SVA, sample weights, and
 
 \end_layout
 
-\begin_layout Itemize
-U-shaped mean-var trend visible in data, even after accounting for unobserved
- confounders (SVA) and array quality (sample weights)
-\end_layout
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:meanvar-sva-voomaw"
+plural "false"
+caps "false"
+noprefix "false"
 
-\begin_layout Itemize
-\begin_inset Quotes eld
 \end_inset
 
-vooma
-\begin_inset Quotes erd
+ shows the mean-variance trend after fitting the model with the observation
+ weights assigned by voom based on the mean-variance trend shown in Figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:meanvar-sva-aw"
+plural "false"
+caps "false"
+noprefix "false"
+
 \end_inset
 
- models this trend, and after voom, the mean-variance trend is flat and
- the median varaiance is approximately 1 (0 on log scale)
-\end_layout
-
-\begin_layout Itemize
-M-value distribution is bimodal - expected if most CpG methylation states
- are homogeneous among cell populations, either all methylated or all unmethylat
-ed.
+.
+ As expected, the weights exactly counteract the trend in the data, resulting
+ in a nearly flat trend centered vertically at 1 (i.e.
+ 0 on the log scale).
+ This shows that the observations with extreme M-values have been appropriately
+ down-weighted to account for the fact that the noise in those observations
+ has been amplified by the non-linear M-value transformation.
+ In turn, this gives relatively more weight to observervations in the middle
+ region, which are more likely to correspond to probes measuring interesting
+ biology (not constitutively methylated or unmethylated).
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="5" columns="2">
+<lyxtabular version="3" rows="5" columns="3">
 <features tabularvalignment="middle">
+<column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <row>
@@ -3336,6 +3745,15 @@ status open
 
 \begin_layout Plain Layout
 Covariate
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Test used
 \end_layout
 
 \end_inset
@@ -3360,6 +3778,15 @@ Transplant Status
 
 \end_inset
 </cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+F-test
+\end_layout
+
+\end_inset
+</cell>
 <cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
@@ -3376,6 +3803,15 @@ Transplant Status
 
 \begin_layout Plain Layout
 Diabetes Diagnosis
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+t-test
 \end_layout
 
 \end_inset
@@ -3400,6 +3836,15 @@ Sex
 
 \end_inset
 </cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+t-test
+\end_layout
+
+\end_inset
+</cell>
 <cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
@@ -3416,6 +3861,15 @@ Sex
 
 \begin_layout Plain Layout
 Age
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+linear regression
 \end_layout
 
 \end_inset
@@ -3441,21 +3895,26 @@ Age
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+
+\series bold
 \begin_inset CommandInset label
 LatexCommand label
 name "tab:weight-covariate-tests"
 
 \end_inset
 
-Association of sample weights with clinical covariates.
+Association of sample weights with clinical covariates in methylation array
+ data.
+ 
+\series default
+Computed sample quality log weights were tested for significant association
+ with each of the variables in the model (1st column).
+ An appropriate test was selected for each variable (2nd column).
+ P-values for significant association are shown in the 3rd column.
 \end_layout
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -3469,7 +3928,8 @@ Association of sample weights with clinical covariates.
 status open
 
 \begin_layout Plain Layout
-Redo the sample weight boxplot with notches and without fill colors
+Redo the sample weight boxplot with notches and without fill colors (and
+ update the legend)
 \end_layout
 
 \end_inset
@@ -3481,11 +3941,11 @@ Redo the sample weight boxplot with notches and without fill colors
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename graphics/methylvoom/unadj.dupcor.sva.voomaw/sample-weights-PAGE3.pdf
+	filename graphics/methylvoom/unadj.dupcor.sva.voomaw/sample-weights-PAGE3-CROP.pdf
 
 \end_inset
 
@@ -3505,6 +3965,10 @@ name "fig:diabetes-sample-weights"
 
 \series bold
 Boxplot of sample quality weights grouped by diabetes diagnosis.
+ 
+\series default
+Sample were grouped based on diabetes diagnosis, and the distribution of
+ sample quality weights for each diagnosis was plotted.
 \end_layout
 
 \end_inset
@@ -3521,20 +3985,63 @@ Boxplot of sample quality weights grouped by diabetes diagnosis.
 
 \end_layout
 
-\begin_layout Itemize
-Based on estimated sample weights, T2D samples are significantly more variable
- than T1D samples (t-test p = 1.06e-3)
-\end_layout
+\begin_layout Standard
+To determine whether any of the known experimental factors had an impact
+ on data quality, the sample quality weights estimated from the data were
+ tested for association with each of the experimental factors (Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:weight-covariate-tests"
+plural "false"
+caps "false"
+noprefix "false"
 
-\begin_layout Itemize
-Should not affect further analysis
+\end_inset
+
+).
+ Diabetes diagnosis was found to have a potentially significant association
+ with the sample weights, with a t-test p-value of 
+\begin_inset Formula $1.06\times10^{-3}$
+\end_inset
+
+.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:diabetes-sample-weights"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows the distribution of sample weights grouped by diabetes diagnosis.
+ The samples from patients with Type 2 diabetes were assigned significantly
+ lower weights than those from patients with Type 1 diabetes.
+ This indicates that the type 2 diabetes samples had an overall higher variance
+ on average across all probes.
+ 
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float table
 wide false
 sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Flex TODO Note (inline)
 status open
+
+\begin_layout Plain Layout
+Consider transposing this table and the next one
+\end_layout
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \align center
@@ -3755,24 +4262,26 @@ name "tab:methyl-num-signif"
 
 \series bold
 Number of probes significant at 10% FDR for each contrast in each analysis.
+ 
+\series default
+For each of the analyses in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Summary-of-meth-analysis"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, the table shows the number of probes called significantly differentially
+ methylated at a threshold of 10% FDR for each comparison between TX and
+ the other 3 transplant statuses.
 \end_layout
 
 \end_inset
 
 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Cite the pi0 estimation method from propTrueNull
 \end_layout
 
 \end_inset
@@ -3784,7 +4293,7 @@ Cite the pi0 estimation method from propTrueNull
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -4005,6 +4514,20 @@ name "tab:methyl-est-nonnull"
 
 \series bold
 Estimated number of non-null tests for each contrast in each analysis.
+ 
+\series default
+For each of the analyses in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Summary-of-meth-analysis"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, the table shows the number of probes estimated to be differentially methylated
+ between TX and the other 3 transplant statuses.
 \end_layout
 
 \end_inset
@@ -4018,11 +4541,18 @@ Estimated number of non-null tests for each contrast in each analysis.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
 \begin_inset Flex TODO Note (inline)
 status open
 
 \begin_layout Plain Layout
-Re-generate p-value histograms for all relevant contrasts in a single figure.
+Re-generate p-value histograms for all relevant contrasts in a single page,
+ then write an appropriate legend.
 \end_layout
 
 \end_inset
@@ -4030,9 +4560,44 @@ Re-generate p-value histograms for all relevant contrasts in a single figure.
 
 \end_layout
 
-\begin_layout Itemize
-Better variance properties in analyses B and C give more significant probes
- (10% FDR)
+\begin_layout Plain Layout
+\align center
+
+\series bold
+[Figure goes here]
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:meth-p-value-histograms"
+
+\end_inset
+
+Probe p-value histograms for each contrast in each analysis.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Table 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:methyl-num-signif"
@@ -4042,7 +4607,12 @@ noprefix "false"
 
 \end_inset
 
-, more probes estimated to be differentially methylated 
+ shows the number of significantly differentially methylated probes reported
+ by each analysis for each comparison of interest at an FDR of 10%.
+ As expected, the more elaborate analyses, B and C, report more significant
+ probes than the more basic analysis A, consistent with the conclusions
+ above that the data contain hidden systematic variations that must be modeled.
+ Table 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:methyl-est-nonnull"
@@ -4052,7 +4622,89 @@ noprefix "false"
 
 \end_inset
 
-, and better looking p-value distributions [histogram figures].
+ shows the estimated number differentially methylated probes for each test
+ from each analysis.
+ This was computed by estimating the proportion of null hypotheses that
+ were true using the method of 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Phipson2013"
+literal "false"
+
+\end_inset
+
+ and subtracting that fraction from the total number of probes, yielding
+ an estimate of the number of null hypotheses that are false based on the
+ distribution of p-values across the entire dataset.
+ Note that this does not identify which null hypotheses should be rejected
+ (i.e.
+ which probes are significant); it only estimates the true number of such
+ probes.
+ Once again, analyses B and C result it much larger estimates for the number
+ of differentially methylated probes.
+ In this case, analysis C, the only analysis that includes voom, estimates
+ the largest number of differentially methylated probes for all 3 contrasts.
+ If the assumptions of all the methods employed hold, then this represents
+ a gain in statistical power over the simpler analysis A.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:meth-p-value-histograms"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows the p-value distributions for each test, from which the numbers in
+ Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:methyl-est-nonnull"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ were generated.
+ The distributions for analysis A all have a dip in density near zero, which
+ is a strong sign of a poor model fit.
+ The histograms for analyses B and C are more well-behaved, with a uniform
+ component stretching all the way from 0 to 1 representing the probes for
+ which the null hypotheses is true (no differential methylation), and a
+ zero-biased component representing the probes for which the null hypothesis
+ is false (differentially methylated).
+ These histograms do not indicate any major issues with the model fit.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Maybe include the PCA plots before/after SVA effect subtraction?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+FloatBarrier
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -4166,8 +4818,25 @@ literal "false"
  Because these vectors were each generated using training samples from a
  single tissue, they are not suitable for general use, unlike the vectors
  provided with fRMA itself.
- They are purpose-build for normalizing a specific type of sample on a specific
+ They are purpose-built for normalizing a specific type of sample on a specific
  platform.
+ This is a mostly acceptable limitation in the context of developing a machine
+ learning classifier for diagnosing a disease based on samples of a specific
+ tissue.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+How to bring up that these custom vectors were used in another project by
+ someone else that was never published?
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -4389,7 +5058,7 @@ literal "false"
 Methods
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Subsection
 Sample collection
 \end_layout
 
@@ -4407,7 +5076,7 @@ All research reported here was done under IACUC-approved protocols at the
  additive.
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Subsection
 Globin Blocking
 \end_layout
 
@@ -4436,7 +5105,7 @@ HBB site 1: AAUGAAAAUAAAUGUUUUUUAUUAG-C3spacer
 HBB site 2: CUCAAGGCCCUUCAUAAUAUCCC-C3spacer
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Subsection
 RNA-seq Library Preparation 
 \end_layout
 
@@ -4513,7 +5182,7 @@ t with 75 base read lengths.
  
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Subsection
 Read alignment and counting
 \end_layout
 
@@ -4569,7 +5238,7 @@ e” (LOC102136192 and LOC102136846).
  
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Subsection
 Normalization and Exploratory Data Analysis
 \end_layout
 
@@ -4611,7 +5280,7 @@ literal "false"
 .
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Subsection
 Differential Expression Analysis
 \end_layout
 
@@ -4643,7 +5312,7 @@ literal "false"
  variation using an additive model with coefficients for transplant and
  animal ID.
  In all analyses, p-values were adjusted using the Benjamini-Hochberg procedure
- for FDR correction 
+ for FDR control 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Benjamini1995"
@@ -4675,7 +5344,7 @@ Blood RNA-seq time course after transplants with/without MSC infusion
 Results
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Subsection
 Globin blocking yields a larger and more consistent fraction of useful reads
 \end_layout
 
@@ -5456,7 +6125,7 @@ noprefix "false"
  fraction.
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Subsection
 Globin blocking lowers the noise floor and allows detection of about 2000
  more genes
 \end_layout
@@ -5684,7 +6353,7 @@ noprefix "false"
 ).
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Subsection
 Globin blocking does not add significant additional noise or decrease sample
  quality
 \end_layout
@@ -5948,7 +6617,7 @@ literal "false"
  the negligible increase in BCV.
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Subsection
 More differentially expressed genes are detected with globin blocking
 \end_layout
 
