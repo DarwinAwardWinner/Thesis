@@ -4,6 +4,7 @@
 # Generated graphics
 *RASTER.png
 *PAGE*.pdf
+*CROP.pdf
 
 # Data doesn't go in git
 /data
