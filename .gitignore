@@ -5,6 +5,7 @@
 *RASTER.png
 *PAGE*.pdf
 *CROP.pdf
+*CROP.png
 
 # Data doesn't go in git
 /data
