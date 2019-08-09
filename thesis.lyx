@@ -183,7 +183,7 @@ in partial fulfillment of the requirements for the degree of
 \end_layout
 
 \begin_layout Date
-May 2019
+October 2019
 \end_layout
 
 \begin_layout Standard
@@ -549,41 +549,11 @@ Methods
 \end_layout
 
 \begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways true
+\begin_inset Flex TODO Note (inline)
 status open
 
 \begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/rulegraphs/rulegraph-all.pdf
-	lyxscale 50
-	width 100theight%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:rulegraph"
-
-\end_inset
-
-
-\series bold
-Dependency graph of steps in reproducible workflow
-\end_layout
-
-\end_inset
-
-
+Move figures that are only justifying methods into this section
 \end_layout
 
 \end_inset
@@ -734,6 +704,12 @@ Focus on what hypotheses were tested, then select figures that show how
  those hypotheses were tested, even if the result is a negative.
 \end_layout
 
+\begin_layout Plain Layout
+Not every interesting result needs to be in here.
+ Chapter should tell a story.
+ 
+\end_layout
+
 \end_inset
 
 
@@ -754,8 +730,501 @@ Maybe reorder these sections to do RNA-seq, then ChIP-seq, then combined
 \end_layout
 
 \begin_layout Subsection
+RNA-seq align+quant method comparison
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Maybe fix up the excessive axis ranges for these plots?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/rnaseq-compare/ensmebl-vs-entrez-star-CROP.png
+	lyxscale 25
+	width 100col%
+	groupId colwidth-raster
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Comparison of STAR quantification between Ensembl and Entrez gene identifiers
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/rnaseq-compare/ensmebl-vs-entrez-shoal-CROP.png
+	lyxscale 25
+	width 100col%
+	groupId colwidth-raster
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Comparison of Salmon+Shoal quantification between Ensembl and Entrez gene
+ identifiers
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/rnaseq-compare/star-vs-hisat2-CROP.png
+	lyxscale 25
+	width 100col%
+	groupId colwidth-raster
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Comparison of quantification between STAR and HISAT2 for identical annotation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/rnaseq-compare/star-vs-salmon-CROP.png
+	lyxscale 25
+	width 100col%
+	groupId colwidth-raster
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Comparison of quantification between STAR and Salmon for identical annotation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/rnaseq-compare/salmon-vs-kallisto-CROP.png
+	lyxscale 25
+	width 100col%
+	groupId colwidth-raster
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Comparison of quantification between Salmon and Kallisto for identical annotatio
+n
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/rnaseq-compare/salmon-vs-shoal-CROP.png
+	lyxscale 25
+	width 100col%
+	groupId colwidth-raster
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Comparison of quantification between Salmon with and without Shoal for identical
+ annotation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Ultimately selected shoal as quantification, Ensembl as annotation.
+ Why? Running downstream analyses with all quant methods and both annotations
+ showed very little practical difference, so choice was not terribly important.
+ Prefer shoal due to theoretical advantages.
+ To note in discussion: reproducible workflow made it easy to do this, enabling
+ an informed decision.
+\end_layout
+
+\begin_layout Subsection
+RNA-seq has a large confounding batch effect
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Just take the top row
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/RNA-seq/weights-vs-covars-CROP.png
+	lyxscale 25
+	width 100col%
+	groupId colwidth-raster
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:RNA-seq-weights-vs-covars"
+
+\end_inset
+
+RNA-seq sample weights, grouped by experimental and technical covariates
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/RNA-seq/PCA-no-batchsub-CROP.png
+	lyxscale 25
+	width 100col%
+	groupId colwidth-raster
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:RNA-PCA-no-batchsub"
+
+\end_inset
+
+RNA-seq PCoA plot showing clear batch effect
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Probably don't need this
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/RNA-seq/PCA-naive-batchsub-CROP.png
+	lyxscale 25
+	width 100col%
+	groupId colwidth-raster
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:RNA-PCA-limma-batchsub"
+
+\end_inset
+
+RNA-seq PCoA plot showing clear batch effect
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/RNA-seq/PCA-combat-batchsub-CROP.png
+	lyxscale 25
+	width 100col%
+	groupId colwidth-raster
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:RNA-PCA-ComBat-batchsub"
+
+\end_inset
+
+RNA-seq PCoA plot showing clear batch effect
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+RNA-seq batch effect can be partially corrected, but still induces uncorrectable
+ biases in downstream analysis
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Figures showing p-value histograms for within-batch and cross-batch contrasts,
+ showing that cross-batch contrasts have attenuated signal, as do comparisons
+ within the bad batch
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
 H3K4 and H3K27 methylation occur in broad regions and are enriched near
  promoters
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Replace these figures with a single table of # of peaks called at chosen
+ IDR threshold, showing that SICER has more
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1270,459 +1739,6 @@ literal "false"
 \end_layout
 
 \begin_layout Subsection
-RNA-seq align+quant method comparison
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Maybe fix up the excessive axis ranges for these plots?
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/rnaseq-compare/ensmebl-vs-entrez-star-CROP.png
-	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Comparison of STAR quantification between Ensembl and Entrez gene identifiers
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/rnaseq-compare/ensmebl-vs-entrez-shoal-CROP.png
-	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Comparison of Salmon+Shoal quantification between Ensembl and Entrez gene
- identifiers
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/rnaseq-compare/star-vs-hisat2-CROP.png
-	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Comparison of quantification between STAR and HISAT2 for identical annotation
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/rnaseq-compare/star-vs-salmon-CROP.png
-	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Comparison of quantification between STAR and Salmon for identical annotation
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/rnaseq-compare/salmon-vs-kallisto-CROP.png
-	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Comparison of quantification between Salmon and Kallisto for identical annotatio
-n
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/rnaseq-compare/salmon-vs-shoal-CROP.png
-	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Comparison of quantification between Salmon with and without Shoal for identical
- annotation
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Ultimately selected shoal as quantification, Ensembl as annotation.
- Why? Running downstream analyses with all quant methods and both annotations
- showed very little practical difference, so choice was not terribly important.
- Prefer shoal due to theoretical advantages.
- To note in discussion: reproducible workflow made it easy to do this, enabling
- an informed decision.
-\end_layout
-
-\begin_layout Subsection
-RNA-seq has a large confounding batch effect
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/RNA-seq/weights-vs-covars-CROP.png
-	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:RNA-seq-weights-vs-covars"
-
-\end_inset
-
-RNA-seq sample weights, grouped by experimental and technical covariates
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/RNA-seq/PCA-no-batchsub-CROP.png
-	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:RNA-PCA-no-batchsub"
-
-\end_inset
-
-RNA-seq PCoA plot showing clear batch effect
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/RNA-seq/PCA-naive-batchsub-CROP.png
-	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:RNA-PCA-limma-batchsub"
-
-\end_inset
-
-RNA-seq PCoA plot showing clear batch effect
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/RNA-seq/PCA-combat-batchsub-CROP.png
-	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:RNA-PCA-ComBat-batchsub"
-
-\end_inset
-
-RNA-seq PCoA plot showing clear batch effect
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-RNA-seq batch effect can be partially corrected, but still induces uncorrectable
- biases in downstream analysis
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Figures showing p-value histograms for within-batch and cross-batch contrasts,
- showing that cross-batch contrasts have attenuated signal, as do comparisons
- within the bad batch
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
 ChIP-seq blacklisting is important
 \end_layout
 
@@ -1730,7 +1746,7 @@ ChIP-seq blacklisting is important
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1766,7 +1782,7 @@ Cross-correlation plots with blacklisted reads removed
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1798,65 +1814,28 @@ Cross-correlation plots without removing blacklisted reads
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Un-break the figure legend
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/csaw/CCF-max-plot-CROP.pdf
-	lyxscale 50
-	width 100col%
-	groupId colwidth
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Estimated fragment size in samples before and after blacklisting
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Subsection
 ChIP-seq normalization
 \end_layout
 
 \begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Maybe just one of these figures and then say the other 2 were similar
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1894,7 +1873,7 @@ MA plot of H3K4me2 read counts in 10kb bins for two arbitrary samples
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1932,7 +1911,7 @@ MA plot of H3K4me3 read counts in 10kb bins for two arbitrary samples
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1968,6 +1947,19 @@ MA plot of H3K27me3 read counts in 10kb bins for two arbitrary samples
 
 \begin_layout Subsection
 ChIP-seq must be corrected for hidden confounding factors
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Consolidate these into 1 2x3 grid
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -2257,6 +2249,19 @@ H3K4 and H3K27 promoter methylation has broadly the expected correlation
  with gene expression
 \end_layout
 
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+This section can easily be cut, especially if I can't find those plots.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Itemize
 H3K4 is correlated with higher expression, and H3K27 is correlated with
  lower expression genome-wide
@@ -2295,7 +2300,7 @@ MOFA recovers biologically relevant variation from blind analysis by correlating
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -2353,7 +2358,20 @@ noprefix "false"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Maybe drop this one
+\end_layout
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \align center
@@ -2397,7 +2415,20 @@ Sample distribution for each latent factor estimated by MOFA.
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Talk about how this supports the convergence hypothesis
+\end_layout
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \align center
@@ -2470,7 +2501,7 @@ LF2 is clearly the RNA-seq batch effect
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -2933,13 +2964,53 @@ literal "false"
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Show the figures where the negative result ended this line of inquiry
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Discussion
 \end_layout
 
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Try to boil it down to 3 main messages to get across
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Itemize
 "Promoter radius" is not constant and must be defined empirically for a
- given data set
+ given data set.
+ Coverage within promoter radius has an expression correlation as well
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+MOFA should be a footnote to something else, not its own point
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -2967,17 +3038,11 @@ MOFA confirmed that the already-implemented batch correction in the RNA-seq
 \end_layout
 
 \end_deeper
-\begin_layout Itemize
-Naive-to-memory convergence implies that naive cells are differentiating
- into memory cells, and that gene expression and H3K4 methylation are involved
- in this differentiation while H3K27me3 is less involved
-\end_layout
-
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -3012,6 +3077,13 @@ LaMere 2016 Figure 8, reproduced with permission.
 \end_layout
 
 \begin_layout Itemize
+Naive-to-memory convergence implies that naive cells are differentiating
+ into memory cells, and that gene expression and H3K4 methylation are involved
+ in this differentiation while H3K27me3 is less involved
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
 Convergence is consistent with Lamere2016 fig 8 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -3028,10 +3100,65 @@ H3K27me3, canonically regarded as a deactivating mark, seems to have a more
  complex effect
 \end_layout
 
+\end_deeper
+\begin_layout Itemize
+TSS positional coverage 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways true
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/rulegraphs/rulegraph-all.pdf
+	lyxscale 50
+	width 100theight%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:rulegraph"
+
+\end_inset
+
+
+\series bold
+Dependency graph of steps in reproducible workflow
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Itemize
 Discuss advantages of developing using a reproducible workflow
 \end_layout
 
+\begin_deeper
+\begin_layout Itemize
+Decision-making based on trying every option and running the workflow downstream
+ to see the effects
+\end_layout
+
+\end_deeper
 \begin_layout Chapter
 Improving array-based analyses of transplant rejection by optimizing data
  preprocessing
