@@ -4840,16 +4840,146 @@ How to bring up that these custom vectors were used in another project by
 \end_layout
 
 \begin_layout Subsection
-voom
+Methylation array data can be successfully analyzed using existing techniques,
+ but machine learning poses additional challenges
 \end_layout
 
-\begin_layout Itemize
-Methods like voom designed for RNA-seq can also help with array analysis
+\begin_layout Standard
+Both analysis strategies B and C both yield a reasonable analysis, with
+ a mean-variance trend that matches the expected behavior for the non-linear
+ M-value transformation (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:meanvar-sva-aw"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+) and well-behaved p-value distributions (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:meth-p-value-histograms"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ These two analyses also yield similar numbers of significant probes (Table
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:methyl-num-signif"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+) and similar estimates of the number of differentially methylated probes
+ (Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:methyl-est-nonnull"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ The main difference between these two analyses is the method used to account
+ for the mean-variance trend.
+ In analysis B, the trend is estimated and applied at the probe level: each
+ probe's estimated variance is squeezed toward the trend using an empirical
+ Bayes procedure (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:meanvar-sva-aw"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ In analysis C, the trend is still estimated at the probe level, but instead
+ of estimating a single variance value shared across all observations for
+ a given probe, the voom method computes an initial estiamte of the variance
+ for each observation individually based on where its model-fitted M-value
+ falls on the trend line and then assigns inverse-variance weights to model
+ the difference in variance between observations.
+ An overall variance is still estimated for each probe using the same empirical
+ Bayes method, but now the residual trend is flat (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:meanvar-sva-voomaw"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+), and the mean-variance trend is modeled by scaling the probe's estimated
+ variance for each observation using the weights computed by voom.
+ The difference between these two methods is analogous to the difference
+ between a t-test with equal variance and a t-test with unequal variance,
+ except that the unequal group variances used in the latter test are estimated
+ based on the mean-variance trend from all the probes rather than the data
+ for the specific probe being tested, thus stabilizing the group variance
+ estimates by sharing information between probes.
+ In practice, allowing voom to model the variance using observation weights
+ in this manner allows the linear model fit to concentrate statistical power
+ where it will do the most good.
+ For example, if a particular probe's M-values are always at the extreme
+ of the M-value range (e.g.
+ less than -4) for ADNR samples, but the M-values for that probe in TX and
+ CAN samples are within the flat region of the mean-variance trend (between
+ -3 and +3), voom is able to down-weight the contribution of the high-variance
+ M-values from the ADNR samples in order to gain more statistical power
+ while testing for differential methylation between TX and CAN.
+ In contrast, modeling the mean-variance trend only at the probe level would
+ combine the high-variance ADNR samples and lower-variance samples from
+ other conditions and estimate an intermediate variance for this probe.
+ In practice, analysis B shows that this approach is adequate, but the voom
+ approach in analysis C is at least as good on all model fit criteria and
+ yields a larger estimate for the number of differentially methylated genes.
 \end_layout
 
-\begin_layout Itemize
-Extracting and modeling confounders common to many features improves model
- correspondence to known biology
+\begin_layout Standard
+The significant association of diebetes diagnosis with sample quality is
+ interesting.
+ The samples with Type 2 diabetes tended to have more variation, averaged
+ across all probes, than those with Type 1 diabetes.
+ This is consistent with the consensus that type 2 disbetes and the associated
+ metabolic syndrome represent a broad dysregulation of the body's endocrine
+ signalling related to metabolism [citation needed].
+ This dysregulation could easily manifest as a greater degree of variation
+ in the DNA methylation patterns of affected tissues.
+ In contrast, Type 1 disbetes has a more specific cause and effect, so a
+ less variable methylation signature is expected.
+\end_layout
+
+\begin_layout Standard
+This preliminary anlaysis suggests that some degree of differential methylation
+ exists between TX and each of the three types of transplant disfunction
+ studied.
+ Hence, it may be feasible to train a classifier to diagnose transplant
+ disfunction from DNA methylation array data.
+ However, the major importance of both SVA and sample quality weighting
+ for proper modeling of this data poses significant challenges for any attempt
+ at a machine learning on data of similar quality.
+ While these are easily used in a modeling context with full sample information,
+ neither of these methods is directly applicable in a machine learning context,
+ where the diagnosis is not known ahead of time.
+ If a machine learning approach for methylation-based diagnosis is to be
+ pursued, it will either require machine-learning-friendly methods to address
+ the same systematic trends in the data that SVA and sample quality weighting
+ address, or it will require higher quality data with substantially less
+ systematic perturbation of the data.
 \end_layout
 
 \begin_layout Chapter
