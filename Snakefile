@@ -215,6 +215,11 @@ rule png_crop:
     output: pdf = 'graphics/{basename}-CROP.png'
     shell: 'magick {input:q} -trim {output:q}'
 
+rule svg_to_pdf:
+    input: 'graphics/{filename}.svg'
+    output: 'graphics/{filename}-SVG.pdf'
+    shell: '''inkscape {input:q} --export-pdf={output:q} --export-dpi=300'''
+
 rule R_to_html:
     '''Render an R script as syntax-hilighted HTML.'''
     input: '{dirname}/{basename,[^/]+}.R'

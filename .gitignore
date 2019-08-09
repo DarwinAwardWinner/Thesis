@@ -10,5 +10,8 @@
 # Data doesn't go in git
 /data
 
+# LyX backup file
+*.emergency
+
 # Snakemake temp files
 /.snakemake
