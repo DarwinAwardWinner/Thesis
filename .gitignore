@@ -15,3 +15,6 @@
 
 # Snakemake temp files
 /.snakemake
+
+# LyX temp files
+tmp-*
