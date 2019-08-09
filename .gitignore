@@ -6,6 +6,7 @@
 *PAGE*.pdf
 *CROP.pdf
 *CROP.png
+*SVG.pdf
 
 # Data doesn't go in git
 /data
