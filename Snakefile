@@ -213,7 +213,7 @@ rule png_crop:
     '''Crop away empty margins from a PNG.'''
     input: pdf = 'graphics/{basename,.*(?!CROP).*}.png'
     output: pdf = 'graphics/{basename}-CROP.png'
-    shell: 'magick {input:q} -trim {output:q}'
+    shell: 'convert {input:q} -trim {output:q}'
 
 rule svg_to_pdf:
     input: 'graphics/{filename}.svg'
