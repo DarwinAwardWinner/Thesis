@@ -198,7 +198,7 @@ rule pdf_extract_page:
     shell: 'pdfseparate -f {wildcards.pagenum:q} -l {wildcards.pagenum:q} {input:q} {output:q}'
 
 rule pdf_crop:
-    '''Crop away margins from a PDF.'''
+    '''Crop away empty margins from a PDF.'''
     input: pdf = 'graphics/{basename,.*(?!CROP).*}.pdf'
     output: pdf = 'graphics/{basename}-CROP.pdf'
     shell: 'pdfcrop --resolution 300 {input:q} {output:q}'
@@ -208,6 +208,12 @@ rule pdf_raster:
     input: pdf = 'graphics/{basename}.pdf'
     output: png = 'graphics/{basename}-RASTER.png'
     shell: 'pdftoppm -r 600 {input:q} | convert - {output:q}'
+
+rule png_crop:
+    '''Crop away empty margins from a PNG.'''
+    input: pdf = 'graphics/{basename,.*(?!CROP).*}.png'
+    output: pdf = 'graphics/{basename}-CROP.png'
+    shell: 'magick {input:q} -trim {output:q}'
 
 rule R_to_html:
     '''Render an R script as syntax-hilighted HTML.'''
