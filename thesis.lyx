@@ -487,7 +487,20 @@ Reproducible genome-wide epigenetic analysis of H3K4 and H3K27 methylation
 status open
 
 \begin_layout Plain Layout
-Author list: Me, Sarah, Dan
+Chapter author list: Me, Sarah, Dan
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Need better section titles throughout the chapter
 \end_layout
 
 \end_inset
@@ -691,44 +704,6 @@ Promoter counts in sliding windows around each gene's highest-expressed
  TSS to investigate coverage distribution within promoters
 \end_layout
 
-\begin_layout Section
-Results
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Focus on what hypotheses were tested, then select figures that show how
- those hypotheses were tested, even if the result is a negative.
-\end_layout
-
-\begin_layout Plain Layout
-Not every interesting result needs to be in here.
- Chapter should tell a story.
- 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Maybe reorder these sections to do RNA-seq, then ChIP-seq, then combined
- analyses?
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Subsection
 RNA-seq align+quant method comparison
 \end_layout
@@ -750,7 +725,7 @@ Maybe fix up the excessive axis ranges for these plots?
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -777,10 +752,6 @@ Comparison of STAR quantification between Ensembl and Entrez gene identifiers
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
@@ -790,7 +761,7 @@ Comparison of STAR quantification between Ensembl and Entrez gene identifiers
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -827,7 +798,7 @@ Comparison of Salmon+Shoal quantification between Ensembl and Entrez gene
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -863,7 +834,7 @@ Comparison of quantification between STAR and HISAT2 for identical annotation
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -899,7 +870,7 @@ Comparison of quantification between STAR and Salmon for identical annotation
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -936,7 +907,7 @@ n
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -978,6 +949,22 @@ Ultimately selected shoal as quantification, Ensembl as annotation.
  an informed decision.
 \end_layout
 
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+FloatBarrier
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 RNA-seq has a large confounding batch effect
 \end_layout
@@ -986,7 +973,7 @@ RNA-seq has a large confounding batch effect
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Flex TODO Note (inline)
@@ -1034,10 +1021,6 @@ RNA-seq sample weights, grouped by experimental and technical covariates
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
@@ -1047,7 +1030,7 @@ RNA-seq sample weights, grouped by experimental and technical covariates
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1091,7 +1074,7 @@ RNA-seq PCoA plot showing clear batch effect
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Flex TODO Note (inline)
@@ -1148,7 +1131,7 @@ RNA-seq PCoA plot showing clear batch effect
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1201,6 +1184,913 @@ status open
 Figures showing p-value histograms for within-batch and cross-batch contrasts,
  showing that cross-batch contrasts have attenuated signal, as do comparisons
  within the bad batch
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+FloatBarrier
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+ChIP-seq blacklisting is important
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/csaw/CCF-plots-PAGE2-CROP.pdf
+	lyxscale 50
+	width 100col%
+	groupId colwidth
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Cross-correlation plots with blacklisted reads removed
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/csaw/CCF-plots-noBL-PAGE2-CROP.pdf
+	lyxscale 50
+	width 100col%
+	groupId colwidth
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Cross-correlation plots without removing blacklisted reads
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+ChIP-seq normalization
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Maybe just one of these figures and then say the other 2 were similar
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/ChIP-seq/H3K4me2-sample-MAplot-bins-CROP.png
+	lyxscale 25
+	width 100col%
+	groupId colwidth-raster
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+MA plot of H3K4me2 read counts in 10kb bins for two arbitrary samples
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/ChIP-seq/H3K4me3-sample-MAplot-bins-CROP.png
+	lyxscale 25
+	width 100col%
+	groupId colwidth-raster
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+MA plot of H3K4me3 read counts in 10kb bins for two arbitrary samples
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/ChIP-seq/H3K27me3-sample-MAplot-bins-CROP.png
+	lyxscale 25
+	width 100col%
+	groupId colwidth-raster
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+MA plot of H3K27me3 read counts in 10kb bins for two arbitrary samples
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+ChIP-seq must be corrected for hidden confounding factors
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Consolidate these into 1 2x3 grid.
+ For now, just refer to them as if they were a single figure.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/ChIP-seq/H3K4me2-PCA-raw-CROP.png
+	lyxscale 25
+	width 100col%
+	groupId colwidth-raster
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PCoA-H3K4me2-bad"
+
+\end_inset
+
+PCoA plot of H3K4me2 windows, before subtracting surrogate variables
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/ChIP-seq/H3K4me2-PCA-SVsub-CROP.png
+	lyxscale 25
+	width 100col%
+	groupId colwidth-raster
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PCoA-H3K4me2-good"
+
+\end_inset
+
+PCoA plot of H3K4me2 windows, after subtracting surrogate variables
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/ChIP-seq/H3K4me3-PCA-raw-CROP.png
+	lyxscale 25
+	width 100col%
+	groupId colwidth-raster
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PCoA-H3K4me3-bad"
+
+\end_inset
+
+PCoA plot of H3K4me3 windows, before subtracting surrogate variables
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/ChIP-seq/H3K4me3-PCA-SVsub-CROP.png
+	lyxscale 25
+	width 100col%
+	groupId colwidth-raster
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PCoA-H3K4me3-good"
+
+\end_inset
+
+PCoA plot of H3K4me3 windows, after subtracting surrogate variables
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/ChIP-seq/H3K27me3-PCA-raw-CROP.png
+	lyxscale 25
+	width 100col%
+	groupId colwidth-raster
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PCoA-H3K27me3-bad"
+
+\end_inset
+
+PCoA plot of H3K27me3 windows, before subtracting surrogate variables
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/ChIP-seq/H3K27me3-PCA-SVsub-CROP.png
+	lyxscale 25
+	width 100col%
+	groupId colwidth-raster
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PCoA-H3K27me3-good"
+
+\end_inset
+
+PCoA plot of H3K27me3 windows, after subtracting surrogate variables
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Figures showing BCV plots with and without SVA for each histone mark.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+FloatBarrier
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Subsection
+MOFA recovers biologically relevant variation from blind analysis by correlating
+ across datasets
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/MOFA-varExplaiend-matrix-CROP.png
+	lyxscale 25
+	width 100col%
+	groupId colwidth-raster
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:mofa-varexplained"
+
+\end_inset
+
+Variance explained in each data set by each latent factor estimated by MOFA.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:mofa-varexplained"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows that LF1, 4, and 5 explain substantial var in all data sets
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Maybe drop this one
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/MOFA-LF-distributions-CROP.png
+	lyxscale 25
+	width 100col%
+	groupId colwidth-raster
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:mofa-lf-dist"
+
+\end_inset
+
+Sample distribution for each latent factor estimated by MOFA.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Talk about how this supports the convergence hypothesis
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/MOFA-LF-scatter-CROP.png
+	lyxscale 25
+	width 100col%
+	groupId colwidth-raster
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:mofa-lf-scatter"
+
+\end_inset
+
+Scatter plots of specific pairs of MOFA latent factors.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Figures 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:mofa-lf-dist"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:mofa-lf-scatter"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ show that those same 3 LFs, (1, 4, & 5) also correlate best with the experiment
+al factors (cell type & time point)
+\end_layout
+
+\begin_layout Itemize
+LF2 is clearly the RNA-seq batch effect
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/MOFA-batch-correct-CROP.png
+	lyxscale 25
+	width 100col%
+	groupId colwidth-raster
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:mofa-batchsub"
+
+\end_inset
+
+Result of RNA-seq batch-correction using MOFA latent factors
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Attempting to remove the effect of LF2 (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:mofa-batchsub"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+) results in batch correction comparable to ComBat (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:RNA-PCA-ComBat-batchsub"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+MOFA was able to do this batch subtraction without directly using the sample
+ labels (sample labels were used implicitly to select which factor to subtract)
+\end_layout
+
+\begin_layout Itemize
+Similarity of results shows that batch correction can't get much better
+ than ComBat (despite ComBat ignoring time point)
+\end_layout
+
+\begin_layout Subsection
+MOFA does some interesting stuff but is mostly confirmatory in this context
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+MOFA should be a footnote to something else, not its own point
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Combine with previous subsection
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+MOFA shows great promise for accelerating discovery of major biological
+ effects in multi-omics datasets
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+MOFA successfully separates biologically relevant patterns of variation
+ from technical confounding factors without knowing the sample labels, by
+ finding latent factors that explain variation across multiple data sets.
+\end_layout
+
+\begin_layout Itemize
+MOFA was added to this analysis late and played primarily a confirmatory
+ role, but it was able to confirm earlier conclusions with much less prior
+ information (no sample labels) and much less analyst effort/input
+\end_layout
+
+\begin_layout Itemize
+Less input from analyst means less opportunity to introduce unwanted bias
+ into results
+\end_layout
+
+\begin_layout Itemize
+MOFA confirmed that the already-implemented batch correction in the RNA-seq
+ data was already performing as well as possible given the limitations of
+ the data
+\end_layout
+
+\end_deeper
+\begin_layout Section
+Results
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Focus on what hypotheses were tested, then select figures that show how
+ those hypotheses were tested, even if the result is a negative.
+\end_layout
+
+\begin_layout Plain Layout
+Not every interesting result needs to be in here.
+ Chapter should tell a story.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Maybe reorder these sections to do RNA-seq, then ChIP-seq, then combined
+ analyses?
 \end_layout
 
 \end_inset
@@ -1739,512 +2629,6 @@ literal "false"
 \end_layout
 
 \begin_layout Subsection
-ChIP-seq blacklisting is important
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/csaw/CCF-plots-PAGE2-CROP.pdf
-	lyxscale 50
-	width 100col%
-	groupId colwidth
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Cross-correlation plots with blacklisted reads removed
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/csaw/CCF-plots-noBL-PAGE2-CROP.pdf
-	lyxscale 50
-	width 100col%
-	groupId colwidth
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Cross-correlation plots without removing blacklisted reads
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-ChIP-seq normalization
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Maybe just one of these figures and then say the other 2 were similar
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/ChIP-seq/H3K4me2-sample-MAplot-bins-CROP.png
-	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-MA plot of H3K4me2 read counts in 10kb bins for two arbitrary samples
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/ChIP-seq/H3K4me3-sample-MAplot-bins-CROP.png
-	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-MA plot of H3K4me3 read counts in 10kb bins for two arbitrary samples
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/ChIP-seq/H3K27me3-sample-MAplot-bins-CROP.png
-	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-MA plot of H3K27me3 read counts in 10kb bins for two arbitrary samples
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-ChIP-seq must be corrected for hidden confounding factors
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Consolidate these into 1 2x3 grid
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/ChIP-seq/H3K4me2-PCA-raw-CROP.png
-	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:PCoA-H3K4me2-bad"
-
-\end_inset
-
-PCoA plot of H3K4me2 windows, before subtracting surrogate variables
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/ChIP-seq/H3K4me2-PCA-SVsub-CROP.png
-	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:PCoA-H3K4me2-good"
-
-\end_inset
-
-PCoA plot of H3K4me2 windows, after subtracting surrogate variables
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/ChIP-seq/H3K4me3-PCA-raw-CROP.png
-	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:PCoA-H3K4me3-bad"
-
-\end_inset
-
-PCoA plot of H3K4me3 windows, before subtracting surrogate variables
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/ChIP-seq/H3K4me3-PCA-SVsub-CROP.png
-	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:PCoA-H3K4me3-good"
-
-\end_inset
-
-PCoA plot of H3K4me3 windows, after subtracting surrogate variables
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/ChIP-seq/H3K27me3-PCA-raw-CROP.png
-	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:PCoA-H3K27me3-bad"
-
-\end_inset
-
-PCoA plot of H3K27me3 windows, before subtracting surrogate variables
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/ChIP-seq/H3K27me3-PCA-SVsub-CROP.png
-	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:PCoA-H3K27me3-good"
-
-\end_inset
-
-PCoA plot of H3K27me3 windows, after subtracting surrogate variables
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Figures showing BCV plots with and without SVA for each histone mark.
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Can I do supplementary data on a thesis? This is a lot of plots for this
- section.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
 H3K4 and H3K27 promoter methylation has broadly the expected correlation
  with gene expression
 \end_layout
@@ -2289,290 +2673,6 @@ Figures showing these correlations: box/violin plots of expression distributions
 \begin_layout Itemize
 Appropriate statistical tests showing significant differences in expected
  directions
-\end_layout
-
-\begin_layout Subsection
-MOFA recovers biologically relevant variation from blind analysis by correlating
- across datasets
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/MOFA-varExplaiend-matrix-CROP.png
-	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:mofa-varexplained"
-
-\end_inset
-
-Variance explained in each data set by each latent factor estimated by MOFA.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:mofa-varexplained"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- shows that LF1, 4, and 5 explain substantial var in all data sets
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Maybe drop this one
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/MOFA-LF-distributions-CROP.png
-	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:mofa-lf-dist"
-
-\end_inset
-
-Sample distribution for each latent factor estimated by MOFA.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Talk about how this supports the convergence hypothesis
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/MOFA-LF-scatter-CROP.png
-	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:mofa-lf-scatter"
-
-\end_inset
-
-Scatter plots of specific pairs of MOFA latent factors.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Figures 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:mofa-lf-dist"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- and 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:mofa-lf-scatter"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- show that those same 3 LFs, (1, 4, & 5) also correlate best with the experiment
-al factors (cell type & time point)
-\end_layout
-
-\begin_layout Itemize
-LF2 is clearly the RNA-seq batch effect
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/MOFA-batch-correct-CROP.png
-	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:mofa-batchsub"
-
-\end_inset
-
-Result of RNA-seq batch-correction using MOFA latent factors
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Attempting to remove the effect of LF2 (Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:mofa-batchsub"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-) results in batch correction comparable to ComBat (Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:RNA-PCA-ComBat-batchsub"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-)
-\end_layout
-
-\begin_layout Itemize
-MOFA was able to do this batch subtraction without directly using the sample
- labels (sample labels were used implicitly to select which factor to subtract)
-\end_layout
-
-\begin_layout Itemize
-Similarity of results shows that batch correction can't get much better
- than ComBat (despite ComBat ignoring time point)
 \end_layout
 
 \begin_layout Subsection
@@ -2995,46 +3095,23 @@ Try to boil it down to 3 main messages to get across
 \end_layout
 
 \begin_layout Itemize
+3 Main points
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
 "Promoter radius" is not constant and must be defined empirically for a
  given data set.
  Coverage within promoter radius has an expression correlation as well
 \end_layout
 
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-MOFA should be a footnote to something else, not its own point
-\end_layout
-
-\end_inset
-
-
+\begin_layout Itemize
+Naive-to-memory convergence in certain data sets but not others, implies
+ which marks are involved in memory differentiation
 \end_layout
 
 \begin_layout Itemize
-MOFA shows great promise for accelerating discovery of major biological
- effects in multi-omics datasets
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-MOFA successfully separates biologically relevant patterns of variation
- from technical confounding factors without knowing the sample labels, by
- finding latent factors that explain variation across multiple data sets.
-\end_layout
-
-\begin_layout Itemize
-MOFA was added to this analysis late and played primarily a confirmatory
- role, but it was able to confirm earlier conclusions with much less prior
- information (no sample labels) and much less analyst effort
-\end_layout
-
-\begin_layout Itemize
-MOFA confirmed that the already-implemented batch correction in the RNA-seq
- data was already performing as well as possible given the limitations of
- the data
+TSS positional coverage, hints of something interesting but no clear conclusions
 \end_layout
 
 \end_deeper
@@ -3169,7 +3246,7 @@ Improving array-based analyses of transplant rejection by optimizing data
 status open
 
 \begin_layout Plain Layout
-Author list: Me, Sunil, Tom, Padma, Dan
+Chapter author list: Me, Sunil, Tom, Padma, Dan
 \end_layout
 
 \end_inset
@@ -3530,7 +3607,7 @@ literal "true"
 
 \begin_layout Standard
 \begin_inset Flex TODO Note (inline)
-status collapsed
+status open
 
 \begin_layout Plain Layout
 Find appropriate GEO identifiers if possible.
@@ -3583,10 +3660,11 @@ on of TX and AR samples was considered.
 
 \begin_layout Standard
 \begin_inset Flex TODO Note (inline)
-status collapsed
+status open
 
 \begin_layout Plain Layout
-Summarize the get.best.threshold algorithm for PAM threshold selection
+Summarize the get.best.threshold algorithm for PAM threshold selection, or
+ just put the code online?
 \end_layout
 
 \end_inset
