@@ -6109,22 +6109,6 @@ noprefix "false"
  curves look more divergent.
 \end_layout
 
-\begin_layout Standard
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-FloatBarrier
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Subsection
 fRMA with custom-generated vectors enables normalization on hthgu133pluspm
 \end_layout
@@ -6133,7 +6117,7 @@ fRMA with custom-generated vectors enables normalization on hthgu133pluspm
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -6148,7 +6132,7 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/frma-pax-bx/batchsize_batches.pdf
 	lyxscale 50
-	width 100col%
+	height 35theight%
 	groupId frmatools-subfig
 
 \end_inset
@@ -6195,7 +6179,7 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/frma-pax-bx/batchsize_samples.pdf
 	lyxscale 50
-	width 100col%
+	height 35theight%
 	groupId frmatools-subfig
 
 \end_inset
@@ -6321,7 +6305,7 @@ literal "false"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Float figure
@@ -6334,7 +6318,7 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/frma-pax-bx/M-BX-violin.pdf
 	lyxscale 40
-	height 45col%
+	width 45col%
 	groupId m-violin
 
 \end_inset
@@ -6373,14 +6357,14 @@ Violin plot of inter-normalization log ratios for biopsy samples.
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename graphics/frma-pax-bx/M-PAX-violin.pdf
 	lyxscale 40
-	height 45col%
+	width 45col%
 	groupId m-violin
 
 \end_inset
@@ -6475,7 +6459,7 @@ noprefix "false"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -6487,8 +6471,8 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename graphics/frma-pax-bx/MA-BX-RMA.fRMA.pdf
-	lyxscale 50
+	filename graphics/frma-pax-bx/MA-BX-RMA.fRMA-RASTER.png
+	lyxscale 10
 	width 45col%
 	groupId ma-frma
 
@@ -6533,8 +6517,8 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename graphics/frma-pax-bx/MA-BX-fRMA.fRMA.pdf
-	lyxscale 50
+	filename graphics/frma-pax-bx/MA-BX-fRMA.fRMA-RASTER.png
+	lyxscale 10
 	width 45col%
 	groupId ma-frma
 
@@ -6582,8 +6566,8 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename graphics/frma-pax-bx/MA-PAX-RMA.fRMA.pdf
-	lyxscale 50
+	filename graphics/frma-pax-bx/MA-PAX-RMA.fRMA-RASTER.png
+	lyxscale 10
 	width 45col%
 	groupId ma-frma
 
@@ -6628,8 +6612,8 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename graphics/frma-pax-bx/MA-PAX-fRMA.fRMA.pdf
-	lyxscale 50
+	filename graphics/frma-pax-bx/MA-PAX-fRMA.fRMA-RASTER.png
+	lyxscale 10
 	width 45col%
 	groupId ma-frma
 
@@ -6807,7 +6791,7 @@ status open
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -6875,7 +6859,7 @@ Mean-variance trend for analysis A.
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -6920,15 +6904,15 @@ Mean-variance trend for analysis B.
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename graphics/methylvoom/unadj.dupcor.sva.voomaw/meanvar-trends-PAGE2-CROP-RASTER.png
 	lyxscale 15
-	width 100col%
-	groupId raster-600ppi
+	width 30col%
+	groupId voomaw-subfig
 
 \end_inset
 
@@ -7323,8 +7307,12 @@ sideways false
 status collapsed
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename graphics/methylvoom/unadj.dupcor.sva.voomaw/sample-weights-PAGE3-CROP.pdf
+	lyxscale 50
+	width 100col%
+	groupId colwidth
 
 \end_inset
 
