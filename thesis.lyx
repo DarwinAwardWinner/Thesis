@@ -107,7 +107,7 @@ todonotes
 \quotes_style english
 \dynamic_quotes 0
 \papercolumns 1
-\papersides 2
+\papersides 1
 \paperpagestyle default
 \tracking_changes false
 \output_changes false
@@ -3648,7 +3648,7 @@ For the figures in this section, the group labels are arbitrary, so if time
 \begin_inset Float figure
 wide false
 sideways true
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -3815,17 +3815,7 @@ kbp downstream, and the logCPM values were normalized within each promoter
 \series bold
  
 \series default
-and the average bin values were plotted for each cluster (
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:H3K4me2-neighborhood-clusters"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-).
+and the average bin values were plotted for each cluster (a).
  The 
 \begin_inset Formula $x$
 \end_inset
@@ -3847,29 +3837,9 @@ shape
 
  of the promoter coverage for promoters in that cluster.
  PCA was performed on the same data, and the first two principal components
- were plotted, coloring each point by its K-means cluster identity (
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:H3K4me2-neighborhood-pca"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-).
+ were plotted, coloring each point by its K-means cluster identity (b).
  For each cluster, the distribution of gene expression values was plotted
- (
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:H3K4me2-neighborhood-expression"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-.
+ (c).
 \end_layout
 
 \end_inset
@@ -3886,7 +3856,7 @@ noprefix "false"
 \begin_inset Float figure
 wide false
 sideways true
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -4052,17 +4022,7 @@ kbp downstream, and the logCPM values were normalized within each promoter
 \series bold
  
 \series default
-and the average bin values were plotted for each cluster (
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:H3K27me3-neighborhood-clusters"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-).
+and the average bin values were plotted for each cluster (a).
  The 
 \begin_inset Formula $x$
 \end_inset
@@ -4084,29 +4044,9 @@ shape
 
  of the promoter coverage for promoters in that cluster.
  PCA was performed on the same data, and the first two principal components
- were plotted, coloring each point by its K-means cluster identity (
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:H3K27me3-neighborhood-pca"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-).
+ were plotted, coloring each point by its K-means cluster identity (b).
  For each cluster, the distribution of gene expression values was plotted
- (
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:H3K27me3-neighborhood-expression"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-.
+ (c).
 \end_layout
 
 \end_inset
@@ -4926,7 +4866,7 @@ literal "false"
 \begin_inset Float table
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Tabular
@@ -6191,6 +6131,13 @@ fRMA with custom-generated vectors enables normalization on hthgu133pluspm
 
 \begin_layout Standard
 \begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
 placement tb
 wide false
 sideways false
@@ -6200,6 +6147,9 @@ status collapsed
 \align center
 \begin_inset Graphics
 	filename graphics/frma-pax-bx/batchsize_batches.pdf
+	lyxscale 50
+	width 100col%
+	groupId frmatools-subfig
 
 \end_inset
 
@@ -6218,13 +6168,8 @@ name "fig:batch-size-batches"
 
 
 \series bold
-Effect of batch size selection on number of batches included in fRMA probe
- weight learning.
- 
-\series default
-For batch sizes ranging from 3 to 15, the number of batches with at least
- that many samples was plotted for biopsy (BX) and blood (PAX) samples.
- The selected batch size, 5, is marked with a dotted vertical line.
+Number of batches usable in fRMA probe weight learning as a function of
+ batch size.
 \end_layout
 
 \end_inset
@@ -6237,7 +6182,8 @@ For batch sizes ranging from 3 to 15, the number of batches with at least
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
+\align center
 \begin_inset Float figure
 placement tb
 wide false
@@ -6248,6 +6194,9 @@ status collapsed
 \align center
 \begin_inset Graphics
 	filename graphics/frma-pax-bx/batchsize_samples.pdf
+	lyxscale 50
+	width 100col%
+	groupId frmatools-subfig
 
 \end_inset
 
@@ -6266,12 +6215,39 @@ name "fig:batch-size-samples"
 
 
 \series bold
-Effect of batch size selection on number of samples included in fRMA probe
- weight learning.
+Number of samples usable in fRMA probe weight learning as a function of
+ batch size.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:frmatools-batch-size"
+
+\end_inset
+
+Effect of batch size selection on number of batches and number of samples
+ included in fRMA probe weight learning.
  
 \series default
-For batch sizes ranging from 3 to 15, the number of samples included in
- probe weight training was plotted for biopsy (BX) and blood (PAX) samples.
+For batch sizes ranging from 3 to 15, the number of batches (a) and samples
+ (b) included in probe weight training were plotted for biopsy (BX) and
+ blood (PAX) samples.
  The selected batch size, 5, is marked with a dotted vertical line.
 \end_layout
 
@@ -6289,28 +6265,18 @@ For batch sizes ranging from 3 to 15, the number of samples included in
 In order to enable use of fRMA to normalize hthgu133pluspm, a custom set
  of fRMA vectors was created.
  First, an appropriate batch size was chosen by looking at the number of
- batches and number of samples included as a function of batch size (Figures
+ batches and number of samples included as a function of batch size (Figure
  
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:batch-size-batches"
+reference "fig:frmatools-batch-size"
 plural "false"
 caps "false"
 noprefix "false"
 
 \end_inset
 
- and 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:batch-size-samples"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-, respectively).
+).
  For a given batch size, all batches with fewer samples that the chosen
  size must be ignored during training, while larger batches must be randomly
  downsampled to the chosen size.
@@ -6358,11 +6324,17 @@ sideways false
 status collapsed
 
 \begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename graphics/frma-pax-bx/M-BX-violin.pdf
 	lyxscale 40
-	height 80theight%
+	height 45col%
 	groupId m-violin
 
 \end_inset
@@ -6382,13 +6354,79 @@ name "fig:m-bx-violin"
 
 
 \series bold
+Violin plot of inter-normalization log ratios for biopsy samples.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/frma-pax-bx/M-PAX-violin.pdf
+	lyxscale 40
+	height 45col%
+	groupId m-violin
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:m-pax-violin"
+
+\end_inset
+
+
+\series bold
+Violin plot of inter-normalization log ratios for blood samples.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
 Violin plot of log ratios between normalizations for 20 biopsy samples.
  
 \series default
-Each of 20 randomly selected biopsy samples was normalized with RMA and
- with 5 different sets of fRMA vectors.
- This shows the distribution of log ratios between normalized expression
- values, aggregated across all 20 arrays.
+Each of 20 randomly selected samples was normalized with RMA and with 5
+ different sets of fRMA vectors.
+ The distribution of log ratios between normalized expression values, aggregated
+ across all 20 arrays, was plotted for each pair of normalizations.
 \end_layout
 
 \end_inset
@@ -6441,10 +6479,17 @@ status collapsed
 
 \begin_layout Plain Layout
 \align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename graphics/frma-pax-bx/MA-BX-RMA.fRMA.pdf
 	lyxscale 50
-	width 100text%
+	width 45col%
 	groupId ma-frma
 
 \end_inset
@@ -6464,13 +6509,8 @@ name "fig:ma-bx-rma-frma"
 
 
 \series bold
-Representative MA plot comparing RMA against fRMA for 20 biopsy samples.
- 
-\series default
-Averages and log ratios were computed for every probe in each of 20 biopsy
- samples between RMA normalization and fRMA.
- Density of points is represented by darkness of shading, and individual
- outlier points are plotted.
+RMA vs.
+ fRMA for biopsy samples.
 \end_layout
 
 \end_inset
@@ -6481,9 +6521,10 @@ Averages and log ratios were computed for every probe in each of 20 biopsy
 \end_inset
 
 
-\end_layout
+\begin_inset space \hfill{}
+\end_inset
 
-\begin_layout Standard
+
 \begin_inset Float figure
 wide false
 sideways false
@@ -6494,7 +6535,7 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/frma-pax-bx/MA-BX-fRMA.fRMA.pdf
 	lyxscale 50
-	width 100text%
+	width 45col%
 	groupId ma-frma
 
 \end_inset
@@ -6514,12 +6555,136 @@ name "fig:ma-bx-frma-frma"
 
 
 \series bold
-Representative MA plot comparing different fRMA vectors for 20 biopsy samples.
+fRMA vs fRMA for biopsy samples.
  
 \series default
-Averages and log ratios were computed for every probe in each of 20 biopsy
- samples between fRMA normalizations using vectors from two different batch
- samplings.
+Two different fRMA normalizations using vectors from two different batch
+ samplings were compared.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/frma-pax-bx/MA-PAX-RMA.fRMA.pdf
+	lyxscale 50
+	width 45col%
+	groupId ma-frma
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:MA-PAX-rma-frma"
+
+\end_inset
+
+
+\series bold
+RMA vs.
+ fRMA for blood samples.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/frma-pax-bx/MA-PAX-fRMA.fRMA.pdf
+	lyxscale 50
+	width 45col%
+	groupId ma-frma
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:MA-PAX-frma-frma"
+
+\end_inset
+
+
+\series bold
+fRMA vs fRMA for blood samples.
+ 
+\series default
+Two different fRMA normalizations using vectors from two different batch
+ samplings were compared.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Representative-MA-plots"
+
+\end_inset
+
+Representative MA plots comparing RMA and custom fRMA normalizations.
+ 
+\series default
+For each plot, 20 samples were normalized using 2 different normalizations,
+ and then averages and log ratios were computed between the two different
+ normalizations for every probe.
  Density of points is represented by darkness of shading, and individual
  outlier points are plotted.
 \end_layout
@@ -6628,177 +6793,6 @@ noprefix "false"
  well.
 \end_layout
 
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/frma-pax-bx/M-PAX-violin.pdf
-	lyxscale 40
-	height 80theight%
-	groupId m-violin
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:m-pax-violin"
-
-\end_inset
-
-
-\series bold
-Violin plot of log ratios between normalizations for 20 blood samples.
- 
-\series default
-Each of 20 randomly selected blood samples was normalized with RMA and with
- 5 different sets of fRMA vectors.
- This shows the distribution of log ratios between normalized expression
- values, aggregated across all 20 arrays.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/frma-pax-bx/MA-PAX-RMA.fRMA.pdf
-	lyxscale 50
-	width 100text%
-	groupId ma-frma
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:MA-PAX-rma-frma"
-
-\end_inset
-
-
-\series bold
-Representative MA plot comparing RMA against fRMA for 20 blood samples.
- 
-\series default
-Averages and log ratios were computed for every probe in each of 20 blood
- samples between RMA normalization and fRMA.
- Density of points is represented by darkness of shading, and individual
- outlier points are plotted.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/frma-pax-bx/MA-PAX-fRMA.fRMA.pdf
-	lyxscale 50
-	width 100text%
-	groupId ma-frma
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:MA-PAX-frma-frma"
-
-\end_inset
-
-
-\series bold
-Representative MA plot comparing different fRMA vectors for 20 blood samples.
- 
-\series default
-Averages and log ratios were computed for every probe in each of 20 blood
- samples between fRMA normalizations using vectors from two different batch
- samplings.
- Density of points is represented by darkness of shading, and individual
- outlier points are plotted.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-FloatBarrier
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Subsection
 SVA, voom, and array weights improve model fit for methylation array data
 \end_layout
@@ -6806,8 +6800,14 @@ SVA, voom, and array weights improve model fit for methylation array data
 \begin_layout Standard
 \begin_inset Float figure
 wide false
+sideways true
+status open
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -6836,8 +6836,8 @@ log2 M-value
 \begin_inset Graphics
 	filename graphics/methylvoom/unadj.dupcor/meanvar-trends-PAGE1-CROP-RASTER.png
 	lyxscale 15
-	width 100col%
-	groupId raster-600ppi
+	width 30col%
+	groupId voomaw-subfig
 
 \end_inset
 
@@ -6858,6 +6858,116 @@ name "fig:meanvar-basic"
 
 Mean-variance trend for analysis A.
  
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/methylvoom/unadj.dupcor.sva.aw/meanvar-trends-PAGE1-CROP-RASTER.png
+	lyxscale 15
+	width 30col%
+	groupId voomaw-subfig
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:meanvar-sva-aw"
+
+\end_inset
+
+Mean-variance trend for analysis B.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/methylvoom/unadj.dupcor.sva.voomaw/meanvar-trends-PAGE2-CROP-RASTER.png
+	lyxscale 15
+	width 100col%
+	groupId raster-600ppi
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:meanvar-sva-voomaw"
+
+\end_inset
+
+Mean-variance trend after voom modeling in analysis C.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+Mean-variance trend modeling in methylation array data.
+ 
 \series default
 The log2(standard deviation) for each probe is plotted against the probe's
  average M-value across all samples as a black point, with some transparency
@@ -6865,6 +6975,7 @@ The log2(standard deviation) for each probe is plotted against the probe's
  Density of points is also indicated by the dark blue contour lines.
  The prior variance trend estimated by eBayes is shown in light blue, while
  the lowess trend of the points is shown in red.
+ 
 \end_layout
 
 \end_inset
@@ -6922,62 +7033,6 @@ noprefix "false"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename graphics/methylvoom/unadj.dupcor.sva.aw/meanvar-trends-PAGE1-CROP-RASTER.png
-	lyxscale 15
-	width 100col%
-	groupId raster-600ppi
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:meanvar-sva-aw"
-
-\end_inset
-
-Mean-variance trend for analysis B.
- 
-\series default
-Interpretation is as in Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:meanvar-basic"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 In Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -7012,62 +7067,6 @@ absorbed
  variation has no systematic component: probes with extreme M-values are
  uniformly more variable across all samples, as expected.
  
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename graphics/methylvoom/unadj.dupcor.sva.voomaw/meanvar-trends-PAGE2-CROP-RASTER.png
-	lyxscale 15
-	width 100col%
-	groupId raster-600ppi
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:meanvar-sva-voomaw"
-
-\end_inset
-
-Mean-variance trend after voom modeling in analysis C.
- 
-\series default
-Interpretation is as in Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:meanvar-basic"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -7673,7 +7672,7 @@ noprefix "false"
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -8072,22 +8071,6 @@ status open
 
 \begin_layout Plain Layout
 Maybe include the PCA plots before/after SVA effect subtraction?
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-FloatBarrier
 \end_layout
 
 \end_inset
@@ -8923,12 +8906,15 @@ literal "false"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename graphics/Globin Paper/figure1 - globin-fractions.pdf
+	lyxscale 50
+	width 100col%
+	groupId colwidth
 
 \end_inset
 
@@ -8995,7 +8981,7 @@ Fraction of genic reads in each sample aligned to non-globin genes, with
 placement p
 wide false
 sideways true
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -9665,12 +9651,15 @@ Remove redundant titles from figures
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename graphics/Globin Paper/figure2 - aveLogCPM-colored.pdf
+	lyxscale 50
+	width 100col%
+	groupId colwidth
 
 \end_inset
 
@@ -9768,12 +9757,15 @@ noprefix "false"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename graphics/Globin Paper/figure3 - detection.pdf
+	lyxscale 50
+	width 100col%
+	groupId colwidth
 
 \end_inset
 
@@ -9892,12 +9884,15 @@ One potential worry is that the globin blocking protocol could perturb the
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename graphics/Globin Paper/figure4 - maplot-colored.pdf
+	lyxscale 50
+	width 100col%
+	groupId colwidth
 
 \end_inset
 
@@ -10025,12 +10020,15 @@ noprefix "false"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename graphics/Globin Paper/figure5 - corrplot.pdf
+	lyxscale 50
+	width 100col%
+	groupId colwidth
 
 \end_inset
 
@@ -10143,7 +10141,7 @@ More differentially expressed genes are detected with globin blocking
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
