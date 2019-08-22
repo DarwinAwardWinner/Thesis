@@ -691,6 +691,22 @@ RNA-seq align+quant method comparison
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways true
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex TODO Note (inline)
+status collapsed
+
+\begin_layout Plain Layout
+No need for sideways
+\end_layout
+
+\end_inset
+
+
 \begin_inset Flex TODO Note (inline)
 status open
 
@@ -702,12 +718,6 @@ Maybe fix up the excessive axis ranges for these plots?
 
 
 \end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways true
-status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1487,6 +1497,19 @@ ChIP-seq must be corrected for hidden confounding factors
 wide false
 sideways true
 status open
+
+\begin_layout Plain Layout
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+No need for sideways
+\end_layout
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Float figure
@@ -3648,7 +3671,7 @@ For the figures in this section, the group labels are arbitrary, so if time
 \begin_inset Float figure
 wide false
 sideways true
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -3856,7 +3879,7 @@ shape
 \begin_inset Float figure
 wide false
 sideways true
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -4095,32 +4118,8 @@ Show the figures where the negative result ended this line of inquiry
 Discussion
 \end_layout
 
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Try to boil it down to 3 main messages to get across
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-3 Main points
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-Naive-to-memory convergence in certain data sets but not others, implies
- which marks are involved in memory differentiation
-\end_layout
-
-\end_deeper
 \begin_layout Subsection
-Effective promoter radius 
+Effective promoter radius
 \end_layout
 
 \begin_layout Itemize
@@ -10745,6 +10744,18 @@ Consider per-chapter future directions.
 \end_inset
 
 
+\end_layout
+
+\begin_layout Itemize
+Functional validation of effective promoter radius
+\end_layout
+
+\begin_layout Itemize
+N-to-M convergence deserves further stufy of some kind
+\end_layout
+
+\begin_layout Itemize
+Promoter positional coverage: follow up on hints of interesting patterns
 \end_layout
 
 \begin_layout Itemize
