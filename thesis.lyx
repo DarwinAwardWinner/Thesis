@@ -24,29 +24,11 @@
 \lfoot{}
 \cfoot{\thepage} % Page number bottom center
 
-% https://tex.stackexchange.com/questions/65680/automatically-bold-first-sentence-of-a-floats-caption
-\usepackage{xstring}
-\usepackage{etoolbox}
-\usepackage{caption}
-
-\captionsetup{labelfont=bf,tableposition=top}
-
-\makeatletter
-\newcommand\formatlabel[1]{%
-    \noexpandarg
-    \IfSubStr{#1}{.}{%
-      \StrBefore{#1}{.}[\firstcaption]%
-      \StrBehind{#1}{.}[\secondcaption]%
-      \textbf{\firstcaption.} \secondcaption}{%
-      #1}%
-      }
-
-
-\patchcmd{\@caption}{#3}{\formatlabel{#3}}
-\makeatother
-
 % Allow FloatBarrier command
 \usepackage{placeins}
+
+% This one breaks subfigs so it's disabled
+% https://tex.stackexchange.com/questions/65680/automatically-bold-first-sentence-of-a-floats-caption
 \end_preamble
 \use_default_options true
 \begin_modules
@@ -724,6 +706,13 @@ Maybe fix up the excessive axis ranges for these plots?
 \begin_layout Standard
 \begin_inset Float figure
 wide false
+sideways true
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
 sideways false
 status collapsed
 
@@ -732,8 +721,8 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/CD4-csaw/rnaseq-compare/ensmebl-vs-entrez-star-CROP.png
 	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
+	width 30col%
+	groupId rna-comp-subfig
 
 \end_inset
 
@@ -755,9 +744,10 @@ Comparison of STAR quantification between Ensembl and Entrez gene identifiers
 \end_inset
 
 
-\end_layout
+\begin_inset space \hfill{}
+\end_inset
 
-\begin_layout Standard
+
 \begin_inset Float figure
 wide false
 sideways false
@@ -768,8 +758,8 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/CD4-csaw/rnaseq-compare/ensmebl-vs-entrez-shoal-CROP.png
 	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
+	width 30col%
+	groupId rna-comp-subfig
 
 \end_inset
 
@@ -792,9 +782,10 @@ Comparison of Salmon+Shoal quantification between Ensembl and Entrez gene
 \end_inset
 
 
-\end_layout
+\begin_inset space \hfill{}
+\end_inset
 
-\begin_layout Standard
+
 \begin_inset Float figure
 wide false
 sideways false
@@ -805,8 +796,8 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/CD4-csaw/rnaseq-compare/star-vs-hisat2-CROP.png
 	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
+	width 30col%
+	groupId rna-comp-subfig
 
 \end_inset
 
@@ -830,7 +821,8 @@ Comparison of quantification between STAR and HISAT2 for identical annotation
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
+\align center
 \begin_inset Float figure
 wide false
 sideways false
@@ -841,8 +833,8 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/CD4-csaw/rnaseq-compare/star-vs-salmon-CROP.png
 	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
+	width 30col%
+	groupId rna-comp-subfig
 
 \end_inset
 
@@ -864,9 +856,10 @@ Comparison of quantification between STAR and Salmon for identical annotation
 \end_inset
 
 
-\end_layout
+\begin_inset space \hfill{}
+\end_inset
 
-\begin_layout Standard
+
 \begin_inset Float figure
 wide false
 sideways false
@@ -877,8 +870,8 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/CD4-csaw/rnaseq-compare/salmon-vs-kallisto-CROP.png
 	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
+	width 30col%
+	groupId rna-comp-subfig
 
 \end_inset
 
@@ -901,9 +894,10 @@ n
 \end_inset
 
 
-\end_layout
+\begin_inset space \hfill{}
+\end_inset
 
-\begin_layout Standard
+
 \begin_inset Float figure
 wide false
 sideways false
@@ -914,8 +908,8 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/CD4-csaw/rnaseq-compare/salmon-vs-shoal-CROP.png
 	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
+	width 30col%
+	groupId rna-comp-subfig
 
 \end_inset
 
@@ -940,6 +934,29 @@ Comparison of quantification between Salmon with and without Shoal for identical
 
 \end_layout
 
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:RNA-norm-comp"
+
+\end_inset
+
+RNA-seq comparisons
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Itemize
 Ultimately selected shoal as quantification, Ensembl as annotation.
  Why? Running downstream analyses with all quant methods and both annotations
@@ -947,22 +964,6 @@ Ultimately selected shoal as quantification, Ensembl as annotation.
  Prefer shoal due to theoretical advantages.
  To note in discussion: reproducible workflow made it easy to do this, enabling
  an informed decision.
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-FloatBarrier
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Subsection
@@ -1013,7 +1014,7 @@ name "fig:RNA-seq-weights-vs-covars"
 
 \end_inset
 
-RNA-seq sample weights, grouped by experimental and technical covariates
+RNA-seq sample weights, grouped by experimental and technical covariates.
 \end_layout
 
 \end_inset
@@ -1024,6 +1025,12 @@ RNA-seq sample weights, grouped by experimental and technical covariates
 \end_inset
 
 
+\end_layout
+
+\begin_layout Itemize
+Batch 1 is garbage quality.
+ Analyses involving batch 1 samples are expected to yield poor statistical
+ power.
 \end_layout
 
 \begin_layout Standard
@@ -1034,11 +1041,18 @@ status collapsed
 
 \begin_layout Plain Layout
 \align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename graphics/CD4-csaw/RNA-seq/PCA-no-batchsub-CROP.png
 	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
+	width 75col%
+	groupId rna-pca-subfig
 
 \end_inset
 
@@ -1057,31 +1071,12 @@ name "fig:RNA-PCA-no-batchsub"
 
 \end_inset
 
-RNA-seq PCoA plot showing clear batch effect
+Before batch correction
 \end_layout
 
 \end_inset
 
 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Probably don't need this
 \end_layout
 
 \end_inset
@@ -1091,43 +1086,6 @@ Probably don't need this
 
 \begin_layout Plain Layout
 \align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/RNA-seq/PCA-naive-batchsub-CROP.png
-	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:RNA-PCA-limma-batchsub"
-
-\end_inset
-
-RNA-seq PCoA plot showing clear batch effect
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -1138,8 +1096,8 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/CD4-csaw/RNA-seq/PCA-combat-batchsub-CROP.png
 	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
+	width 75col%
+	groupId rna-pca-subfig
 
 \end_inset
 
@@ -1158,7 +1116,32 @@ name "fig:RNA-PCA-ComBat-batchsub"
 
 \end_inset
 
-RNA-seq PCoA plot showing clear batch effect
+After batch correction with ComBat
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:RNA-PCA"
+
+\end_inset
+
+PCoA plots of RNA-seq data showing effect of batch correction.
 \end_layout
 
 \end_inset
@@ -1176,37 +1159,6 @@ RNA-seq batch effect can be partially corrected, but still induces uncorrectable
  biases in downstream analysis
 \end_layout
 
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Figures showing p-value histograms for within-batch and cross-batch contrasts,
- showing that cross-batch contrasts have attenuated signal, as do comparisons
- within the bad batch
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-FloatBarrier
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Subsection
 ChIP-seq blacklisting is important
 \end_layout
@@ -1215,7 +1167,14 @@ ChIP-seq blacklisting is important
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1223,7 +1182,7 @@ status open
 	filename graphics/CD4-csaw/csaw/CCF-plots-PAGE2-CROP.pdf
 	lyxscale 50
 	width 100col%
-	groupId colwidth
+	groupId ccf-subfig
 
 \end_inset
 
@@ -1255,11 +1214,12 @@ Cross-correlation plots with blacklisted reads removed
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
+\align center
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1267,7 +1227,7 @@ status open
 	filename graphics/CD4-csaw/csaw/CCF-plots-noBL-PAGE2-CROP.pdf
 	lyxscale 50
 	width 100col%
-	groupId colwidth
+	groupId ccf-subfig
 
 \end_inset
 
@@ -1299,17 +1259,66 @@ Cross-correlation plots without removing blacklisted reads
 
 \end_layout
 
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:CCF-master"
+
+\end_inset
+
+Strand cross-correlation plots for ChIP-seq data.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 ChIP-seq peak calling
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
 
 \begin_layout Plain Layout
-Replace these figures with a single table of # of peaks called at chosen
- IDR threshold, showing that SICER has more
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/IDR/D4659vsD5053_epic-PAGE1-CROP.pdf
+	lyxscale 50
+	width 40theight%
+	groupId idr-rc-subfig
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Peak ranks from SICER peak caller
 \end_layout
 
 \end_inset
@@ -1317,18 +1326,45 @@ Replace these figures with a single table of # of peaks called at chosen
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
-\begin_inset Flex TODO Note (inline)
-status open
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/IDR/D4659vsD5053_macs-PAGE1-CROP.pdf
+	lyxscale 50
+	width 40theight%
+	groupId idr-rc-subfig
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
-Re-generate IDR rank consistency plots for SICER and MACS side-by-side
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Peak ranks from MACS peak caller
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1344,15 +1380,26 @@ Re-generate IDR rank consistency plots for SICER and MACS side-by-side
 \series bold
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:IDR-RC-H3K4me2"
+name "fig:IDR-rank-consist"
 
 \end_inset
 
-Irreproducible Discovery Rate consistency plots for H3K4me2
+Irreproducible Discovery Rate rank consistency plots for H3K27me3.
+
+\series default
+ Peaks are ranked by the scores assigned by the peak caller in each donor,
+ and then the ranks are plotted against each other.
+ Higher ranks are more significant.
+ Peaks meeting various thresholds of reproducibility, measured by the irreproduc
+ible discovery rate (IDR), are shaded accordingly.
 \end_layout
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Plain Layout
 
 \end_layout
 
@@ -1362,129 +1409,20 @@ Irreproducible Discovery Rate consistency plots for H3K4me2
 \end_layout
 
 \begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Re-generate IDR rank consistency plots for SICER and MACS side-by-side
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:IDR-RC-H3K4me3"
-
-\end_inset
-
-Irreproducible Discovery Rate consistency plots for H3K4me3
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Re-generate IDR rank consistency plots for SICER and MACS side-by-side
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:IDR-RC-H3K27me3"
-
-\end_inset
-
-Irreproducible Discovery Rate consistency plots for H3K27me3
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Figures 
+Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:IDR-RC-H3K4me2"
+reference "fig:IDR-rank-consist"
 plural "false"
 caps "false"
 noprefix "false"
 
 \end_inset
 
-, 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:IDR-RC-H3K4me3"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-, and 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:IDR-RC-H3K27me3"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- show the IDR rank-consistency plots for peaks called in an arbitrarily-chosen
+ shows the IDR rank-consistency plots for peaks called in an arbitrarily-chosen
  pair of donors.
- For all 3 histone marks, when the peaks for each donor are ranked according
- to their scores, SICER produces much more reproducible results between
- donors.
+ when the peaks for each donor are ranked according to their scores, SICER
+ produces much more reproducible results between donors.
  This is consistent with SICER's stated goal of identifying broad peaks,
  in contrast to MACS, which is designed for identifying sharp peaks.
  Based on this observation, the SICER peak calls were used for all downstream
@@ -1494,19 +1432,6 @@ noprefix "false"
 
 \begin_layout Subsection
 ChIP-seq normalization
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Maybe just one of these figures and then say the other 2 were similar
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -1534,83 +1459,13 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-MA plot of H3K4me2 read counts in 10kb bins for two arbitrary samples
-\end_layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:MA-plot-bigbins"
 
 \end_inset
 
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/ChIP-seq/H3K4me3-sample-MAplot-bins-CROP.png
-	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-MA plot of H3K4me3 read counts in 10kb bins for two arbitrary samples
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/ChIP-seq/H3K27me3-sample-MAplot-bins-CROP.png
-	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-MA plot of H3K27me3 read counts in 10kb bins for two arbitrary samples
+MA plot of H3K4me2 read counts in 10kb bins for two arbitrary samples.
 \end_layout
 
 \end_inset
@@ -1628,42 +1483,12 @@ ChIP-seq must be corrected for hidden confounding factors
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
+\begin_inset Float figure
+wide false
+sideways true
 status open
 
 \begin_layout Plain Layout
-Consolidate figures 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:PCoA-H3K4me2-bad"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- through 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:PCoA-H3K27me3-good"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- into 1 2x3 grid lettered A through F.
- For now, just refer to them as if they were a single figure.
- Also, do the good PCoA plots belong in the results section since they are
- also used there?
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -1674,8 +1499,8 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/CD4-csaw/ChIP-seq/H3K4me2-PCA-raw-CROP.png
 	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
+	width 30col%
+	groupId pcoa-subfig
 
 \end_inset
 
@@ -1694,7 +1519,7 @@ name "fig:PCoA-H3K4me2-bad"
 
 \end_inset
 
-PCoA plot of H3K4me2 windows, before subtracting surrogate variables
+H3K4me2, no correction
 \end_layout
 
 \end_inset
@@ -1705,53 +1530,10 @@ PCoA plot of H3K4me2 windows, before subtracting surrogate variables
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/ChIP-seq/H3K4me2-PCA-SVsub-CROP.png
-	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
-
+\begin_inset space \hfill{}
 \end_inset
 
 
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:PCoA-H3K4me2-good"
-
-\end_inset
-
-PCoA plot of H3K4me2 windows, after subtracting surrogate variables
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -1762,8 +1544,8 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/CD4-csaw/ChIP-seq/H3K4me3-PCA-raw-CROP.png
 	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
+	width 30col%
+	groupId pcoa-subfig
 
 \end_inset
 
@@ -1782,7 +1564,7 @@ name "fig:PCoA-H3K4me3-bad"
 
 \end_inset
 
-PCoA plot of H3K4me3 windows, before subtracting surrogate variables
+H3K4me3, no correction
 \end_layout
 
 \end_inset
@@ -1793,53 +1575,10 @@ PCoA plot of H3K4me3 windows, before subtracting surrogate variables
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/ChIP-seq/H3K4me3-PCA-SVsub-CROP.png
-	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
-
+\begin_inset space \hfill{}
 \end_inset
 
 
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:PCoA-H3K4me3-good"
-
-\end_inset
-
-PCoA plot of H3K4me3 windows, after subtracting surrogate variables
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -1850,8 +1589,8 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/CD4-csaw/ChIP-seq/H3K27me3-PCA-raw-CROP.png
 	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
+	width 30col%
+	groupId pcoa-subfig
 
 \end_inset
 
@@ -1870,7 +1609,7 @@ name "fig:PCoA-H3K27me3-bad"
 
 \end_inset
 
-PCoA plot of H3K27me3 windows, before subtracting surrogate variables
+H3K27me3, no correction
 \end_layout
 
 \end_inset
@@ -1883,19 +1622,109 @@ PCoA plot of H3K27me3 windows, before subtracting surrogate variables
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/ChIP-seq/H3K4me2-PCA-SVsub-CROP.png
+	lyxscale 25
+	width 30col%
+	groupId pcoa-subfig
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PCoA-H3K4me2-good"
+
+\end_inset
+
+H3K4me2, SVs subtracted
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/ChIP-seq/H3K4me3-PCA-SVsub-CROP.png
+	lyxscale 25
+	width 30col%
+	groupId pcoa-subfig
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PCoA-H3K4me3-good"
+
+\end_inset
+
+H3K4me3 windows, SVs subtracted
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename graphics/CD4-csaw/ChIP-seq/H3K27me3-PCA-SVsub-CROP.png
 	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
+	width 30col%
+	groupId pcoa-subfig
 
 \end_inset
 
@@ -1914,11 +1743,41 @@ name "fig:PCoA-H3K27me3-good"
 
 \end_inset
 
-PCoA plot of H3K27me3 windows, after subtracting surrogate variables
+H3K27me3, SVs subtracted
 \end_layout
 
 \end_inset
 
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PCoA-ChIP"
+
+\end_inset
+
+PCoA plots of ChIP-seq sliding window data, before and after subtracting
+ surrogate variables (SVs).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 
 \end_layout
 
@@ -1931,28 +1790,18 @@ PCoA plot of H3K27me3 windows, after subtracting surrogate variables
 Figures showing BCV plots with and without SVA for each histone mark?
 \end_layout
 
-\begin_layout Standard
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-FloatBarrier
-\end_layout
-
-\end_inset
-
- 
-\end_layout
-
 \begin_layout Subsection
 MOFA recovers biologically relevant variation from blind analysis by correlating
  across datasets
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways true
+status collapsed
+
+\begin_layout Plain Layout
 \begin_inset Float figure
 wide false
 sideways false
@@ -1963,8 +1812,8 @@ status open
 \begin_inset Graphics
 	filename graphics/CD4-csaw/MOFA-varExplaiend-matrix-CROP.png
 	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
+	width 45col%
+	groupId mofa-subfig
 
 \end_inset
 
@@ -1984,6 +1833,95 @@ name "fig:mofa-varexplained"
 \end_inset
 
 Variance explained in each data set by each latent factor estimated by MOFA.
+
+\series default
+ For each latent factor (LF) learned by MOFA, the variance explained by
+ that factor in each data set (
+\begin_inset Quotes eld
+\end_inset
+
+view
+\begin_inset Quotes erd
+\end_inset
+
+) is shown by the shading of the cells in the lower section.
+ The upper section shows the total fraction of each data set's variance
+ that is explained by all LFs combined.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/MOFA-LF-scatter-CROP.png
+	lyxscale 25
+	width 45col%
+	groupId mofa-subfig
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:mofa-lf-scatter"
+
+\end_inset
+
+Scatter plots of specific pairs of MOFA latent factors.
+
+\series default
+ LFs 1, 4, and 5 explain substantial variation in all data sets, so they
+ are plotted against each other in order to reveal patterns of variation
+ that are shared across all data sets.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:MOFA-master"
+
+\end_inset
+
+MOFA latent factors separate technical confounders from 
 \end_layout
 
 \end_inset
@@ -2010,132 +1948,8 @@ noprefix "false"
  shows that LF1, 4, and 5 explain substantial var in all data sets
 \end_layout
 
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Maybe drop this one
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/MOFA-LF-distributions-CROP.png
-	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:mofa-lf-dist"
-
-\end_inset
-
-Sample distribution for each latent factor estimated by MOFA.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Talk about how this supports the convergence hypothesis
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/MOFA-LF-scatter-CROP.png
-	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:mofa-lf-scatter"
-
-\end_inset
-
-Scatter plots of specific pairs of MOFA latent factors.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Itemize
-Figures 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:mofa-lf-dist"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- and 
+Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:mofa-lf-scatter"
@@ -2145,8 +1959,8 @@ noprefix "false"
 
 \end_inset
 
- show that those same 3 LFs, (1, 4, & 5) also correlate best with the experiment
-al factors (cell type & time point)
+ shows that those same 3 LFs, (1, 4, & 5) also correlate best with the experimen
+tal factors (cell type & time point)
 \end_layout
 
 \begin_layout Itemize
@@ -2157,7 +1971,7 @@ LF2 is clearly the RNA-seq batch effect
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -2980,7 +2794,7 @@ effective promoter radii
 \begin_inset Quotes erd
 \end_inset
 
- were used for all further promoter-based analyses.
+ were used to define the promoter regions for all further analyses.
 \end_layout
 
 \begin_layout Standard
@@ -3058,11 +2872,18 @@ status collapsed
 
 \begin_layout Plain Layout
 \align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename graphics/CD4-csaw/ChIP-seq/H3K4me2-promoter-PCA-group-CROP.png
 	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
+	width 45col%
+	groupId pcoa-prom-subfig
 
 \end_inset
 
@@ -3092,9 +2913,10 @@ PCoA plot of H3K4me2 promoters, after subtracting surrogate variables
 \end_inset
 
 
-\end_layout
+\begin_inset space \hfill{}
+\end_inset
 
-\begin_layout Standard
+
 \begin_inset Float figure
 wide false
 sideways false
@@ -3105,8 +2927,8 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/CD4-csaw/ChIP-seq/H3K4me3-promoter-PCA-group-CROP.png
 	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
+	width 45col%
+	groupId pcoa-prom-subfig
 
 \end_inset
 
@@ -3138,7 +2960,8 @@ PCoA plot of H3K4me3 promoters, after subtracting surrogate variables
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
+\align center
 \begin_inset Float figure
 wide false
 sideways false
@@ -3149,8 +2972,8 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/CD4-csaw/ChIP-seq/H3K27me3-promoter-PCA-group-CROP.png
 	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
+	width 45col%
+	groupId pcoa-prom-subfig
 
 \end_inset
 
@@ -3180,9 +3003,10 @@ PCoA plot of H3K27me3 promoters, after subtracting surrogate variables
 \end_inset
 
 
-\end_layout
+\begin_inset space \hfill{}
+\end_inset
 
-\begin_layout Standard
+
 \begin_inset Float figure
 wide false
 sideways false
@@ -3193,8 +3017,8 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/CD4-csaw/RNA-seq/PCA-final-23-CROP.png
 	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
+	width 45col%
+	groupId pcoa-prom-subfig
 
 \end_inset
 
@@ -3214,6 +3038,31 @@ name "fig:RNA-PCA-group"
 \end_inset
 
 RNA-seq PCoA showing principal coordiantes 2 and 3.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PCoA-promoters"
+
+\end_inset
+
+PCoA plots for promoter ChIP-seq and expression RNA-seq data
 \end_layout
 
 \end_inset
@@ -3682,38 +3531,31 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-Figures 
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Check up on figure refs in this paragraph
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:PCoA-H3K4me2-prom"
+reference "fig:PCoA-promoters"
 plural "false"
 caps "false"
 noprefix "false"
 
 \end_inset
 
-, 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:PCoA-H3K4me3-prom"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-, and 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:PCoA-H3K27me3-prom"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- show the patterns of variation in all 3 histone marks in the promoter regions
- of the genome using principal coordinate analysis.
+ shows the patterns of variation in all 3 histone marks in the promoter
+ regions of the genome using principal coordinate analysis.
  All 3 marks show a noticeable convergence between the naive and memory
  samples at day 14, visible as an overlapping of the day 14 groups on each
  plot.
@@ -3783,22 +3625,6 @@ This result feels shallow, somehow.
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-FloatBarrier
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Subsection
 Effect of promoter coverage upstream vs downstream of TSS
 \end_layout
@@ -3821,29 +3647,23 @@ For the figures in this section, the group labels are arbitrary, so if time
 \begin_layout Standard
 \begin_inset Float figure
 wide false
+sideways true
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
 sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-These really need to be sub-figures A, B, and C.
-\end_layout
-
-\end_inset
-
-
-\end_layout
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename graphics/CD4-csaw/ChIP-seq/H3K4me2-neighborhood-clusters-CROP.png
 	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
+	width 30col%
+	groupId covprof-subfig
 
 \end_inset
 
@@ -3862,6 +3682,116 @@ name "fig:H3K4me2-neighborhood-clusters"
 
 \end_inset
 
+Average relative coverage for each bin in each cluster
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/ChIP-seq/H3K4me2-neighborhood-PCA-CROP.png
+	lyxscale 25
+	width 30col%
+	groupId covprof-subfig
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:H3K4me2-neighborhood-pca"
+
+\end_inset
+
+PCA of relative coverage depth, colored by K-means cluster membership.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/ChIP-seq/H3K4me2-neighborhood-expression-CROP.png
+	lyxscale 25
+	width 30col%
+	groupId covprof-subfig
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:H3K4me2-neighborhood-expression"
+
+\end_inset
+
+Gene expression grouped by promoter coverage clusters.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
 K-means clustering of promoter H3K4me2 relative coverage depth in naive
  day 0 samples.
  
@@ -3881,7 +3811,21 @@ kbp downstream, and the logCPM values were normalized within each promoter
 \begin_inset Formula $K=6$
 \end_inset
 
-, and the average bin values were plotted for each cluster.
+,
+\series bold
+ 
+\series default
+and the average bin values were plotted for each cluster (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:H3K4me2-neighborhood-clusters"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
  The 
 \begin_inset Formula $x$
 \end_inset
@@ -3902,124 +3846,30 @@ shape
 \end_inset
 
  of the promoter coverage for promoters in that cluster.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/ChIP-seq/H3K4me2-neighborhood-PCA-CROP.png
-	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:H3K4me2-neighborhood-pca"
-
-\end_inset
-
-PCA of promoter H3K4me2 relative coverage depth in naive day 0 samples,
- colored by K-means cluster membership.
- 
-\series default
-PCA was performed on the same relative promoter coverage values used for
- K-means clustering in Figure 
+ PCA was performed on the same data, and the first two principal components
+ were plotted, coloring each point by its K-means cluster identity (
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:H3K4me2-neighborhood-clusters"
+reference "fig:H3K4me2-neighborhood-pca"
 plural "false"
 caps "false"
 noprefix "false"
 
 \end_inset
 
-, and the first two principal components were plotted, coloring each point
- by its K-means cluster identity.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/ChIP-seq/H3K4me2-neighborhood-expression-CROP.png
-	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:H3K4me2-neighborhood-expression"
-
-\end_inset
-
-Gene expression distributions grouped by H3K4me2 promoter coverage K-means
- clustering.
- 
-\series default
-For each of the clusters in Figure 
+).
+ For each cluster, the distribution of gene expression values was plotted
+ (
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:H3K4me2-neighborhood-clusters"
+reference "fig:H3K4me2-neighborhood-expression"
 plural "false"
 caps "false"
 noprefix "false"
 
 \end_inset
 
-
+.
 \end_layout
 
 \end_inset
@@ -4035,60 +3885,23 @@ noprefix "false"
 \begin_layout Standard
 \begin_inset Float figure
 wide false
-sideways false
+sideways true
 status open
 
 \begin_layout Plain Layout
 \align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/ChIP-seq/H3K4me3-neighborhood-clusters-CROP.png
-	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:H3K4me3-neighborhood-clusters"
-
-\end_inset
-
-RNA-seq PCoA showing principal coordiantes 2 and 3.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename graphics/CD4-csaw/ChIP-seq/H3K4me3-neighborhood-PCA-CROP.png
+	filename graphics/CD4-csaw/ChIP-seq/H3K27me3-neighborhood-clusters-CROP.png
 	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
+	width 30col%
+	groupId covprof-subfig
 
 \end_inset
 
@@ -4103,11 +3916,11 @@ status open
 \series bold
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:H3K4me3-neighborhood-pca-1"
+name "fig:H3K27me3-neighborhood-clusters"
 
 \end_inset
 
-RNA-seq PCoA showing principal coordiantes 2 and 3.
+Average relative coverage for each bin in each cluster
 \end_layout
 
 \end_inset
@@ -4118,21 +3931,22 @@ RNA-seq PCoA showing principal coordiantes 2 and 3.
 \end_inset
 
 
-\end_layout
+\begin_inset space \hfill{}
+\end_inset
 
-\begin_layout Standard
+
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename graphics/CD4-csaw/ChIP-seq/H3K4me3-neighborhood-expression-CROP.png
+	filename graphics/CD4-csaw/ChIP-seq/H3K27me3-neighborhood-PCA-CROP.png
 	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
+	width 30col%
+	groupId covprof-subfig
 
 \end_inset
 
@@ -4147,11 +3961,152 @@ status open
 \series bold
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:H3K4me3-neighborhood-expression-1"
+name "fig:H3K27me3-neighborhood-pca"
 
 \end_inset
 
-RNA-seq PCoA showing principal coordiantes 2 and 3.
+PCA of relative coverage depth, colored by K-means cluster membership.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/ChIP-seq/H3K27me3-neighborhood-expression-CROP.png
+	lyxscale 25
+	width 30col%
+	groupId covprof-subfig
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:H3K27me3-neighborhood-expression"
+
+\end_inset
+
+Gene expression grouped by promoter coverage clusters.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+K-means clustering of promoter H3K27me3 relative coverage depth in naive
+ day 0 samples.
+ 
+\series default
+H3K27me3 ChIP-seq reads were binned into 500-bp windows tiled across each
+ promoter from 5
+\begin_inset space ~
+\end_inset
+
+kbp upstream to 5
+\begin_inset space ~
+\end_inset
+
+kbp downstream, and the logCPM values were normalized within each promoter
+ to an average of 0, yielding relative coverage depths.
+ These were then grouped using K-means clustering with 
+\begin_inset Formula $K=6$
+\end_inset
+
+,
+\series bold
+ 
+\series default
+and the average bin values were plotted for each cluster (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:H3K27me3-neighborhood-clusters"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ The 
+\begin_inset Formula $x$
+\end_inset
+
+-axis is the genomic coordinate of each bin relative to the the transcription
+ start site, and the 
+\begin_inset Formula $y$
+\end_inset
+
+-axis is the mean relative coverage depth of that bin across all promoters
+ in the cluster.
+ Each line represents the average 
+\begin_inset Quotes eld
+\end_inset
+
+shape
+\begin_inset Quotes erd
+\end_inset
+
+ of the promoter coverage for promoters in that cluster.
+ PCA was performed on the same data, and the first two principal components
+ were plotted, coloring each point by its K-means cluster identity (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:H3K27me3-neighborhood-pca"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ For each cluster, the distribution of gene expression values was plotted
+ (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:H3K27me3-neighborhood-expression"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
 \end_layout
 
 \end_inset
