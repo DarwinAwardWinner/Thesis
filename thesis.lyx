@@ -3212,7 +3212,7 @@ noprefix "false"
 
 \begin_layout Standard
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 This table is placed at the end of the subsection because the landscape
@@ -3751,7 +3751,7 @@ begin{landscape}
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -3959,7 +3959,7 @@ shape
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -7617,7 +7617,7 @@ noprefix "false"
 \begin_inset Float table
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -7625,7 +7625,8 @@ status collapsed
 status open
 
 \begin_layout Plain Layout
-Consider transposing this table and the next one
+Consider transposing this table and the next one, and maybe grouping them
+ together as sub-tables.
 \end_layout
 
 \end_inset
@@ -7883,7 +7884,7 @@ noprefix "false"
 \begin_inset Float table
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -8142,15 +8143,127 @@ literal "false"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset Flex TODO Note (inline)
 status open
 
 \begin_layout Plain Layout
-Re-generate p-value histograms for all relevant contrasts in a single page,
- then write an appropriate legend.
+\align center
+
+\series bold
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/methylvoom/unadj.dupcor/pval-histograms-PAGE1.pdf
+	lyxscale 33
+	width 30col%
+	groupId meth-pval-hist
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+AR vs.
+ TX, Analysis A
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/methylvoom/unadj.dupcor/pval-histograms-PAGE2.pdf
+	lyxscale 33
+	width 30col%
+	groupId meth-pval-hist
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+ADNR vs.
+ TX, Analysis A
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/methylvoom/unadj.dupcor/pval-histograms-PAGE3.pdf
+	lyxscale 33
+	width 30col%
+	groupId meth-pval-hist
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+CAN vs.
+ TX, Analysis A
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -8162,7 +8275,244 @@ Re-generate p-value histograms for all relevant contrasts in a single page,
 \align center
 
 \series bold
-[Figure goes here]
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/methylvoom/unadj.dupcor.sva.aw/pval-histograms-PAGE1.pdf
+	lyxscale 33
+	width 30col%
+	groupId meth-pval-hist
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+AR vs.
+ TX, Analysis B
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/methylvoom/unadj.dupcor.sva.aw/pval-histograms-PAGE2.pdf
+	lyxscale 33
+	width 30col%
+	groupId meth-pval-hist
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+ADNR vs.
+ TX, Analysis B
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/methylvoom/unadj.dupcor.sva.aw/pval-histograms-PAGE3.pdf
+	lyxscale 33
+	width 30col%
+	groupId meth-pval-hist
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+CAN vs.
+ TX, Analysis B
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+
+\series bold
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/methylvoom/unadj.dupcor.sva.voomaw/pval-histograms-PAGE1.pdf
+	lyxscale 33
+	width 30col%
+	groupId meth-pval-hist
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+AR vs.
+ TX, Analysis C
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/methylvoom/unadj.dupcor.sva.voomaw/pval-histograms-PAGE2.pdf
+	lyxscale 33
+	width 30col%
+	groupId meth-pval-hist
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+ADNR vs.
+ TX, Analysis C
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/methylvoom/unadj.dupcor.sva.voomaw/pval-histograms-PAGE3.pdf
+	lyxscale 33
+	width 30col%
+	groupId meth-pval-hist
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+CAN vs.
+ TX, Analysis C
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Plain Layout
@@ -8182,10 +8532,6 @@ Probe p-value histograms for each contrast in each analysis.
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
