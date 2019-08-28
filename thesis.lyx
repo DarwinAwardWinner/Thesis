@@ -27,6 +27,9 @@
 % Allow FloatBarrier command
 \usepackage{placeins}
 
+% Allow landscape pages
+\usepackage{pdflscape}
+
 % This one breaks subfigs so it's disabled
 % https://tex.stackexchange.com/questions/65680/automatically-bold-first-sentence-of-a-floats-caption
 \end_preamble
@@ -231,7 +234,17 @@ Look into auto-generated nomenclature list: https://wiki.lyx.org/Tips/Nomenclatu
 \end_layout
 
 \begin_layout Standard
-[Abstract]
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+On final pass: Check all figures to make sure they fit on the page with
+ their legends.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Chapter*
@@ -544,19 +557,6 @@ Methods
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Move figures that are only justifying methods into this section
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 A reproducible workflow 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -691,33 +691,34 @@ RNA-seq align+quant method comparison
 \end_layout
 
 \begin_layout Standard
+\align left
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Write a legend for Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:RNA-norm-comp"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 wide false
-sideways true
+sideways false
 status open
-
-\begin_layout Plain Layout
-\begin_inset Flex TODO Note (inline)
-status collapsed
-
-\begin_layout Plain Layout
-No need for sideways
-\end_layout
-
-\end_inset
-
-
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Maybe fix up the excessive axis ranges for these plots?
-\end_layout
-
-\end_inset
-
-
-\end_layout
 
 \begin_layout Plain Layout
 \align center
@@ -731,7 +732,7 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/CD4-csaw/rnaseq-compare/ensmebl-vs-entrez-star-CROP.png
 	lyxscale 25
-	width 30col%
+	width 35col%
 	groupId rna-comp-subfig
 
 \end_inset
@@ -743,7 +744,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Comparison of STAR quantification between Ensembl and Entrez gene identifiers
+STAR quantification, Entrez vs Ensembl gene annotation
 \end_layout
 
 \end_inset
@@ -754,7 +755,7 @@ Comparison of STAR quantification between Ensembl and Entrez gene identifiers
 \end_inset
 
 
-\begin_inset space \hfill{}
+\begin_inset space \qquad{}
 \end_inset
 
 
@@ -768,7 +769,7 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/CD4-csaw/rnaseq-compare/ensmebl-vs-entrez-shoal-CROP.png
 	lyxscale 25
-	width 30col%
+	width 35col%
 	groupId rna-comp-subfig
 
 \end_inset
@@ -780,8 +781,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Comparison of Salmon+Shoal quantification between Ensembl and Entrez gene
- identifiers
+Salmon+Shoal quantification, Entrez vs Ensembl gene annotation
 \end_layout
 
 \end_inset
@@ -792,10 +792,10 @@ Comparison of Salmon+Shoal quantification between Ensembl and Entrez gene
 \end_inset
 
 
-\begin_inset space \hfill{}
-\end_inset
+\end_layout
 
-
+\begin_layout Plain Layout
+\align center
 \begin_inset Float figure
 wide false
 sideways false
@@ -806,7 +806,7 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/CD4-csaw/rnaseq-compare/star-vs-hisat2-CROP.png
 	lyxscale 25
-	width 30col%
+	width 35col%
 	groupId rna-comp-subfig
 
 \end_inset
@@ -818,7 +818,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Comparison of quantification between STAR and HISAT2 for identical annotation
+STAR vs HISAT2 quantification, Ensembl gene annotation
 \end_layout
 
 \end_inset
@@ -829,10 +829,10 @@ Comparison of quantification between STAR and HISAT2 for identical annotation
 \end_inset
 
 
-\end_layout
+\begin_inset space \qquad{}
+\end_inset
 
-\begin_layout Plain Layout
-\align center
+
 \begin_inset Float figure
 wide false
 sideways false
@@ -843,7 +843,7 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/CD4-csaw/rnaseq-compare/star-vs-salmon-CROP.png
 	lyxscale 25
-	width 30col%
+	width 35col%
 	groupId rna-comp-subfig
 
 \end_inset
@@ -855,7 +855,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Comparison of quantification between STAR and Salmon for identical annotation
+Salomn vs STAR quantification, Ensembl gene annotation
 \end_layout
 
 \end_inset
@@ -866,10 +866,10 @@ Comparison of quantification between STAR and Salmon for identical annotation
 \end_inset
 
 
-\begin_inset space \hfill{}
-\end_inset
+\end_layout
 
-
+\begin_layout Plain Layout
+\align center
 \begin_inset Float figure
 wide false
 sideways false
@@ -880,7 +880,7 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/CD4-csaw/rnaseq-compare/salmon-vs-kallisto-CROP.png
 	lyxscale 25
-	width 30col%
+	width 35col%
 	groupId rna-comp-subfig
 
 \end_inset
@@ -892,8 +892,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Comparison of quantification between Salmon and Kallisto for identical annotatio
-n
+Salmon vs Kallisto quantification, Ensembl gene annotation
 \end_layout
 
 \end_inset
@@ -904,7 +903,7 @@ n
 \end_inset
 
 
-\begin_inset space \hfill{}
+\begin_inset space \qquad{}
 \end_inset
 
 
@@ -918,7 +917,7 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/CD4-csaw/rnaseq-compare/salmon-vs-shoal-CROP.png
 	lyxscale 25
-	width 30col%
+	width 35col%
 	groupId rna-comp-subfig
 
 \end_inset
@@ -930,8 +929,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Comparison of quantification between Salmon with and without Shoal for identical
- annotation
+Salmon+Shoal vs Salmon alone, Ensembl gene annotation
 \end_layout
 
 \end_inset
@@ -1177,21 +1175,21 @@ ChIP-seq blacklisting is important
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename graphics/CD4-csaw/csaw/CCF-plots-PAGE2-CROP.pdf
 	lyxscale 50
-	width 100col%
+	height 40theight%
 	groupId ccf-subfig
 
 \end_inset
@@ -1229,14 +1227,14 @@ Cross-correlation plots with blacklisted reads removed
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename graphics/CD4-csaw/csaw/CCF-plots-noBL-PAGE2-CROP.pdf
 	lyxscale 50
-	width 100col%
+	height 40theight%
 	groupId ccf-subfig
 
 \end_inset
@@ -1302,7 +1300,7 @@ ChIP-seq peak calling
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1316,7 +1314,7 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/CD4-csaw/IDR/D4659vsD5053_epic-PAGE1-CROP.pdf
 	lyxscale 50
-	width 40theight%
+	width 45col%
 	groupId idr-rc-subfig
 
 \end_inset
@@ -1343,10 +1341,10 @@ Peak ranks from SICER peak caller
 \end_inset
 
 
-\end_layout
+\begin_inset space \hfill{}
+\end_inset
 
-\begin_layout Plain Layout
-\align center
+
 \begin_inset Float figure
 wide false
 sideways false
@@ -1357,7 +1355,7 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/CD4-csaw/IDR/D4659vsD5053_macs-PAGE1-CROP.pdf
 	lyxscale 50
-	width 40theight%
+	width 45col%
 	groupId idr-rc-subfig
 
 \end_inset
@@ -1398,10 +1396,11 @@ Irreproducible Discovery Rate rank consistency plots for H3K27me3.
 
 \series default
  Peaks are ranked by the scores assigned by the peak caller in each donor,
- and then the ranks are plotted against each other.
- Higher ranks are more significant.
+ and then the ranks for two donors are plotted against each other.
+ Higher ranks are more significant (top right).
  Peaks meeting various thresholds of reproducibility, measured by the irreproduc
 ible discovery rate (IDR), are shaded accordingly.
+ [This could be explained better, or refer to the text.]
 \end_layout
 
 \end_inset
@@ -1448,7 +1447,7 @@ ChIP-seq normalization
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1495,21 +1494,8 @@ ChIP-seq must be corrected for hidden confounding factors
 \begin_layout Standard
 \begin_inset Float figure
 wide false
-sideways true
+sideways false
 status open
-
-\begin_layout Plain Layout
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-No need for sideways
-\end_layout
-
-\end_inset
-
-
-\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Float figure
@@ -1522,7 +1508,7 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/CD4-csaw/ChIP-seq/H3K4me2-PCA-raw-CROP.png
 	lyxscale 25
-	width 30col%
+	width 45col%
 	groupId pcoa-subfig
 
 \end_inset
@@ -1565,9 +1551,53 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
+	filename graphics/CD4-csaw/ChIP-seq/H3K4me2-PCA-SVsub-CROP.png
+	lyxscale 25
+	width 45col%
+	groupId pcoa-subfig
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PCoA-H3K4me2-good"
+
+\end_inset
+
+H3K4me2, SVs subtracted
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
 	filename graphics/CD4-csaw/ChIP-seq/H3K4me3-PCA-raw-CROP.png
 	lyxscale 25
-	width 30col%
+	width 45col%
 	groupId pcoa-subfig
 
 \end_inset
@@ -1610,9 +1640,53 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
+	filename graphics/CD4-csaw/ChIP-seq/H3K4me3-PCA-SVsub-CROP.png
+	lyxscale 25
+	width 45col%
+	groupId pcoa-subfig
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PCoA-H3K4me3-good"
+
+\end_inset
+
+H3K4me3, SVs subtracted
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
 	filename graphics/CD4-csaw/ChIP-seq/H3K27me3-PCA-raw-CROP.png
 	lyxscale 25
-	width 30col%
+	width 45col%
 	groupId pcoa-subfig
 
 \end_inset
@@ -1643,95 +1717,6 @@ H3K27me3, no correction
 \end_inset
 
 
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/ChIP-seq/H3K4me2-PCA-SVsub-CROP.png
-	lyxscale 25
-	width 30col%
-	groupId pcoa-subfig
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:PCoA-H3K4me2-good"
-
-\end_inset
-
-H3K4me2, SVs subtracted
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset space \hfill{}
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/ChIP-seq/H3K4me3-PCA-SVsub-CROP.png
-	lyxscale 25
-	width 30col%
-	groupId pcoa-subfig
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:PCoA-H3K4me3-good"
-
-\end_inset
-
-H3K4me3 windows, SVs subtracted
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
 \begin_inset space \hfill{}
 \end_inset
 
@@ -1746,7 +1731,7 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/CD4-csaw/ChIP-seq/H3K27me3-PCA-SVsub-CROP.png
 	lyxscale 25
-	width 30col%
+	width 45col%
 	groupId pcoa-subfig
 
 \end_inset
@@ -1819,9 +1804,25 @@ MOFA recovers biologically relevant variation from blind analysis by correlating
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{landscape}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 wide false
-sideways true
+sideways false
 status collapsed
 
 \begin_layout Plain Layout
@@ -1950,6 +1951,22 @@ MOFA latent factors separate technical confounders from
 \end_inset
 
 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{landscape}
 \end_layout
 
 \end_inset
@@ -2825,6 +2842,24 @@ effective promoter radii
 status open
 
 \begin_layout Plain Layout
+Clarify that radius depends on histone mark but 
+\emph on
+not
+\emph default
+ experimental condition.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
 Consider also showing figure for distance to nearest peak center, and reference
  median peak size once that is known.
 \end_layout
@@ -2889,9 +2924,10 @@ RNA-seq and H3K4 methylation patterns in naive and memory show convergence
 
 \begin_layout Standard
 \begin_inset Float figure
+placement p
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -3099,9 +3135,116 @@ PCoA plots for promoter ChIP-seq and expression RNA-seq data
 \end_layout
 
 \begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Check up on figure refs in this paragraph
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PCoA-promoters"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows the patterns of variation in all 3 histone marks in the promoter
+ regions of the genome using principal coordinate analysis.
+ All 3 marks show a noticeable convergence between the naive and memory
+ samples at day 14, visible as an overlapping of the day 14 groups on each
+ plot.
+ This is consistent with the counts of significantly differentially modified
+ promoters and estimates of the total numbers of differentially modified
+ promoters shown in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Number-signif-promoters"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ For all histone marks, evidence of differential modification between naive
+ and memory samples was detected at every time point except day 14.
+ The day 14 convergence pattern is also present in the RNA-seq data (Figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:RNA-PCA-group"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+), albiet in the 2nd and 3rd principal coordinates, indicating that it is
+ not the most dominant pattern driving gene expression.
+ Taken together, the data show that promoter histone methylation for these
+ 3 histone marks and RNA expression for naive and memory cells are most
+ similar at day 14, the furthest time point after activation.
+ MOFA was also able to capture this day 14 convergence pattern in latent
+ factor 5 (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:mofa-lf-scatter"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+), which accounts for shared variation across all 3 histone marks and the
+ RNA-seq data, confirming that this is a coordinated pattern across all
+ 4 data sets.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+This table is placed at the end of the subsection because the landscape
+ causes a page break, which is not desired between the subsection header
+ and the text.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{landscape}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float table
 wide false
-sideways true
+sideways false
 status collapsed
 
 \begin_layout Plain Layout
@@ -3554,93 +3697,14 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Check up on figure refs in this paragraph
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:PCoA-promoters"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- shows the patterns of variation in all 3 histone marks in the promoter
- regions of the genome using principal coordinate analysis.
- All 3 marks show a noticeable convergence between the naive and memory
- samples at day 14, visible as an overlapping of the day 14 groups on each
- plot.
- This is consistent with the counts of significantly differentially modified
- promoters and estimates of the total numbers of differentially modified
- promoters shown in Table 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "tab:Number-signif-promoters"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-.
- For all histone marks, evidence of differential modification between naive
- and memory samples was detected at every time point except day 14.
- The day 14 convergence pattern is also present in the RNA-seq data (Figure
- 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:RNA-PCA-group"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-), albiet in the 2nd and 3rd principal coordinates, indicating that it is
- not the most dominant pattern driving gene expression.
- Taken together, the data show that promoter histone methylation for these
- 3 histone marks and RNA expression for naive and memory cells are most
- similar at day 14, the furthest time point after activation.
- MOFA was also able to capture this day 14 convergence pattern in latent
- factor 5 (Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:mofa-lf-scatter"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-), which accounts for shared variation across all 3 histone marks and the
- RNA-seq data, confirming that this is a coordinated pattern across all
- 4 data sets.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
+\begin_inset ERT
 status collapsed
 
 \begin_layout Plain Layout
-This result feels shallow, somehow.
- Am I oversimplifying the observation, or trivializing the amount of work
- it took to get here? Shouldn't this section be more than one paragraph?
- Am I just forgetting some supporting evidence that should also go here
- in order to build up to the result? Or is it good that I have a simple
- relatively straightforward result that doesn't take to long to explain,
- and I'm just overthinking it?
+
+
+\backslash
+end{landscape}
 \end_layout
 
 \end_inset
@@ -3668,9 +3732,25 @@ For the figures in this section, the group labels are arbitrary, so if time
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{landscape}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 wide false
-sideways true
+sideways false
 status open
 
 \begin_layout Plain Layout
@@ -3878,7 +3958,7 @@ shape
 \begin_layout Standard
 \begin_inset Float figure
 wide false
-sideways true
+sideways false
 status open
 
 \begin_layout Plain Layout
@@ -4082,6 +4162,22 @@ shape
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{landscape}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Itemize
 H3K4me peaks seem to correlate with increased expression as long as they
  are anywhere near the TSS
@@ -4149,7 +4245,7 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/CD4-csaw/LaMere2016_fig8.pdf
 	lyxscale 50
-	width 100col%
+	width 50col%
 	groupId colwidth
 
 \end_inset
@@ -4176,10 +4272,25 @@ LaMere 2016 Figure 8, reproduced with permission.
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Look up some more references for these histone marks being involved in memory
+ differentiation.
+ (Ask Sarah)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Itemize
 Naive-to-memory convergence implies that naive cells are differentiating
- into memory cells, and that gene expression and H3K4 methylation are involved
- in this differentiation while H3K27me3 is less involved
+ into memory cells, and that gene expression and H3K4/K27 methylation are
+ involved in this differentiation
 \end_layout
 
 \begin_deeper
@@ -4214,9 +4325,25 @@ Workflow
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{landscape}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 wide false
-sideways true
+sideways false
 status open
 
 \begin_layout Plain Layout
@@ -4224,7 +4351,8 @@ status open
 \begin_inset Graphics
 	filename graphics/CD4-csaw/rulegraphs/rulegraph-all.pdf
 	lyxscale 50
-	width 100theight%
+	width 100col%
+	height 95theight%
 
 \end_inset
 
@@ -4249,6 +4377,22 @@ Dependency graph of steps in reproducible workflow
 \end_inset
 
 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{landscape}
 \end_layout
 
 \end_inset
@@ -4499,6 +4643,9 @@ status collapsed
 \align center
 \begin_inset Graphics
 	filename graphics/methylvoom/sigmoid.pdf
+	lyxscale 50
+	width 50col%
+	groupId colwidth
 
 \end_inset
 
@@ -4868,6 +5015,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="6">
 <features tabularvalignment="middle">
@@ -4891,7 +5039,7 @@ Analysis
 \begin_inset Text
 
 \begin_layout Plain Layout
-patient random effect
+random effect
 \end_layout
 
 \end_inset
@@ -4900,7 +5048,7 @@ patient random effect
 \begin_inset Text
 
 \begin_layout Plain Layout
-empirical Bayes
+eBayes
 \end_layout
 
 \end_inset
@@ -4918,7 +5066,7 @@ SVA
 \begin_inset Text
 
 \begin_layout Plain Layout
-sample weights
+weights
 \end_layout
 
 \end_inset
@@ -5125,6 +5273,51 @@ Summary of analysis variants for methylation array data.
 \series default
 Each analysis included a different set of steps to adjust or account for
  various systematic features of the data.
+ Random effect: The model included a random effect accounting for correlation
+ between samples from the same patient 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Smyth2005a"
+literal "false"
+
+\end_inset
+
+; eBayes: Empirical bayes squeezing of per-probe variances toward the mean-varia
+nce trend 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Ritchie2015"
+literal "false"
+
+\end_inset
+
+; SVA: Surrogate variable analysis to account for unobserved confounders
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Leek2007"
+literal "false"
+
+\end_inset
+
+; Weights: Estimate sample weights to account for differences in sample
+ quality 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Liu2015,Ritchie2006"
+literal "false"
+
+\end_inset
+
+; voom: Use mean-variance trend to assign individual sample weights
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Law2013"
+literal "false"
+
+\end_inset
+
+.
  See the text for a more detailed explanation of each step.
 \end_layout
 
@@ -5236,7 +5429,7 @@ literal "false"
 , which were combined with the sample weights 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Liu2015"
+key "Liu2015,Ritchie2006"
 literal "false"
 
 \end_inset
@@ -5298,7 +5491,7 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/PAM/predplot.pdf
 	lyxscale 50
-	width 100col%
+	width 50col%
 	groupId colwidth
 
 \end_inset
@@ -5379,7 +5572,7 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/PAM/ROC-TXvsAR-internal.pdf
 	lyxscale 50
-	width 100col%
+	width 50col%
 	groupId colwidth
 
 \end_inset
@@ -6038,7 +6231,7 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/PAM/ROC-TXvsAR-external.pdf
 	lyxscale 50
-	width 100col%
+	width 50col%
 	groupId colwidth
 
 \end_inset
@@ -6781,9 +6974,25 @@ SVA, voom, and array weights improve model fit for methylation array data
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{landscape}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 wide false
-sideways true
+sideways false
 status open
 
 \begin_layout Plain Layout
@@ -6963,6 +7172,22 @@ The log2(standard deviation) for each probe is plotted against the probe's
 \end_inset
 
 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{landscape}
 \end_layout
 
 \end_inset
@@ -7309,7 +7534,7 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/methylvoom/unadj.dupcor.sva.voomaw/sample-weights-PAGE3-CROP.pdf
 	lyxscale 50
-	width 100col%
+	width 50col%
 	groupId colwidth
 
 \end_inset
@@ -8899,7 +9124,7 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/Globin Paper/figure1 - globin-fractions.pdf
 	lyxscale 50
-	width 100col%
+	width 50col%
 	groupId colwidth
 
 \end_inset
@@ -8963,10 +9188,26 @@ Fraction of genic reads in each sample aligned to non-globin genes, with
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{landscape}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float table
 placement p
 wide false
-sideways true
+sideways false
 status collapsed
 
 \begin_layout Plain Layout
@@ -9577,6 +9818,22 @@ All values are given as mean ± standard deviation.
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{landscape}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 Another important aspect is that the standard deviations in Table 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -9644,7 +9901,7 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/Globin Paper/figure2 - aveLogCPM-colored.pdf
 	lyxscale 50
-	width 100col%
+	width 50col%
 	groupId colwidth
 
 \end_inset
@@ -9750,7 +10007,7 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/Globin Paper/figure3 - detection.pdf
 	lyxscale 50
-	width 100col%
+	width 50col%
 	groupId colwidth
 
 \end_inset
@@ -9877,7 +10134,7 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/Globin Paper/figure4 - maplot-colored.pdf
 	lyxscale 50
-	width 100col%
+	width 50col%
 	groupId colwidth
 
 \end_inset
@@ -10013,7 +10270,7 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/Globin Paper/figure5 - corrplot.pdf
 	lyxscale 50
-	width 100col%
+	width 50col%
 	groupId colwidth
 
 \end_inset
