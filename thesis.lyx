@@ -11467,7 +11467,7 @@ Check in-text citation format.
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 btprint "btPrintCited"
-bibfiles "refs,code-refs"
+bibfiles "code-refs,refs-PROCESSED"
 options "bibtotoc,unsrt"
 
 \end_inset

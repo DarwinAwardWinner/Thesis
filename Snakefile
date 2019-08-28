@@ -139,10 +139,13 @@ def lyx_bib_deps(lyxfile):
     with open(lyxfile) as f:
         lyx_text = f.read()
     bib_names = regex.search('bibfiles "(.*?)"', lyx_text).group(1).split(',')
+    # Unfortunately LyX doesn't indicate which bib names refer to
+    # files in the current directory and which don't. Currently that's
+    # not a problem for me since all my refs are in bib files in the
+    # current directory.
     for bn in bib_names:
         bib_path = bn + '.bib'
-        if os.path.exists(bib_path):
-            yield bib_path
+        yield bib_path
 
 def lyx_gfx_deps(lyxfile):
     '''Return an iterator over all graphics files included by a LyX file.'''
@@ -189,6 +192,19 @@ rule lyx_to_pdf:
     # Need to exclude pdfs in graphics/
     output: pdf='{basename,(?!graphics/).*}.pdf'
     shell: '{LYXPATH:q} --export-to pdf4 {output.pdf:q} {input.lyxfile:q}'
+
+rule process_bib:
+    '''Preprocess bib file for LaTeX.
+
+Currently, this just filters out additional URLs. from the url field,
+since the BibTeX setup in LyX can't handle them.'''
+    input: '{basename}.bib'
+    output: '{basename,.*(?<!-PROCESSED)}-PROCESSED.bib'
+    run:
+        with open(input[0]) as infile, open(output[0], 'w') as outfile:
+            for line in infile:
+                line = regex.sub('url = {(.*?) .*},', 'url = {\\1},', line)
+                outfile.write(line)
 
 rule pdf_extract_page:
     '''Extract a single page from a multi-page PDF.'''
