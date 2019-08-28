@@ -9563,133 +9563,6 @@ Globin blocking yields a larger and more consistent fraction of useful reads
 \end_layout
 
 \begin_layout Standard
-The objective of the present study was to validate a new protocol for deep
- RNA-seq of whole blood drawn into PaxGene tubes from cynomolgus monkeys
- undergoing islet transplantation, with particular focus on minimizing the
- loss of useful sequencing space to uninformative globin reads.
- The details of the analysis with respect to transplant outcomes and the
- impact of mesenchymal stem cell treatment will be reported in a separate
- manuscript (in preparation).
- To focus on the efficacy of our globin blocking protocol, 37 blood samples,
- 16 from pre-transplant and 21 from post-transplant time points, were each
- prepped once with and once without globin blocking oligos, and were then
- sequenced on an Illumina NextSeq500 instrument.
- The number of reads aligning to each gene in the cynomolgus genome was
- counted.
- Table 1 summarizes the distribution of read fractions among the GB and
- non-GB libraries.
- In the libraries with no globin blocking, globin reads made up an average
- of 44.6% of total input reads, while reads assigned to all other genes made
- up an average of 26.3%.
- The remaining reads either aligned to intergenic regions (that include
- long non-coding RNAs) or did not align with any annotated transcripts in
- the current build of the cynomolgus genome.
- In the GB libraries, globin reads made up only 3.48% and reads assigned
- to all other genes increased to 50.4%.
- Thus, globin blocking resulted in a 92.2% reduction in globin reads and
- a 91.6% increase in yield of useful non-globin reads.
-\end_layout
-
-\begin_layout Standard
-This reduction is not quite as efficient as the previous analysis showed
- for human samples by DeepSAGE (<0.4% globin reads after globin reduction)
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Mastrokolias2012"
-literal "false"
-
-\end_inset
-
-.
- Nonetheless, this degree of globin reduction is sufficient to nearly double
- the yield of useful reads.
- Thus, globin blocking cuts the required sequencing effort (and costs) to
- achieve a target coverage depth by almost 50%.
- Consistent with this near doubling of yield, the average difference in
- un-normalized logCPM across all genes between the GB libraries and non-GB
- libraries is approximately 1 (mean = 1.01, median = 1.08), an overall 2-fold
- increase.
- Un-normalized values are used here because the TMM normalization correctly
- identifies this 2-fold difference as biologically irrelevant and removes
- it.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/Globin Paper/figure1 - globin-fractions.pdf
-	lyxscale 50
-	width 100col%
-	groupId colwidth
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset Argument 1
-status collapsed
-
-\begin_layout Plain Layout
-Fraction of genic reads in each sample aligned to non-globin genes, with
- and without globin blocking (GB).
- 
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Fraction-of-genic-reads"
-
-\end_inset
-
-Fraction of genic reads in each sample aligned to non-globin genes, with
- and without globin blocking (GB).
-
-\series default
- All reads in each sequencing library were aligned to the cyno genome, and
- the number of reads uniquely aligning to each gene was counted.
- For each sample, counts were summed separately for all globin genes and
- for the remainder of the genes (non-globin genes), and the fraction of
- genic reads aligned to non-globin genes was computed.
- Each point represents an individual sample.
- Gray + signs indicate the means for globin-blocked libraries and unblocked
- libraries.
- The overall distribution for each group is represented as a notched box
- plots.
- Points are randomly spread vertically to avoid excessive overlapping.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -10317,10 +10190,6 @@ All values are given as mean ± standard deviation.
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
@@ -10340,6 +10209,127 @@ end{landscape}
 \begin_layout Plain Layout
 
 }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The objective of the present study was to validate a new protocol for deep
+ RNA-seq of whole blood drawn into PaxGene tubes from cynomolgus monkeys
+ undergoing islet transplantation, with particular focus on minimizing the
+ loss of useful sequencing space to uninformative globin reads.
+ The details of the analysis with respect to transplant outcomes and the
+ impact of mesenchymal stem cell treatment will be reported in a separate
+ manuscript (in preparation).
+ To focus on the efficacy of our globin blocking protocol, 37 blood samples,
+ 16 from pre-transplant and 21 from post-transplant time points, were each
+ prepped once with and once without globin blocking oligos, and were then
+ sequenced on an Illumina NextSeq500 instrument.
+ The number of reads aligning to each gene in the cynomolgus genome was
+ counted.
+ Table 1 summarizes the distribution of read fractions among the GB and
+ non-GB libraries.
+ In the libraries with no globin blocking, globin reads made up an average
+ of 44.6% of total input reads, while reads assigned to all other genes made
+ up an average of 26.3%.
+ The remaining reads either aligned to intergenic regions (that include
+ long non-coding RNAs) or did not align with any annotated transcripts in
+ the current build of the cynomolgus genome.
+ In the GB libraries, globin reads made up only 3.48% and reads assigned
+ to all other genes increased to 50.4%.
+ Thus, globin blocking resulted in a 92.2% reduction in globin reads and
+ a 91.6% increase in yield of useful non-globin reads.
+\end_layout
+
+\begin_layout Standard
+This reduction is not quite as efficient as the previous analysis showed
+ for human samples by DeepSAGE (<0.4% globin reads after globin reduction)
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Mastrokolias2012"
+literal "false"
+
+\end_inset
+
+.
+ Nonetheless, this degree of globin reduction is sufficient to nearly double
+ the yield of useful reads.
+ Thus, globin blocking cuts the required sequencing effort (and costs) to
+ achieve a target coverage depth by almost 50%.
+ Consistent with this near doubling of yield, the average difference in
+ un-normalized logCPM across all genes between the GB libraries and non-GB
+ libraries is approximately 1 (mean = 1.01, median = 1.08), an overall 2-fold
+ increase.
+ Un-normalized values are used here because the TMM normalization correctly
+ identifies this 2-fold difference as biologically irrelevant and removes
+ it.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/Globin Paper/figure1 - globin-fractions.pdf
+	lyxscale 50
+	width 75col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Fraction of genic reads in each sample aligned to non-globin genes, with
+ and without globin blocking (GB).
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Fraction-of-genic-reads"
+
+\end_inset
+
+Fraction of genic reads in each sample aligned to non-globin genes, with
+ and without globin blocking (GB).
+
+\series default
+ All reads in each sequencing library were aligned to the cyno genome, and
+ the number of reads uniquely aligning to each gene was counted.
+ For each sample, counts were summed separately for all globin genes and
+ for the remainder of the genes (non-globin genes), and the fraction of
+ genic reads aligned to non-globin genes was computed.
+ Each point represents an individual sample.
+ Gray + signs indicate the means for globin-blocked libraries and unblocked
+ libraries.
+ The overall distribution for each group is represented as a notched box
+ plots.
+ Points are randomly spread vertically to avoid excessive overlapping.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -10415,8 +10405,7 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/Globin Paper/figure2 - aveLogCPM-colored.pdf
 	lyxscale 50
-	width 100col%
-	groupId colwidth
+	height 60theight%
 
 \end_inset
 
@@ -10521,8 +10510,7 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/Globin Paper/figure3 - detection.pdf
 	lyxscale 50
-	width 100col%
-	groupId colwidth
+	width 70col%
 
 \end_inset
 
@@ -10784,8 +10772,7 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/Globin Paper/figure5 - corrplot.pdf
 	lyxscale 50
-	width 100col%
-	groupId colwidth
+	width 70col%
 
 \end_inset
 
