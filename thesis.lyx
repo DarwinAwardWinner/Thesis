@@ -29,6 +29,9 @@
 
 % Allow landscape pages
 \usepackage{pdflscape}
+% Allow doing things after the end of the current page 
+% (to avoid landscape figures breaking up text)
+\usepackage{afterpage}
 
 % This one breaks subfigs so it's disabled
 % https://tex.stackexchange.com/questions/65680/automatically-bold-first-sentence-of-a-floats-caption
@@ -57,7 +60,7 @@ todonotes
 \graphics default
 \default_output_format pdf4
 \output_sync 0
-\bibtex_command default
+\bibtex_command biber
 \index_command default
 \paperfontsize 12
 \spacing double
@@ -83,9 +86,11 @@ todonotes
 \use_package stackrel 1
 \use_package stmaryrd 1
 \use_package undertilde 1
-\cite_engine basic
-\cite_engine_type default
+\cite_engine biblatex
+\cite_engine_type authoryear
 \biblio_style plain
+\biblatex_bibstyle authoryear
+\biblatex_citestyle numeric
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
@@ -249,6 +254,43 @@ On final pass: Check all figures to make sure they fit on the page with
 
 \begin_layout Chapter*
 Abstract
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+It is included as an integral part of the thesis and should immediately
+ precede the introduction.
+\end_layout
+
+\begin_layout Plain Layout
+Preparing your Abstract.
+ Your abstract (a succinct description of your work) is limited to 350 words.
+ UMI will shorten it if they must; please do not exceed the limit.
+\end_layout
+
+\begin_layout Itemize
+Include pertinent place names, names of persons (in full), and other proper
+ nouns.
+ These are useful in automated retrieval.
+\end_layout
+
+\begin_layout Itemize
+Display symbols, as well as foreign words and phrases, clearly and accurately.
+ Include transliterations for characters other than Roman and Greek letters
+ and Arabic numerals.
+ Include accents and diacritical marks.
+\end_layout
+
+\begin_layout Itemize
+Do not include graphs, charts, tables, or illustrations in your abstract.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Chapter
@@ -982,7 +1024,7 @@ RNA-seq has a large confounding batch effect
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Flex TODO Note (inline)
@@ -1805,7 +1847,14 @@ MOFA recovers biologically relevant variation from blind analysis by correlating
 
 \begin_layout Standard
 \begin_inset ERT
-status collapsed
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+afterpage{
+\end_layout
 
 \begin_layout Plain Layout
 
@@ -1960,13 +2009,18 @@ MOFA latent factors separate technical confounders from
 
 \begin_layout Standard
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
 
 \backslash
 end{landscape}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
 \end_layout
 
 \end_inset
@@ -2923,311 +2977,19 @@ RNA-seq and H3K4 methylation patterns in naive and memory show convergence
 \end_layout
 
 \begin_layout Standard
-\begin_inset Float figure
-placement p
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/ChIP-seq/H3K4me2-promoter-PCA-group-CROP.png
-	lyxscale 25
-	width 45col%
-	groupId pcoa-prom-subfig
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:PCoA-H3K4me2-prom"
-
-\end_inset
-
-PCoA plot of H3K4me2 promoters, after subtracting surrogate variables
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset space \hfill{}
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/ChIP-seq/H3K4me3-promoter-PCA-group-CROP.png
-	lyxscale 25
-	width 45col%
-	groupId pcoa-prom-subfig
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:PCoA-H3K4me3-prom"
-
-\end_inset
-
-PCoA plot of H3K4me3 promoters, after subtracting surrogate variables
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/ChIP-seq/H3K27me3-promoter-PCA-group-CROP.png
-	lyxscale 25
-	width 45col%
-	groupId pcoa-prom-subfig
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:PCoA-H3K27me3-prom"
-
-\end_inset
-
-PCoA plot of H3K27me3 promoters, after subtracting surrogate variables
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset space \hfill{}
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/RNA-seq/PCA-final-23-CROP.png
-	lyxscale 25
-	width 45col%
-	groupId pcoa-prom-subfig
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:RNA-PCA-group"
-
-\end_inset
-
-RNA-seq PCoA showing principal coordiantes 2 and 3.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:PCoA-promoters"
-
-\end_inset
-
-PCoA plots for promoter ChIP-seq and expression RNA-seq data
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Check up on figure refs in this paragraph
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:PCoA-promoters"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- shows the patterns of variation in all 3 histone marks in the promoter
- regions of the genome using principal coordinate analysis.
- All 3 marks show a noticeable convergence between the naive and memory
- samples at day 14, visible as an overlapping of the day 14 groups on each
- plot.
- This is consistent with the counts of significantly differentially modified
- promoters and estimates of the total numbers of differentially modified
- promoters shown in Table 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "tab:Number-signif-promoters"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-.
- For all histone marks, evidence of differential modification between naive
- and memory samples was detected at every time point except day 14.
- The day 14 convergence pattern is also present in the RNA-seq data (Figure
- 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:RNA-PCA-group"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-), albiet in the 2nd and 3rd principal coordinates, indicating that it is
- not the most dominant pattern driving gene expression.
- Taken together, the data show that promoter histone methylation for these
- 3 histone marks and RNA expression for naive and memory cells are most
- similar at day 14, the furthest time point after activation.
- MOFA was also able to capture this day 14 convergence pattern in latent
- factor 5 (Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:mofa-lf-scatter"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-), which accounts for shared variation across all 3 histone marks and the
- RNA-seq data, confirming that this is a coordinated pattern across all
- 4 data sets.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-This table is placed at the end of the subsection because the landscape
- causes a page break, which is not desired between the subsection header
- and the text.
-\end_layout
-
-\end_inset
-
 
 \end_layout
 
 \begin_layout Standard
 \begin_inset ERT
-status collapsed
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+afterpage{
+\end_layout
 
 \begin_layout Plain Layout
 
@@ -3698,7 +3460,7 @@ literal "false"
 
 \begin_layout Standard
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -3707,9 +3469,302 @@ status collapsed
 end{landscape}
 \end_layout
 
+\begin_layout Plain Layout
+
+}
+\end_layout
+
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement p
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/ChIP-seq/H3K4me2-promoter-PCA-group-CROP.png
+	lyxscale 25
+	width 45col%
+	groupId pcoa-prom-subfig
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PCoA-H3K4me2-prom"
+
+\end_inset
+
+PCoA plot of H3K4me2 promoters, after subtracting surrogate variables
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/ChIP-seq/H3K4me3-promoter-PCA-group-CROP.png
+	lyxscale 25
+	width 45col%
+	groupId pcoa-prom-subfig
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PCoA-H3K4me3-prom"
+
+\end_inset
+
+PCoA plot of H3K4me3 promoters, after subtracting surrogate variables
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/ChIP-seq/H3K27me3-promoter-PCA-group-CROP.png
+	lyxscale 25
+	width 45col%
+	groupId pcoa-prom-subfig
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PCoA-H3K27me3-prom"
+
+\end_inset
+
+PCoA plot of H3K27me3 promoters, after subtracting surrogate variables
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/RNA-seq/PCA-final-23-CROP.png
+	lyxscale 25
+	width 45col%
+	groupId pcoa-prom-subfig
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:RNA-PCA-group"
+
+\end_inset
+
+RNA-seq PCoA showing principal coordiantes 2 and 3.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PCoA-promoters"
+
+\end_inset
+
+PCoA plots for promoter ChIP-seq and expression RNA-seq data
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Check up on figure refs in this paragraph
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PCoA-promoters"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows the patterns of variation in all 3 histone marks in the promoter
+ regions of the genome using principal coordinate analysis.
+ All 3 marks show a noticeable convergence between the naive and memory
+ samples at day 14, visible as an overlapping of the day 14 groups on each
+ plot.
+ This is consistent with the counts of significantly differentially modified
+ promoters and estimates of the total numbers of differentially modified
+ promoters shown in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Number-signif-promoters"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ For all histone marks, evidence of differential modification between naive
+ and memory samples was detected at every time point except day 14.
+ The day 14 convergence pattern is also present in the RNA-seq data (Figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:RNA-PCA-group"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+), albiet in the 2nd and 3rd principal coordinates, indicating that it is
+ not the most dominant pattern driving gene expression.
+ Taken together, the data show that promoter histone methylation for these
+ 3 histone marks and RNA expression for naive and memory cells are most
+ similar at day 14, the furthest time point after activation.
+ MOFA was also able to capture this day 14 convergence pattern in latent
+ factor 5 (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:mofa-lf-scatter"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+), which accounts for shared variation across all 3 histone marks and the
+ RNA-seq data, confirming that this is a coordinated pattern across all
+ 4 data sets.
 \end_layout
 
 \begin_layout Subsection
@@ -3733,7 +3788,14 @@ For the figures in this section, the group labels are arbitrary, so if time
 
 \begin_layout Standard
 \begin_inset ERT
-status collapsed
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+afterpage{
+\end_layout
 
 \begin_layout Plain Layout
 
@@ -4164,13 +4226,18 @@ shape
 
 \begin_layout Standard
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
 
 \backslash
 end{landscape}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
 \end_layout
 
 \end_inset
@@ -4245,7 +4312,7 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/CD4-csaw/LaMere2016_fig8.pdf
 	lyxscale 50
-	width 50col%
+	width 100col%
 	groupId colwidth
 
 \end_inset
@@ -4326,7 +4393,14 @@ Workflow
 
 \begin_layout Standard
 \begin_inset ERT
-status collapsed
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+afterpage{
+\end_layout
 
 \begin_layout Plain Layout
 
@@ -4386,13 +4460,18 @@ Dependency graph of steps in reproducible workflow
 
 \begin_layout Standard
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
 
 \backslash
 end{landscape}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
 \end_layout
 
 \end_inset
@@ -4644,7 +4723,7 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/methylvoom/sigmoid.pdf
 	lyxscale 50
-	width 50col%
+	width 100col%
 	groupId colwidth
 
 \end_inset
@@ -5491,7 +5570,7 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/PAM/predplot.pdf
 	lyxscale 50
-	width 50col%
+	width 100col%
 	groupId colwidth
 
 \end_inset
@@ -5562,6 +5641,13 @@ fRMA and SCAN achieve maintain classification performance while eliminating
 
 \begin_layout Standard
 \begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
 placement tb
 wide false
 sideways false
@@ -5572,8 +5658,75 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/PAM/ROC-TXvsAR-internal.pdf
 	lyxscale 50
-	width 50col%
-	groupId colwidth
+	height 40theight%
+	groupId roc-pam
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ROC-PAM-int"
+
+\end_inset
+
+ROC curves for PAM on internal validation data
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+placement tb
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/PAM/ROC-TXvsAR-external.pdf
+	lyxscale 50
+	height 40theight%
+	groupId roc-pam
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ROC-PAM-ext"
+
+\end_inset
+
+ROC curves for PAM on external validation data
+\end_layout
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
@@ -5588,12 +5741,11 @@ status collapsed
 \series bold
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:ROC-PAM-int"
+name "fig:ROC-PAM-main"
 
 \end_inset
 
-ROC curves for PAM on internal validation data using different normalization
- strategies
+ROC curves for PAM using different normalization strategies
 \end_layout
 
 \end_inset
@@ -6220,52 +6372,6 @@ noprefix "false"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Float figure
-placement tb
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/PAM/ROC-TXvsAR-external.pdf
-	lyxscale 50
-	width 50col%
-	groupId colwidth
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:ROC-PAM-ext"
-
-\end_inset
-
-ROC curve for PAM on external validation data using different normalization
- strategies
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 For external validation, as expected, all the AUC values are lower than
  the internal validations, ranging from 0.642 to 0.750 (Table 
 \begin_inset CommandInset ref
@@ -6309,7 +6415,7 @@ fRMA with custom-generated vectors enables normalization on hthgu133pluspm
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -6981,6 +7087,13 @@ status open
 
 
 \backslash
+afterpage{
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
 begin{landscape}
 \end_layout
 
@@ -7048,7 +7161,6 @@ name "fig:meanvar-basic"
 \end_inset
 
 Mean-variance trend for analysis A.
- 
 \end_layout
 
 \end_inset
@@ -7166,7 +7278,6 @@ The log2(standard deviation) for each probe is plotted against the probe's
  Density of points is also indicated by the dark blue contour lines.
  The prior variance trend estimated by eBayes is shown in light blue, while
  the lowess trend of the points is shown in red.
- 
 \end_layout
 
 \end_inset
@@ -7188,6 +7299,11 @@ status open
 
 \backslash
 end{landscape}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
 \end_layout
 
 \end_inset
@@ -7534,7 +7650,7 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/methylvoom/unadj.dupcor.sva.voomaw/sample-weights-PAGE3-CROP.pdf
 	lyxscale 50
-	width 50col%
+	width 100col%
 	groupId colwidth
 
 \end_inset
@@ -7617,7 +7733,7 @@ noprefix "false"
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -8172,7 +8288,7 @@ noprefix "false"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -8880,17 +8996,23 @@ noprefix "false"
 
 \end_inset
 
-), and the mean-variance trend is modeled by scaling the probe's estimated
- variance for each observation using the weights computed by voom.
- The difference between these two methods is analogous to the difference
- between a t-test with equal variance and a t-test with unequal variance,
- except that the unequal group variances used in the latter test are estimated
+), indicating that the mean-variance trend is adequately modeled by scaling
+ the estimated variance for each observation using the weights computed
+ by voom.
+ 
+\end_layout
+
+\begin_layout Standard
+The difference between the standard empirical Bayes trended variance modeling
+ (analysis B) and voom (analysis C) is analogous to the difference between
+ a t-test with equal variance and a t-test with unequal variance, except
+ that the unequal group variances used in the latter test are estimated
  based on the mean-variance trend from all the probes rather than the data
  for the specific probe being tested, thus stabilizing the group variance
  estimates by sharing information between probes.
- In practice, allowing voom to model the variance using observation weights
- in this manner allows the linear model fit to concentrate statistical power
- where it will do the most good.
+ Allowing voom to model the variance using observation weights in this manner
+ allows the linear model fit to concentrate statistical power where it will
+ do the most good.
  For example, if a particular probe's M-values are always at the extreme
  of the M-value range (e.g.
  less than -4) for ADNR samples, but the M-values for that probe in TX and
@@ -8903,7 +9025,12 @@ noprefix "false"
  other conditions and estimate an intermediate variance for this probe.
  In practice, analysis B shows that this approach is adequate, but the voom
  approach in analysis C is at least as good on all model fit criteria and
- yields a larger estimate for the number of differentially methylated genes.
+ yields a larger estimate for the number of differentially methylated genes,
+ 
+\emph on
+and
+\emph default
+ it matches up better with the theoretical 
 \end_layout
 
 \begin_layout Standard
@@ -9499,7 +9626,7 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/Globin Paper/figure1 - globin-fractions.pdf
 	lyxscale 50
-	width 50col%
+	width 100col%
 	groupId colwidth
 
 \end_inset
@@ -9564,7 +9691,14 @@ Fraction of genic reads in each sample aligned to non-globin genes, with
 
 \begin_layout Standard
 \begin_inset ERT
-status collapsed
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+afterpage{
+\end_layout
 
 \begin_layout Plain Layout
 
@@ -10194,13 +10328,18 @@ All values are given as mean ± standard deviation.
 
 \begin_layout Standard
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
 
 \backslash
 end{landscape}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
 \end_layout
 
 \end_inset
@@ -10276,7 +10415,7 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/Globin Paper/figure2 - aveLogCPM-colored.pdf
 	lyxscale 50
-	width 50col%
+	width 100col%
 	groupId colwidth
 
 \end_inset
@@ -10382,7 +10521,7 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/Globin Paper/figure3 - detection.pdf
 	lyxscale 50
-	width 50col%
+	width 100col%
 	groupId colwidth
 
 \end_inset
@@ -10509,7 +10648,7 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/Globin Paper/figure4 - maplot-colored.pdf
 	lyxscale 50
-	width 50col%
+	width 100col%
 	groupId colwidth
 
 \end_inset
@@ -10645,7 +10784,7 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/Globin Paper/figure5 - corrplot.pdf
 	lyxscale 50
-	width 50col%
+	width 100col%
 	groupId colwidth
 
 \end_inset
