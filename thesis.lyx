@@ -7625,14 +7625,19 @@ status open
 status open
 
 \begin_layout Plain Layout
-Consider transposing this table and the next one, and maybe grouping them
- together as sub-tables.
+Consider transposing these tables
 \end_layout
 
 \end_inset
 
 
 \end_layout
+
+\begin_layout Plain Layout
+\begin_inset Float table
+wide false
+sideways false
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -7850,24 +7855,7 @@ name "tab:methyl-num-signif"
 
 \end_inset
 
-
-\series bold
-Number of probes significant at 10% FDR for each contrast in each analysis.
- 
-\series default
-For each of the analyses in Table 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "tab:Summary-of-meth-analysis"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-, the table shows the number of probes called significantly differentially
- methylated at a threshold of 10% FDR for each comparison between TX and
- the other 3 transplant statuses.
+Number of probes significant at 10% FDR.
 \end_layout
 
 \end_inset
@@ -7878,13 +7866,14 @@ noprefix "false"
 \end_inset
 
 
-\end_layout
+\begin_inset space \hfill{}
+\end_inset
 
-\begin_layout Standard
+
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -8102,9 +8091,35 @@ name "tab:methyl-est-nonnull"
 
 \end_inset
 
+Estimated number of non-null tests, using the method of 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Phipson2013"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
 
 \series bold
-Estimated number of non-null tests for each contrast in each analysis.
+Estimates of degree of differential methylation in for each contrast in
+ each analysis.
  
 \series default
 For each of the analyses in Table 
@@ -8117,16 +8132,30 @@ noprefix "false"
 
 \end_inset
 
-, the table shows the number of probes estimated to be differentially methylated
- between TX and the other 3 transplant statuses using the method of 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Phipson2013"
-literal "false"
+, these tables show the number of probes called significantly differentially
+ methylated at a threshold of 10% FDR for each comparison between TX and
+ the other 3 transplant statuses (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:methyl-num-signif"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
-.
+) and the estimated total number of probes that are differentially methylated
+ (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:methyl-est-nonnull"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
 \end_layout
 
 \end_inset
