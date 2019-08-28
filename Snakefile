@@ -209,14 +209,21 @@ since the BibTeX setup in LyX can't handle them.'''
 rule pdf_extract_page:
     '''Extract a single page from a multi-page PDF.'''
     # Input is a PDF whose basename doesn't already have a page number
-    input: pdf = 'graphics/{basename,.*(?!PAGE[0-9]+)}.pdf'
+    input: pdf = 'graphics/{basename}.pdf'
     output: pdf = 'graphics/{basename}-PAGE{pagenum,[1-9][0-9]*}.pdf'
-    shell: 'pdfseparate -f {wildcards.pagenum:q} -l {wildcards.pagenum:q} {input:q} {output:q}'
+    run:
+        # This could be done with a regex constraint on basename,
+        # except that variable width lookbehind isn't supported.
+        # Unfortunately, that makes this a runtime error instead of an
+        # error during DAG construction.
+        if regex.search('-PAGE[0-9]+$', wildcards.basename):
+            raise ValueError("Can't extract page from extracted page PDF.")
+        shell('pdfseparate -f {wildcards.pagenum:q} -l {wildcards.pagenum:q} {input:q} {output:q}')
 
 rule pdf_crop:
     '''Crop away empty margins from a PDF.'''
-    input: pdf = 'graphics/{basename,.*(?!CROP).*}.pdf'
-    output: pdf = 'graphics/{basename}-CROP.pdf'
+    input: pdf = 'graphics/{basename}.pdf'
+    output: pdf = 'graphics/{basename,.*(?<!-CROP)}-CROP.pdf'
     shell: 'pdfcrop --resolution 300 {input:q} {output:q}'
 
 rule pdf_raster:
@@ -227,8 +234,8 @@ rule pdf_raster:
 
 rule png_crop:
     '''Crop away empty margins from a PNG.'''
-    input: pdf = 'graphics/{basename,.*(?!CROP).*}.png'
-    output: pdf = 'graphics/{basename}-CROP.png'
+    input: pdf = 'graphics/{basename}.png'
+    output: pdf = 'graphics/{basename,.*(?<!-CROP)}-CROP.png'
     shell: 'convert {input:q} -trim {output:q}'
 
 rule svg_to_pdf:
@@ -238,6 +245,6 @@ rule svg_to_pdf:
 
 rule R_to_html:
     '''Render an R script as syntax-hilighted HTML.'''
-    input: '{dirname}/{basename,[^/]+}.R'
-    output: '{dirname}/{basename}.R.html'
+    input: '{dirname}/{basename}.R'
+    output: '{dirname}/{basename,[^/]+}.R.html'
     shell: 'pygmentize -f html -O full -l R -o {output:q} {input:q}'
