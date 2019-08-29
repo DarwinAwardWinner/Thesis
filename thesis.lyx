@@ -11537,6 +11537,10 @@ Consider per-chapter future directions.
 
 \end_layout
 
+\begin_layout Section*
+Ch2
+\end_layout
+
 \begin_layout Itemize
 Functional validation of effective promoter radius
 \end_layout
@@ -11564,12 +11568,24 @@ Also look at other types of lymphocytes: CD8 T-cells, B-cells, NK cells
 \end_layout
 
 \end_deeper
+\begin_layout Section*
+Ch3
+\end_layout
+
 \begin_layout Itemize
 Use CV or bootstrap to better evaluate classifiers
 \end_layout
 
 \begin_layout Itemize
 fRMAtools could be adapted to not require equal-sized groups
+\end_layout
+
+\begin_layout Section*
+Ch4
+\end_layout
+
+\begin_layout Itemize
+Look in discussion, I think there's some stuff there already
 \end_layout
 
 \begin_layout Standard
