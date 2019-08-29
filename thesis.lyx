@@ -599,19 +599,25 @@ Methods
 \end_layout
 
 \begin_layout Standard
-A reproducible workflow 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "gh-cd4-csaw"
-literal "false"
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Look up some more details from the papers (e.g.
+ activation method).
+\end_layout
 
 \end_inset
 
- was written to analyze the raw ChIP-seq and RNA-seq data from previous
- studies 
+
+\end_layout
+
+\begin_layout Standard
+A reproducible workflow was written to analyze the raw ChIP-seq and RNA-seq
+ data from previous studies 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "LaMere2016,LaMere2017"
+key "LaMere2016,LaMere2017,gh-cd4-csaw"
 literal "true"
 
 \end_inset
@@ -628,6 +634,23 @@ literal "true"
  H3K27me3.
  The ChIP-seq input was also sequenced for each sample.
  The result was 32 samples for each assay.
+\end_layout
+
+\begin_layout Subsection
+ChIP-seq alignment and peak calling
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+All info from this subsection belongs in other subsections.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -684,7 +707,8 @@ literal "false"
 
 .
  Peaks are also called separately using MACS, but MACS was determined to
- be a poor fit for the data, and these peak calls are not used further 
+ be a poor fit for the data, and these peak calls are not used in any further
+ analyses 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Zhang2008"
@@ -693,39 +717,6 @@ literal "false"
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Itemize
-Re-analyze previously published CD4 ChIP-seq & RNA-seq data 
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-Completely reimplement analysis from scratch as a reproducible workflow
-\end_layout
-
-\begin_layout Itemize
-Use newly published methods & algorithms not available during the original
- analysis: SICER, csaw, MOFA 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Argelaguet2018"
-literal "false"
-
-\end_inset
-
-, ComBat, sva, GREAT, and more
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-SICER, IDR, csaw, & GREAT to call ChIP-seq peaks genome-wide, perform differenti
-al abundance analysis, and relate those peaks to gene expression
-\end_layout
-
-\begin_layout Itemize
-Promoter counts in sliding windows around each gene's highest-expressed
- TSS to investigate coverage distribution within promoters
 \end_layout
 
 \begin_layout Subsection
