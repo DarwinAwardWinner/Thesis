@@ -4312,7 +4312,7 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/CD4-csaw/LaMere2016_fig8.pdf
 	lyxscale 50
-	width 100col%
+	width 60col%
 	groupId colwidth
 
 \end_inset
@@ -4562,11 +4562,8 @@ The choice of pre-processing algorithms used in the analysis of an array
 \end_layout
 
 \begin_layout Subsection
-Normalization for clinical microarray classifiers must be single-channel
-\end_layout
-
-\begin_layout Subsubsection
-Standard normalization methods are unsuitable for clinical application
+Clinical diagnostic applications for microarrays require single-channel
+ normalization
 \end_layout
 
 \begin_layout Standard
@@ -4622,10 +4619,6 @@ single-channel normalization
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Subsubsection
-Several strategies are available to meet clinical normalization requirements
 \end_layout
 
 \begin_layout Standard
@@ -4695,10 +4688,6 @@ literal "false"
 Heteroskedasticity must be accounted for in methylation array data 
 \end_layout
 
-\begin_layout Subsubsection
-Methylation array preprocessing induces heteroskedasticity
-\end_layout
-
 \begin_layout Standard
 DNA methylation arrays are a relatively new kind of assay that uses microarrays
  to measure the degree of methylation on cytosines in specific regions arrayed
@@ -4723,7 +4712,7 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/methylvoom/sigmoid.pdf
 	lyxscale 50
-	width 100col%
+	width 60col%
 	groupId colwidth
 
 \end_inset
@@ -4809,15 +4798,15 @@ However, the steep slope of the sigmoid transformation near 0 and 1 tends
  model for differential methylation, or else the variance will be systematically
  overestimated for probes with moderate M-values and underestimated for
  probes with extreme M-values.
-\end_layout
-
-\begin_layout Subsubsection
-The voom method for RNA-seq data can model M-value heteroskedasticity
+ This is particularly undesirable for methylation data because the intermediate
+ M-values are the ones of most interest, since they are more likely to represent
+ areas of varying methylation, whereas extreme M-values typically represent
+ complete methylation or complete lack of methylation.
 \end_layout
 
 \begin_layout Standard
 RNA-seq read count data are also known to show heteroskedasticity, and the
- voom method was developed for modeling this heteroskedasticity by estimating
+ voom method was introduced for modeling this heteroskedasticity by estimating
  the mean-variance trend in the data and using this trend to assign precision
  weights to each observation 
 \begin_inset CommandInset citation
@@ -4831,8 +4820,8 @@ literal "false"
  While methylation array data are not derived from counts and have a very
  different mean-variance relationship from that of typical RNA-seq data,
  the voom method makes no specific assumptions on the shape of the mean-variance
- relationship - it only assumes that the relationship is smooth enough to
- model using a lowess curve.
+ relationship – it only assumes that the relationship can be modeled as
+ a smooth curve.
  Hence, the method is sufficiently general to model the mean-variance relationsh
 ip in methylation array data.
  However, the standard implementation of voom assumes that the input is
@@ -5388,7 +5377,7 @@ literal "false"
 
 \end_inset
 
-; voom: Use mean-variance trend to assign individual sample weights
+; voom: Use mean-variance trend to assign individual sample weights 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Law2013"
@@ -5538,24 +5527,6 @@ Improve subsection titles in this section
 \end_layout
 
 \begin_layout Subsection
-fRMA eliminates unwanted dependence of classifier training on normalization
- strategy caused by RMA
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Write figure legends
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsubsection
 Separate normalization with RMA introduces unwanted biases in classification
 \end_layout
 
@@ -5563,14 +5534,14 @@ Separate normalization with RMA introduces unwanted biases in classification
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename graphics/PAM/predplot.pdf
 	lyxscale 50
-	width 100col%
+	width 60col%
 	groupId colwidth
 
 \end_inset
@@ -5593,6 +5564,16 @@ name "fig:Classifier-probabilities-RMA"
 Classifier probabilities on validation samples when normalized with RMA
  together vs.
  separately.
+ 
+\series default
+The PAM classifier algorithm was trained on the training set of arrays to
+ distinguish AR from TX and then used to assign class probabilities to the
+ validation set.
+ The process was performed after normalizing all samples together and after
+ normalizing the training and test sets separately, and the class probabilities
+ assigned to each sample in the validation set were plotted against each
+ other (PP(AR), posterior probability of being AR).
+ The color of each point indicates the true classification of that sample.
 \end_layout
 
 \end_inset
@@ -5634,9 +5615,9 @@ noprefix "false"
  
 \end_layout
 
-\begin_layout Subsubsection
-fRMA and SCAN achieve maintain classification performance while eliminating
- dependence on normalization strategy
+\begin_layout Subsection
+fRMA and SCAN maintain classification performance while eliminating dependence
+ on normalization strategy
 \end_layout
 
 \begin_layout Standard
@@ -5651,7 +5632,7 @@ status open
 placement tb
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -5695,7 +5676,7 @@ ROC curves for PAM on internal validation data
 placement tb
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -5745,7 +5726,13 @@ name "fig:ROC-PAM-main"
 
 \end_inset
 
-ROC curves for PAM using different normalization strategies
+ROC curves for PAM using different normalization strategies.
+ 
+\series default
+ROC curves were generated for PAM classification of AR vs TX after 6 different
+ normalization strategies applied to the same data sets.
+ Only fRMA and SCAN are single-channel normalizations.
+ The other normalizations are for comparison.
 \end_layout
 
 \end_inset
@@ -5762,7 +5749,7 @@ ROC curves for PAM using different normalization strategies
 \begin_inset Float table
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -6320,12 +6307,21 @@ name "tab:AUC-PAM"
 
 
 \series bold
-AUC values for internal and external validation with 6 different normalization
- strategies.
+ROC curve AUC values for internal and external validation with 6 different
+ normalization strategies.
 
 \series default
- Only fRMA and SCAN are single-channel normalizations.
- The other 4 normalizations are for comparison.
+ These AUC values correspond to the ROC curves in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ROC-PAM-main"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
 \end_layout
 
 \end_inset
@@ -6408,14 +6404,15 @@ noprefix "false"
 \end_layout
 
 \begin_layout Subsection
-fRMA with custom-generated vectors enables normalization on hthgu133pluspm
+fRMA with custom-generated vectors enables single-channel normalization
+ on hthgu133pluspm platform
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -6789,8 +6786,6 @@ name "fig:ma-bx-rma-frma"
 
 \end_inset
 
-
-\series bold
 RMA vs.
  fRMA for biopsy samples.
 \end_layout
@@ -6835,13 +6830,8 @@ name "fig:ma-bx-frma-frma"
 
 \end_inset
 
-
-\series bold
 fRMA vs fRMA for biopsy samples.
  
-\series default
-Two different fRMA normalizations using vectors from two different batch
- samplings were compared.
 \end_layout
 
 \end_inset
@@ -6884,8 +6874,6 @@ name "fig:MA-PAX-rma-frma"
 
 \end_inset
 
-
-\series bold
 RMA vs.
  fRMA for blood samples.
 \end_layout
@@ -6930,13 +6918,7 @@ name "fig:MA-PAX-frma-frma"
 
 \end_inset
 
-
-\series bold
 fRMA vs fRMA for blood samples.
- 
-\series default
-Two different fRMA normalizations using vectors from two different batch
- samplings were compared.
 \end_layout
 
 \end_inset
@@ -6965,10 +6947,20 @@ Representative MA plots comparing RMA and custom fRMA normalizations.
  
 \series default
 For each plot, 20 samples were normalized using 2 different normalizations,
- and then averages and log ratios were computed between the two different
+ and then averages (A) and log ratios (M) were plotted between the two different
  normalizations for every probe.
- Density of points is represented by darkness of shading, and individual
- outlier points are plotted.
+ For the 
+\begin_inset Quotes eld
+\end_inset
+
+fRMA vs fRMA
+\begin_inset Quotes erd
+\end_inset
+
+ plots (b & d), two different fRMA normalizations using vectors from two
+ independent batch samplings were compared.
+ Density of points is represented by blue shading, and individual outlier
+ points are plotted.
 \end_layout
 
 \end_inset
@@ -7152,8 +7144,6 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:meanvar-basic"
@@ -7197,8 +7187,6 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:meanvar-sva-aw"
@@ -7242,8 +7230,6 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:meanvar-sva-voomaw"
@@ -7272,9 +7258,10 @@ Mean-variance trend after voom modeling in analysis C.
 Mean-variance trend modeling in methylation array data.
  
 \series default
-The log2(standard deviation) for each probe is plotted against the probe's
- average M-value across all samples as a black point, with some transparency
- to make overplotting more visible, since there are about 450,000 points.
+The estimated log2(standard deviation) for each probe is plotted against
+ the probe's average M-value across all samples as a black point, with some
+ transparency to make overplotting more visible, since there are about 450,000
+ points.
  Density of points is also indicated by the dark blue contour lines.
  The prior variance trend estimated by eBayes is shown in light blue, while
  the lowess trend of the points is shown in red.
@@ -7378,7 +7365,20 @@ noprefix "false"
  covariates, and these variations were modeled by the surrogate variables.
  The result is a nearly flat variance trend for the entire intermediate
  M-value range from about -3 to +3.
- In contrast, the excess variance at the extremes was not 
+ Note that this corresponds closely to the range within which the M-value
+ transformation shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Sigmoid-beta-m-mapping"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ is nearly linear.
+ In contrast, the excess variance at the extremes (greater than +3 and less
+ than -3) was not 
 \begin_inset Quotes eld
 \end_inset
 
@@ -7431,7 +7431,7 @@ noprefix "false"
 \begin_inset Float table
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -7513,7 +7513,11 @@ Diabetes Diagnosis
 \begin_inset Text
 
 \begin_layout Plain Layout
-t-test
+
+\emph on
+t
+\emph default
+-test
 \end_layout
 
 \end_inset
@@ -7542,7 +7546,11 @@ Sex
 \begin_inset Text
 
 \begin_layout Plain Layout
-t-test
+
+\emph on
+t
+\emph default
+-test
 \end_layout
 
 \end_inset
@@ -7611,27 +7619,20 @@ Association of sample weights with clinical covariates in methylation array
 \series default
 Computed sample quality log weights were tested for significant association
  with each of the variables in the model (1st column).
- An appropriate test was selected for each variable (2nd column).
- P-values for significant association are shown in the 3rd column.
+ An appropriate test was selected for each variable based on whether the
+ variable had 2 categories (
+\emph on
+t
+\emph default
+-test), had more than 2 categories (F-test), or was numeric (linear regression).
+ The test selected is shown in the 2nd column.
+ P-values for association with the log weights are shown in the 3rd column.
+ No multiple testing adjustment was performed for these p-values.
 \end_layout
 
 \end_inset
 
 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Redo the sample weight boxplot with notches and without fill colors (and
- update the legend)
 \end_layout
 
 \end_inset
@@ -7643,14 +7644,27 @@ Redo the sample weight boxplot with notches and without fill colors (and
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Redo the sample weight boxplot with notches, and remove fill colors
+\end_layout
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename graphics/methylvoom/unadj.dupcor.sva.voomaw/sample-weights-PAGE3-CROP.pdf
 	lyxscale 50
-	width 100col%
+	width 60col%
 	groupId colwidth
 
 \end_inset
@@ -7670,11 +7684,20 @@ name "fig:diabetes-sample-weights"
 
 
 \series bold
-Boxplot of sample quality weights grouped by diabetes diagnosis.
+Box-and-whiskers plot of sample quality weights grouped by diabetes diagnosis.
  
 \series default
-Sample were grouped based on diabetes diagnosis, and the distribution of
- sample quality weights for each diagnosis was plotted.
+Samples were grouped based on diabetes diagnosis, and the distribution of
+ sample quality weights for each diagnosis was plotted as a box-and-whiskers
+ plot 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "McGill1978"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
 \end_inset
@@ -7733,7 +7756,7 @@ noprefix "false"
 \begin_inset Float table
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -7753,7 +7776,7 @@ Consider transposing these tables
 \begin_inset Float table
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -7989,7 +8012,7 @@ Number of probes significant at 10% FDR.
 \begin_inset Float table
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -8207,10 +8230,11 @@ name "tab:methyl-est-nonnull"
 
 \end_inset
 
-Estimated number of non-null tests, using the method of 
+Estimated number of non-null tests, using the method of averaging local
+ FDR values 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Phipson2013"
+key "Phipson2013Thesis"
 literal "false"
 
 \end_inset
@@ -8250,28 +8274,8 @@ noprefix "false"
 
 , these tables show the number of probes called significantly differentially
  methylated at a threshold of 10% FDR for each comparison between TX and
- the other 3 transplant statuses (
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "tab:methyl-num-signif"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-) and the estimated total number of probes that are differentially methylated
- (
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "tab:methyl-est-nonnull"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-).
+ the other 3 transplant statuses (a) and the estimated total number of probes
+ that are differentially methylated (b).
 \end_layout
 
 \end_inset
@@ -8288,7 +8292,7 @@ noprefix "false"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -8673,6 +8677,34 @@ name "fig:meth-p-value-histograms"
 \end_inset
 
 Probe p-value histograms for each contrast in each analysis.
+ 
+\series default
+For each differential methylation test of interest, the distribution of
+ p-values across all probes is plotted as a histogram.
+ The red solid line indicates the density that would be expected under the
+ null hypothesis for all probes (a 
+\begin_inset Formula $\mathrm{Uniform}(0,1)$
+\end_inset
+
+ distribution), while the blue dotted line indicates the fraction of p-values
+ that actually follow the null hypothesis (
+\begin_inset Formula $\hat{\pi}_{0}$
+\end_inset
+
+) estimated using the method of averaging local FDR values 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Phipson2013Thesis"
+literal "false"
+
+\end_inset
+
+.
+ the blue line is only shown in each plot if the estimate of 
+\begin_inset Formula $\hat{\pi}_{0}$
+\end_inset
+
+ for that p-value distribution is different from 1.
 \end_layout
 
 \end_inset
@@ -8717,7 +8749,7 @@ noprefix "false"
  were true using the method of 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Phipson2013"
+key "Phipson2013Thesis"
 literal "false"
 
 \end_inset
@@ -8772,7 +8804,8 @@ noprefix "false"
 status open
 
 \begin_layout Plain Layout
-Maybe include the PCA plots before/after SVA effect subtraction?
+If time allows, maybe generate the PCA plots before/after SVA effect subtraction
+?
 \end_layout
 
 \end_inset
@@ -10378,7 +10411,7 @@ noprefix "false"
 
 \begin_layout Subsection
 Globin blocking lowers the noise floor and allows detection of about 2000
- more genes
+ more low-expression genes
 \end_layout
 
 \begin_layout Standard
@@ -10636,7 +10669,7 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/Globin Paper/figure4 - maplot-colored.pdf
 	lyxscale 50
-	width 100col%
+	width 60col%
 	groupId colwidth
 
 \end_inset
