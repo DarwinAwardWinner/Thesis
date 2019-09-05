@@ -252,6 +252,19 @@ On final pass: Check all figures to make sure they fit on the page with
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Search and replace: naive -> naïve
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Chapter*
 Abstract
 \end_layout
