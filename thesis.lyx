@@ -1078,14 +1078,14 @@ Batch 1 is garbage quality.
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1130,7 +1130,7 @@ Before batch correction
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1863,7 +1863,7 @@ begin{landscape}
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Float figure
@@ -2195,16 +2195,13 @@ Results
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
+\begin_inset Flex TODO Note (inline)
 status open
 
 \begin_layout Plain Layout
 Focus on what hypotheses were tested, then select figures that show how
  those hypotheses were tested, even if the result is a negative.
-\end_layout
-
-\begin_layout Plain Layout
-Not every interesting result needs to be in here.
+ Not every interesting result needs to be in here.
  Chapter should tell a story.
  
 \end_layout
@@ -2226,6 +2223,598 @@ Maybe reorder these sections to do RNA-seq, then ChIP-seq, then combined
 \end_inset
 
 
+\end_layout
+
+\begin_layout Subsection
+Interpretation of RNA-seq analysis is limited by a major confounding factor
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="11" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Test
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Est.
+ non-null
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathrm{FDR}\le10\%$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Naive Day 0 vs Day 1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5992
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1613
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Naive Day 0 vs Day 5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3038
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+32
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Naive Day 0 vs Day 14
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1870
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+190
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Memory Day 0 vs Day 1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3195
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+411
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Memory Day 0 vs Day 5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2688
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+18
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Memory Day 0 vs Day 14
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1911
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+227
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Day 0 Naive vs Memory
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Day 1 Naive vs Memory
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9167
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5532
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Day 5 Naive vs Memory
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Day 14 Naive vs Memory
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6446
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2319
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Estimated-and-detected-rnaseq"
+
+\end_inset
+
+Estimated and detected differentially expressed genes.
+
+\series default
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Test
+\begin_inset Quotes erd
+\end_inset
+
+: Which sample groups were compared; 
+\begin_inset Quotes eld
+\end_inset
+
+Est non-null
+\begin_inset Quotes erd
+\end_inset
+
+: Estimated number of differentially expressed genes, using the method of
+ averaging local FDR values 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Phipson2013Thesis"
+literal "false"
+
+\end_inset
+
+; 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Formula $\mathrm{FDR}\le10\%$
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+: Number of significantly differentially expressed genes at an FDR threshold
+ of 10%.
+ The total number of genes tested was 16707.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/RNA-seq/PCA-final-12-CROP.png
+	lyxscale 25
+	width 100col%
+	groupId colwidth-raster
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:rna-pca-final"
+
+\end_inset
+
+PCoA plot of RNA-seq samples after ComBat batch correction.
+ 
+\series default
+Each point represents an individual sample.
+ Samples with the same combination of cell type and time point are encircled
+ with a shaded region to aid in visual identification of the sample groups.
+ Samples with of same cell type from the same donor are connected by lines
+ to indicate the 
+\begin_inset Quotes eld
+\end_inset
+
+trajectory
+\begin_inset Quotes erd
+\end_inset
+
+ of each donor's cells over time in PCoA space.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Genes called present in the RNA-seq data were tested for differential expression
+ between all time points and cell types.
+ The counts of differentially expressed genes are shown in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Estimated-and-detected-rnaseq"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Notably, all the results for Day 0 and Day 5 have substantially fewer genes
+ called differentially expressed than any of the results for other time
+ points.
+ This is an unfortunate result of the difference in sample quality between
+ the two batches of RNA-seq data.
+ All the samples in Batch 1, which includes all the samples from Days 0
+ and 5, have substantially more variability than the samples in Batch 2,
+ which includes the other time points.
+ This is reflected in the substantially higher weights assigned to Batch
+ 2 (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:RNA-seq-weights-vs-covars"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ The batch effect has both a systematic component and a random noise component.
+ While the systematic component was subtracted out using ComBat (Figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:RNA-PCA"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+), no such correction is possible for the noise component: Batch 1 simply
+ has substantially more random noise in it, which reduces the statistical
+ power for any differential expression tests involving samples in that batch.
+ 
+\end_layout
+
+\begin_layout Standard
+Despite the difficulty in detecting specific differentially expressed genes,
+ there is still evidence that differential expression is present for these
+ time points.
+ In Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:rna-pca-final"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, there is a clear separation between naive and memory samples at Day 0,
+ despite the fact that only 2 genes were significantly differentially expressed
+ for this comparison.
+ Similarly, the small numbers of genes detected for the Day 0 vs Day 5 compariso
+ns do not reflect the large separation between these time points in Figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:rna-pca-final"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ In addition, the MOFA latent factor plots in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:mofa-lf-scatter"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ This suggests that there is indeed a differential expression signal present
+ in the data for these comparisons, but the large variability in the Batch
+ 1 samples obfuscates this signal at the individual gene level.
+ As a result, it is impossible to make any meaningful statements about the
+ 
+\begin_inset Quotes eld
+\end_inset
+
+size
+\begin_inset Quotes erd
+\end_inset
+
+ of the gene signature for any time point, since the number of significant
+ genes as well as the estimated number of differentially expressed genes
+ depends so strongly on the variations in sample quality in addition to
+ the size of the differential expression signal in the data.
+ Gene-set enrichment analyses are similarly impractical for the same reason.
+ However, analyses looking at genome-wide patterns of expression are still
+ practical.
 \end_layout
 
 \begin_layout Subsection
@@ -2808,22 +3397,6 @@ noprefix "false"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Problem: the effective promoter radius concept is an interesting result
- on its own, hence its placement here.
- However, it is also important in the methods section, which comes first.
- What do? Refer forward to this section? Move this section to Methods?
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 All 3 histone marks tend to occur more often near promoter regions, as shown
  in Figure 
 \begin_inset CommandInset ref
@@ -2920,11 +3493,45 @@ H3K4 and H3K27 promoter methylation has broadly the expected correlation
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
+\begin_inset Float figure
+wide false
+sideways false
 status open
 
 \begin_layout Plain Layout
-This section can easily be cut, especially if I can't find those plots.
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/FPKM by Peak Violin Plots-CROP.pdf
+	lyxscale 50
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:fpkm-by-peak"
+
+\end_inset
+
+Expression distributions of genes with and without promoter peaks.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \end_inset
@@ -3811,7 +4418,7 @@ status collapsed
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -4293,44 +4900,6 @@ Convergence
 \end_layout
 
 \begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/LaMere2016_fig8.pdf
-	lyxscale 50
-	width 60col%
-	groupId colwidth
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-LaMere 2016 Figure 8, reproduced with permission.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 \begin_inset Flex TODO Note (inline)
 status open
 
@@ -4370,6 +4939,75 @@ H3K27me3, canonically regarded as a deactivating mark, seems to have a more
 \end_layout
 
 \end_deeper
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+This float should ideally go right after the section header, but doing so
+ crashes LaTeX.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/LaMere2016_fig8.pdf
+	lyxscale 50
+	width 60col%
+	groupId colwidth
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Lamere2016-Fig8"
+
+\end_inset
+
+Lamere 2016 Figure 8 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "LaMere2016"
+literal "false"
+
+\end_inset
+
+.
+ 
+\series default
+Reproduced with permission.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Positional
 \end_layout
@@ -8927,6 +9565,20 @@ literal "false"
 status open
 
 \begin_layout Plain Layout
+Talk about how these vectors can be used for any data from these tissues
+ on this platform even though they were custom made for this data set.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
 How to bring up that these custom vectors were used in another project by
  someone else that was never published?
 \end_layout
@@ -11537,7 +12189,14 @@ Functional validation of effective promoter radius
 \end_layout
 
 \begin_layout Itemize
-N-to-M convergence deserves further stufy of some kind
+Current definition of promoter radius is dependent on peak calling.
+ Would be nice to have a better way of defining promoter radius independent
+ of peak calling.
+ Possibly based on the promoter coverage profiles
+\end_layout
+
+\begin_layout Itemize
+N-to-M convergence deserves further study of some kind
 \end_layout
 
 \begin_layout Itemize
