@@ -221,20 +221,6 @@ LatexCommand tableofcontents
 [List of Abbreviations]
 \end_layout
 
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Look into auto-generated nomenclature list: https://wiki.lyx.org/Tips/Nomenclature.
- Otherwise, do a manual pass for all abbreviations.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout List of TODOs
 
 \end_layout
@@ -244,8 +230,7 @@ Look into auto-generated nomenclature list: https://wiki.lyx.org/Tips/Nomenclatu
 status open
 
 \begin_layout Plain Layout
-On final pass: Check all figures to make sure they fit on the page with
- their legends.
+Check all figures to make sure they fit on the page with their legends.
 \end_layout
 
 \end_inset
@@ -271,8 +256,22 @@ Search and replace: naive -> naïve
 status open
 
 \begin_layout Plain Layout
-Once all 3 content chapters are written, go back over them and make them
- consistent in terms of 
+Look into auto-generated nomenclature list: https://wiki.lyx.org/Tips/Nomenclature.
+ Otherwise, do a manual pass for all abbreviations.
+ Do nomenclature/abbreviations independently for each chapter.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Make all descriptions consistent in terms of 
 \begin_inset Quotes eld
 \end_inset
 
@@ -765,30 +764,6 @@ literal "false"
 
 \begin_layout Subsection
 RNA-seq align+quant method comparison
-\end_layout
-
-\begin_layout Standard
-\align left
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Write a legend for Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:RNA-norm-comp"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
