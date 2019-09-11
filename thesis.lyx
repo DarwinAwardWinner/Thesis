@@ -767,6 +767,10 @@ RNA-seq align+quant method comparison
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 \begin_inset Float figure
 wide false
 sideways false
@@ -1005,6 +1009,11 @@ name "fig:RNA-norm-comp"
 \end_inset
 
 RNA-seq comparisons
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1349,6 +1358,10 @@ ChIP-seq peak calling
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 \begin_inset Float figure
 wide false
 sideways false
@@ -1383,10 +1396,6 @@ Peak ranks from SICER peak caller
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -1460,7 +1469,8 @@ ible discovery rate (IDR), are shaded accordingly.
 
 \end_layout
 
-\begin_layout Plain Layout
+\end_inset
+
 
 \end_layout
 
@@ -1470,20 +1480,8 @@ ible discovery rate (IDR), are shaded accordingly.
 \end_layout
 
 \begin_layout Standard
-Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:IDR-rank-consist"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- shows the IDR rank-consistency plots for peaks called in an arbitrarily-chosen
- pair of donors.
- when the peaks for each donor are ranked according to their scores, SICER
- produces much more reproducible results between donors.
+[IDR] When the peaks for each donor are ranked according to their scores,
+ SICER produces much more reproducible results between donors.
  This is consistent with SICER's stated goal of identifying broad peaks,
  in contrast to MACS, which is designed for identifying sharp peaks.
  Based on this observation, the SICER peak calls were used for all downstream
@@ -1496,6 +1494,10 @@ ChIP-seq normalization
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 \begin_inset Float figure
 wide false
 sideways false
@@ -1527,6 +1529,11 @@ name "fig:MA-plot-bigbins"
 \end_inset
 
 MA plot of H3K4me2 read counts in 10kb bins for two arbitrary samples.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2072,10 +2079,14 @@ LF2 is clearly the RNA-seq batch effect
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -2115,18 +2126,14 @@ Result of RNA-seq batch-correction using MOFA latent factors
 
 \end_layout
 
-\begin_layout Itemize
-Attempting to remove the effect of LF2 (Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:mofa-batchsub"
-plural "false"
-caps "false"
-noprefix "false"
-
 \end_inset
 
-) results in batch correction comparable to ComBat (Figure 
+
+\end_layout
+
+\begin_layout Itemize
+Attempting to remove the effect of LF2 results in batch correction comparable
+ to ComBat (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:RNA-PCA-ComBat-batchsub"
