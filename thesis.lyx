@@ -13517,6 +13517,139 @@ Consider putting each chapter's future directions with that chapter instead
 Ch2
 \end_layout
 
+\begin_layout Subsection*
+Improving on the effective promoter radius
+\end_layout
+
+\begin_layout Standard
+The analysis of RNA-seq and ChIP-seq in CD4 T-cells in Chapter 2 is in many
+ ways a preliminary study that suggests a multitude of new avenues of investigat
+ion.
+ This study introduced the concept of an 
+\begin_inset Quotes eld
+\end_inset
+
+effective promoter radius
+\begin_inset Quotes erd
+\end_inset
+
+ specific to each histone mark based on distince from the TSS within which
+ an excess of peaks was called for that mark.
+ This concept was then used to guide further analyses throughout the study.
+ However, while the effective promoter radius was useful in those analyses,
+ it is both limited in theory and shown in practice to be a possible oversimplif
+ication.
+ First, the effective promoter radii used in this study were chosen based
+ on manual inspection of the TSS-to-peak distance distributions in Figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:near-promoter-peak-enrich"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, selecting round numbers of analyst convenience (Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:effective-promoter-radius"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ It would be better to define an algorithm that selects a more precise radius
+ based on the features of the graph.
+ One possible way to do this would be to randomly rearrange the called peaks
+ throughout the genome many (while preserving the distribution of peak widths)
+ and re-generate the same plot as in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:near-promoter-peak-enrich"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ This would yield a better 
+\begin_inset Quotes eld
+\end_inset
+
+background
+\begin_inset Quotes erd
+\end_inset
+
+ distribution that demonstrates the degree of near-TSS enrichment that would
+ be expected by random chance.
+ The effective promoter radius could be defined as the point where the true
+ distribution diverges from the randomized background distribution.
+ 
+\end_layout
+
+\begin_layout Standard
+Furthermore, the above definition of effective promoter radius has the significa
+nt limitation of being based on the peak calling method.
+ It is thus very sensitive to the choice of peak caller and significance
+ threshold for calling peaks, as well as the degree of saturation in the
+ sequencing.
+ Calling peaks from ChIP-seq samples with insufficient coverage depth, with
+ the wrong peak caller, or with a different significance threshold could
+ give a drastically different number of called peaks, and hence a drastically
+ different distribution of peak-to-TSS distances.
+ To address this, it is desirable to develop a better method of determining
+ the effective promoter radius that relies only on the distribution of read
+ coverage around the TSS, independent of the peak calling.
+ Furthermore, as demonstrated by the upstream-downstream asymmetries observed
+ in Figures 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:H3K4me2-neighborhood"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:H3K4me3-neighborhood"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:H3K27me3-neighborhood"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, this definition should determine a different radius for the upstream and
+ downstream directions.
+ At this point, it may be better to call these values 
+\begin_inset Quotes eld
+\end_inset
+
+effective promoter extents
+\begin_inset Quotes erd
+\end_inset
+
+ rather than radii, since a radius implies a symmetry about the TSS that
+ is not supported by the data.
+\end_layout
+
 \begin_layout Itemize
 Functional validation of effective promoter radius
 \end_layout
@@ -13527,15 +13660,8 @@ Correlation with expression as a function of distance from TSS?
 \end_layout
 
 \end_deeper
-\begin_layout Itemize
-Current definition of promoter radius is dependent on peak calling - requires
- assuming saturation, correct peak caller, etc.
- Too many assumptions.
- Would be nice to have a better way of defining promoter radius independent
- of peak calling.
- Possibly based on the promoter coverage profiles.
- Also symmetric radius may not be appropriate if upstream & downstream effects
- are different.
+\begin_layout Subsection*
+Post-activation convergence of naive & memory cells
 \end_layout
 
 \begin_layout Itemize
