@@ -1872,8 +1872,21 @@ differential modification
 \begin_inset Quotes erd
 \end_inset
 
-.
- The latter is generally preferred.
+ throughout this chapter.
+ The latter is usually preferred.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Forgot to mention effective promoter radius determination.
 \end_layout
 
 \end_inset
@@ -1998,6 +2011,23 @@ noprefix "false"
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Subsection
+Promoter neighborhood analysis
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Forgot I need to document the methods for this as well.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -13517,15 +13547,19 @@ Consider putting each chapter's future directions with that chapter instead
 Ch2
 \end_layout
 
+\begin_layout Standard
+The analysis of RNA-seq and ChIP-seq in CD4 T-cells in Chapter 2 is in many
+ ways a preliminary study that suggests a multitude of new avenues of investigat
+ion.
+ Here we consider a selection of such avenues.
+\end_layout
+
 \begin_layout Subsection*
 Improving on the effective promoter radius
 \end_layout
 
 \begin_layout Standard
-The analysis of RNA-seq and ChIP-seq in CD4 T-cells in Chapter 2 is in many
- ways a preliminary study that suggests a multitude of new avenues of investigat
-ion.
- This study introduced the concept of an 
+This study introduced the concept of an 
 \begin_inset Quotes eld
 \end_inset
 
@@ -13638,30 +13672,82 @@ noprefix "false"
 
 , this definition should determine a different radius for the upstream and
  downstream directions.
- At this point, it may be better to call these values 
+ At this point, it may be better to rename this concept 
 \begin_inset Quotes eld
 \end_inset
 
-effective promoter extents
+effective promoter extent
 \begin_inset Quotes erd
 \end_inset
 
- rather than radii, since a radius implies a symmetry about the TSS that
- is not supported by the data.
+ and avoid the word 
+\begin_inset Quotes eld
+\end_inset
+
+radius
+\begin_inset Quotes erd
+\end_inset
+
+, since a radius implies a symmetry about the TSS that is not supported
+ by the data.
 \end_layout
 
-\begin_layout Itemize
-Functional validation of effective promoter radius
+\begin_layout Standard
+Beyond improving the definition of effective promoter extent, functional
+ validation is necessary to show that this measure of near-TSS enrichment
+ has biological meaning.
+ Figures 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:H3K4me2-neighborhood"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:H3K4me3-neighborhood"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ already provide a very limited functional validation of the chosen promoter
+ extents for H3K4me2 and H3K4me3 by showing that spikes in coverage within
+ this region are most strongly correlated with elevated gene expression.
+ However, there are other ways to show functional relevance of the promoter
+ extent.
+ For example, correlations could be computed between read counts in peaks
+ nearby gene promoters and the expression level of those genes, and these
+ correlations could be plotted against the distance of the peak upstream
+ or downstream of the gene's TSS.
+ If the promoter extent truly defines a 
+\begin_inset Quotes eld
+\end_inset
+
+sphere of influence
+\begin_inset Quotes erd
+\end_inset
+
+ within which a histone mark is involved with the regulation of a gene,
+ then the correlations for peaks within this extent should be significantly
+ higher than those further upstream or downstream.
+ Peaks within these extents may also be more likely to show differential
+ modification than those outside genic regions of the genome.
 \end_layout
 
-\begin_deeper
-\begin_layout Itemize
-Correlation with expression as a function of distance from TSS?
-\end_layout
-
-\end_deeper
 \begin_layout Subsection*
 Post-activation convergence of naive & memory cells
+\end_layout
+
+\begin_layout Standard
+In this study, a convergence between naive and memory cells was observed
+ in both the pattern of gene expression and in epigenetic state of the 3
+ histone marks studied.
 \end_layout
 
 \begin_layout Itemize
@@ -13672,28 +13758,6 @@ N-to-M convergence deserves further study of some kind
 \begin_layout Itemize
 maybe serial activation & rest cycles for naive and memory, showing a cyclical
  pattern returning to the same state again and again after the first activation
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-Promoter positional coverage: follow up on hints of interesting patterns
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-Also find better normalizations: maybe borrow from MACS/SICER background
- correction methods?
-\end_layout
-
-\begin_layout Itemize
-For H3K4, define polar coordinates based on PC1 & 2: R = peak size, Theta
- = peak position.
- Then correlate with expression.
-\end_layout
-
-\begin_layout Itemize
-Current analysis only at Day 0.
- Need to study across time points.
 \end_layout
 
 \end_deeper
@@ -13714,12 +13778,94 @@ Also look at other types of lymphocytes: CD8 T-cells, B-cells, NK cells
 \end_layout
 
 \end_deeper
+\begin_layout Subsection*
+Promoter positional coverage: follow up on hints of interesting patterns
+\end_layout
+
 \begin_layout Itemize
-High correlation between H3K4me2 and H3K4me3 is interesting because they
- are mutually exclusive marks on any given H3 subunit.
- Investigate causes: do the same histones have one of each, or do different
- alleles/cells have all of one or the other? Or something else? Would need
- to do something like allele-specific single-cell ChIP-seq.
+Also find better normalizations: maybe borrow from MACS/SICER background
+ correction methods?
+\end_layout
+
+\begin_layout Itemize
+For H3K4, define polar coordinates based on PC1 & 2: R = peak size, Theta
+ = peak position.
+ Then correlate with expression.
+\end_layout
+
+\begin_layout Itemize
+Current analysis only at Day 0.
+ Need to study across time points.
+\end_layout
+
+\begin_layout Subsection*
+H3K4me correlation
+\end_layout
+
+\begin_layout Standard
+The high correlation between coverage depth observed between H3K4me2 and
+ H3K4me3 is both expected and unexpected.
+ Since both marks are associated with elevated gene transcription, a positive
+ correlation between them is not surprising.
+ However, these two marks represent different post-translational modifications
+ of the 
+\emph on
+same
+\emph default
+ lysine residue on the histone H3 polypeptide, which makes them mutually
+ exclusive with each other on a given H3 subunit.
+ Thus, the high correlation between them has several potential explanations.
+ One possible reason is cell population heterogeneity: perhaps some genomic
+ loci are frequently marked with H3K4me2 in some cells, while in other cells
+ the same loci are marked with H3K4me3.
+ Another possibility is allele-specific modifications: the loci are marked
+ in each diploid cell with H3K4me2 on one allele and H3K4me3 on the other
+ allele.
+ Lastly, since each histone consists of 2 of each subunit, it is possible
+ that having one H3K4me2 mark and one H3K4me3 mark on a given histone represents
+ a distinct epigenetic state with a different function than either double
+ H3K4me2 or double H3K4me3.
+ 
+\end_layout
+
+\begin_layout Standard
+These three hypotheses could be disentangled by single-cell ChIP-seq.
+ If the correlation between these two histone marks persists even within
+ the reads for each individual cell, then population heterogeneity cannot
+ explain the correlation.
+ Allele-specific modification can be tested for by looking at the correlation
+ between read coverage of the two histone marks at heterozygous loci.
+ If the correlation between loci is low, then this is consistent with allele-spe
+cific modification.
+ Finally if the modifications do not separate by either cell or allele,
+ the colocation of these two marks is most likely occurring at the level
+ of individual histones, with the heterogenously modified histone representing
+ a distinct state.
+ 
+\end_layout
+
+\begin_layout Standard
+However, another experiment would be required to show direct evidence of
+ such a heterogeneously modified state.
+ Specifically a 
+\begin_inset Quotes eld
+\end_inset
+
+double ChIP
+\begin_inset Quotes erd
+\end_inset
+
+ experiment would need to be performed, where the input DNA is first subjected
+ to an immunoprecipitation pulldown from the anti-H3K4me2 antibody, and
+ then the enriched material is collected, with proteins still bound, and
+ immunoprecipitated 
+\emph on
+again
+\emph default
+ using the anti-H3K4me3 antibody.
+ If this yields significant numbers of non-artifactual reads in the same
+ regions as the individual pulldowns of the two marks, this is strong evidence
+ that the two marks are occurring on opposite H3 subunits of the same histones.
 \end_layout
 
 \begin_layout Section*
