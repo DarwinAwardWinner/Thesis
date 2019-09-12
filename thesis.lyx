@@ -3157,7 +3157,7 @@ noprefix "false"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Flex TODO Note (inline)
@@ -3509,7 +3509,7 @@ H3K4 and H3K27 promoter methylation has broadly the expected correlation
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Flex TODO Note (inline)
@@ -3664,7 +3664,7 @@ begin{landscape}
 \begin_inset Float table
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -4148,7 +4148,7 @@ status open
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -4193,7 +4193,7 @@ PCoA plot of H3K4me2 promoters, after subtracting surrogate variables
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -4283,7 +4283,7 @@ PCoA plot of H3K27me3 promoters, after subtracting surrogate variables
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -4504,7 +4504,7 @@ begin{landscape}
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -4961,7 +4961,7 @@ begin{landscape}
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -5252,7 +5252,7 @@ begin{landscape}
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -5615,7 +5615,7 @@ noprefix "false"
  However, Cluster 1, the cluster with the most elevated gene expression,
  represents genes with elevated coverage upstream of the TSS, or equivalently,
  decreased coverage downstream, inside the gene body.
- The opposite pattern, in which H3K27me3 is more abundant withing the gene
+ The opposite pattern, in which H3K27me3 is more abundant within the gene
  body and less abundance in the upstream promoter region, does not show
  any elevation in gene expression.
  As with H3K4me2, this shows that the location of H3K27 trimethylation relative
@@ -5636,24 +5636,218 @@ Show the figures where the negative result ended this line of inquiry.
 
 \end_layout
 
+\begin_layout Subsection
+Defined pattern analysis
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+This was where I defined interesting expression patterns and then looked
+ at initial relative promoter coverage for each expression pattern.
+ Negative result.
+ I forgot about this until recently.
+ Worth including?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Promoter CpG islands?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+I forgot until recently about the work I did on this.
+ Worth including?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Discussion
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Write better section headers
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
 Effective promoter radius
 \end_layout
 
-\begin_layout Itemize
-"Promoter radius" is not constant and must be defined empirically for a
- given data set.
- Coverage within promoter radius has an expression correlation as well
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:near-promoter-peak-enrich"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows that H3K4me2, H3K4me3, and H3K27me3 are all enriched near promoters,
+ relative to the rest of the genome, consistent with their conventionally
+ understood role in regulating gene transcription.
+ Interestingly, the radius within this enrichment occurs is not the same
+ for each histone mark.
+ H3K4me2 and H3K4me3 are enriched within a 1
+\begin_inset space \thinspace{}
+\end_inset
+
+kb radius, while H3K27me3 is enriched within 2.5
+\begin_inset space \thinspace{}
+\end_inset
+
+kb.
+ Notably, the determined promoter radius was consistent across all experimental
+ conditions, varying only between different histone marks.
+ This suggests that the conventional 
+\begin_inset Quotes eld
+\end_inset
+
+one size fits all
+\begin_inset Quotes erd
+\end_inset
+
+ approach of defining a single promoter region for each gene (or each TSS)
+ and using that same promoter region for analyzing all types of genomic
+ data within an experiment may not be appropriate, and a better approach
+ may be to use a separate promoter radius for each kind of data, with each
+ radius being derived from the data itself.
+ Furthermore, the apparent assymetry of upstream and downstream promoter
+ histone modification with respect to gene expression, seen in Figures 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:H3K4me2-neighborhood"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:H3K4me3-neighborhood"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:H3K27me3-neighborhood"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, shows that even the concept of a promoter 
+\begin_inset Quotes eld
+\end_inset
+
+radius
+\begin_inset Quotes erd
+\end_inset
+
+ is likely an oversimplification.
+ At a minimum, nearby enrichment of peaks should be evaluated separately
+ for both upstream and downstream peaks, and an appropriate 
+\begin_inset Quotes eld
+\end_inset
+
+radius
+\begin_inset Quotes erd
+\end_inset
+
+ should be selected for each direction.
 \end_layout
 
-\begin_layout Itemize
-Further study required to demonstarte functional consequences of effective
- promoter radius (e.g.
- show diminished association with gene expression outside radius)
+\begin_layout Standard
+Figures 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:H3K4me2-neighborhood"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:H3K4me3-neighborhood"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ show that the determined promoter radius of 1
+\begin_inset space ~
+\end_inset
+
+kb is approximately consistent with the distance from the TSS at which enrichmen
+t of H3K4 methylationis correlates with increased expression, showing that
+ this radius, which was determined by a simple analysis of measuring the
+ distance from each TSS to the nearest peak, also has functional significance.
+ For H3K27me3, the correlation between histone modification near the promoter
+ and gene expression is more complex, involving non-peak variations such
+ as troughs in coverage at the TSS and asymmetric coverage upstream and
+ downstream, so it is difficult in this case to evaluate whether the 2.5
+\begin_inset space ~
+\end_inset
+
+kb radius determined from TSS-to-peak distances is functionally significant.
+ However, the two patterns of coverage associated with elevated expression
+ levels both have interesting features within this radius.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+My instinct is to say 
+\begin_inset Quotes eld
+\end_inset
+
+further study is needed
+\begin_inset Quotes erd
+\end_inset
+
+ here, but that goes in Chapter 5, right?
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -5675,50 +5869,59 @@ Look up some more references for these histone marks being involved in memory
 
 \end_layout
 
-\begin_layout Itemize
-Naive-to-memory convergence implies that naive cells are differentiating
- into memory cells, and that gene expression and H3K4/K27 methylation are
- involved in this differentiation
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-Convergence is consistent with Lamere2016 fig 8 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "LaMere2016"
-literal "false"
+\begin_layout Standard
+We have observed that all 3 histone marks and the gene expression data all
+ exhibit evidence of convergence in abundance between naive and memory cells
+ by day 14 after activation (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PCoA-promoters"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
- (which was created without the benefit of SVA)
+, Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Number-signif-promoters"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ The MOFA latent factor scatter plots (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:mofa-lf-scatter"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+) show that this pattern of convergence is captured in latent factor 5.
+ Like all the latent factors in this plot, this factor explains a substantial
+ portion of the variance in all 4 data sets, indicating a coordinated pattern
+ of variation shared across all histone marks and gene expression.
+ This, of course, is consistent with the expectation that any naive CD4
+ T-cells remaining at day 14 should have differentiated into memory cells
+ by that time, and should therefore have a genomic state similar to memory
+ cells.
+ This convergence is evidence that these histone marks all play an important
+ role in the naive-to-memory differentiation process.
+ A histone mark that was not involved in naive-to-memory differentiation
+ would not be expected to converge in this way after activation.
 \end_layout
 
-\begin_layout Itemize
-H3K27me3, canonically regarded as a deactivating mark, seems to have a more
- complex effect
-\end_layout
-
-\end_deeper
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-This float should ideally go right after the section header, but doing so
- crashes LaTeX.
-\end_layout
-
-\end_inset
-
-
-\end_layout
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -5753,7 +5956,14 @@ literal "false"
 
 \end_inset
 
-.
+, 
+\begin_inset Quotes eld
+\end_inset
+
+Model for the role of H3K4 methylation during CD4 T-cell activation.
+\begin_inset Quotes erd
+\end_inset
+
  
 \series default
 Reproduced with permission.
@@ -5769,18 +5979,169 @@ Reproduced with permission.
 
 \end_layout
 
+\begin_layout Standard
+In H3K4me2, H3K4me3, and RNA-seq, this convergence appears to be in progress
+ already by Day 5, shown by the smaller distance between naive and memory
+ cells at day 5 along the 
+\begin_inset Formula $y$
+\end_inset
+
+-axes in Figures 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PCoA-H3K4me2-prom"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PCoA-H3K4me3-prom"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:RNA-PCA-group"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ This agrees with the model proposed by Sarah Lamere based on an prior analysis
+ of the same data, shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Lamere2016-Fig8"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, which shows the pattern of H3K4 methylation and expression for naive cells
+ and memory cells converging at day 5.
+ This model was developed without the benefit of the PCoA plots in Figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PCoA-promoters"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, which have been corrected for confounding factors by ComBat and SVA.
+ This shows that proper batch correction assists in extracting meaningful
+ patterns in the data while eliminating systematic sources of irrelevant
+ variation in the data, allowing simple automated procedures like PCoA to
+ reveal interesting behaviors in the data that were previously only detectable
+ by a detailed manual analysis.
+\end_layout
+
+\begin_layout Standard
+While the ideal comparison to demonstrate this convergence would be naive
+ cells at day 14 to memory cells at day 0, this is not feasible in this
+ experimental system, since neither naive nor memory cells are able to fully
+ return to their pre-activation state, as shown by the lack of overlap between
+ days 0 and 14 for either naive or memory cells in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PCoA-promoters"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
 \begin_layout Subsection
 Positional
 \end_layout
 
-\begin_layout Itemize
-TSS positional coverage, hints of something interesting but no clear conclusions
+\begin_layout Standard
+When looking at patterns in the relative coverage of each histone mark near
+ the TSS of each gene, several interesting patterns were apparent.
+ For H3K4me2 and H3K4me3, the pattern was straightforward: the consistent
+ pattern across all promoters was a single peak a few kb wide, with the
+ main axis of variation being the position of this peak relative to the
+ TSS (Figures 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:H3K4me2-neighborhood"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ & 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:H3K4me3-neighborhood"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ There were no obvious 
+\begin_inset Quotes eld
+\end_inset
+
+preferred
+\begin_inset Quotes erd
+\end_inset
+
+ positions, but rather a continuous distribution of relative positions ranging
+ all across the promoter region.
+ The association with gene expression was also straightforward: peaks closer
+ to the TSS were more strongly associated with elevated gene expression.
+ Coverage downstream of the TSS appears to be more strongly associated with
+ elevated expression than coverage the same distance upstream, indicating
+ that the 
+\begin_inset Quotes eld
+\end_inset
+
+effective promoter region
+\begin_inset Quotes erd
+\end_inset
+
+ for H3K4me2 and H3K4me3 may be centered downstream of the TSS.
 \end_layout
 
 \begin_layout Standard
-A previous study has also found that H3K27me3 depletion within the gene
- body was associated with elevated gene expression in 4 different cell types
- in mice 
+The relative promoter coverage for H3K27me3 had a more complex pattern,
+ with two specific patterns of promoter coverage associated with elevated
+ expression: a sharp depletion of H3K27me3 around the TSS relative to the
+ surrounding area, and a depletion of H3K27me3 downstream of the TSS relative
+ to upstream (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:H3K27me3-neighborhood"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ A previous study found that H3K27me3 depletion within the gene body was
+ associated with elevated gene expression in 4 different cell types in mice
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Young2011"
@@ -5789,6 +6150,15 @@ literal "false"
 \end_inset
 
 .
+ This is consistent with the second pattern described here.
+ This study also reported that a spike in coverage at the TSS was associated
+ with 
+\emph on
+lower
+\emph default
+ expression, which is indirectly consistent with the first pattern described
+ here, in the sense that it associates lower H3K27me3 levels near the TSS
+ with higher expression.
 \end_layout
 
 \begin_layout Subsection
@@ -12985,6 +13355,13 @@ Current definition of promoter radius is dependent on peak calling - requires
 N-to-M convergence deserves further study of some kind
 \end_layout
 
+\begin_deeper
+\begin_layout Itemize
+maybe serial activation & rest cycles for naive and memory, showing a cyclical
+ pattern returning to the same state again and again after the first activation
+\end_layout
+
+\end_deeper
 \begin_layout Itemize
 Promoter positional coverage: follow up on hints of interesting patterns
 \end_layout
