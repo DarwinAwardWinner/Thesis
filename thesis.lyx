@@ -755,7 +755,7 @@ A reproducible workflow was written to analyze the raw ChIP-seq and RNA-seq
  data from previous studies 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "LaMere2016,LaMere2017,gh-cd4-csaw"
+key "gh-cd4-csaw,LaMere2016,LaMere2017"
 literal "true"
 
 \end_inset
@@ -1039,18 +1039,27 @@ RNA-seq comparisons
 \end_layout
 
 \begin_layout Standard
-Five different alignment and quantification methods were tested for the
- RNA-seq data
+Sequence reads were retrieved from the Sequence Read Archive (SRA) 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Kim2019,gh-shoal,Dobin2012,Pimentel2016,Patro2017"
+key "Leinonen2011"
+literal "false"
+
+\end_inset
+
+.
+ Five different alignment and quantification methods were tested for the
+ RNA-seq data 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Dobin2012,Kim2019,Liao2014,Pimentel2016,Patro2017,gh-shoal,gh-hg38-ref"
 literal "false"
 
 \end_inset
 
 .
  Each quantification was tested with both Ensembl transcripts and UCSC known
- gene annotations [CITE? Also which version?].
+ gene annotations [CITE? Also which versions of each?].
  Comparisons of downstream results from each combination of quantification
  method and reference revealed that all quantifications gave broadly similar
  results for most genes, so shoal with the Ensembl annotation was chosen
@@ -1058,15 +1067,11 @@ literal "false"
  batch effect in the data.
 \end_layout
 
-\begin_layout Subsection
-RNA-seq has a large confounding batch effect
-\end_layout
-
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1183,16 +1188,57 @@ PCoA plots of RNA-seq data showing effect of batch correction.
 
 \end_layout
 
-\begin_layout Itemize
-RNA-seq batch effect can be partially corrected, but still induces uncorrectable
- biases in downstream analysis
+\begin_layout Standard
+Due to an error in sample preparation, the RNA from the samples for days
+ 0 and 5 were sequenced using a different kit than those for days 1 and
+ 14.
+ This induced a substantial batch effect in the data due to differences
+ in sequencing biases between the two kits, and this batch effect is unfortunate
+ly confounded with the time point variable (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:RNA-PCA-no-batchsub"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ To do the best possible analysis with this data, this batch effect was
+ subtracted out from the data using ComBat 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Johnson2007"
+literal "false"
+
+\end_inset
+
+, ignoring the time point variable due to the confounding with the batch
+ variable.
+ The result is a marked improvement, but the unavoidable counfounding with
+ time point means that certain real patterns of gene expression will be
+ indistinguishable from the batch effect and subtracted out as a result.
+ Specifically, any 
+\begin_inset Quotes eld
+\end_inset
+
+zig-zag
+\begin_inset Quotes erd
+\end_inset
+
+ pattern, such as a gene whose expression goes up on day 1, down on day
+ 5, and back up again on day 14, will be attenuated or eliminated entirely.
+ In the context of a T-cell activation time course, it is unlikely that
+ many genes of interest will follow such an expression patter, so this loss
+ was deemed an acceptable cost for correcting the batch effect.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Flex TODO Note (inline)
@@ -1245,88 +1291,56 @@ RNA-seq sample weights, grouped by experimental and technical covariates.
 
 \end_layout
 
-\begin_layout Itemize
-Batch 1 is garbage quality.
- Analyses involving batch 1 samples are expected to yield poor statistical
- power.
-\end_layout
+\begin_layout Standard
+However, removing the systematic component of the batch effect still leaves
+ the noise component.
+ The gene quantifications from the first batch are substantially noisier
+ than those in the second batch.
+ This analysis corrected for this by using limma's sample weighting method
+ to assign lower weights to the noisy samples of batch 1 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Ritchie2006,Liu2015"
+literal "false"
 
-\begin_layout Subsection
-ChIP-seq alignment and peak calling
+\end_inset
+
+.
+ The resulting analysis gives an accurate assessment of statistical significance
+ for all comparisons, which unfortuantely means a loss of statistical power
+ for comparisons involving samples in batch 1.
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-All info from this subsection belongs in other subsections.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Sequence reads were retrieved from the Sequence Read Archive (SRA) 
+In any case, the RNA-seq counts were first normalized using trimmed mean
+ of M-values 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Leinonen2011"
+key "Robinson2010"
 literal "false"
 
 \end_inset
 
-.
- ChIP-seq (and input) reads were aligned to CRCh38 genome assembly using
- Bowtie 2 
+, converted to normalized logCPM with quality weights using voomWithQualityWeigh
+ts 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Langmead2012,Schneider2017,gh-hg38-ref"
+key "Law2013,Liu2015"
 literal "false"
 
 \end_inset
 
-.
- Artifact regions were annotated using a custom implementation of the GreyListCh
-IP algorithm, and these 
-\begin_inset Quotes eld
+, and batch-corrected at this point using ComBat.
+ A linear model was fit to the batch-corrected, quality-weighted data for
+ each gene using limma, and each gene was tested for differential expression
+ using limma's empirical Bayes moderated 
+\begin_inset Formula $t$
 \end_inset
 
-greylists
-\begin_inset Quotes erd
-\end_inset
-
- were merged with the ENCODE blacklist 
+-test 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "greylistchip,Amemiya2019,Dunham2012"
-literal "false"
-
-\end_inset
-
-.
- Any read or called peak overlapping one of these regions was regarded as
- artifactual and excluded from downstream analyses.
- 
-\end_layout
-
-\begin_layout Standard
-Peaks were called using epic, an implementation of the SICER algorithm 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Zang2009,gh-epic"
-literal "false"
-
-\end_inset
-
-.
- Peaks were also called separately using MACS, but MACS was determined to
- be a poor fit for the data, and these peak calls are not used in any further
- analyses 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Zhang2008"
+key "Smyth2005,Law2013,Phipson2013"
 literal "false"
 
 \end_inset
@@ -1335,59 +1349,14 @@ literal "false"
 \end_layout
 
 \begin_layout Subsection
-ChIP-seq blacklisting is important
+ChIP-seq analysis
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/csaw/CCF-plots-PAGE2-CROP.pdf
-	lyxscale 50
-	height 40theight%
-	groupId ccf-subfig
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:CCF-with-blacklist"
-
-\end_inset
-
-Cross-correlation plots with blacklisted reads removed
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1421,7 +1390,78 @@ name "fig:CCF-without-blacklist"
 
 \end_inset
 
-Cross-correlation plots without removing blacklisted reads
+Cross-correlation plots without removing blacklisted reads.
+ 
+\series default
+Without blacklisting, many artifactual peaks are visible in the cross-correlatio
+ns of the ChIP-seq samples, and the peak at the true fragment size (147
+\begin_inset space ~
+\end_inset
+
+bp) is frequently overshadowed by the artifactual peak at the read length
+ (100
+\begin_inset space ~
+\end_inset
+
+bp).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/csaw/CCF-plots-PAGE2-CROP.pdf
+	lyxscale 50
+	height 40theight%
+	groupId ccf-subfig
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:CCF-with-blacklist"
+
+\end_inset
+
+Cross-correlation plots with blacklisted reads removed.
+
+\series default
+ After blacklisting, most ChIP-seq samples have clean-looking periodic cross-cor
+relation plots, with the largest peak around 147
+\begin_inset space ~
+\end_inset
+
+bp, the expected size for a fragment of DNA from a single nucleosome, and
+ little to no peak at the read length, 100
+\begin_inset space ~
+\end_inset
+
+bp.
 \end_layout
 
 \end_inset
@@ -1446,7 +1486,7 @@ name "fig:CCF-master"
 
 \end_inset
 
-Strand cross-correlation plots for ChIP-seq data.
+Strand cross-correlation plots for ChIP-seq data, before and after blacklisting.
 \end_layout
 
 \end_inset
@@ -1457,151 +1497,11 @@ Strand cross-correlation plots for ChIP-seq data.
 \end_inset
 
 
-\end_layout
-
-\begin_layout Subsection
-ChIP-seq peak calling
 \end_layout
 
 \begin_layout Standard
 \begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset Float figure
-wide false
-sideways false
 status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/IDR/D4659vsD5053_epic-PAGE1-CROP.pdf
-	lyxscale 50
-	width 45col%
-	groupId idr-rc-subfig
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Peak ranks from SICER peak caller
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset space \hfill{}
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/IDR/D4659vsD5053_macs-PAGE1-CROP.pdf
-	lyxscale 50
-	width 45col%
-	groupId idr-rc-subfig
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Peak ranks from MACS peak caller
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:IDR-rank-consist"
-
-\end_inset
-
-Irreproducible Discovery Rate rank consistency plots for H3K27me3.
-
-\series default
- Peaks are ranked by the scores assigned by the peak caller in each donor,
- and then the ranks for two donors are plotted against each other.
- Higher ranks are more significant (top right).
- Peaks meeting various thresholds of reproducibility, measured by the irreproduc
-ible discovery rate (IDR), are shaded accordingly.
- [This could be explained better, or refer to the text.]
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-[IDR] When the peaks for each donor are ranked according to their scores,
- SICER produces much more reproducible results between donors.
- This is consistent with SICER's stated goal of identifying broad peaks,
- in contrast to MACS, which is designed for identifying sharp peaks.
- Based on this observation, the SICER peak calls were used for all downstream
- analyses that involved ChIP-seq peaks.
- 
-\end_layout
-
-\begin_layout Subsection
-ChIP-seq normalization
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Float figure
@@ -1650,10 +1550,6 @@ MA plot of H3K4me2 read counts in 10kb bins for two arbitrary samples.
 \end_inset
 
 
-\end_layout
-
-\begin_layout Subsection
-ChIP-seq must be corrected for hidden confounding factors
 \end_layout
 
 \begin_layout Standard
@@ -1950,8 +1846,34 @@ PCoA plots of ChIP-seq sliding window data, before and after subtracting
 
 \end_layout
 
-\begin_layout Plain Layout
+\end_inset
 
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Be consistent about use of 
+\begin_inset Quotes eld
+\end_inset
+
+differential binding
+\begin_inset Quotes erd
+\end_inset
+
+ vs 
+\begin_inset Quotes eld
+\end_inset
+
+differential modification
+\begin_inset Quotes erd
+\end_inset
+
+.
+ The latter is generally preferred.
 \end_layout
 
 \end_inset
@@ -1959,8 +1881,123 @@ PCoA plots of ChIP-seq sliding window data, before and after subtracting
 
 \end_layout
 
-\begin_layout Itemize
-Figures showing BCV plots with and without SVA for each histone mark?
+\begin_layout Standard
+Sequence reads were retrieved from SRA 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Leinonen2011"
+literal "false"
+
+\end_inset
+
+.
+ ChIP-seq (and input) reads were aligned to GRCh38 genome assembly using
+ Bowtie 2 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Langmead2012,Schneider2017,gh-hg38-ref"
+literal "false"
+
+\end_inset
+
+.
+ Artifact regions were annotated using a custom implementation of the GreyListCh
+IP algorithm, and these 
+\begin_inset Quotes eld
+\end_inset
+
+greylists
+\begin_inset Quotes erd
+\end_inset
+
+ were merged with the published ENCODE blacklists 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "greylistchip,Amemiya2019,Dunham2012,gh-cd4-csaw"
+literal "false"
+
+\end_inset
+
+.
+ Any read or called peak overlapping one of these regions was regarded as
+ artifactual and excluded from downstream analyses.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:CCF-master"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows the improvement after blacklisting in the strand cross-correlation
+ plots, a common quality control plot for ChIP-seq data.
+ Peaks were called using epic, an implementation of the SICER algorithm
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Zang2009,gh-epic"
+literal "false"
+
+\end_inset
+
+.
+ Peaks were also called separately using MACS, but MACS was determined to
+ be a poor fit for the data, and these peak calls are not used in any further
+ analyses 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Zhang2008"
+literal "false"
+
+\end_inset
+
+.
+ Consensus peaks were determined by applying the irreproducible discovery
+ rate (IDR) framework 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Li2006,gh-idr"
+literal "false"
+
+\end_inset
+
+ to find peaks consistently called in the same locations across all 4 donors.
+ Reads in promoters, peaks, and sliding windows across the genome were counted
+ and normalized using csaw and analyzed for differential modification using
+ edgeR 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Lun2014,Lun2015a,Lund2012,Phipson2016"
+literal "false"
+
+\end_inset
+
+.
+ Unobserved confounding factors in the ChIP-seq data were corrected using
+ SVA 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Leek2007,Leek2014"
+literal "false"
+
+\end_inset
+
+.
+ Principal coordinate plots of the promoter count data for each histone
+ mark before and after subtracting surrogate variable effects are shown
+ in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PCoA-ChIP"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsection
@@ -2151,8 +2188,31 @@ end{landscape}
 
 \end_layout
 
-\begin_layout Itemize
-Figure 
+\begin_layout Standard
+MOFA was run on all the ChIP-seq windows overlapping consensus peaks for
+ each histone mark, as well as the RNA-seq data, in order to identify patterns
+ of coordinated variation across all data sets 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Argelaguet2018"
+literal "false"
+
+\end_inset
+
+.
+ The results are summarized in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:MOFA-master"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Latent factors 1, 4, and 5 were determined to explain the most variation
+ consistently across all data sets (Fgure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:mofa-varexplained"
@@ -2162,11 +2222,8 @@ noprefix "false"
 
 \end_inset
 
- shows that LF1, 4, and 5 explain substantial var in all data sets
-\end_layout
-
-\begin_layout Itemize
-Figure 
+), and scatter plots of these factors show that they also correlate best
+ with the experimental factors (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:mofa-lf-scatter"
@@ -2176,12 +2233,23 @@ noprefix "false"
 
 \end_inset
 
- shows that those same 3 LFs, (1, 4, & 5) also correlate best with the experimen
-tal factors (cell type & time point)
-\end_layout
+).
+ Latent factor 2 captures the batch effect in the RNA-seq data.
+ Removing the effect of LF2 using MOFA theoretically yields a batch correction
+ that does not depend on knowing the experimental factors.
+ When this was attempted, the resulting batch correction was comparable
+ to ComBat (see Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:RNA-PCA-ComBat-batchsub"
+plural "false"
+caps "false"
+noprefix "false"
 
-\begin_layout Itemize
-LF2 is clearly the RNA-seq batch effect
+\end_inset
+
+), indicating that the ComBat-based batch correction has little room for
+ improvement given the problems with the data set.
 \end_layout
 
 \begin_layout Standard
@@ -2237,91 +2305,6 @@ Result of RNA-seq batch-correction using MOFA latent factors
 
 \end_layout
 
-\begin_layout Itemize
-Attempting to remove the effect of LF2 results in batch correction comparable
- to ComBat (Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:RNA-PCA-ComBat-batchsub"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-)
-\end_layout
-
-\begin_layout Itemize
-MOFA was able to do this batch subtraction without directly using the sample
- labels (sample labels were used implicitly to select which factor to subtract)
-\end_layout
-
-\begin_layout Itemize
-Similarity of results shows that batch correction can't get much better
- than ComBat (despite ComBat ignoring time point)
-\end_layout
-
-\begin_layout Subsection
-MOFA does some interesting stuff but is mostly confirmatory in this context
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-MOFA should be a footnote to something else, not its own point
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Combine with previous subsection
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-MOFA shows great promise for accelerating discovery of major biological
- effects in multi-omics datasets
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-MOFA successfully separates biologically relevant patterns of variation
- from technical confounding factors without knowing the sample labels, by
- finding latent factors that explain variation across multiple data sets.
-\end_layout
-
-\begin_layout Itemize
-MOFA was added to this analysis late and played primarily a confirmatory
- role, but it was able to confirm earlier conclusions with much less prior
- information (no sample labels) and much less analyst effort/input
-\end_layout
-
-\begin_layout Itemize
-Less input from analyst means less opportunity to introduce unwanted bias
- into results
-\end_layout
-
-\begin_layout Itemize
-MOFA confirmed that the already-implemented batch correction in the RNA-seq
- data was already performing as well as possible given the limitations of
- the data
-\end_layout
-
-\end_deeper
 \begin_layout Section
 Results
 \end_layout
