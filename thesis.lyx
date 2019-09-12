@@ -734,13 +734,13 @@ literal "false"
 \end_inset
 
 .
- Any read or peak overlapping one of these regions was regarded as artifactual
- and excluded from downstream analyses.
+ Any read or called peak overlapping one of these regions was regarded as
+ artifactual and excluded from downstream analyses.
  
 \end_layout
 
 \begin_layout Standard
-Peaks are called using epic, an implementation of the SICER algorithm 
+Peaks were called using epic, an implementation of the SICER algorithm 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Zang2009,gh-epic"
@@ -749,7 +749,7 @@ literal "false"
 \end_inset
 
 .
- Peaks are also called separately using MACS, but MACS was determined to
+ Peaks were also called separately using MACS, but MACS was determined to
  be a poor fit for the data, and these peak calls are not used in any further
  analyses 
 \begin_inset CommandInset citation
@@ -768,7 +768,7 @@ RNA-seq align+quant method comparison
 
 \begin_layout Standard
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Float figure
@@ -1046,69 +1046,6 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Just take the top row
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/RNA-seq/weights-vs-covars-CROP.png
-	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:RNA-seq-weights-vs-covars"
-
-\end_inset
-
-RNA-seq sample weights, grouped by experimental and technical covariates.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Batch 1 is garbage quality.
- Analyses involving batch 1 samples are expected to yield poor statistical
- power.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
 \align center
 \begin_inset Float figure
 wide false
@@ -1226,6 +1163,69 @@ PCoA plots of RNA-seq data showing effect of batch correction.
 \begin_layout Itemize
 RNA-seq batch effect can be partially corrected, but still induces uncorrectable
  biases in downstream analysis
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Just take the top row
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/RNA-seq/weights-vs-covars-CROP.png
+	lyxscale 25
+	width 100col%
+	groupId colwidth-raster
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:RNA-seq-weights-vs-covars"
+
+\end_inset
+
+RNA-seq sample weights, grouped by experimental and technical covariates.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Batch 1 is garbage quality.
+ Analyses involving batch 1 samples are expected to yield poor statistical
+ power.
 \end_layout
 
 \begin_layout Subsection
@@ -1359,7 +1359,7 @@ ChIP-seq peak calling
 
 \begin_layout Standard
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Float figure
@@ -1495,7 +1495,7 @@ ChIP-seq normalization
 
 \begin_layout Standard
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Float figure
@@ -2080,7 +2080,7 @@ LF2 is clearly the RNA-seq batch effect
 
 \begin_layout Standard
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Float figure
@@ -2838,7 +2838,7 @@ size
  genes as well as the estimated number of differentially expressed genes
  depends so strongly on the variations in sample quality in addition to
  the size of the differential expression signal in the data.
- Gene-set enrichment analyses are similarly impractical for the same reason.
+ Gene-set enrichment analyses are similarly impractical.
  However, analyses looking at genome-wide patterns of expression are still
  practical.
 \end_layout
@@ -2852,7 +2852,7 @@ H3K4 and H3K27 methylation occur in broad regions and are enriched near
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -3157,7 +3157,7 @@ noprefix "false"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Flex TODO Note (inline)
@@ -3259,7 +3259,8 @@ This plot shows the distribution of distances from each annotated transcription
  start site in the genome to the nearest called peak.
  Each line represents one combination of histone mark, cell type, and time
  point.
- Distributions are smoothed using kernel density estimation [CITE?].
+ Distributions are smoothed using kernel density estimation [CITE? see ggplot2
+ stat_density()].
  Transcription start sites that occur 
 \emph on
 within
@@ -3282,7 +3283,7 @@ within
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -3562,13 +3563,23 @@ Expression distributions of genes with and without promoter peaks.
 \end_layout
 
 \begin_layout Standard
-H3K4me2 and H3K4me2 have previously been reported as activating marks, while
- H3K27me3 has been reported as inactivating [CITE].
+H3K4me2 and H3K4me2 have previously been reported as activating marks whose
+ presence in a gene's promoter is associated with higher gene expression,
+ while H3K27me3 has been reported as inactivating [CITE].
  The data are consistent with this characterization: genes whose promoters
- (as defined by the radii for each histone mark described above) overlap
- with a H3K4me2 or H3K4me3 peak tend to have higher expression than those
- that don't, while H3K27me3 is likewise associated with lower gene expression,
- as shown in 
+ (as defined by the radii for each histone mark listed in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:effective-promoter-radius"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+) overlap with a H3K4me2 or H3K4me3 peak tend to have higher expression
+ than those that don't, while H3K27me3 is likewise associated with lower
+ gene expression, as shown in 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:fpkm-by-peak"
@@ -3622,8 +3633,8 @@ ly additive anyway.
 \end_layout
 
 \begin_layout Subsection
-RNA-seq and H3K4 methylation patterns in naive and memory show convergence
- at day 14
+Gene expression and promoter histone methylation patterns in naive and memory
+ show convergence at day 14
 \end_layout
 
 \begin_layout Standard
@@ -4419,7 +4430,8 @@ noprefix "false"
 \end_layout
 
 \begin_layout Subsection
-Effect of promoter coverage upstream vs downstream of TSS
+Effect of H3K4me2 and H3K4me3 promoter coverage upstream vs downstream of
+ TSS
 \end_layout
 
 \begin_layout Standard
@@ -4427,8 +4439,7 @@ Effect of promoter coverage upstream vs downstream of TSS
 status open
 
 \begin_layout Plain Layout
-There is enough here for multiple sections.
- At least one each for H3K4me2 and H3K27me3.
+Need a better section title, for this and the next one.
 \end_layout
 
 \end_inset
@@ -4441,8 +4452,22 @@ There is enough here for multiple sections.
 status open
 
 \begin_layout Plain Layout
-For the figures in this section, the group labels are arbitrary, so if time
- allows, it would be good to manually reorder them in a logical way, e.g.
+Make sure use of coverage/abundance/whatever is consistent.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+For the figures in this section and the next, the group labels are arbitrary,
+ so if time allows, it would be good to manually reorder them in a logical
+ way, e.g.
  most upstream to most downstream.
  If this is done, make sure to update the text with the correct group labels.
 \end_layout
@@ -4479,7 +4504,7 @@ begin{landscape}
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -4827,6 +4852,7 @@ status open
 \begin_layout Plain Layout
 RNA-seq values in the plots use logCPM but should really use logFPKM or
  logTPM.
+ Fix if time allows.
 \end_layout
 
 \end_inset
@@ -4935,7 +4961,7 @@ begin{landscape}
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -5191,6 +5217,8 @@ noprefix "false"
 \end_inset
 
 ).
+ This is expected, since there is a high correlation between the positions
+ where both histone marks occur.
 \end_layout
 
 \begin_layout Subsection
@@ -5224,14 +5252,14 @@ begin{landscape}
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -5276,7 +5304,7 @@ Average relative coverage for each bin in each cluster
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -5304,6 +5332,9 @@ name "fig:H3K27me3-neighborhood-pca"
 \end_inset
 
 PCA of relative coverage depth, colored by K-means cluster membership.
+ 
+\series default
+Note that Cluster 6 is hidden behind all the other clusters.
 \end_layout
 
 \end_inset
@@ -5321,7 +5352,7 @@ PCA of relative coverage depth, colored by K-means cluster membership.
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -5362,6 +5393,20 @@ Gene expression grouped by promoter coverage clusters.
 \end_layout
 
 \begin_layout Plain Layout
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Repeated figure legends are kind of an issue here.
+ What to do?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
@@ -5388,7 +5433,11 @@ kbp upstream to 5
 
 kbp downstream, and the logCPM values were normalized within each promoter
  to an average of 0, yielding relative coverage depths.
- These were then grouped using K-means clustering with 
+ These were then grouped using 
+\begin_inset Formula $k$
+\end_inset
+
+-means clustering with 
 \begin_inset Formula $K=6$
 \end_inset
 
@@ -5454,19 +5503,13 @@ end{landscape}
 
 \end_layout
 
-\begin_layout Itemize
-H3K4me peaks seem to correlate with increased expression as long as they
- are anywhere near the TSS
-\end_layout
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
 
-\begin_layout Itemize
-H3K27me3 peaks can have different correlations to gene expression depending
- on their position relative to TSS (e.g.
- upstream vs downstream) Results consistent with 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Young2011"
-literal "false"
+\begin_layout Plain Layout
+Should maybe re-explain what was done or refer back to the previous section.
+\end_layout
 
 \end_inset
 
@@ -5474,11 +5517,118 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
+Unlike both H3K4 marks, whose main patterns of variation appear directly
+ related to the size and position of a single peak within the promoter,
+ the patterns of H3K27me3 methylation in promoters are more complex (Figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:H3K27me3-neighborhood"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ Once again looking at the relative coverage in a 500-bp wide bins in a
+ 5kb radius around each TSS, promoters were clustered based on the normalized
+ relative coverage values in each bin using 
+\begin_inset Formula $k$
+\end_inset
+
+-means clustering with 
+\begin_inset Formula $K=6$
+\end_inset
+
+ (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:H3K27me3-neighborhood-clusters"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ This time, 3 
+\begin_inset Quotes eld
+\end_inset
+
+axes
+\begin_inset Quotes erd
+\end_inset
+
+ of variation can be observed, each represented by 2 clusters with opposing
+ patterns.
+ The first axis is greater upstream coverage (Cluster 1) vs.
+ greater downstream coverage (Cluster 3); the second axis is the coverage
+ at the TSS itself: peak (Cluster 4) or trough (Cluster 2); lastly, the
+ third axis represents a trough upstream of the TSS (Cluster 5) vs.
+ downstream of the TSS (Cluster 6).
+ Referring to these opposing pairs of clusters as axes of variation is justified
+, because they correspond precisely to the first 3 principal components
+ in the PCA plot of the relative coverage values (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:H3K27me3-neighborhood-pca"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ The PCA plot reveals that as in the case of H3K4me2, all the 
+\begin_inset Quotes eld
+\end_inset
+
+clusters
+\begin_inset Quotes erd
+\end_inset
+
+ are really just sections of a single connected cloud rather than discrete
+ clusters.
+ The cloud is approximately ellipsoid-shaped, with each PC being an axis
+ of the ellipse, and each cluster consisting of a pyrimidal section of the
+ ellipsoid.
+\end_layout
+
+\begin_layout Standard
+In Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:H3K27me3-neighborhood-expression"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, we can see that Clusters 1 and 2 are the only clusters with higher gene
+ expression than the others.
+ For Cluster 2, this is expected, since this cluster represents genes with
+ depletion of H3K27me3 near the promoter.
+ Hence, elevated expression in cluster 2 is consistent with the conventional
+ view of H3K27me3 as a deactivating mark.
+ However, Cluster 1, the cluster with the most elevated gene expression,
+ represents genes with elevated coverage upstream of the TSS, or equivalently,
+ decreased coverage downstream, inside the gene body.
+ The opposite pattern, in which H3K27me3 is more abundant withing the gene
+ body and less abundance in the upstream promoter region, does not show
+ any elevation in gene expression.
+ As with H3K4me2, this shows that the location of H3K27 trimethylation relative
+ to the TSS is potentially an important factor beyond simple proximity.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Flex TODO Note (inline)
 status open
 
 \begin_layout Plain Layout
-Show the figures where the negative result ended this line of inquiry
+Show the figures where the negative result ended this line of inquiry.
+ I need to debug some errors resulting from an R upgrade to do this.
 \end_layout
 
 \end_inset
@@ -5625,6 +5775,20 @@ Positional
 
 \begin_layout Itemize
 TSS positional coverage, hints of something interesting but no clear conclusions
+\end_layout
+
+\begin_layout Standard
+A previous study has also found that H3K27me3 depletion within the gene
+ body was associated with elevated gene expression in 4 different cell types
+ in mice 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Young2011"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsection
@@ -12782,8 +12946,9 @@ Future Directions
 status open
 
 \begin_layout Plain Layout
-Consider per-chapter future directions.
- Check instructions.
+Consider putting each chapter's future directions with that chapter instead
+ of in a separate one.
+ Check instructions to see if this is allowed/appropriate.
 \end_layout
 
 \end_inset
@@ -12799,11 +12964,21 @@ Ch2
 Functional validation of effective promoter radius
 \end_layout
 
+\begin_deeper
 \begin_layout Itemize
-Current definition of promoter radius is dependent on peak calling.
+Correlation with expression as a function of distance from TSS?
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Current definition of promoter radius is dependent on peak calling - requires
+ assuming saturation, correct peak caller, etc.
+ Too many assumptions.
  Would be nice to have a better way of defining promoter radius independent
  of peak calling.
- Possibly based on the promoter coverage profiles
+ Possibly based on the promoter coverage profiles.
+ Also symmetric radius may not be appropriate if upstream & downstream effects
+ are different.
 \end_layout
 
 \begin_layout Itemize
@@ -12814,8 +12989,28 @@ N-to-M convergence deserves further study of some kind
 Promoter positional coverage: follow up on hints of interesting patterns
 \end_layout
 
+\begin_deeper
 \begin_layout Itemize
-Study other epigenetic marks in more contexts
+Also find better normalizations: maybe borrow from MACS/SICER background
+ correction methods?
+\end_layout
+
+\begin_layout Itemize
+For H3K4, define polar coordinates based on PC1 & 2: R = peak size, Theta
+ = peak position.
+ Then correlate with expression.
+\end_layout
+
+\begin_layout Itemize
+Current analysis only at Day 0.
+ Need to study across time points.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Study other epigenetic marks in more contexts, including looking for similar
+ convergence patterns.
+ Use MOFA to identify coordinated patterns.
 \end_layout
 
 \begin_deeper
@@ -12829,6 +13024,14 @@ Also look at other types of lymphocytes: CD8 T-cells, B-cells, NK cells
 \end_layout
 
 \end_deeper
+\begin_layout Itemize
+High correlation between H3K4me2 and H3K4me3 is interesting because they
+ are mutually exclusive marks on any given H3 subunit.
+ Investigate causes: do the same histones have one of each, or do different
+ alleles/cells have all of one or the other? Or something else? Would need
+ to do something like allele-specific single-cell ChIP-seq.
+\end_layout
+
 \begin_layout Section*
 Ch3
 \end_layout
