@@ -592,17 +592,112 @@ Need better section titles throughout the entire chapter
 Approach
 \end_layout
 
-\begin_layout Itemize
-CD4 T-cells are central to all adaptive immune responses and memory
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Check on the exact correct way to write 
+\begin_inset Quotes eld
+\end_inset
+
+CD4 T-cell
+\begin_inset Quotes erd
+\end_inset
+
+.
+ I think there might be a plus sign somwehere in there now? Also, maybe
+ figure out a reasonable way to abbreviate 
+\begin_inset Quotes eld
+\end_inset
+
+naive CD4 T-cells
+\begin_inset Quotes erd
+\end_inset
+
+ and 
+\begin_inset Quotes eld
+\end_inset
+
+memory CD4 T-cells
+\begin_inset Quotes erd
+\end_inset
+
+.
 \end_layout
 
-\begin_layout Itemize
-H3K4 and H3K27 methylation are major epigenetic regulators of gene expression
+\end_inset
+
+
 \end_layout
 
-\begin_layout Itemize
-Canonically, H3K4 is activating and H3K27 is inhibitory, but the reality
- is complex
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Is it ok to just copy a bunch of citations from the intros to Sarah's papers?
+ That feels like cheating somehow.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+How much of this goes in Chapter 1?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+CD4 T-cells are central to all adaptive immune responses, as well as immune
+ memory [CITE?].
+ After an infection is cleared, a subset of the naive CD4 T-cells that responded
+ to that infection differentiate into memory CD4 T-cells, which are responsible
+ for responding to the same pathogen in the future.
+ Memory CD4 T-cells are functionally distinct, able to respond to an infection
+ more quickly and without the co-stimulation requried by naive CD4 T-cells.
+ However, the molecular mechanisms underlying this functional distinction
+ are not well-understood.
+ Epigenetic regulation is thought to be 
+\end_layout
+
+\begin_layout Standard
+H3K4me2, H3K4me3 and H3K27me3 are three histone marks thought to be major
+ epigenetic regulators of gene expression.
+ The goal of the present study is to investigate the role of these histone
+ marks in CD4 T-cell activation kinetics and memory differentiation.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Probably goes in CH1: 
+\end_layout
+
+\begin_layout Plain Layout
+Generally, H3K4me2 and H3K4me3 are often observed in the promoters of highly
+ transcribed genes, while H3K27me3 is more often observed in promoters of
+ inactive genes with little to no transcription occurring.
+ The causal relationship between these histone modifications and gene transcript
+ion is complex, and likely involves positive and negative feedback loops
+ between the two.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -672,98 +767,15 @@ literal "true"
  Then cultures of both cells were activated [how?], and samples were taken
  at 4 time points: Day 0 (pre-activation), Day 1 (early activation), Day
  5 (peak activation), and Day 14 (post-activation).
- For each combination of cell type and time point, RNA was isolated, and
- ChIP-seq was performed for each of 3 histone marks: H3K4me2, H3K4me3, and
- H3K27me3.
- The ChIP-seq input was also sequenced for each sample.
+ For each combination of cell type and time point, RNA was isolated and
+ sequenced, and ChIP-seq was performed for each of 3 histone marks: H3K4me2,
+ H3K4me3, and H3K27me3.
+ The ChIP-seq input DNA was also sequenced for each sample.
  The result was 32 samples for each assay.
 \end_layout
 
 \begin_layout Subsection
-ChIP-seq alignment and peak calling
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-All info from this subsection belongs in other subsections.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Sequence reads were retrieved from the Sequence Read Archive (SRA) 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Leinonen2011"
-literal "false"
-
-\end_inset
-
-.
- ChIP-seq (and input) reads were aligned to CRCh38 genome assembly using
- Bowtie 2 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Langmead2012,Schneider2017,gh-hg38-ref"
-literal "false"
-
-\end_inset
-
-.
- Artifact regions were annotated using a custom implementation of the GreyListCh
-IP algorithm, and these 
-\begin_inset Quotes eld
-\end_inset
-
-greylists
-\begin_inset Quotes erd
-\end_inset
-
- were merged with the ENCODE blacklist 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "greylistchip,Amemiya2019,Dunham2012"
-literal "false"
-
-\end_inset
-
-.
- Any read or called peak overlapping one of these regions was regarded as
- artifactual and excluded from downstream analyses.
- 
-\end_layout
-
-\begin_layout Standard
-Peaks were called using epic, an implementation of the SICER algorithm 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Zang2009,gh-epic"
-literal "false"
-
-\end_inset
-
-.
- Peaks were also called separately using MACS, but MACS was determined to
- be a poor fit for the data, and these peak calls are not used in any further
- analyses 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Zhang2008"
-literal "false"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Subsection
-RNA-seq align+quant method comparison
+RNA-seq analysis
 \end_layout
 
 \begin_layout Standard
@@ -1026,13 +1038,24 @@ RNA-seq comparisons
 
 \end_layout
 
-\begin_layout Itemize
-Ultimately selected shoal as quantification, Ensembl as annotation.
- Why? Running downstream analyses with all quant methods and both annotations
- showed very little practical difference, so choice was not terribly important.
- Prefer shoal due to theoretical advantages.
- To note in discussion: reproducible workflow made it easy to do this, enabling
- an informed decision.
+\begin_layout Standard
+Five different alignment and quantification methods were tested for the
+ RNA-seq data
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Kim2019,gh-shoal,Dobin2012,Pimentel2016,Patro2017"
+literal "false"
+
+\end_inset
+
+.
+ Each quantification was tested with both Ensembl transcripts and UCSC known
+ gene annotations [CITE? Also which version?].
+ Comparisons of downstream results from each combination of quantification
+ method and reference revealed that all quantifications gave broadly similar
+ results for most genes, so shoal with the Ensembl annotation was chosen
+ as the method theoretically most likely to partially mitigate some of the
+ batch effect in the data.
 \end_layout
 
 \begin_layout Subsection
@@ -1226,6 +1249,89 @@ RNA-seq sample weights, grouped by experimental and technical covariates.
 Batch 1 is garbage quality.
  Analyses involving batch 1 samples are expected to yield poor statistical
  power.
+\end_layout
+
+\begin_layout Subsection
+ChIP-seq alignment and peak calling
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+All info from this subsection belongs in other subsections.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sequence reads were retrieved from the Sequence Read Archive (SRA) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Leinonen2011"
+literal "false"
+
+\end_inset
+
+.
+ ChIP-seq (and input) reads were aligned to CRCh38 genome assembly using
+ Bowtie 2 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Langmead2012,Schneider2017,gh-hg38-ref"
+literal "false"
+
+\end_inset
+
+.
+ Artifact regions were annotated using a custom implementation of the GreyListCh
+IP algorithm, and these 
+\begin_inset Quotes eld
+\end_inset
+
+greylists
+\begin_inset Quotes erd
+\end_inset
+
+ were merged with the ENCODE blacklist 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "greylistchip,Amemiya2019,Dunham2012"
+literal "false"
+
+\end_inset
+
+.
+ Any read or called peak overlapping one of these regions was regarded as
+ artifactual and excluded from downstream analyses.
+ 
+\end_layout
+
+\begin_layout Standard
+Peaks were called using epic, an implementation of the SICER algorithm 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Zang2009,gh-epic"
+literal "false"
+
+\end_inset
+
+.
+ Peaks were also called separately using MACS, but MACS was determined to
+ be a poor fit for the data, and these peak calls are not used in any further
+ analyses 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Zhang2008"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsection
