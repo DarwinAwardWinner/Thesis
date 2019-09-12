@@ -6219,7 +6219,7 @@ name "fig:rulegraph"
 
 
 \series bold
-Dependency graph of steps in reproducible workflow
+Dependency graph of steps in reproducible workflow.
 \end_layout
 
 \end_inset
@@ -6253,19 +6253,117 @@ end{landscape}
 
 \end_layout
 
-\begin_layout Itemize
-Discuss advantages of developing using a reproducible workflow
+\begin_layout Standard
+The analyses described in this chapter were organized into a reproducible
+ workflow using the Snakemake workflow management system.
+ As shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:rulegraph"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, the workflow includes many steps with complex dependencies between them.
+ For example, the step that counts the number of ChIP-seq reads in 500
+\begin_inset space ~
+\end_inset
+
+bp windows in each promoter (the starting point for Figures 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:H3K4me2-neighborhood"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:H3K4me3-neighborhood"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:H3K27me3-neighborhood"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+), named 
+\begin_inset Formula $\texttt{chipseq\_count\_tss\_neighborhoods}$
+\end_inset
+
+, depends on the RNA-seq abundance estimates in order to select the most-used
+ TSS for each gene, the aligned ChIP-seq reads, the index for those reads,
+ and the blacklist of regions to be excluded from ChIP-seq analysis.
+ Each step declares its inputs and outputs, and Snakemake uses these to
+ determine the dependencies between steps.
+ Each step is marked as depending on all the steps whose outputs match its
+ inputs, generating the workflow graph in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:rulegraph"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, which Snakemake uses to determine order in which to execute each step
+ so that each step is executed only after all of the steps it depends on
+ have completed, thereby automating the entire workflow from start to finish.
 \end_layout
 
-\begin_deeper
-\begin_layout Itemize
-Decision-making based on trying every option and running the workflow downstream
- to see the effects
+\begin_layout Standard
+In addition to simply making it easier to organize the steps in the analysis,
+ structuring the analysis as a workflow allowed for some analysis strategies
+ that would not have been practical otherwise.
+ For example, 5 different RNA-seq quantification methods were tested against
+ two different reference transcriptome annotations for a total of 10 different
+ quantifications of the same RNA-seq data.
+ These were then compared against each other in the exploratory data analysis
+ step, to determine that the results were not very sensitive to either the
+ choice of quantification method or the choice of annotation.
+ This was possible with a single script for the exploratory data analysis,
+ because Snakemake was able to automate running this script for every combinatio
+n of method and reference.
+ In a similar manner, two different peak calling methods were tested against
+ each other, and in this case it was determined that SICER was unambiguously
+ superior to MACS for all histone marks studied.
+ By enabling these types of comparisons, structuring the analysis as an
+ automated workflow allowed important analysis decisions to be made in a
+ data-driven way, by running every reasonable option through the downstream
+ steps, seeing the consequences of choosing each option, and deciding accordingl
+y.
 \end_layout
 
-\end_deeper
 \begin_layout Subsection
 Data quality issues limit conclusions
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Is this needed?
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Chapter
