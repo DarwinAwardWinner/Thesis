@@ -775,7 +775,7 @@ literal "true"
 \end_layout
 
 \begin_layout Subsection
-RNA-seq analysis
+RNA-seq differential expression analysis
 \end_layout
 
 \begin_layout Standard
@@ -1230,8 +1230,8 @@ zig-zag
  pattern, such as a gene whose expression goes up on day 1, down on day
  5, and back up again on day 14, will be attenuated or eliminated entirely.
  In the context of a T-cell activation time course, it is unlikely that
- many genes of interest will follow such an expression patter, so this loss
- was deemed an acceptable cost for correcting the batch effect.
+ many genes of interest will follow such an expression pattern, so this
+ loss was deemed an acceptable cost for correcting the batch effect.
 \end_layout
 
 \begin_layout Standard
@@ -1349,7 +1349,7 @@ literal "false"
 \end_layout
 
 \begin_layout Subsection
-ChIP-seq analysis
+ChIP-seq differential modification analysis
 \end_layout
 
 \begin_layout Standard
@@ -1553,10 +1553,157 @@ MA plot of H3K4me2 read counts in 10kb bins for two arbitrary samples.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Be consistent about use of 
+\begin_inset Quotes eld
+\end_inset
+
+differential binding
+\begin_inset Quotes erd
+\end_inset
+
+ vs 
+\begin_inset Quotes eld
+\end_inset
+
+differential modification
+\begin_inset Quotes erd
+\end_inset
+
+ throughout this chapter.
+ The latter is usually preferred.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sequence reads were retrieved from SRA 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Leinonen2011"
+literal "false"
+
+\end_inset
+
+.
+ ChIP-seq (and input) reads were aligned to GRCh38 genome assembly using
+ Bowtie 2 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Langmead2012,Schneider2017,gh-hg38-ref"
+literal "false"
+
+\end_inset
+
+.
+ Artifact regions were annotated using a custom implementation of the GreyListCh
+IP algorithm, and these 
+\begin_inset Quotes eld
+\end_inset
+
+greylists
+\begin_inset Quotes erd
+\end_inset
+
+ were merged with the published ENCODE blacklists 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "greylistchip,Amemiya2019,Dunham2012,gh-cd4-csaw"
+literal "false"
+
+\end_inset
+
+.
+ Any read or called peak overlapping one of these regions was regarded as
+ artifactual and excluded from downstream analyses.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:CCF-master"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows the improvement after blacklisting in the strand cross-correlation
+ plots, a common quality control plot for ChIP-seq data.
+ Peaks were called using epic, an implementation of the SICER algorithm
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Zang2009,gh-epic"
+literal "false"
+
+\end_inset
+
+.
+ Peaks were also called separately using MACS, but MACS was determined to
+ be a poor fit for the data, and these peak calls are not used in any further
+ analyses 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Zhang2008"
+literal "false"
+
+\end_inset
+
+.
+ Consensus peaks were determined by applying the irreproducible discovery
+ rate (IDR) framework 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Li2006,gh-idr"
+literal "false"
+
+\end_inset
+
+ to find peaks consistently called in the same locations across all 4 donors.
+\end_layout
+
+\begin_layout Standard
+Promoters were defined by computing the distance from each annotated TSS
+ to the nearest called peak and examining the distribution of distances,
+ observing that peaks for each histone mark were enriched within a certain
+ distance of the TSS.
+ For H3K4me2 and H3K4me3, this distance was about 1
+\begin_inset space ~
+\end_inset
+
+kb, while for H3K27me3 it was 2.5
+\begin_inset space ~
+\end_inset
+
+kb.
+ These distances were used as an 
+\begin_inset Quotes eld
+\end_inset
+
+effective promoter radius
+\begin_inset Quotes erd
+\end_inset
+
+ for each mark.
+ The promoter region for each gene was defined as the region of the genome
+ within this distance upstream or downstream of the gene's annotated TSS.
+ For genes with multiple annotated TSSs, a promoter region was defined for
+ each TSS individually, and any promoters that overlapped (due to multiple
+ TSSs being closer than 2 times the radius) were merged into one large promoter.
+ Thus, some genes had multiple promoters defined, which were each analyzed
+ separately for differential modification.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Float figure
@@ -1852,132 +1999,7 @@ PCoA plots of ChIP-seq sliding window data, before and after subtracting
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Be consistent about use of 
-\begin_inset Quotes eld
-\end_inset
-
-differential binding
-\begin_inset Quotes erd
-\end_inset
-
- vs 
-\begin_inset Quotes eld
-\end_inset
-
-differential modification
-\begin_inset Quotes erd
-\end_inset
-
- throughout this chapter.
- The latter is usually preferred.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Forgot to mention effective promoter radius determination.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Sequence reads were retrieved from SRA 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Leinonen2011"
-literal "false"
-
-\end_inset
-
-.
- ChIP-seq (and input) reads were aligned to GRCh38 genome assembly using
- Bowtie 2 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Langmead2012,Schneider2017,gh-hg38-ref"
-literal "false"
-
-\end_inset
-
-.
- Artifact regions were annotated using a custom implementation of the GreyListCh
-IP algorithm, and these 
-\begin_inset Quotes eld
-\end_inset
-
-greylists
-\begin_inset Quotes erd
-\end_inset
-
- were merged with the published ENCODE blacklists 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "greylistchip,Amemiya2019,Dunham2012,gh-cd4-csaw"
-literal "false"
-
-\end_inset
-
-.
- Any read or called peak overlapping one of these regions was regarded as
- artifactual and excluded from downstream analyses.
- Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:CCF-master"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- shows the improvement after blacklisting in the strand cross-correlation
- plots, a common quality control plot for ChIP-seq data.
- Peaks were called using epic, an implementation of the SICER algorithm
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Zang2009,gh-epic"
-literal "false"
-
-\end_inset
-
-.
- Peaks were also called separately using MACS, but MACS was determined to
- be a poor fit for the data, and these peak calls are not used in any further
- analyses 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Zhang2008"
-literal "false"
-
-\end_inset
-
-.
- Consensus peaks were determined by applying the irreproducible discovery
- rate (IDR) framework 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Li2006,gh-idr"
-literal "false"
-
-\end_inset
-
- to find peaks consistently called in the same locations across all 4 donors.
- Reads in promoters, peaks, and sliding windows across the genome were counted
+Reads in promoters, peaks, and sliding windows across the genome were counted
  and normalized using csaw and analyzed for differential modification using
  edgeR 
 \begin_inset CommandInset citation
@@ -2013,21 +2035,37 @@ noprefix "false"
 .
 \end_layout
 
-\begin_layout Subsection
-Promoter neighborhood analysis
-\end_layout
-
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Forgot I need to document the methods for this as well.
-\end_layout
-
+To investigate whether the location of a peak within the promoter region
+ was important, 
+\begin_inset Quotes eld
 \end_inset
 
+relative coverage profiles
+\begin_inset Quotes erd
+\end_inset
 
+ were generated.
+ First, 500-bp sliding windows were tiled around each annotated TSS: one
+ window centered on the TSS itself, and 10 windows each upstream and downstream,
+ thus covering a 10.5-kb region centered on the TSS with 21 windows.
+ Reads in each window for each TSS were counted in each sample, and the
+ counts were normalized and converted to log CPM as in the differential
+ modification analysis.
+ Then, the logCPM values within each promoter were normalized to an average
+ of zero, such that each window's normalized abundance now represents the
+ relative read depth of that window compared to all other windows in the
+ same promoter.
+ The normalized abundance values for each window in a promoter are collectively
+ referred to as that promoter's 
+\begin_inset Quotes eld
+\end_inset
+
+relative coverage profile
+\begin_inset Quotes erd
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsection
@@ -3719,7 +3757,7 @@ t
 \end_inset
 
 ).
- The difference in average FPKM values when a peak overlaps the promoter
+ The difference in average log FPKM values when a peak overlaps the promoter
  is about 
 \begin_inset Formula $+5.67$
 \end_inset
@@ -5768,7 +5806,7 @@ This was where I defined interesting expression patterns and then looked
  at initial relative promoter coverage for each expression pattern.
  Negative result.
  I forgot about this until recently.
- Worth including?
+ Worth including? Remember to also write methods.
 \end_layout
 
 \end_inset
@@ -5786,7 +5824,7 @@ status open
 
 \begin_layout Plain Layout
 I forgot until recently about the work I did on this.
- Worth including?
+ Worth including? Remember to also write methods.
 \end_layout
 
 \end_inset
