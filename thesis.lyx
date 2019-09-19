@@ -193,6 +193,20 @@ October 2019
 \end_layout
 
 \begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+I'm looking for feedback on: Section titles; figure formatting; figure legends;
+ typographical errors; ...
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset CommandInset toc
 LatexCommand tableofcontents
 
@@ -7975,7 +7989,20 @@ Results
 status open
 
 \begin_layout Plain Layout
-Improve subsection titles in this section
+Improve subsection titles in this section.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Reconsider subsection organization?
 \end_layout
 
 \end_inset
@@ -11686,23 +11713,52 @@ noprefix "false"
 \end_layout
 
 \begin_layout Subsection
-methyl array stuff
+Developing methylation arrays as a diagnostic tool for kidney transplant
+ rejection
 \end_layout
 
 \begin_layout Standard
 The current study has showed that DNA methylation, as assayed by Illumina
  450k methylation arrays, has some potential for diagnosing transplant dysfuncti
 ons, including rejection.
+ However, very few probes could be confidently identified as differentially
+ methylated between healthy and dysfunctional transplants.
+ One likely explanation for this is the predominant influence of unobserved
+ confounding factors.
+ SVA can model and correct for such factors, but the correction can never
+ be perfect, so some degree of unwanted systematic variation will always
+ remain after SVA correction.
+ If the effect size of the confounding factors was similar to that of the
+ factor of interest (in this case, transplant status), this would be an
+ acceptable limitation, since removing most of the confounding factors'
+ effects would allow the main effect to stand out.
+ However, in this data set, the confounding factors have a much larger effect
+ size than transplant status, which means that the small degree of remaining
+ variation not removed by SVA can still swamp the effect of interest, making
+ it difficult to detect.
+ This is, of course, a major issue when the end goal is to develop a classifier
+ to diagnose transplant rejection from methylation data, since batch-correction
+ methods like SVA that work in a linear modeling context cannot be applied
+ in a machine learning context.
 \end_layout
 
-\begin_layout Itemize
-Eliminate the need for SVA, since it can't be applied in ML context.
- 
-\end_layout
-
-\begin_layout Itemize
-Alternatively, use SVA to identify and discard probes with strong SV association
-s prior to training.
+\begin_layout Standard
+Currently, the source of these unwanted systematic variations in the data
+ is unknown.
+ The best solution would be to determine the cause of the variation and
+ eliminate it, thereby eliminating the need to model and remove that variation.
+ However, if this proves impractical, another option is to use SVA to identify
+ probes that are highly associated with the surrogate variables that describe
+ the unwanted variation in the data.
+ These probes could be discarded prior to classifier training, in order
+ to maximize the chance that the training algorithm will be able to identify
+ highly predictive probes from those remaining.
+ Lastly, it is possible that some of this unwanted variation is a result
+ of the assay being used.
+ Assaying DNA methylation using bisulphite sequencing may sidestep the issue
+ in this case, although this carries the risk that the sequencing assay
+ will have its own set of biases that must be corrected for in a different
+ way.
 \end_layout
 
 \begin_layout Chapter
