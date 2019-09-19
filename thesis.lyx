@@ -257,7 +257,7 @@ status open
 
 \begin_layout Plain Layout
 Look into auto-generated nomenclature list: https://wiki.lyx.org/Tips/Nomenclature.
- Otherwise, do a manual pass for all abbreviations.
+ Otherwise, do a manual pass for all abbreviations at the end.
  Do nomenclature/abbreviations independently for each chapter.
 \end_layout
 
@@ -276,6 +276,14 @@ Make all descriptions consistent in terms of
 \end_inset
 
 we did X
+\begin_inset Quotes erd
+\end_inset
+
+ vs 
+\begin_inset Quotes eld
+\end_inset
+
+I did X
 \begin_inset Quotes erd
 \end_inset
 
@@ -329,6 +337,19 @@ Display symbols, as well as foreign words and phrases, clearly and accurately.
 
 \begin_layout Itemize
 Do not include graphs, charts, tables, or illustrations in your abstract.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Obviously the abstract gets written last.
 \end_layout
 
 \end_inset
@@ -8629,13 +8650,13 @@ literal "false"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -8726,6 +8747,12 @@ Violin plot of inter-normalization log ratios for blood samples.
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:frma-violin"
+
+\end_inset
+
 
 \series bold
 Violin plot of log ratios between normalizations for 20 biopsy samples.
@@ -11140,6 +11167,115 @@ This preliminary anlaysis suggests that some degree of differential methylation
  the same systematic trends in the data that SVA and sample quality weighting
  address, or it will require higher quality data with substantially less
  systematic perturbation of the data.
+\end_layout
+
+\begin_layout Section
+Future Directions
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Some work was already being done with the existing fRMA vectors.
+ Do I mention that here?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Improving fRMA to allow training from batches of unequal size
+\end_layout
+
+\begin_layout Standard
+Because the tools for building fRMA normalization vectors require equal-size
+ batches, many samples must be discarded from the training data.
+ This is undesirable for a few reasons.
+ First, more data is simply better, all other things being equal.
+ In this case, 
+\begin_inset Quotes eld
+\end_inset
+
+better
+\begin_inset Quotes erd
+\end_inset
+
+ means a more precise estimate of normalization parameters.
+ In addition, the samples to be discarded must be chosen arbitrarily, which
+ introduces an unnecessary element of randomness into the estimation process.
+ While the randomness can be made deterministic by setting a consistent
+ random seed, the need for equal size batches also introduces a need for
+ the analyst to decide on the appropriate trade-off between batch size and
+ the number of batches.
+ This introduces an unnecessary and undesirable 
+\begin_inset Quotes eld
+\end_inset
+
+researcher degree of freedom
+\begin_inset Quotes erd
+\end_inset
+
+ into the analysis, since the generated normalization vectors now depend
+ on the choice of batch size based on vague selection criteria and instinct,
+ which can unintentionally inproduce bias if the researcher chooses a batch
+ size based on what seems to yield the most favorable downstream results
+  
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Simmons2011"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Fortunately, the requirement for equal-size batches is not inherent to the
+ fRMA algorithm but rather a limitation of the implementation in the frmaTools
+ package.
+ In personal communication, the package's author, Matthew McCall, has indicated
+ that with some work, it should be possible to improve the implementation
+ to work with batches of unequal sizes.
+ The current implementation ignores the batch size when calculating with-batch
+ and between-batch residual variances, since the batch size constant cancels
+ out later in the calculations as long as all batches are of equal size.
+ Hence, the calculations of these parameters would need to be modified to
+ remove this optimization and properly calculate the variances using the
+ full formula.
+ Once this modification is made, a new strategy would need to be developed
+ for assessing the stability of parameter estimates, since the random subsamplin
+g step is eliminated, meaning that different subsamplings can no longer
+ be compared as in Figures 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:frma-violin"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Representative-MA-plots"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Bootstrap resampling is likely a good candidate here: sample many training
+ sets of equal size from the existing training set with replacement, estimate
+ parameters from each resampled training set, and compare the estimated
+ parameters between bootstraps in order to quantify the variability in each
+ parameter's estimation.
 \end_layout
 
 \begin_layout Chapter
@@ -13850,8 +13986,8 @@ The high correlation between coverage depth observed between H3K4me2 and
 \emph on
 same
 \emph default
- lysine residue on the histone H3 polypeptide, which makes them mutually
- exclusive with each other on a given H3 subunit.
+ lysine residue on the histone H3 polypeptide, which means that they cannot
+ both be present on the same H3 subunit.
  Thus, the high correlation between them has several potential explanations.
  One possible reason is cell population heterogeneity: perhaps some genomic
  loci are frequently marked with H3K4me2 in some cells, while in other cells
@@ -13859,22 +13995,22 @@ same
  Another possibility is allele-specific modifications: the loci are marked
  in each diploid cell with H3K4me2 on one allele and H3K4me3 on the other
  allele.
- Lastly, since each histone consists of 2 of each subunit, it is possible
- that having one H3K4me2 mark and one H3K4me3 mark on a given histone represents
- a distinct epigenetic state with a different function than either double
- H3K4me2 or double H3K4me3.
+ Lastly, since each histone octamer contains 2 H3 subunits, it is possible
+ that having one H3K4me2 mark and one H3K4me3 mark on a given histone octamer
+ represents a distinct epigenetic state with a different function than either
+ double H3K4me2 or double H3K4me3.
  
 \end_layout
 
 \begin_layout Standard
 These three hypotheses could be disentangled by single-cell ChIP-seq.
  If the correlation between these two histone marks persists even within
- the reads for each individual cell, then population heterogeneity cannot
- explain the correlation.
+ the reads for each individual cell, then cell population heterogeneity
+ cannot explain the correlation.
  Allele-specific modification can be tested for by looking at the correlation
  between read coverage of the two histone marks at heterozygous loci.
- If the correlation between loci is low, then this is consistent with allele-spe
-cific modification.
+ If the correlation between read counts for opposite loci is low, then this
+ is consistent with allele-specific modification.
  Finally if the modifications do not separate by either cell or allele,
  the colocation of these two marks is most likely occurring at the level
  of individual histones, with the heterogenously modified histone representing
@@ -13906,6 +14042,23 @@ again
  that the two marks are occurring on opposite H3 subunits of the same histones.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Try to see if double ChIP-seq is actually feasible, and if not, come up
+ with some other idea for directly detecting the mixed mod state.
+ Oh! Actually ChIP-seq isn't required, only double ChIP followed by quantificati
+on.
+ That's one possible angle.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section*
 Ch3
 \end_layout
@@ -13922,13 +14075,24 @@ fRMAtools could be adapted to not require equal-sized groups
 Ch4
 \end_layout
 
-\begin_layout Itemize
-Look in discussion, I think there's some stuff there already
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+I've already done a good bit of work outside just this globin blocking thing,
+ so I'm not sure what to put for future directions.
+ Does it inculde the other stuff I've done but not published?
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -13943,6 +14107,18 @@ renewcommand{
 \backslash
 bibname}{References}
 \end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintCited"
+bibfiles "code-refs,refs-PROCESSED"
+options "bibtotoc,unsrt"
 
 \end_inset
 
@@ -13970,18 +14146,6 @@ status open
 Check in-text citation format.
  Probably don't just want [1], [2], etc.
 \end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset bibtex
-LatexCommand bibtex
-btprint "btPrintCited"
-bibfiles "code-refs,refs-PROCESSED"
-options "bibtotoc,unsrt"
 
 \end_inset
 
