@@ -383,11 +383,14 @@ Background & Significance
 Biological motivation
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Subsubsection
 Rejection is the major long-term threat to organ and tissue grafts
 \end_layout
 
-\begin_deeper
+\begin_layout Standard
+Organ and tissue transplants are a life-saving 
+\end_layout
+
 \begin_layout Itemize
 Common mechanisms of rejection 
 \end_layout
@@ -405,12 +408,10 @@ Current tests for rejection (tissue biopsy) are invasive and biased
 A blood test based on microarrays would be less biased and invasive
 \end_layout
 
-\end_deeper
-\begin_layout Itemize
+\begin_layout Subsubsection
 Memory cells are resistant to immune suppression
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
 Mechanisms of resistance in memory cells are poorly understood 
 \end_layout
@@ -419,13 +420,11 @@ Mechanisms of resistance in memory cells are poorly understood
 A better understanding of immune memory formation is needed
 \end_layout
 
-\end_deeper
-\begin_layout Itemize
+\begin_layout Subsubsection
 Mesenchymal stem cell infusion is a promising new treatment to prevent/delay
  rejection
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
 Demonstrated in mice, but not yet in primates
 \end_layout
@@ -434,7 +433,6 @@ Demonstrated in mice, but not yet in primates
 Mechanism currently unknown, but MSC are known to be immune modulatory
 \end_layout
 
-\end_deeper
 \begin_layout Subsection
 Overview of bioinformatic analysis methods
 \end_layout
@@ -444,11 +442,24 @@ An overview of all the methods used, including what problem they solve,
  what assumptions they make, and a basic description of how they work.
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Many of these points are also addressed in the approach sections of the
+ following chapters? Redundant?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
 ChIP-seq Peak calling
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
 Cross-correlation analysis to determine fragment size
 \end_layout
@@ -458,7 +469,7 @@ Broad vs narrow peaks
 \end_layout
 
 \begin_layout Itemize
-SICER for broad peaks
+MACS for narrow, SICER for broad peaks
 \end_layout
 
 \begin_layout Itemize
@@ -469,12 +480,10 @@ IDR for biologically reproducible peaks
 csaw peak filtering guidelines for unbiased downstream analysis
 \end_layout
 
-\end_deeper
-\begin_layout Itemize
+\begin_layout Subsubsection
 Normalization is non-trivial and application-dependant
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
 Expression arrays: RMA & fRMA; why fRMA is needed
 \end_layout
@@ -493,12 +502,10 @@ ChIP-seq: complex with many considerations, dependent on experimental methods,
  biological system, and analysis goals
 \end_layout
 
-\end_deeper
-\begin_layout Itemize
+\begin_layout Subsubsection
 Limma: The standard linear modeling framework for genomics
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
 empirical Bayes variance modeling: limma's core feature
 \end_layout
@@ -516,24 +523,17 @@ voom: Extend with precision weights to model mean-variance trend
 arrayWeights and duplicateCorrelation to handle complex variance structures
 \end_layout
 
-\end_deeper
-\begin_layout Itemize
+\begin_layout Subsubsection
 sva and ComBat for batch correction
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Subsubsection
 Factor analysis: PCA, MDS, MOFA
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
 Batch-corrected PCA is informative, but careful application is required
  to avoid bias
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-Gene set analysis: camera and SPIA
 \end_layout
 
 \begin_layout Section
@@ -11754,11 +11754,10 @@ Currently, the source of these unwanted systematic variations in the data
  to maximize the chance that the training algorithm will be able to identify
  highly predictive probes from those remaining.
  Lastly, it is possible that some of this unwanted variation is a result
- of the assay being used.
- Assaying DNA methylation using bisulphite sequencing may sidestep the issue
- in this case, although this carries the risk that the sequencing assay
- will have its own set of biases that must be corrected for in a different
- way.
+ of the array-based assay being used and would be eliminated by switching
+ to assaying DNA methylation using bisulphite sequencing.
+ However, this carries the risk that the sequencing assay will have its
+ own set of biases that must be corrected for in a different way.
 \end_layout
 
 \begin_layout Chapter
