@@ -648,22 +648,13 @@ In the context of a pathogenic infection, immune memory is a major advantage,
  cells recognizing a specific antigen, so increasing the dosage of immune
  suppression drugs also increases the risk of complications from a compromised
  immune system, such as opportunistic infections.
+ While the differences in cell surface markers between naive and memory
+ cells have been fairly well characterized, the internal regulatory mechanisms
+ that allow memory cells to respond more quickly and without co-stimulation
+ are still poorly understood.
  In order to develop immune suppression that either prevents the formation
  of memory cells or works more effectively against memory cells, the mechanisms
  of immune memory formation and regulation must be better understood.
-\end_layout
-
-\begin_layout Subsubsection
-Mesenchymal stem cell infusion is a promising new treatment to prevent/delay
- rejection
-\end_layout
-
-\begin_layout Itemize
-Demonstrated in mice, but not yet in primates
-\end_layout
-
-\begin_layout Itemize
-Mechanism currently unknown, but MSC are known to be immune modulatory
 \end_layout
 
 \begin_layout Subsection
@@ -773,11 +764,32 @@ Batch-corrected PCA is informative, but careful application is required
 Innovation
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Subsection
 MSC infusion to improve transplant outcomes (prevent/delay rejection)
 \end_layout
 
-\begin_deeper
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Do I still talk about this? It's the motivation for chapter 4, but I don't
+ actually present any work related to MSCs.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Demonstrated in mice, but not yet in primates
+\end_layout
+
+\begin_layout Itemize
+Mechanism currently unknown, but MSC are known to be immune modulatory
+\end_layout
+
 \begin_layout Itemize
 Characterize MSC response to interferon gamma
 \end_layout
@@ -795,12 +807,10 @@ Test IFN-g treated MSC infusion as a therapy to delay graft rejection in
 Monitor animals post-transplant using blood RNA-seq at serial time points
 \end_layout
 
-\end_deeper
-\begin_layout Itemize
+\begin_layout Subsection
 Investigate dynamics of histone marks in CD4 T-cell activation and memory
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
 Previous studies have looked at single snapshots of histone marks
 \end_layout
@@ -809,12 +819,10 @@ Previous studies have looked at single snapshots of histone marks
 Instead, look at changes in histone marks across activation and memory
 \end_layout
 
-\end_deeper
-\begin_layout Itemize
+\begin_layout Subsection
 High-throughput sequencing and microarray technologies
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
 Powerful methods for assaying gene expression and epigenetics across entire
  genomes
@@ -824,7 +832,6 @@ Powerful methods for assaying gene expression and epigenetics across entire
 Proper analysis requires finding and exploiting systematic genome-wide trends
 \end_layout
 
-\end_deeper
 \begin_layout Chapter
 Reproducible genome-wide epigenetic analysis of H3K4 and H3K27 methylation
  in naive and memory CD4 T-cell activation
@@ -914,19 +921,6 @@ Is it ok to just copy a bunch of citations from the intros to Sarah's papers?
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-How much of this goes in Chapter 1?
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 CD4 T-cells are central to all adaptive immune responses, as well as immune
  memory [CITE?].
  After an infection is cleared, a subset of the naive CD4 T-cells that responded
@@ -936,70 +930,66 @@ CD4 T-cells are central to all adaptive immune responses, as well as immune
  more quickly and without the co-stimulation requried by naive CD4 T-cells.
  However, the molecular mechanisms underlying this functional distinction
  are not well-understood.
- Epigenetic regulation is thought to be 
-\end_layout
-
-\begin_layout Standard
-H3K4me2, H3K4me3 and H3K27me3 are three histone marks thought to be major
+ Epigenetic regulation via histone modification is thought to play an important
+ role, but while many studies have looked at static snapshots of histone
+ methylation in T-cells, few studies have looked at the dynamics of histone
+ regulation after T-cell activation, nor the differences in histone methylation
+ between naive and memory T-cells.
+ H3K4me2, H3K4me3 and H3K27me3 are three histone marks thought to be major
  epigenetic regulators of gene expression.
  The goal of the present study is to investigate the role of these histone
  marks in CD4 T-cell activation kinetics and memory differentiation.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Probably goes in CH1: 
-\end_layout
-
-\begin_layout Plain Layout
-Generally, H3K4me2 and H3K4me3 are often observed in the promoters of highly
- transcribed genes, while H3K27me3 is more often observed in promoters of
- inactive genes with little to no transcription occurring.
- The causal relationship between these histone modifications and gene transcript
-ion is complex, and likely involves positive and negative feedback loops
- between the two.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Looking at these marks during CD4 activation and memory should reveal new
- mechanistic details
-\end_layout
-
-\begin_layout Itemize
-Test 
+ In static snapshots, H3K4me2 and H3K4me3 are often observed in the promoters
+ of highly transcribed genes, while H3K27me3 is more often observed in promoters
+ of inactive genes with little to no transcription occurring.
+ As a result, the two H3K4 marks have been characterized as 
 \begin_inset Quotes eld
 \end_inset
 
-poised promoter
+activating
 \begin_inset Quotes erd
 \end_inset
 
- hypothesis in which H3K4 and H3K27 are both methylated
+ marks, while H3K27me3 has been characterized as 
+\begin_inset Quotes eld
+\end_inset
+
+deactivating
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Despite these characterizations, the actual causal relationship between
+ these histone modifications and gene transcription is complex and likely
+ involves positive and negative feedback loops between the two.
 \end_layout
 
-\begin_layout Itemize
-Expand scope of analysis beyond simple promoter counts
+\begin_layout Standard
+In order to investigate the relationship between gene expression and these
+ histone modifications in the context of naive and memory CD4 T-cell activation,
+ a previously published data set of combined RNA-seq and ChIP-seq data was
+ re-analyzed using up-to-date methods designed to address the specific analysis
+ challenges posed by this data set.
+ The data set contains naive and memory CD4 T-cell samples in a time course
+ before and after activation.
+ Like the original analysis, this analysis looks at the dynamics of these
+ marks histone marks and compare them to gene expression dynamics at the
+ same time points during activation, as well as comapre them between naive
+ and memory cells, in hope of discovering evidence of new mechanistic details
+ in the interplay between them.
+ The original analysis of this data treated each gene promoter as a monolithinc
+ unit and mostly assumed that ChIP-seq reads or peaks occuring anywhere
+ within a promoter were equivalent, regardless of where they occurred relative
+ to the gene structure.
+ For an initial analysis of the data, this was a necessary simplifying assumptio
+n.
+ The current analysis aims to relax this assumption, first by directly analyzing
+ ChIP-seq peaks for differential modification, and second by taking a mor
+ granular look at the ChIP-seq read coverage within promoter regions to
+ ask whether the location of histone modifications relative to the gene's
+ TSS is an important factor, as opposed to simple proximity.
 \end_layout
 
-\begin_deeper
-\begin_layout Itemize
-Analyze peaks genome-wide, including in intergenic regions
-\end_layout
-
-\begin_layout Itemize
-Analysis of coverage distribution shape within promoters, e.g.
- upstream vs downstream coverage
-\end_layout
-
-\end_deeper
 \begin_layout Section
 Methods
 \end_layout
@@ -6088,7 +6078,7 @@ Promoter CpG islands?
 
 \begin_layout Standard
 \begin_inset Flex TODO Note (inline)
-status open
+status collapsed
 
 \begin_layout Plain Layout
 I forgot until recently about the work I did on this.
@@ -6800,6 +6790,21 @@ The analysis of RNA-seq and ChIP-seq in CD4 T-cells in Chapter 2 is in many
  ways a preliminary study that suggests a multitude of new avenues of investigat
 ion.
  Here we consider a selection of such avenues.
+\end_layout
+
+\begin_layout Subsection
+Negative results
+\end_layout
+
+\begin_layout Standard
+Two additional analyses were conducted beyond those reported in the results.
+ First, we searched for evidence that the presence or absence of a CpG island
+ in the promoter was correlated with increases or decreases in gene expression
+ or any histone mark in any of the tested contrasts.
+ Second, we searched for evidence that the relative ChIP-seq coverage profiles
+ prior to activations could predict the change in expression of a gene after
+ activation.
+ Neither analysis turned up any clear positive results.
 \end_layout
 
 \begin_layout Subsection
