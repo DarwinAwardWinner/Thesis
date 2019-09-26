@@ -662,8 +662,13 @@ Overview of bioinformatic analysis methods
 \end_layout
 
 \begin_layout Standard
-An overview of all the methods used, including what problem they solve,
- what assumptions they make, and a basic description of how they work.
+The studies presented in this work all involve the analysis of high-throughput
+ genomic and epigenomic data.
+ These data present many unique analysis challenges, and a wide array of
+ software tools are available to analyze them.
+ This section presents an overview of the methods used, including what problems
+ they solve, what assumptions they make, and a basic description of how
+ they work.
 \end_layout
 
 \begin_layout Standard
@@ -671,13 +676,200 @@ An overview of all the methods used, including what problem they solve,
 status open
 
 \begin_layout Plain Layout
-Many of these points are also addressed in the approach sections of the
- following chapters? Redundant?
+Many of these points may also be addressed in the approach/methods sections
+ of the following chapters? Redundant?
 \end_layout
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Subsubsection
+Limma: The standard linear modeling framework for genomics
+\end_layout
+
+\begin_layout Standard
+Linear models are a generalization of the 
+\begin_inset Formula $t$
+\end_inset
+
+-test and ANOVA to arbitrarily complex experimental designs.
+ In a typical linear model, there is one dependent variable observation
+ per sample.
+ For example, in a linear model of height as a function of age and sex,
+ there is one height measurement per person.
+ However, when analyzing genomic data, each sample consists of observations
+ of thousands of dependent variables.
+ For example, in an RNA-seq experiment, the dependent variables may be the
+ count of RNA-seq reads for each annotated gene.
+ In abstract terms, each dependent variable being measured is referred to
+ as a feature.
+ The simplest approach to analyzing such data would be to fit the same model
+ independently to each feature.
+ However, this is undesirable for most genomics data sets.
+ Genomics assays like high-throughput sequencing are expensive, and often
+ generating the samples is also quite expensive and time-consuming.
+ This expense limits the sample sizes typically employed in genomics experiments
+, and as a result the statistical power of each individual feature's linear
+ model is likewise limited.
+ However, because thousands of features from the same samples are analyzed
+ together, there is an opportunity to improve the statistical power of the
+ analysis by exploiting shared patterns of variation across features.
+ This is the core feature of limma, a linear modeling framework designed
+ for genomic data.
+ Limma is typically used to analyze expression microarray data, and more
+ recently RNA-seq data, but it can also be used to analyze any other data
+ for which linear modeling is appropriate.
+\end_layout
+
+\begin_layout Standard
+The central challenge when fitting a linear model is to estimate the variance
+ of the data accurately.
+ This quantity is the most difficult to estimate when sample sizes are small.
+ A single shared variance could be estimated for all of the features together,
+ and this estimate would be very stable, in contrast to the individual feature
+ variance estimates.
+ However, this would require the assumption that every feature is equally
+ variable, which is known to be false for most genomic data sets.
+ Limma offers a compromise between these two extremes by using a method
+ called empirical Bayes moderation to 
+\begin_inset Quotes eld
+\end_inset
+
+squeeze
+\begin_inset Quotes erd
+\end_inset
+
+ the distribution of estimated variances toward a single common value that
+ represents the variance of an average feature in the data 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Smyth2004"
+literal "false"
+
+\end_inset
+
+.
+ While the individual feature variance estimates are not stable, the common
+ variance estiamate for the entire data set is quite stable, so using a
+ combination of the two yields a variance estimate for each feature with
+ greater precision than the individual feature varaiances.
+ The trade-off for this improvement is that squeezing each estimated variance
+ toward the common value introduces some bias – the variance will be underestima
+ted for features with high variance and overestimated for features with
+ low variance.
+ Essentially, limma assumes that extreme variances are less common than
+ variances close to the common value.
+ The variance estimates from this empirical Bayes procedure are shown empiricall
+y to yield greater statistical power than either the individual feature
+ variances or the single common value.
+\end_layout
+
+\begin_layout Standard
+On top of this core framework, limma also implements many other enhancements
+ that, further relax the assumptions of the model and extend the scope of
+ what kinds of data it can analyze.
+ Instead of squeezing toward a single common variance value, limma can model
+ the common variance as a function of a covariate, such as average expression
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Law2013"
+literal "false"
+
+\end_inset
+
+.
+ This is essential for RNA-seq data, where higher gene counts yield more
+ precise expression measurements and therefore smaller variances than low-count
+ genes.
+ While linear models typically assume that all samples have equal variance,
+ limma is able to relax this assumption by identifying and down-weighting
+ samples the diverge more strongly from the lienar model across many features
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Ritchie2006,Liu2015"
+literal "false"
+
+\end_inset
+
+.
+ In addition, limma is also able to fit simple mixed models incorporating
+ one random effect in addition to the fixed effects represented by an ordinary
+ linear model 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Smyth2005a"
+literal "false"
+
+\end_inset
+
+.
+ Once again, limma shares information between features to obtain a robust
+ estimate for the random effect correlation.
+\end_layout
+
+\begin_layout Subsubsection
+edgeR provides limma-like analysis features for count data
+\end_layout
+
+\begin_layout Standard
+Although limma can be applied to read counts from RNA-seq data, it is less
+ suitable for counts from ChIP-seq data, which tend to be much smaller and
+ therefore violate the assumption of a normal distribution more severely.
+ For all count-based data, the edgeR package works similarly to limma, but
+ uses a generalized linear model instead of a linear model.
+ The most important difference is that the GLM in edgeR models the counts
+ directly using a negative binomial distribution rather than modeling the
+ normalized log counts using a normal distribution 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Chen2014,McCarthy2012,Robinson2010a"
+literal "false"
+
+\end_inset
+
+.
+ The negative binomial is a good fit for count data because it can be derived
+ as a gamma-distributed mixture of Poisson distributions.
+ The Poisson distribution accurately represents the distribution of counts
+ expected for a given gene abundance, and the gamma distribution is then
+ used to represent the variation in gene abundance between biological replicates.
+ For this reason, the square root of the dispersion paramter of the negative
+ binomial is sometimes referred to as the biological coefficient of variation,
+ since it represents the variability that was present in the samples prior
+ to the Poisson 
+\begin_inset Quotes eld
+\end_inset
+
+noise
+\begin_inset Quotes erd
+\end_inset
+
+ that was generated by the random sampling of reads in proportion to feature
+ abundances.
+ The choice of a gamma distribution is arbitrary and motivated by mathematical
+ convenience, since a gamma-Poisson mixture yields the numerically tractable
+ negative binomial distribution.
+ Thus, edgeR assumes 
+\emph on
+a prioi 
+\emph default
+that the variation in abundances between replicates follows a gamma distribution.
+ For differential abundance testing, edgeR offers a likelihood ratio test,
+ but more recently recommends a quasi-likelihood test that properly factors
+ the uncertainty in variance estimation into the statistical significance
+ for each feature 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Lund2012"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsubsection
@@ -727,27 +919,6 @@ ChIP-seq: complex with many considerations, dependent on experimental methods,
 \end_layout
 
 \begin_layout Subsubsection
-Limma: The standard linear modeling framework for genomics
-\end_layout
-
-\begin_layout Itemize
-empirical Bayes variance modeling: limma's core feature
-\end_layout
-
-\begin_layout Itemize
-edgeR & DESeq2: Extend with negative bonomial GLM for RNA-seq and other
- count data
-\end_layout
-
-\begin_layout Itemize
-voom: Extend with precision weights to model mean-variance trend
-\end_layout
-
-\begin_layout Itemize
-arrayWeights and duplicateCorrelation to handle complex variance structures
-\end_layout
-
-\begin_layout Subsubsection
 sva and ComBat for batch correction
 \end_layout
 
@@ -762,6 +933,20 @@ Batch-corrected PCA is informative, but careful application is required
 
 \begin_layout Section
 Innovation
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Is this entire section redundant with the Approach sections of each chapter?
+ I'm not really sure what to write here.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -13613,9 +13798,9 @@ noprefix "false"
 
 , and genes with an average logCPM below -1 were filtered out.
  Each remaining gene was tested for differential abundance with respect
- to globin blocking (GB) using edgeR’s quasi-likelihod F-test, fitting a
- negative binomial generalized linear model to table of read counts in each
- library.
+ to globin blocking (GB) using edgeR’s quasi-likelihood F-test, fitting
+ a negative binomial generalized linear model to table of read counts in
+ each library.
  For each gene, edgeR reported average abundance (logCPM), 
 \begin_inset Formula $\log_{2}$
 \end_inset
