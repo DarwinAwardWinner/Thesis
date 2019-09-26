@@ -383,41 +383,274 @@ Background & Significance
 Biological motivation
 \end_layout
 
-\begin_layout Subsubsection
-Rejection is the major long-term threat to organ and tissue grafts
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Rethink the subsection organization after the intro is written.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Organ and tissue transplants are a life-saving 
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Citations are needed all over the place.
+ A lot of this is knowledge I've just absorbed from years of conversation
+ in the Salomon lab, without ever having seen a citation for it.
 \end_layout
 
-\begin_layout Itemize
-Common mechanisms of rejection 
+\end_inset
+
+
 \end_layout
 
-\begin_layout Itemize
-Effective immune suppression requires monitoring for rejection and tuning
- 
+\begin_layout Subsubsection
+Rejection is the major long-term threat to organ and tissue allografts
 \end_layout
 
-\begin_layout Itemize
-Current tests for rejection (tissue biopsy) are invasive and biased 
+\begin_layout Standard
+Organ and tissue transplants are a life-saving treatment for people who
+ have lost the function of an important organ.
+ In some cases, it is possible to transplant a patient's own tissue from
+ one area of their body to another, referred to as an autograft.
+ This is common for tissues that are distributed throughout many areas of
+ the body, such as skin and bone.
+ However, in cases of organ failure, there is no functional self tissue
+ remaining, and a transplant from another person – the donor – is required.
+ This is referred to as an allograft.
 \end_layout
 
-\begin_layout Itemize
-A blood test based on microarrays would be less biased and invasive
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Possible citation for degree of generic variability: https://www.ncbi.nlm.nih.gov/pu
+bmed/22424236?dopt=Abstract
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+How much mechanistic detail is needed here? My work doesn't really go into
+ specific rejection mechanisms, so I think it's best to keep it basic.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Because an allograft comes from a different person, it is genetically distinct
+ from the rest of the recipient's body.
+ Some genetic variants occur in protein coding regions, resulting in protein
+ products that differ from the equivalent proteins in the graft recipient's
+ own tissue.
+ As a result, without intervention, the recipient's immune system will eventuall
+y identify the graft as foreign tissue and begin attacking it, eventually
+ resulting in failure and death of the graft, a process referred to as transplan
+t rejection.
+ Rejection is the most significant challenge to the long-term health of
+ an allograft.
+ Like any adaptive immune response, graft rejection generally occurs via
+ two broad mechanisms: cellular immunity, in which CD8+ T-cells induce apoptosis
+ in the graft cells; and humoral immunity, in which B-cells produce antibodies
+ that bind to graft proteins and direct an immune response against the graft.
+ In either case, rejection shows most of the typical hallmarks of an adaptive
+ immune response, in particular mediation by CD4+ T-cells and formation
+ of immune memory.
+\end_layout
+
+\begin_layout Subsubsection
+Diagnosis and treatment of allograft rejection is a major challenge
+\end_layout
+
+\begin_layout Standard
+To prevent rejection, allograft recipients are treated with immune suppression.
+ The goal is to achieve sufficient suppression of the immune system to prevent
+ rejection of the graft without compromising the ability of the immune system
+ to raise a normal response against infection.
+ As such, a delicate balance must be struck: insufficient immune suppression
+ may lead to rejection and ultimately loss of the graft; exceissive suppression
+ leaves the patient vulnerable to life-threatening opportunistic infections.
+ Because every patient is different, immune suppression must be tailored
+ for each patient.
+ Furthermore, immune suppression must be tuned over time, as the immune
+ system's activity is not static, nor is it held in a steady state.
+ In order to properly adjust the dosage of immune suppression drugs, it
+ is necessary to monitor the health of the transplant and increase the dosage
+ if evidence of rejection is observed.
+\end_layout
+
+\begin_layout Standard
+However, diagnosis of rejection is a significant challenge.
+ Early diagnosis is essential in order to step up immune suppression before
+ the immune system damages the graft beyond recovery.
+ The current gold standard test for graft rejection is a tissue biopsy,
+ examained for visible signs of rejection by a trained histologist.
+ When a patient shows symptoms of possible rejection, a 
+\begin_inset Quotes eld
+\end_inset
+
+for cause
+\begin_inset Quotes erd
+\end_inset
+
+ biopsy is performed to confirm the diagnosis, and immune suppression is
+ adjusted as necessary.
+ However, in many cases, the early stages of rejection are asymptomatic,
+ known as 
+\begin_inset Quotes eld
+\end_inset
+
+sub-clinical
+\begin_inset Quotes erd
+\end_inset
+
+ rejection.
+ In light of this, is is now common to perform 
+\begin_inset Quotes eld
+\end_inset
+
+protocol biopsies
+\begin_inset Quotes erd
+\end_inset
+
+ at specific times after transplantation of a graft, even if no symptoms
+ of rejection are apparent, in addition to 
+\begin_inset Quotes eld
+\end_inset
+
+for cause
+\begin_inset Quotes erd
+\end_inset
+
+ biopsies 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Wilkinson2006"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+However, biopsies have a number of downsides that limit their effectiveness
+ as a diagnostic tool.
+ First, the need for manual inspection by a histologist means that diagnosis
+ is subject to the biases of the particular histologist examining the biopsy.
+ In marginal cases two different histologists may give two different diagnoses
+ to the same biopsy.
+ Second, a biopsy can only evaluate if rejection is occurring in the section
+ of the graft from which the tissue was extracted.
+ If rejection is only occurring in one section of the graft and the tissue
+ is extracted from a different section, it may result in a false negative
+ diagnosis.
+ Most importantly, however, extraction of tissue from a graft is invasive
+ and is treated as an injury by the body, which results in inflammation
+ that in turn promotes increased immune system activity.
+ Hence, the invasiveness of biopsies severely limits the frequency with
+ which the can safely be performed.
+ Typically protocol biopsies are not scheduled more than about once per
+ month 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Wilkinson2006"
+literal "false"
+
+\end_inset
+
+.
+ A less invasive diagnostic test for rejection would bring manifold benefits.
+ Such a test would enable more frequent testing and therefore earlier detection
+ of rejection events.
+ In addition, having a larger pool of historical data for a given patient
+ would make it easier to evaluate when a given test is outside the normal
+ parameters for that specific patient, rather than relying on normal ranges
+ for the population as a whole.
+ Lastly, more frequent tests would be a boon to the transplant research
+ community.
+ Beyond simply providing more data, the increased time granularity of the
+ tests will enable studying the progression of a rejection event on the
+ scale of days to weeks, rather than months.
 \end_layout
 
 \begin_layout Subsubsection
 Memory cells are resistant to immune suppression
 \end_layout
 
-\begin_layout Itemize
-Mechanisms of resistance in memory cells are poorly understood 
+\begin_layout Standard
+One of the defining features of the adaptive immune system is immune memory:
+ the ability of the immune system to recognize a previously encountered
+ foreign antigen and respond more quickly and more strongly to that antigen
+ in subsequent encounters.
+ When the immune system first encounters a new antigen, the lymphocytes
+ that respond are known as naive cells – T-cells and B-cells that have never
+ detected their target antigens before.
+ Once activated by their specific antigen presented by an antigen-presenting
+ cell in the proper co-stimulatory context, naive cells differentiate into
+ effector cells that carry out their respective functions in targeting and
+ destroying the source of the foreign antigen.
+ The requirement for co-stimulation is an important feature of naive cells
+ that limits 
+\begin_inset Quotes eld
+\end_inset
+
+false positive
+\begin_inset Quotes erd
+\end_inset
+
+ immune responses, because antigen-presenting cells usually only express
+ the proper co-stimulation after detecting evidence of an infection, such
+ as the presence of common bacterial cell components or inflamed tissue.
+ Most effector cells die after the foreign antigen is cleared, but some
+ remain and differentiate into memory cells.
+ Like naive cells, memory cells respond to detection of their specific antigen
+ by differentiating into effector cells, ready to fight an infection.
+ However, unlike naive cells, memory cells do not require the same degree
+ of co-stimulatory signaling for activation, and once activated, they proliferat
+e and differentiate into effector cells more quickly than naive cells do.
 \end_layout
 
-\begin_layout Itemize
-A better understanding of immune memory formation is needed
+\begin_layout Standard
+In the context of a pathogenic infection, immune memory is a major advantage,
+ allowing an organism to rapidly fight off a previously encountered pathogen
+ much more quickly and effectively than the first time it was encountered.
+ However, if effector cells that recognize an antigen from an allograft
+ are allowed to differentiate into memory cells, suppressing rejection of
+ the graft becomes much more difficult.
+ Many immune suppression drugs work by interfering with the co-stimulation
+ that naive cells require in order to mount an immune response.
+ Since memory cells do not require this co-stimulation, these drugs are
+ not effective at suppressing an immune response that is mediated by memory
+ cells.
+ Secondly, because memory cells are able to mount a stronger and faster
+ response to an antigen, all else being equal they require stronger immune
+ suppression than naive cells to prevent an immune response.
+ However, immune suppression affects the entire immune system, not just
+ cells recognizing a specific antigen, so increasing the dosage of immune
+ suppression drugs also increases the risk of complications from a compromised
+ immune system, such as opportunistic infections.
+ In order to develop immune suppression that either prevents the formation
+ of memory cells or works more effectively against memory cells, the mechanisms
+ of immune memory formation and regulation must be better understood.
 \end_layout
 
 \begin_layout Subsubsection
