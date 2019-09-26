@@ -1124,11 +1124,94 @@ literal "false"
 \end_layout
 
 \begin_layout Subsubsection
-sva and ComBat for batch correction
+ComBat and SVA for correction of known and unknown batch effects
+\end_layout
+
+\begin_layout Standard
+In addition to well-understood effects that can be easily normalized out,
+ a data set often contains confounding biological effects that must be accounted
+ for in the modeling step.
+ For instance, in an experiment with pre-treatment and post-treatment samples
+ of cells from several different donors, donor variability represents a
+ known batch effect.
+ The most straightforward correction for known batches is to estimate the
+ mean for each batch independently and subtract out the differences, so
+ that all batches have identical means for each feature.
+ However, as with variance estimation, estimating the differences in batch
+ means is not necessarily robust at the feature level, so the ComBat method
+ adds empirical Bayes squeezing of the batch mean differences toward a common
+ value, analogous to limma's empirical Bayes squeezing of feature variance
+ estimates 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Johnson2007"
+literal "false"
+
+\end_inset
+
+.
+ Effectively, ComBat assumes that modest differences between batch means
+ are real batch effects, but extreme differences between batch means are
+ more likely to be the result of outlier observations that happen to line
+ up with the batches rather than a genuine batch effect.
+ The result is a batch correction that is more robust against outliers than
+ simple subtraction of mean differences subtraction.
+\end_layout
+
+\begin_layout Standard
+In some data sets, unknown batch effects may be present due to inherent
+ variability in in the data, either caused by technical or biological effects.
+ Examples of unknown batch effects include variations in enrichment efficiency
+ between ChIP-seq samples, variations in populations of different cell types,
+ and the effects of uncontrolled environmental factors on gene expression
+ in humans or live animals.
+ In an ordinary linear model context, unknown batch effects cannot be inferred
+ and must be treated as random noise.
+ However, in high-throughput experiments, once again information can be
+ shared across features to identify patterns of un-modeled variation that
+ are repeated in many features.
+ One attractive strategy would be to perform singular value decomposition
+ (SVD) on the matrix os linear model residuals (which contain all the un-modeled
+ variation in the data) and take the first few singular vectors as batch
+ effects.
+ While this can be effective, it makes the unreasonable assumption that
+ all batch effects are uncorrelated with any of the effects being modeled.
+ Surrogate variable analysis (SVA) starts with this approach, but takes
+ some additional steps to identify batch effects in the full data that are
+ both highly correlated with the singular vectors in the residuals and least
+ correlated with the effects of interest 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Leek2007"
+literal "false"
+
+\end_inset
+
+.
+ Since the final batch effects are estimated from the full data, moderate
+ correlations between the batch effects and effects of interest are allowed,
+ which gives SVA much more freedom to estimate the true extent of the batch
+ effects compared to simple residual SVD.
+ Once the surrogate variables are estimated, they can be included as coefficient
+s in the linear model in a similar fashion to known batch effects in order
+ to subtract out their effects on each feature's abundance.
 \end_layout
 
 \begin_layout Subsubsection
 Factor analysis: PCA, MDS, MOFA
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Not sure if this merits a subsection here.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
