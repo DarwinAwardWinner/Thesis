@@ -12522,7 +12522,7 @@ begin{landscape}
 placement p
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -14423,18 +14423,25 @@ Future Directions
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-I've already done a good bit of work outside just this globin blocking thing,
- so I'm not sure what to put for future directions.
- Does it inculde the other stuff I've done but not published?
+One drawback of the globin blocking method presented in this analysis is
+ a poor yield of genic reads, only around 50%.
+ In a separate experiment, the reagent mixture was modified so as to address
+ this drawback, resulting in a method that produces an even better reduction
+ in globin reads without reducing the overall fraction of genic reads.
+ However, the data showing this improvement consists of only a few test
+ samples, so the larger data set analyzed above was chosen in order to demonstra
+te the effectiveness of the method in reducing globin reads while preserving
+ the biological signal.
 \end_layout
 
-\end_inset
-
-
+\begin_layout Standard
+The motivation for developing a fast practical way to enrich for non-globin
+ reads in cyno blood samples was to enable a large-scale RNA-seq experiment
+ investigating the effects of mesenchymal stem cell infusion on blood gene
+ expression in cynomologus transplant recipients in a time course after
+ transplantation.
+ With the globin blocking method in place, the way is now clear for this
+ experiment to proceed.
 \end_layout
 
 \begin_layout Chapter
@@ -14462,7 +14469,7 @@ status collapsed
 
 \begin_layout Plain Layout
 
-% Call it "References" instead of "Bibliography" 
+% Use "References" as the title of the Bibliography
 \end_layout
 
 \begin_layout Plain Layout
