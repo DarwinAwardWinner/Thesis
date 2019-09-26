@@ -92,7 +92,8 @@ def find_lyx():
         # Fallback which will just trigger an error when run
         return '/bin/false'
 
-LYXPATH = find_lyx()
+LYX_PATH = find_lyx()
+PDFINFO_PATH = find_executable('pdfinfo')
 
 def glob_recursive(pattern, top='.', include_hidden=False, *args, **kwargs):
     '''Combination of glob.glob and os.walk.
@@ -107,8 +108,6 @@ os.walk.'''
                 continue
             if fnmatch(f, pattern):
                 yield os.path.normpath(os.path.join(path, f))
-
-LYXPATH = find_lyx()
 
 def rsync_list_files(*paths, extra_rsync_args=(), include_dirs=False):
     '''Iterate over the files in path that rsync would copy.
@@ -191,7 +190,12 @@ rule lyx_to_pdf:
            bib_deps = lambda wildcards: lyx_bib_deps(wildcards.basename + '.lyx'),
     # Need to exclude pdfs in graphics/
     output: pdf='{basename,(?!graphics/).*}.pdf'
-    shell: '{LYXPATH:q} --export-to pdf4 {output.pdf:q} {input.lyxfile:q}'
+    run:
+        if not LYX_PATH or LYX_PATH == '/bin/false':
+            raise Exception('PAth to LyX  executable could not be found.')
+        shell('''{LYX_PATH:q} --export-to pdf4 {output.pdf:q} {input.lyxfile:q}''')
+        if PDFINFO_PATH:
+            shell('''{PDFINFO_PATH} {output.pdf:q}''')
 
 rule process_bib:
     '''Preprocess bib file for LaTeX.
