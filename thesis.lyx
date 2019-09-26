@@ -10,9 +10,9 @@
 \listfiles
 
 % Add a DRAFT watermark
-\usepackage{draftwatermark}
-\SetWatermarkLightness{0.97}
-\SetWatermarkScale{1}
+%\usepackage{draftwatermark}
+%\SetWatermarkLightness{0.97}
+%\SetWatermarkScale{1}
 
 % Set up required header format
 \usepackage{fancyhdr}
@@ -20,6 +20,7 @@
 \renewcommand{\headrulewidth}{0pt}
 \rhead{}
 \lhead{}
+\chead{DRAFT}
 \rfoot{}
 \lfoot{}
 \cfoot{\thepage} % Page number bottom center
