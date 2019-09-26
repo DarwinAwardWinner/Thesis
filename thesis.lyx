@@ -876,46 +876,251 @@ literal "false"
 ChIP-seq Peak calling
 \end_layout
 
-\begin_layout Itemize
-Cross-correlation analysis to determine fragment size
+\begin_layout Standard
+Unlike RNA-seq data, in which gene annotations provide a well-defined set
+ of genomic regions in which to count reads, ChIP-seq data can potentially
+ occur anywhere in the genome.
+ However, most genome regions will not contain significant ChIP-seq read
+ coverage, and analyzing every position in the entire genome is statistically
+ and computationally infeasible, so it is necesary to identify regions of
+ interest inside which ChIP-seq reads will be counted and analyzed.
+ One option is to define a set of interesting regions
+\emph on
+ a priori
+\emph default
+, for example by defining a promoter region for each annotated gene.
+ However, it is also possible to use the ChIP-seq data itself to identify
+ regions with ChIP-seq read coverage significantly above the background
+ level, known as peaks.
+ 
 \end_layout
 
-\begin_layout Itemize
-Broad vs narrow peaks
+\begin_layout Standard
+There are generally two kinds of peaks that can be identified: narrow peaks
+ and broadly enriched regions.
+ Proteins like transcription factors that bind specific sites in the genome
+ typically show most of their read coverage at these specific sites and
+ very little coverage anywhere else.
+ Because the footprint of the protein is consistent wherever it binds, each
+ peak has a consistent size, typically tens to hundreds of base pairs.
+ Algorithms like MACS exploit this pattern to identify specific loci at
+ which such 
+\begin_inset Quotes eld
+\end_inset
+
+narrow peaks
+\begin_inset Quotes erd
+\end_inset
+
+ occur by looking for the characteristic peak shape in the ChIP-seq coverage
+ rising above the surrounding background coverage 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Zhang2008"
+literal "false"
+
+\end_inset
+
+.
+ In contrast, some proteins, chief among them histones, do not bind only
+ at a small number of specific sites, but rather bind potentailly almost
+ everywhere in the entire genome.
+ When looking at histone marks, adjacent histones tend to be similarly marked,
+ and a given mark may be present on an arbitrary number of consecutive histones
+ along the genome.
+ Hence, there is no consistent 
+\begin_inset Quotes eld
+\end_inset
+
+footprint size
+\begin_inset Quotes erd
+\end_inset
+
+ for ChIP-seq peaks based on histone marks, and peaks typically span many
+ histones.
+ Hence, typical peaks span many hundreds or even thousands of base pairs.
+ Instead of identifying specific loci of strong enrichment, algorithms like
+ SICER assume that peaks are represented in the ChIP-seq data by modest
+ enrichment above background occurring across broad regions, and they attempt
+ to identify the extent of those regions 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Zang2009"
+literal "false"
+
+\end_inset
+
+.
+ In all cases, better results are obtained if the local background coverage
+ level can be estimated from ChIP-seq input samples, since various biases
+ can result in uneven background coverage.
 \end_layout
 
-\begin_layout Itemize
-MACS for narrow, SICER for broad peaks
+\begin_layout Standard
+Regardless of the type of peak identified, it is important to identify peaks
+ that occur consistently across biological replicates.
+ The ENCODE project has developed a method called irreproducible discovery
+ rate for this purpose 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Li2006"
+literal "false"
+
+\end_inset
+
+.
+ The IDR is defined as the probability that a peak identified in one biological
+ replicate will 
+\emph on
+not
+\emph default
+ also be identified in a second replicate.
+ Where the more familiar false discovery rate measures the degree of corresponde
+nce between a data-derived ranked list and the true list of significant
+ features, IDR instead measures the degree of correspondence between two
+ ranked lists derived from different data.
+ IDR assumes that the highest-ranked features are 
+\begin_inset Quotes eld
+\end_inset
+
+signal
+\begin_inset Quotes erd
+\end_inset
+
+ peaks that tend to be listed in the same order in both lists, while the
+ lowest-ranked features are essentially noise peaks, listed in random order
+ with no correspondence between the lists.
+ IDR attempts to locate the 
+\begin_inset Quotes eld
+\end_inset
+
+crossover point
+\begin_inset Quotes erd
+\end_inset
+
+ between the signal and the noise by determining how for down the list the
+ correspondence between feature ranks breaks down.
 \end_layout
 
-\begin_layout Itemize
-IDR for biologically reproducible peaks
-\end_layout
+\begin_layout Standard
+In addition to other considerations, if called peaks are to be used as regions
+ of interest for differential abundance analysis, then care must be taken
+ to call peaks in a way that is blind to differential abundance between
+ experimental conditions, or else the statistical significance calculations
+ for differential abundance will overstate their confidence in the results.
+ The csaw package provides guidelines for calling peaks in this way: peaks
+ are called based on a combination of all ChIP-seq reads from all experimental
+ conditions, so that the identified peaks are based on the average abundance
+ across all conditions, which is independent of any differential abundance
+ between condtions 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Lun2015a"
+literal "false"
 
-\begin_layout Itemize
-csaw peak filtering guidelines for unbiased downstream analysis
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsubsection
-Normalization is non-trivial and application-dependant
+Normalization of high-throughput data is non-trivial and application-dependant
 \end_layout
 
-\begin_layout Itemize
-Expression arrays: RMA & fRMA; why fRMA is needed
+\begin_layout Standard
+High-throughput data sets invariable require some kind of normalization
+ before further analysis can be conducted.
+ In general, the goal of normalization is to remove effects in the data
+ that are caused by technical factors that have nothing to do with the biology
+ being studied.
 \end_layout
 
-\begin_layout Itemize
-Methylation arrays: M-value transformation approximates normal data but
- induces heteroskedasticity
+\begin_layout Standard
+For Affymetrix expression arrays, the standard normalization algorithm used
+ in most analyses is Robust Multichip Average (RMA).
+ RMA is designed with the assumption that some fraction of probes on each
+ array will be artifactual and takes advantage of the fact that each gene
+ is represented by multiple probes by implementing normalization and summarizati
+on steps that are robust against outlier probes.
+ However, RMA uses the probe intensities of all arrays in the data set in
+ the normalization of each individual array, meaning that the normalized
+ expression values in each array depend on every array in the data set,
+ and will necessarily change each time an array is added or removed from
+ the data set.
+ If this is undesirable, frozen RMA implements a variant of RMA where the
+ relevant distributional parameters are learned from a large reference set
+ of diverse public array data sets and then 
+\begin_inset Quotes eld
+\end_inset
+
+frozen
+\begin_inset Quotes erd
+\end_inset
+
+, so that each array is effectively normalized against this frozen reference
+ set rather than the other arrays in the data set under study.
 \end_layout
 
-\begin_layout Itemize
-RNA-seq: normalize based on assumption that the average gene is not changing
+\begin_layout Standard
+In contrast, high-throughput sequencing data present very different normalizatio
+n challenges.
+ The simplest case is RNA-seq in which read counts are obtained for a set
+ of gene annotations, yielding a matrix of counts with rows representing
+ genes and columns representing samples.
+ Because RNA-seq approximates a process of sampling from a population with
+ replacement, each gene's count is only interpretable as a fraction of the
+ total reads for that sample.
+ For that reason, RNA-seq abundances are often reported as counts per million
+ (CPM).
+ Furthermore, if the abundance of a single gene increases, then in order
+ for its fraction of the total reads to increase, all other genes' fractions
+ must decrease to accomodate it.
+ This effect is known as composition bias, and it is an artifact of the
+ read sampling process that has nothing to do with the biology of the samples
+ and must therefore be normalized out.
+ The most commonly used methods to normalize for composition bias in RNA-seq
+ data seek to equalize the average gene abundance across samples, under
+ the assumption that the average gene is likely not changing 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Robinson2010,Anders2010"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
-\begin_layout Itemize
-ChIP-seq: complex with many considerations, dependent on experimental methods,
- biological system, and analysis goals
+\begin_layout Standard
+In ChIP-seq data, normalization is not as straightforward.
+ The csaw package implements several different normalization strategies
+ and provides guidance on when to use each one 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Lun2015a"
+literal "false"
+
+\end_inset
+
+.
+ Briefly, a typical ChIP-seq sample has a bimodal distribution of read counts:
+ a low-abundance mode representing background regions and a high-abundance
+ mode representing signal regions.
+ This offers two potential normalization targets: equalizing background
+ coverage or equalizing signal coverage.
+ If the experiment is well controlled and ChIP efficiency is known to be
+ consistent across all samples, then normalizing the background coverage
+ to be equal across all samples is a reasonable strategy.
+ If this is not a safe assumption, then the preferred strategy is to normalize
+ the signal regions in a way similar to RNA-seq data by assuming that the
+ average signal region is not changing abundance between samples.
+ Beyond this, if a ChIP-seq experiment has a more complicated structure
+ that doesn't show the typical bimodal count distribution, it may be necessary
+ to implement a normalization as a smooth function of abundance.
+ However, this strategy makes a much stronger assumption about the data:
+ that the average log fold change is zero across all abundance levels.
+ Hence, the simpler scaling normalziations based on background or signal
+ regions are generally preferred whenever possible.
 \end_layout
 
 \begin_layout Subsubsection
