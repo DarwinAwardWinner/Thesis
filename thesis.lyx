@@ -198,20 +198,6 @@ October 2019
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-I'm looking for feedback on: Section titles; figure formatting; figure legends;
- typographical errors; ...
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 \begin_inset CommandInset toc
 LatexCommand tableofcontents
 
@@ -374,6 +360,95 @@ Obviously the abstract gets written last.
 \end_inset
 
 
+\end_layout
+
+\begin_layout Chapter*
+Notes to draft readers
+\end_layout
+
+\begin_layout Standard
+Thank you so much for agreeing to read my thesis and give me feedback on
+ it.
+ What you are currently reading is a rough draft, in need of many revisions.
+ You can always find the latest version at 
+\begin_inset CommandInset href
+LatexCommand href
+target "https://mneme.dedyn.io/~ryan/Thesis/thesis.pdf"
+literal "false"
+
+\end_inset
+
+.
+ the PDF at this link is updated periodically with my latest revisions,
+ but you can just download the current version and give me feedback on that.
+ Don't worry about keeping up with the updates.
+\end_layout
+
+\begin_layout Standard
+As for what feedback I'm looking for, first of all, don't waste your time
+ marking spelling mistakes and such.
+ I haven't run a spell checker on it yet, so let me worry about that.
+ However, if you see any glaring formatting issues, such as a figure being
+ too large and getting cut off at the edge of the page, please note them.
+ In addition, if any of the text in the figures is too small, please note
+ that as well.
+\end_layout
+
+\begin_layout Standard
+Beyond that, what I'm mainly interested in is feedback on the content.
+ For example: does the introduction flow logically, and does it provide
+ enough background to understand the other chapters? Does each chapter make
+ it clear what work and analyses I have done? Do the figures clearly communicate
+ the results I'm trying to show? Do you feel that the claims in the results
+ and discussion sections are well-supported? Additionally, while I am well
+ aware that Chapter 1 (the introduction) contains many un-cited claims,
+ all the other chapters (2,3, and 4) 
+\emph on
+should
+\emph default
+ be fully cited.
+ So if you notice any un-cited claims in those chapters, please flag them
+ for my attention.
+\end_layout
+
+\begin_layout Standard
+You can provide your feedback in whatever way is most convenient to you.
+ You could mark up this PDF with highlights and notes, then send it back
+ to me.
+ Or you could collect your comments in a separate text file and send that
+ to me, or whatever else you like.
+ However, if you send me your feedback in a separate document, please note
+ a section/figure/table number for each comment, and 
+\emph on
+also
+\emph default
+ send me the exact PDF that you read so I can reference it while reading
+ your comments, since as mentioned above, the current version I'm working
+ on will have changed by that point (which might include shuffling sections
+ and figures around, changing their numbers).
+ One last thing: you'll see a bunch of text in orange boxes throughout the
+ PDF.
+ These are notes to myself about things that need to be fixed later, so
+ if you see a problem noted in an orange box, that means I'm already aware
+ of it, and there's no need to comment on it.
+\end_layout
+
+\begin_layout Standard
+My thesis is due October 10th, so in order to be useful to me, I'll need
+ your feedback at least a few days before that, ideally by October 7th.
+ If you have limited time and are unable to get through the whole thesis,
+ please focus your effors on Chapters 1 and 2, since those are the roughest
+ and most in need of revision.
+ Chapter 3 is fairly short and straightforward, and Chapter 4 is an adaptation
+ of a paper that's already been through a few rounds of revision, so they
+ should be a lot tighter.
+ If you can't spare any time between now and then, or if something unexpected
+ comes up, I understand.
+ Just let me know.
+\end_layout
+
+\begin_layout Standard
+Thanks again for your help, and happy reading!
 \end_layout
 
 \begin_layout Chapter
@@ -14939,6 +15014,10 @@ If there are any chapter-independent future directions, put them here.
 \end_inset
 
 
+\end_layout
+
+\begin_layout Chapter
+Closing remarks
 \end_layout
 
 \begin_layout Standard
