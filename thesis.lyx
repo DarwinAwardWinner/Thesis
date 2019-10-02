@@ -873,8 +873,6 @@ The central challenge when fitting a linear model is to estimate the variance
  variance estimates.
  However, this would require the assumption that every feature is equally
  variable, which is known to be false for most genomic data sets.
-
-
 \begin_inset Flex Code
 status open
 
@@ -884,8 +882,8 @@ limma
 
 \end_inset
 
- offers a compromise between these two extremes by using a method
- called empirical Bayes moderation to 
+ offers a compromise between these two extremes by using a method called
+ empirical Bayes moderation to 
 \begin_inset Quotes eld
 \end_inset
 
@@ -912,7 +910,6 @@ on of the two yields a variance estimate for each feature with greater precision
 ted for features with high variance and overestimated for features with
  low variance.
  Essentially,
-
 \begin_inset Flex Code
 status open
 
@@ -922,8 +919,8 @@ limma
 
 \end_inset
 
- assumes that extreme variances are less common than
- variances close to the common value.
+ assumes that extreme variances are less common than variances close to
+ the common value.
  The variance estimates from this empirical Bayes procedure are shown empiricall
 y to yield greater statistical power than either the individual feature
  variances or the single common value.
@@ -931,7 +928,6 @@ y to yield greater statistical power than either the individual feature
 
 \begin_layout Standard
 On top of this core framework,
-
 \begin_inset Flex Code
 status open
 
@@ -941,11 +937,9 @@ limma
 
 \end_inset
 
- also implements many other enhancements
- that, further relax the assumptions of the model and extend the scope of
- what kinds of data it can analyze.
+ also implements many other enhancements that, further relax the assumptions
+ of the model and extend the scope of what kinds of data it can analyze.
  Instead of squeezing toward a single common variance value,
-
 \begin_inset Flex Code
 status open
 
@@ -955,9 +949,8 @@ limma
 
 \end_inset
 
- can model
- the common variance as a function of a covariate, such as average expression
- 
+ can model the common variance as a function of a covariate, such as average
+ expression 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Law2013"
@@ -970,8 +963,6 @@ literal "false"
  precise expression measurements and therefore smaller variances than low-count
  genes.
  While linear models typically assume that all samples have equal variance,
-
-
 \begin_inset Flex Code
 status open
 
@@ -981,9 +972,8 @@ limma
 
 \end_inset
 
- is able to relax this assumption by identifying and down-weighting
- samples the diverge more strongly from the linear model across many features
- 
+ is able to relax this assumption by identifying and down-weighting samples
+ that diverge more strongly from the linear model across many features 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Ritchie2006,Liu2015"
@@ -993,7 +983,6 @@ literal "false"
 
 .
  In addition,
-
 \begin_inset Flex Code
 status open
 
@@ -1003,9 +992,9 @@ limma
 
 \end_inset
 
- is also able to fit simple mixed models incorporating
- one random effect in addition to the fixed effects represented by an ordinary
- linear model 
+ is also able to fit simple mixed models incorporating one random effect
+ in addition to the fixed effects represented by an ordinary linear model
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Smyth2005a"
@@ -1015,7 +1004,6 @@ literal "false"
 
 .
  Once again,
-
 \begin_inset Flex Code
 status open
 
@@ -1025,13 +1013,12 @@ limma
 
 \end_inset
 
- shares information between features to obtain a robust
- estimate for the random effect correlation.
+ shares information between features to obtain a robust estimate for the
+ random effect correlation.
 \end_layout
 
 \begin_layout Subsubsection
 edgeR provides
-
 \begin_inset Flex Code
 status open
 
@@ -1046,7 +1033,6 @@ limma
 
 \begin_layout Standard
 Although
-
 \begin_inset Flex Code
 status open
 
@@ -1056,11 +1042,10 @@ limma
 
 \end_inset
 
- can be applied to read counts from RNA-seq data, it is less
- suitable for counts from ChIP-seq data, which tend to be much smaller and
- therefore violate the assumption of a normal distribution more severely.
+ can be applied to read counts from RNA-seq data, it is less suitable for
+ counts from ChIP-seq data, which tend to be much smaller and therefore
+ violate the assumption of a normal distribution more severely.
  For all count-based data, the
-
 \begin_inset Flex Code
 status open
 
@@ -1071,7 +1056,6 @@ edgeR
 \end_inset
 
  package works similarly to
-
 \begin_inset Flex Code
 status open
 
@@ -1081,10 +1065,8 @@ limma
 
 \end_inset
 
-, but
- uses a generalized linear model instead of a linear model.
+, but uses a generalized linear model instead of a linear model.
  The most important difference is that the GLM in
-
 \begin_inset Flex Code
 status open
 
@@ -1094,9 +1076,8 @@ edgeR
 
 \end_inset
 
- models the counts
- directly using a negative binomial distribution rather than modeling the
- normalized log counts using a normal distribution 
+ models the counts directly using a negative binomial distribution rather
+ than modeling the normalized log counts using a normal distribution 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Chen2014,McCarthy2012,Robinson2010a"
@@ -1127,7 +1108,6 @@ noise
  convenience, since a gamma-Poisson mixture yields the numerically tractable
  negative binomial distribution.
  Thus,
-
 \begin_inset Flex Code
 status open
 
@@ -1143,7 +1123,6 @@ a prioi
 \emph default
 that the variation in abundances between replicates follows a gamma distribution.
  For differential abundance testing,
-
 \begin_inset Flex Code
 status open
 
@@ -1153,10 +1132,9 @@ edgeR
 
 \end_inset
 
- offers a likelihood ratio test,
- but more recently recommends a quasi-likelihood test that properly factors
- the uncertainty in variance estimation into the statistical significance
- for each feature 
+ offers a likelihood ratio test, but more recently recommends a quasi-likelihood
+ test that properly factors the uncertainty in variance estimation into
+ the statistical significance for each feature 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Lund2012"
@@ -1173,8 +1151,8 @@ ChIP-seq Peak calling
 
 \begin_layout Standard
 Unlike RNA-seq data, in which gene annotations provide a well-defined set
- of genomic regions in which to count reads, ChIP-seq data can potentially
- occur anywhere in the genome.
+ of discrete genomic regions in which to count reads, ChIP-seq reads can
+ potentially occur anywhere in the genome.
  However, most genome regions will not contain significant ChIP-seq read
  coverage, and analyzing every position in the entire genome is statistically
  and computationally infeasible, so it is necessary to identify regions
@@ -1194,10 +1172,11 @@ Unlike RNA-seq data, in which gene annotations provide a well-defined set
 There are generally two kinds of peaks that can be identified: narrow peaks
  and broadly enriched regions.
  Proteins like transcription factors that bind specific sites in the genome
- typically show most of their read coverage at these specific sites and
- very little coverage anywhere else.
+ typically show most of their ChIP-seq read coverage at these specific sites
+ and very little coverage anywhere else.
  Because the footprint of the protein is consistent wherever it binds, each
- peak has a consistent size, typically tens to hundreds of base pairs.
+ peak has a consistent width, typically tens to hundreds of base pairs,
+ representing the length of DNA that it binds to.
  Algorithms like MACS exploit this pattern to identify specific loci at
  which such 
 \begin_inset Quotes eld
@@ -1293,7 +1272,7 @@ crossover point
 \begin_inset Quotes erd
 \end_inset
 
- between the signal and the noise by determining how for down the list the
+ between the signal and the noise by determining how far down the list the
  correspondence between feature ranks breaks down.
 \end_layout
 
@@ -1323,7 +1302,7 @@ Normalization of high-throughput data is non-trivial and application-dependent
 \end_layout
 
 \begin_layout Standard
-High-throughput data sets invariable require some kind of normalization
+High-throughput data sets invariably require some kind of normalization
  before further analysis can be conducted.
  In general, the goal of normalization is to remove effects in the data
  that are caused by technical factors that have nothing to do with the biology
@@ -1438,7 +1417,6 @@ In addition to well-understood effects that can be easily normalized out,
  means is not necessarily robust at the feature level, so the ComBat method
  adds empirical Bayes squeezing of the batch mean differences toward a common
  value, analogous to
-
 \begin_inset Flex Code
 status open
 
@@ -1448,8 +1426,7 @@ limma
 
 \end_inset
 
-'s empirical Bayes squeezing of feature variance
- estimates 
+'s empirical Bayes squeezing of feature variance estimates 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Johnson2007"
@@ -1479,7 +1456,7 @@ In some data sets, unknown batch effects may be present due to inherent
  shared across features to identify patterns of un-modeled variation that
  are repeated in many features.
  One attractive strategy would be to perform singular value decomposition
- (SVD) on the matrix os linear model residuals (which contain all the un-modeled
+ (SVD) on the matrix of linear model residuals (which contain all the un-modeled
  variation in the data) and take the first few singular vectors as batch
  effects.
  While this can be effective, it makes the unreasonable assumption that
@@ -2336,7 +2313,6 @@ However, removing the systematic component of the batch effect still leaves
  The gene quantifications from the first batch are substantially noisier
  than those in the second batch.
  This analysis corrected for this by using
-
 \begin_inset Flex Code
 status open
 
@@ -2346,8 +2322,8 @@ limma
 
 \end_inset
 
-'s sample weighting method
- to assign lower weights to the noisy samples of batch 1 
+'s sample weighting method to assign lower weights to the noisy samples
+ of batch 1 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Ritchie2006,Liu2015"
@@ -2392,7 +2368,6 @@ literal "false"
 , and batch-corrected at this point using ComBat.
  A linear model was fit to the batch-corrected, quality-weighted data for
  each gene using
-
 \begin_inset Flex Code
 status open
 
@@ -2402,9 +2377,7 @@ limma
 
 \end_inset
 
-, and each gene was tested for differential expression
- using
-
+, and each gene was tested for differential expression using
 \begin_inset Flex Code
 status open
 
@@ -3082,8 +3055,6 @@ PCoA plots of ChIP-seq sliding window data, before and after subtracting
 \begin_layout Standard
 Reads in promoters, peaks, and sliding windows across the genome were counted
  and normalized using csaw and analyzed for differential modification using
-
-
 \begin_inset Flex Code
 status open
 
@@ -13303,7 +13274,6 @@ literal "false"
 .
  Log2 counts per million values (logCPM) were calculated using the cpm function
  in
-
 \begin_inset Flex Code
 status open
 
@@ -13313,9 +13283,9 @@ edgeR
 
 \end_inset
 
- for individual samples and aveLogCPM function for averages across
- groups of samples, using those functions’ default prior count values to
- avoid taking the logarithm of 0.
+ for individual samples and aveLogCPM function for averages across groups
+ of samples, using those functions’ default prior count values to avoid
+ taking the logarithm of 0.
  Genes were considered “present” if their average normalized logCPM values
  across all libraries were at least -1.
  Normalizing for gene length was unnecessary because the sequencing protocol
@@ -13365,7 +13335,6 @@ Differential Expression Analysis
 
 \begin_layout Standard
 All tests for differential gene expression were performed using
-
 \begin_inset Flex Code
 status open
 
@@ -13375,8 +13344,7 @@ edgeR
 
 \end_inset
 
-, by
- first fitting a negative binomial generalized linear model to the counts
+, by first fitting a negative binomial generalized linear model to the counts
  and normalization factors and then performing a quasi-likelihood F-test
  with robust estimation of outlier gene dispersions 
 \begin_inset CommandInset citation
@@ -14558,7 +14526,6 @@ noprefix "false"
 , and genes with an average logCPM below -1 were filtered out.
  Each remaining gene was tested for differential abundance with respect
  to globin blocking (GB) using
-
 \begin_inset Flex Code
 status open
 
@@ -14568,11 +14535,9 @@ edgeR
 
 \end_inset
 
-’s quasi-likelihood F-test, fitting
- a negative binomial generalized linear model to table of read counts in
- each library.
+’s quasi-likelihood F-test, fitting a negative binomial generalized linear
+ model to table of read counts in each library.
  For each gene,
-
 \begin_inset Flex Code
 status open
 
@@ -14708,7 +14673,6 @@ Comparison of inter-sample gene abundance correlations with and without
  with an average abundance (logCPM, log2 counts per million reads counted)
  less than -1 were filtered out.
  Each gene’s logCPM was computed in each library using the
-
 \begin_inset Flex Code
 status open
 
@@ -14767,7 +14731,6 @@ ons than the non-GB libraries.
  Performing the same tests on the Spearman correlations gave the same conclusion
  (t-test: t = 26.8, df = 665, P ≪ 2.2e-16; sign-rank test: V = 8781, P ≪ 2.2e-16).
  The
-
 \begin_inset Flex Code
 status open
 
@@ -14777,9 +14740,9 @@ edgeR
 
 \end_inset
 
- package was used to compute the overall biological coefficient
- of variation (BCV) for GB and non-GB libraries, and found that globin blocking
- resulted in a negligible increase in the BCV (0.417 with GB vs.
+ package was used to compute the overall biological coefficient of variation
+ (BCV) for GB and non-GB libraries, and found that globin blocking resulted
+ in a negligible increase in the BCV (0.417 with GB vs.
  0.400 without).
  The near equality of the BCVs for both sets indicates that the higher correlati
 ons in the GB libraries are most likely a result of the increased yield
