@@ -787,22 +787,17 @@ The studies presented in this work all involve the analysis of high-throughput
  they work.
 \end_layout
 
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
+\begin_layout Subsubsection
+\begin_inset Flex Code
 status open
 
 \begin_layout Plain Layout
-Many of these points may also be addressed in the approach/methods sections
- of the following chapters? Redundant?
+Limma
 \end_layout
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Subsubsection
-Limma: The standard linear modeling framework for genomics
+: The standard linear modeling framework for genomics
 \end_layout
 
 \begin_layout Standard
@@ -820,7 +815,7 @@ literal "false"
 
 .
  In a typical linear model, there is one dependent variable observation
- per sample.
+ per sample and a large number of samples.
  For example, in a linear model of height as a function of age and sex,
  there is one height measurement per person.
  However, when analyzing genomic data, each sample consists of observations
@@ -833,18 +828,38 @@ literal "false"
  independently to each feature.
  However, this is undesirable for most genomics data sets.
  Genomics assays like high-throughput sequencing are expensive, and often
- generating the samples is also quite expensive and time-consuming.
+ the process of generating the samples is also quite expensive and time-consumin
+g.
  This expense limits the sample sizes typically employed in genomics experiments
-, and as a result the statistical power of each individual feature's linear
- model is likewise limited.
+, and as a result the statistical power of the linear model for each individual
+ feature is likewise limited.
  However, because thousands of features from the same samples are analyzed
  together, there is an opportunity to improve the statistical power of the
  analysis by exploiting shared patterns of variation across features.
- This is the core feature of limma, a linear modeling framework designed
- for genomic data.
- Limma is typically used to analyze expression microarray data, and more
- recently RNA-seq data, but it can also be used to analyze any other data
- for which linear modeling is appropriate.
+ This is the core feature of 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+limma
+\end_layout
+
+\end_inset
+
+, a linear modeling framework designed for genomic data.
+ 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+Limma
+\end_layout
+
+\end_inset
+
+ is typically used to analyze expression microarray data, and more recently
+ RNA-seq data, but it can also be used to analyze any other data for which
+ linear modeling is appropriate.
 \end_layout
 
 \begin_layout Standard
@@ -858,7 +873,18 @@ The central challenge when fitting a linear model is to estimate the variance
  variance estimates.
  However, this would require the assumption that every feature is equally
  variable, which is known to be false for most genomic data sets.
- Limma offers a compromise between these two extremes by using a method
+
+
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+limma
+\end_layout
+
+\end_inset
+
+ offers a compromise between these two extremes by using a method
  called empirical Bayes moderation to 
 \begin_inset Quotes eld
 \end_inset
@@ -885,7 +911,18 @@ on of the two yields a variance estimate for each feature with greater precision
  toward the common value introduces some bias – the variance will be underestima
 ted for features with high variance and overestimated for features with
  low variance.
- Essentially, limma assumes that extreme variances are less common than
+ Essentially,
+
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+limma
+\end_layout
+
+\end_inset
+
+ assumes that extreme variances are less common than
  variances close to the common value.
  The variance estimates from this empirical Bayes procedure are shown empiricall
 y to yield greater statistical power than either the individual feature
@@ -893,10 +930,32 @@ y to yield greater statistical power than either the individual feature
 \end_layout
 
 \begin_layout Standard
-On top of this core framework, limma also implements many other enhancements
+On top of this core framework,
+
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+limma
+\end_layout
+
+\end_inset
+
+ also implements many other enhancements
  that, further relax the assumptions of the model and extend the scope of
  what kinds of data it can analyze.
- Instead of squeezing toward a single common variance value, limma can model
+ Instead of squeezing toward a single common variance value,
+
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+limma
+\end_layout
+
+\end_inset
+
+ can model
  the common variance as a function of a covariate, such as average expression
  
 \begin_inset CommandInset citation
@@ -911,7 +970,18 @@ literal "false"
  precise expression measurements and therefore smaller variances than low-count
  genes.
  While linear models typically assume that all samples have equal variance,
- limma is able to relax this assumption by identifying and down-weighting
+
+
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+limma
+\end_layout
+
+\end_inset
+
+ is able to relax this assumption by identifying and down-weighting
  samples the diverge more strongly from the linear model across many features
  
 \begin_inset CommandInset citation
@@ -922,7 +992,18 @@ literal "false"
 \end_inset
 
 .
- In addition, limma is also able to fit simple mixed models incorporating
+ In addition,
+
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+limma
+\end_layout
+
+\end_inset
+
+ is also able to fit simple mixed models incorporating
  one random effect in addition to the fixed effects represented by an ordinary
  linear model 
 \begin_inset CommandInset citation
@@ -933,21 +1014,87 @@ literal "false"
 \end_inset
 
 .
- Once again, limma shares information between features to obtain a robust
+ Once again,
+
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+limma
+\end_layout
+
+\end_inset
+
+ shares information between features to obtain a robust
  estimate for the random effect correlation.
 \end_layout
 
 \begin_layout Subsubsection
-edgeR provides limma-like analysis features for count data
+edgeR provides
+
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+limma
+\end_layout
+
+\end_inset
+
+-like analysis features for count data
 \end_layout
 
 \begin_layout Standard
-Although limma can be applied to read counts from RNA-seq data, it is less
+Although
+
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+limma
+\end_layout
+
+\end_inset
+
+ can be applied to read counts from RNA-seq data, it is less
  suitable for counts from ChIP-seq data, which tend to be much smaller and
  therefore violate the assumption of a normal distribution more severely.
- For all count-based data, the edgeR package works similarly to limma, but
+ For all count-based data, the
+
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+edgeR
+\end_layout
+
+\end_inset
+
+ package works similarly to
+
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+limma
+\end_layout
+
+\end_inset
+
+, but
  uses a generalized linear model instead of a linear model.
- The most important difference is that the GLM in edgeR models the counts
+ The most important difference is that the GLM in
+
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+edgeR
+\end_layout
+
+\end_inset
+
+ models the counts
  directly using a negative binomial distribution rather than modeling the
  normalized log counts using a normal distribution 
 \begin_inset CommandInset citation
@@ -979,12 +1126,34 @@ noise
  The choice of a gamma distribution is arbitrary and motivated by mathematical
  convenience, since a gamma-Poisson mixture yields the numerically tractable
  negative binomial distribution.
- Thus, edgeR assumes 
+ Thus,
+
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+edgeR
+\end_layout
+
+\end_inset
+
+ assumes 
 \emph on
 a prioi 
 \emph default
 that the variation in abundances between replicates follows a gamma distribution.
- For differential abundance testing, edgeR offers a likelihood ratio test,
+ For differential abundance testing,
+
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+edgeR
+\end_layout
+
+\end_inset
+
+ offers a likelihood ratio test,
  but more recently recommends a quasi-likelihood test that properly factors
  the uncertainty in variance estimation into the statistical significance
  for each feature 
@@ -1268,7 +1437,18 @@ In addition to well-understood effects that can be easily normalized out,
  However, as with variance estimation, estimating the differences in batch
  means is not necessarily robust at the feature level, so the ComBat method
  adds empirical Bayes squeezing of the batch mean differences toward a common
- value, analogous to limma's empirical Bayes squeezing of feature variance
+ value, analogous to
+
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+limma
+\end_layout
+
+\end_inset
+
+'s empirical Bayes squeezing of feature variance
  estimates 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -2155,7 +2335,18 @@ However, removing the systematic component of the batch effect still leaves
  the noise component.
  The gene quantifications from the first batch are substantially noisier
  than those in the second batch.
- This analysis corrected for this by using limma's sample weighting method
+ This analysis corrected for this by using
+
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+limma
+\end_layout
+
+\end_inset
+
+'s sample weighting method
  to assign lower weights to the noisy samples of batch 1 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -2200,8 +2391,30 @@ literal "false"
 
 , and batch-corrected at this point using ComBat.
  A linear model was fit to the batch-corrected, quality-weighted data for
- each gene using limma, and each gene was tested for differential expression
- using limma's empirical Bayes moderated 
+ each gene using
+
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+limma
+\end_layout
+
+\end_inset
+
+, and each gene was tested for differential expression
+ using
+
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+limma
+\end_layout
+
+\end_inset
+
+'s empirical Bayes moderated 
 \begin_inset Formula $t$
 \end_inset
 
@@ -2869,7 +3082,18 @@ PCoA plots of ChIP-seq sliding window data, before and after subtracting
 \begin_layout Standard
 Reads in promoters, peaks, and sliding windows across the genome were counted
  and normalized using csaw and analyzed for differential modification using
- edgeR 
+
+
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+edgeR
+\end_layout
+
+\end_inset
+
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Lun2014,Lun2015a,Lund2012,Phipson2016"
@@ -13078,7 +13302,18 @@ literal "false"
 
 .
  Log2 counts per million values (logCPM) were calculated using the cpm function
- in edgeR for individual samples and aveLogCPM function for averages across
+ in
+
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+edgeR
+\end_layout
+
+\end_inset
+
+ for individual samples and aveLogCPM function for averages across
  groups of samples, using those functions’ default prior count values to
  avoid taking the logarithm of 0.
  Genes were considered “present” if their average normalized logCPM values
@@ -13129,7 +13364,18 @@ Differential Expression Analysis
 \end_layout
 
 \begin_layout Standard
-All tests for differential gene expression were performed using edgeR, by
+All tests for differential gene expression were performed using
+
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+edgeR
+\end_layout
+
+\end_inset
+
+, by
  first fitting a negative binomial generalized linear model to the counts
  and normalization factors and then performing a quasi-likelihood F-test
  with robust estimation of outlier gene dispersions 
@@ -14311,10 +14557,32 @@ noprefix "false"
 
 , and genes with an average logCPM below -1 were filtered out.
  Each remaining gene was tested for differential abundance with respect
- to globin blocking (GB) using edgeR’s quasi-likelihood F-test, fitting
+ to globin blocking (GB) using
+
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+edgeR
+\end_layout
+
+\end_inset
+
+’s quasi-likelihood F-test, fitting
  a negative binomial generalized linear model to table of read counts in
  each library.
- For each gene, edgeR reported average abundance (logCPM), 
+ For each gene,
+
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+edgeR
+\end_layout
+
+\end_inset
+
+ reported average abundance (logCPM), 
 \begin_inset Formula $\log_{2}$
 \end_inset
 
@@ -14439,7 +14707,18 @@ Comparison of inter-sample gene abundance correlations with and without
  All libraries were normalized together as described in Figure 2, and genes
  with an average abundance (logCPM, log2 counts per million reads counted)
  less than -1 were filtered out.
- Each gene’s logCPM was computed in each library using the edgeR cpm function.
+ Each gene’s logCPM was computed in each library using the
+
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+edgeR
+\end_layout
+
+\end_inset
+
+ cpm function.
  For each pair of biological samples, the Pearson correlation between those
  samples' GB libraries was plotted against the correlation between the same
  samples’ non-GB libraries.
@@ -14487,7 +14766,18 @@ ons than the non-GB libraries.
  sign-rank test: V = 2195, P ≪ 2.2e-16).
  Performing the same tests on the Spearman correlations gave the same conclusion
  (t-test: t = 26.8, df = 665, P ≪ 2.2e-16; sign-rank test: V = 8781, P ≪ 2.2e-16).
- The edgeR package was used to compute the overall biological coefficient
+ The
+
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+edgeR
+\end_layout
+
+\end_inset
+
+ package was used to compute the overall biological coefficient
  of variation (BCV) for GB and non-GB libraries, and found that globin blocking
  resulted in a negligible increase in the BCV (0.417 with GB vs.
  0.400 without).
