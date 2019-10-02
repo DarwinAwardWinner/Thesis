@@ -40,6 +40,23 @@
 
 % This one breaks subfigs so it's disabled
 % https://tex.stackexchange.com/questions/65680/automatically-bold-first-sentence-of-a-floats-caption
+
+% Bold all nomenclature entries
+\renewcommand{\nomlabel}[1]{\textsf{\textbf{#1}}}
+
+% https://tex.stackexchange.com/a/31083/5654
+%\let\nomenclOrig\nomenclature
+%\renewcommand*{\nomenclature}[3][]{#2\nomenclOrig[#1]{#2}{#3}}
+
+\usepackage[nohypertypes={abbreviation}]{glossaries-extra}
+\setabbreviationstyle{long-short}
+\input{abbrevs.tex}
+\makeglossaries
+
+% arara: pdflatex
+% arara: biblatex
+% arara: makeglossaries
+% arara: pdflatex
 \end_preamble
 \use_default_options true
 \begin_modules
@@ -47,6 +64,26 @@ todonotes
 logicalmkup
 \end_modules
 \maintain_unincluded_children false
+\begin_local_layout
+Format 66
+InsetLayout "Flex:Glossary Term"
+        LyxType               custom
+        LabelString           gls
+        LatexType             command
+        LatexName             gls*
+        InToc                 true
+        CustomPars            false
+End
+
+InsetLayout "Flex:Glossary Term (Capital)"
+        LyxType               custom
+        LabelString           Gls
+        LatexType             command
+        LatexName             Gls*
+        InToc                 true
+        CustomPars            false
+End
+\end_local_layout
 \language english
 \language_package default
 \inputencoding utf8
@@ -224,7 +261,67 @@ LatexCommand tableofcontents
 \end_layout
 
 \begin_layout Standard
-[List of Abbreviations]
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+To create a new nomenclature entry:
+\end_layout
+
+\begin_layout Enumerate
+Add an entry to abbrevs.tex
+\end_layout
+
+\begin_layout Enumerate
+Find the first instance of the term, and wrap it in Insert -> Custom Insets
+ -> Glossary Term (use Capital if starting a sentence)
+\end_layout
+
+\begin_layout Enumerate
+Add a nomenclature entry after the first instance
+\end_layout
+
+\begin_layout Enumerate
+Replace every relevant instance throughout the document with the Glossary
+ Term wrapped version, using Edit -> Find & Replace (Advanced).
+ Skip section headers and floats.
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+target "https://ctan.org/pkg/glossaries?lang=en"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+target "https://wiki.lyx.org/Tips/Nomenclature"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset nomencl_print
+LatexCommand printnomenclature
+set_width "auto"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout List of TODOs
@@ -808,8 +905,27 @@ literal "false"
  there is one height measurement per person.
  However, when analyzing genomic data, each sample consists of observations
  of thousands of dependent variables.
- For example, in an RNA-seq experiment, the dependent variables may be the
- count of RNA-seq reads for each annotated gene.
+ For example, in a 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ experiment, the dependent variables may be the count of 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ reads for each annotated gene.
  In abstract terms, each dependent variable being measured is referred to
  as a feature.
  The simplest approach to analyzing such data would be to fit the same model
@@ -846,8 +962,18 @@ Limma
 \end_inset
 
  is typically used to analyze expression microarray data, and more recently
- RNA-seq data, but it can also be used to analyze any other data for which
- linear modeling is appropriate.
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ data, but it can also be used to analyze any other data for which linear
+ modeling is appropriate.
 \end_layout
 
 \begin_layout Standard
@@ -861,6 +987,7 @@ The central challenge when fitting a linear model is to estimate the variance
  variance estimates.
  However, this would require the assumption that every feature is equally
  variable, which is known to be false for most genomic data sets.
+ 
 \begin_inset Flex Code
 status open
 
@@ -897,7 +1024,7 @@ on of the two yields a variance estimate for each feature with greater precision
  toward the common value introduces some bias – the variance will be underestima
 ted for features with high variance and overestimated for features with
  low variance.
- Essentially,
+ Essentially, 
 \begin_inset Flex Code
 status open
 
@@ -915,7 +1042,7 @@ y to yield greater statistical power than either the individual feature
 \end_layout
 
 \begin_layout Standard
-On top of this core framework,
+On top of this core framework, 
 \begin_inset Flex Code
 status open
 
@@ -927,7 +1054,7 @@ limma
 
  also implements many other enhancements that, further relax the assumptions
  of the model and extend the scope of what kinds of data it can analyze.
- Instead of squeezing toward a single common variance value,
+ Instead of squeezing toward a single common variance value, 
 \begin_inset Flex Code
 status open
 
@@ -947,10 +1074,20 @@ literal "false"
 \end_inset
 
 .
- This is essential for RNA-seq data, where higher gene counts yield more
- precise expression measurements and therefore smaller variances than low-count
- genes.
+ This is essential for 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ data, where higher gene counts yield more precise expression measurements
+ and therefore smaller variances than low-count genes.
  While linear models typically assume that all samples have equal variance,
+ 
 \begin_inset Flex Code
 status open
 
@@ -970,7 +1107,7 @@ literal "false"
 \end_inset
 
 .
- In addition,
+ In addition, 
 \begin_inset Flex Code
 status open
 
@@ -991,7 +1128,7 @@ literal "false"
 \end_inset
 
 .
- Once again,
+ Once again, 
 \begin_inset Flex Code
 status open
 
@@ -1006,7 +1143,16 @@ limma
 \end_layout
 
 \begin_layout Subsubsection
-edgeR provides
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+edgeR
+\end_layout
+
+\end_inset
+
+ provides 
 \begin_inset Flex Code
 status open
 
@@ -1020,7 +1166,7 @@ limma
 \end_layout
 
 \begin_layout Standard
-Although
+Although 
 \begin_inset Flex Code
 status open
 
@@ -1030,10 +1176,29 @@ limma
 
 \end_inset
 
- can be applied to read counts from RNA-seq data, it is less suitable for
- counts from ChIP-seq data, which tend to be much smaller and therefore
- violate the assumption of a normal distribution more severely.
- For all count-based data, the
+ can be applied to read counts from 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ data, it is less suitable for counts from 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ data, which tend to be much smaller and therefore violate the assumption
+ of a normal distribution more severely.
+ For all count-based data, the 
 \begin_inset Flex Code
 status open
 
@@ -1043,7 +1208,7 @@ edgeR
 
 \end_inset
 
- package works similarly to
+ package works similarly to 
 \begin_inset Flex Code
 status open
 
@@ -1054,7 +1219,7 @@ limma
 \end_inset
 
 , but uses a generalized linear model instead of a linear model.
- The most important difference is that the GLM in
+ The most important difference is that the GLM in 
 \begin_inset Flex Code
 status open
 
@@ -1095,7 +1260,7 @@ noise
  The choice of a gamma distribution is arbitrary and motivated by mathematical
  convenience, since a gamma-Poisson mixture yields the numerically tractable
  negative binomial distribution.
- Thus,
+ Thus, 
 \begin_inset Flex Code
 status open
 
@@ -1110,7 +1275,7 @@ edgeR
 a prioi 
 \emph default
 that the variation in abundances between replicates follows a gamma distribution.
- For differential abundance testing,
+ For differential abundance testing, 
 \begin_inset Flex Code
 status open
 
@@ -1138,9 +1303,19 @@ ChIP-seq Peak calling
 \end_layout
 
 \begin_layout Standard
-Unlike RNA-seq data, in which gene annotations provide a well-defined set
- of discrete genomic regions in which to count reads, ChIP-seq reads can
- potentially occur anywhere in the genome.
+Unlike 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ data, in which gene annotations provide a well-defined set of discrete
+ genomic regions in which to count reads, ChIP-seq reads can potentially
+ occur anywhere in the genome.
  However, most genome regions will not contain significant ChIP-seq read
  coverage, and analyzing every position in the entire genome is statistically
  and computationally infeasible, so it is necessary to identify regions
@@ -1270,7 +1445,7 @@ In addition to other considerations, if called peaks are to be used as regions
  to call peaks in a way that is blind to differential abundance between
  experimental conditions, or else the statistical significance calculations
  for differential abundance will overstate their confidence in the results.
- The
+ The 
 \begin_inset Flex Code
 status open
 
@@ -1338,21 +1513,59 @@ frozen
 \begin_layout Standard
 In contrast, high-throughput sequencing data present very different normalizatio
 n challenges.
- The simplest case is RNA-seq in which read counts are obtained for a set
- of gene annotations, yielding a matrix of counts with rows representing
- genes and columns representing samples.
- Because RNA-seq approximates a process of sampling from a population with
- replacement, each gene's count is only interpretable as a fraction of the
- total reads for that sample.
- For that reason, RNA-seq abundances are often reported as counts per million
- (CPM).
+ The simplest case is 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ in which read counts are obtained for a set of gene annotations, yielding
+ a matrix of counts with rows representing genes and columns representing
+ samples.
+ Because 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ approximates a process of sampling from a population with replacement,
+ each gene's count is only interpretable as a fraction of the total reads
+ for that sample.
+ For that reason, 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ abundances are often reported as counts per million (CPM).
  Furthermore, if the abundance of a single gene increases, then in order
  for its fraction of the total reads to increase, all other genes' fractions
  must decrease to accommodate it.
  This effect is known as composition bias, and it is an artifact of the
  read sampling process that has nothing to do with the biology of the samples
  and must therefore be normalized out.
- The most commonly used methods to normalize for composition bias in RNA-seq
+ The most commonly used methods to normalize for composition bias in 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
  data seek to equalize the average gene abundance across samples, under
  the assumption that the average gene is likely not changing 
 \begin_inset CommandInset citation
@@ -1367,7 +1580,7 @@ literal "false"
 
 \begin_layout Standard
 In ChIP-seq data, normalization is not as straightforward.
- The
+ The 
 \begin_inset Flex Code
 status open
 
@@ -1396,8 +1609,18 @@ literal "false"
  consistent across all samples, then normalizing the background coverage
  to be equal across all samples is a reasonable strategy.
  If this is not a safe assumption, then the preferred strategy is to normalize
- the signal regions in a way similar to RNA-seq data by assuming that the
- average signal region is not changing abundance between samples.
+ the signal regions in a way similar to 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ data by assuming that the average signal region is not changing abundance
+ between samples.
  Beyond this, if a ChIP-seq experiment has a more complicated structure
  that doesn't show the typical bimodal count distribution, it may be necessary
  to implement a normalization as a smooth function of abundance.
@@ -1424,7 +1647,7 @@ In addition to well-understood effects that can be easily normalized out,
  However, as with variance estimation, estimating the differences in batch
  means is not necessarily robust at the feature level, so the ComBat method
  adds empirical Bayes squeezing of the batch mean differences toward a common
- value, analogous to
+ value, analogous to 
 \begin_inset Flex Code
 status open
 
@@ -1570,7 +1793,17 @@ Test IFN-g treated MSC infusion as a therapy to delay graft rejection in
 \end_layout
 
 \begin_layout Itemize
-Monitor animals post-transplant using blood RNA-seq at serial time points
+Monitor animals post-transplant using blood 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ at serial time points
 \end_layout
 
 \begin_layout Subsection
@@ -1609,6 +1842,22 @@ status open
 
 \begin_layout Plain Layout
 Chapter author list: Me, Sarah, Dan
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+glsresetall
 \end_layout
 
 \end_inset
@@ -1733,9 +1982,18 @@ deactivating
 \begin_layout Standard
 In order to investigate the relationship between gene expression and these
  histone modifications in the context of naïve and memory CD4 T-cell activation,
- a previously published data set of combined RNA-seq and ChIP-seq data was
- re-analyzed using up-to-date methods designed to address the specific analysis
- challenges posed by this data set.
+ a previously published data set of 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ data and ChIP-seq data was re-analyzed using up-to-date methods designed
+ to address the specific analysis challenges posed by this data set.
  The data set contains naïve and memory CD4 T-cell samples in a time course
  before and after activation.
  Like the original analysis, this analysis looks at the dynamics of these
@@ -1775,7 +2033,16 @@ Look up some more details from the papers (e.g.
 \end_layout
 
 \begin_layout Standard
-A reproducible workflow was written to analyze the raw ChIP-seq and RNA-seq
+A reproducible workflow was written to analyze the raw ChIP-seq and 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
  data from previous studies 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1785,8 +2052,17 @@ literal "true"
 \end_inset
 
 .
- Briefly, this data consists of RNA-seq and ChIP-seq from CD4 T-cells cultured
- from 4 donors.
+ Briefly, this data consists of 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ and ChIP-seq from CD4 T-cells cultured from 4 donors.
  From each donor, naïve and memory CD4 T-cells were isolated separately.
  Then cultures of both cells were activated [how?], and samples were taken
  at 4 time points: Day 0 (pre-activation), Day 1 (early activation), Day
@@ -2073,7 +2349,17 @@ literal "false"
 
 .
  Five different alignment and quantification methods were tested for the
- RNA-seq data 
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ data 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Dobin2012,Kim2019,Liao2014,Pimentel2016,Patro2017,gh-shoal,gh-hg38-ref"
@@ -2320,7 +2606,7 @@ However, removing the systematic component of the batch effect still leaves
  the noise component.
  The gene quantifications from the first batch are substantially noisier
  than those in the second batch.
- This analysis corrected for this by using
+ This analysis corrected for this by using 
 \begin_inset Flex Code
 status open
 
@@ -2346,8 +2632,17 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-In any case, the RNA-seq counts were first normalized using trimmed mean
- of M-values 
+In any case, the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ counts were first normalized using trimmed mean of M-values 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Robinson2010"
@@ -2375,7 +2670,7 @@ literal "false"
 
 , and batch-corrected at this point using ComBat.
  A linear model was fit to the batch-corrected, quality-weighted data for
- each gene using
+ each gene using 
 \begin_inset Flex Code
 status open
 
@@ -2385,7 +2680,7 @@ limma
 
 \end_inset
 
-, and each gene was tested for differential expression using
+, and each gene was tested for differential expression using 
 \begin_inset Flex Code
 status open
 
@@ -2664,8 +2959,17 @@ literal "false"
 \end_inset
 
 .
- Artifact regions were annotated using a custom implementation of the GreyListCh
-IP algorithm, and these 
+ Artifact regions were annotated using a custom implementation of the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+GreyListChIP
+\end_layout
+
+\end_inset
+
+ algorithm, and these 
 \begin_inset Quotes eld
 \end_inset
 
@@ -3062,7 +3366,7 @@ PCoA plots of ChIP-seq sliding window data, before and after subtracting
 
 \begin_layout Standard
 Reads in promoters, peaks, and sliding windows across the genome were counted
- and normalized using
+ and normalized using 
 \begin_inset Flex Code
 status open
 
@@ -3072,7 +3376,7 @@ csaw
 
 \end_inset
 
- and analyzed for differential modification using
+ and analyzed for differential modification using 
 \begin_inset Flex Code
 status open
 
@@ -3339,8 +3643,18 @@ end{landscape}
 
 \begin_layout Standard
 MOFA was run on all the ChIP-seq windows overlapping consensus peaks for
- each histone mark, as well as the RNA-seq data, in order to identify patterns
- of coordinated variation across all data sets 
+ each histone mark, as well as the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ data, in order to identify patterns of coordinated variation across all
+ data sets 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Argelaguet2018"
@@ -3383,7 +3697,17 @@ noprefix "false"
 \end_inset
 
 ).
- Latent factor 2 captures the batch effect in the RNA-seq data.
+ Latent factor 2 captures the batch effect in the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ data.
  Removing the effect of LF2 using MOFA theoretically yields a batch correction
  that does not depend on knowing the experimental factors.
  When this was attempted, the resulting batch correction was comparable
@@ -3968,8 +4292,18 @@ trajectory
 \end_layout
 
 \begin_layout Standard
-Genes called present in the RNA-seq data were tested for differential expression
- between all time points and cell types.
+Genes called present in the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ data were tested for differential expression between all time points and
+ cell types.
  The counts of differentially expressed genes are shown in Table 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -3985,7 +4319,17 @@ noprefix "false"
  called differentially expressed than any of the results for other time
  points.
  This is an unfortunate result of the difference in sample quality between
- the two batches of RNA-seq data.
+ the two batches of 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ data.
  All the samples in Batch 1, which includes all the samples from Days 0
  and 5, have substantially more variability than the samples in Batch 2,
  which includes the other time points.
@@ -5633,8 +5977,17 @@ noprefix "false"
 .
  For all histone marks, evidence of differential modification between naïve
  and memory samples was detected at every time point except day 14.
- The day 14 convergence pattern is also present in the RNA-seq data (Figure
- 
+ The day 14 convergence pattern is also present in the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ data (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:RNA-PCA-group"
@@ -5661,8 +6014,18 @@ noprefix "false"
 \end_inset
 
 ), which accounts for shared variation across all 3 histone marks and the
- RNA-seq data, confirming that this convergence is a coordinated pattern
- across all 4 data sets.
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ data, confirming that this convergence is a coordinated pattern across
+ all 4 data sets.
  While this observation does not prove that the naïve cells have differentiated
  into memory cells at Day 14, it is consistent with that hypothesis.
 \end_layout
@@ -7218,9 +7581,19 @@ Reproduced with permission.
 \end_layout
 
 \begin_layout Standard
-In H3K4me2, H3K4me3, and RNA-seq, this convergence appears to be in progress
- already by Day 5, shown by the smaller distance between naïve and memory
- cells at day 5 along the 
+In H3K4me2, H3K4me3, and 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+, this convergence appears to be in progress already by Day 5, shown by
+ the smaller distance between naïve and memory cells at day 5 along the
+ 
 \begin_inset Formula $y$
 \end_inset
 
@@ -7493,7 +7866,15 @@ end{landscape}
 
 \begin_layout Standard
 The analyses described in this chapter were organized into a reproducible
- workflow using the Snakemake workflow management system.
+ workflow using the Snakemake workflow management system 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Koster2012"
+literal "false"
+
+\end_inset
+
+.
  As shown in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -7540,12 +7921,28 @@ noprefix "false"
 \end_inset
 
 ), named 
-\begin_inset Formula $\texttt{chipseq\_count\_tss\_neighborhoods}$
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+chipseq_count_tss_neighborhoods
+\end_layout
+
 \end_inset
 
-, depends on the RNA-seq abundance estimates in order to select the most-used
- TSS for each gene, the aligned ChIP-seq reads, the index for those reads,
- and the blacklist of regions to be excluded from ChIP-seq analysis.
+, depends on the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ abundance estimates in order to select the most-used TSS for each gene,
+ the aligned ChIP-seq reads, the index for those reads, and the blacklist
+ of regions to be excluded from ChIP-seq analysis.
  Each step declares its inputs and outputs, and Snakemake uses these to
  determine the dependencies between steps.
  Each step is marked as depending on all the steps whose outputs match its
@@ -7568,9 +7965,28 @@ noprefix "false"
 In addition to simply making it easier to organize the steps in the analysis,
  structuring the analysis as a workflow allowed for some analysis strategies
  that would not have been practical otherwise.
- For example, 5 different RNA-seq quantification methods were tested against
- two different reference transcriptome annotations for a total of 10 different
- quantifications of the same RNA-seq data.
+ For example, 5 different 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ quantification methods were tested against two different reference transcriptom
+e annotations for a total of 10 different quantifications of the same 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ data.
  These were then compared against each other in the exploratory data analysis
  step, to determine that the results were not very sensitive to either the
  choice of quantification method or the choice of annotation.
@@ -7609,9 +8025,18 @@ Future Directions
 \end_layout
 
 \begin_layout Standard
-The analysis of RNA-seq and ChIP-seq in CD4 T-cells in Chapter 2 is in many
- ways a preliminary study that suggests a multitude of new avenues of investigat
-ion.
+The analysis of 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ and ChIP-seq in CD4 T-cells in Chapter 2 is in many ways a preliminary
+ study that suggests a multitude of new avenues of investigation.
  Here we consider a selection of such avenues.
 \end_layout
 
@@ -8044,6 +8469,22 @@ Chapter author list: Me, Sunil, Tom, Padma, Dan
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+glsresetall
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Approach
 \end_layout
@@ -8225,8 +8666,8 @@ DNA methylation arrays are a relatively new kind of assay that uses microarrays
  to measure the degree of methylation on cytosines in specific regions arrayed
  across the genome.
  First, bisulfite treatment converts all unmethylated cytosines to uracil
- (which then become thymine after amplification) while leaving methylated
- cytosines unaffected.
+ (which are read as thymine during amplification and sequencing) while leaving
+ methylated cytosines unaffected.
  Then, each target region is interrogated with two probes: one binds to
  the original genomic sequence and interrogates the level of methylated
  DNA, and the other binds to the same sequence with all cytosines replaced
@@ -8337,8 +8778,17 @@ However, the steep slope of the sigmoid transformation near 0 and 1 tends
 \end_layout
 
 \begin_layout Standard
-RNA-seq read count data are also known to show heteroskedasticity, and the
- voom method was introduced for modeling this heteroskedasticity by estimating
+\begin_inset Flex Glossary Term (Capital)
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ read count data are also known to show heteroskedasticity, and the voom
+ method was introduced for modeling this heteroskedasticity by estimating
  the mean-variance trend in the data and using this trend to assign precision
  weights to each observation 
 \begin_inset CommandInset citation
@@ -8350,10 +8800,19 @@ literal "false"
 
 .
  While methylation array data are not derived from counts and have a very
- different mean-variance relationship from that of typical RNA-seq data,
- the voom method makes no specific assumptions on the shape of the mean-variance
- relationship – it only assumes that the relationship can be modeled as
- a smooth curve.
+ different mean-variance relationship from that of typical 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ data, the voom method makes no specific assumptions on the shape of the
+ mean-variance relationship – it only assumes that the relationship can
+ be modeled as a smooth curve.
  Hence, the method is sufficiently general to model the mean-variance relationsh
 ip in methylation array data.
  However, the standard implementation of voom assumes that the input is
@@ -12739,7 +13198,16 @@ literal "false"
 
 \begin_layout Standard
 Fortunately, the requirement for equal-size batches is not inherent to the
- fRMA algorithm but rather a limitation of the implementation in the frmaTools
+ fRMA algorithm but rather a limitation of the implementation in the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+frmaTools
+\end_layout
+
+\end_inset
+
  package.
  In personal communication, the package's author, Matthew McCall, has indicated
  that with some work, it should be possible to improve the implementation
@@ -12835,6 +13303,22 @@ Globin-blocking for more effective blood RNA-seq analysis in primate animal
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+glsresetall
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Flex TODO Note (inline)
 status open
 
@@ -12895,8 +13379,27 @@ Background
 Primate blood contains high concentrations of globin messenger RNA.
  Globin reduction is a standard technique used to improve the expression
  results obtained by DNA microarrays on RNA from blood samples.
- However, with whole transcriptome RNA-sequencing (RNA-seq) quickly replacing
- microarrays for many applications, the impact of globin reduction for RNA-seq
+ However, with 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ quickly replacing microarrays for many applications, the impact of globin
+ reduction for 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
  has not been previously studied.
  Moreover, no off-the-shelf kits are available for globin reduction in nonhuman
  primates.
@@ -12908,9 +13411,18 @@ Results
 \end_layout
 
 \begin_layout Standard
-Here we report a protocol for RNA-seq in primate blood samples that uses
- complimentary oligonucleotides to block reverse transcription of the alpha
- and beta globin genes.
+Here we report a protocol for 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ in primate blood samples that uses complimentary oligonucleotides to block
+ reverse transcription of the alpha and beta globin genes.
  In test samples from cynomolgus monkeys (Macaca fascicularis), this globin
  blocking protocol approximately doubles the yield of informative (non-globin)
  reads by greatly reducing the fraction of globin reads, while also improving
@@ -12930,7 +13442,33 @@ eness of mRNA sequencing in primate blood samples by doubling the yield
  of useful reads, allowing detection of more genes, and improving the precision
  of gene expression measurements.
  Based on these results, a globin reducing or blocking protocol is recommended
- for all RNA-seq studies of primate blood samples.
+ for all 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ studies of primate blood samples.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+glsresetall
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -12979,9 +13517,18 @@ Existing protocols use a separate globin pulldown step, slowing down processing
 \end_layout
 
 \begin_layout Standard
-Increasingly, researchers are turning to high-throughput mRNA sequencing
- technologies (RNA-seq) in preference to expression microarrays for analysis
- of gene expression 
+Increasingly, researchers are turning to 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ in preference to expression microarrays for analysis of gene expression
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Mutz2012"
@@ -13004,8 +13551,18 @@ literal "false"
 \end_inset
 
 .
- The importance of globin reduction for RNA-seq of blood has only been evaluated
- for a deepSAGE protocol on human samples 
+ The importance of globin reduction for 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ of blood has only been evaluated for a deepSAGE protocol on human samples
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Mastrokolias2012"
@@ -13015,13 +13572,42 @@ literal "false"
 
 .
  In the present report, we evaluated globin reduction using custom blocking
- oligonucleotides for deep RNA-seq of peripheral blood samples from a nonhuman
- primate, cynomolgus monkey, using the Illumina technology platform.
+ oligonucleotides for deep 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ of peripheral blood samples from a nonhuman primate, cynomolgus monkey,
+ using the Illumina technology platform.
  We demonstrate that globin reduction significantly improves the cost-effectiven
-ess of RNA-seq in blood samples.
+ess of 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ in blood samples.
  Thus, our protocol offers a significant advantage to any investigator planning
- to use RNA-seq for gene expression profiling of nonhuman primate blood
- samples.
+ to use 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ for gene expression profiling of nonhuman primate blood samples.
  Our method can be generally applied to any species by designing complementary
  oligonucleotide blocking probes to the globin gene sequences of that species.
  Indeed, any highly expressed but biologically uninformative transcripts
@@ -13240,8 +13826,8 @@ literal "false"
  First, no ortholog is annotated for alpha globin in the cynomolgus genome,
  presumably because the human genome has two alpha globin genes with nearly
  identical sequences, making the orthology relationship ambiguous.
- However, two loci in the cynomolgus genome are as “hemoglobin subunit alpha-lik
-e” (LOC102136192 and LOC102136846).
+ However, two loci in the cynomolgus genome are annotated as “hemoglobin
+ subunit alpha-like” (LOC102136192 and LOC102136846).
  LOC102136192 is annotated as a pseudogene while LOC102136846 is annotated
  as protein-coding.
  Our globin reduction protocol was designed to include blocking of these
@@ -13261,8 +13847,17 @@ e” (LOC102136192 and LOC102136846).
  Therefore, stranded sense counts were used for all further analysis in
  the present study to insure that we accurately accounted for globin transcript
  reduction.
- However, we note that stranded reads are not necessary for RNA-seq using
- our protocol in standard practice.
+ However, we note that stranded reads are not necessary for 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ using our protocol in standard practice.
  
 \end_layout
 
@@ -13291,7 +13886,7 @@ literal "false"
 
 .
  Log2 counts per million values (logCPM) were calculated using the cpm function
- in
+ in 
 \begin_inset Flex Code
 status open
 
@@ -13301,11 +13896,24 @@ edgeR
 
 \end_inset
 
- for individual samples and aveLogCPM function for averages across groups
- of samples, using those functions’ default prior count values to avoid
- taking the logarithm of 0.
+ for individual samples and 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+aveLogCPM
+\end_layout
+
+\end_inset
+
+ function for averages across groups of samples, using those functions’
+ default prior count values to avoid taking the logarithm of 0.
  Genes were considered “present” if their average normalized logCPM values
- across all libraries were at least -1.
+ across all libraries were at least 
+\begin_inset Formula $-1$
+\end_inset
+
+.
  Normalizing for gene length was unnecessary because the sequencing protocol
  is 3’-biased and hence the expected read count for each gene is related
  to the transcript’s copy number but not its length.
@@ -13352,7 +13960,7 @@ Differential Expression Analysis
 \end_layout
 
 \begin_layout Standard
-All tests for differential gene expression were performed using
+All tests for differential gene expression were performed using 
 \begin_inset Flex Code
 status open
 
@@ -14080,9 +14688,19 @@ end{landscape}
 
 \begin_layout Standard
 The objective of the present study was to validate a new protocol for deep
- RNA-seq of whole blood drawn into PaxGene tubes from cynomolgus monkeys
- undergoing islet transplantation, with particular focus on minimizing the
- loss of useful sequencing space to uninformative globin reads.
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ of whole blood drawn into PaxGene tubes from cynomolgus monkeys undergoing
+ islet transplantation, with particular focus on minimizing the loss of
+ useful sequencing space to uninformative globin reads.
  The details of the analysis with respect to transplant outcomes and the
  impact of mesenchymal stem cell treatment will be reported in a separate
  manuscript (in preparation).
@@ -14442,9 +15060,12 @@ noprefix "false"
 \end_layout
 
 \begin_layout Standard
-Based on these distributions, we selected a detection threshold of -1, which
- is approximately the leftmost edge of the trough between the signal and
- noise peaks.
+Based on these distributions, we selected a detection threshold of 
+\begin_inset Formula $-1$
+\end_inset
+
+, which is approximately the leftmost edge of the trough between the signal
+ and noise peaks.
  This represents the most liberal possible detection threshold that doesn't
  call substantial numbers of noise genes as detected.
  Among the full dataset, 13429 genes were detected at this threshold, and
@@ -14543,7 +15164,7 @@ noprefix "false"
 
 , and genes with an average logCPM below -1 were filtered out.
  Each remaining gene was tested for differential abundance with respect
- to globin blocking (GB) using
+ to globin blocking (GB) using 
 \begin_inset Flex Code
 status open
 
@@ -14555,7 +15176,7 @@ edgeR
 
 ’s quasi-likelihood F-test, fitting a negative binomial generalized linear
  model to table of read counts in each library.
- For each gene,
+ For each gene, 
 \begin_inset Flex Code
 status open
 
@@ -14690,7 +15311,7 @@ Comparison of inter-sample gene abundance correlations with and without
  All libraries were normalized together as described in Figure 2, and genes
  with an average abundance (logCPM, log2 counts per million reads counted)
  less than -1 were filtered out.
- Each gene’s logCPM was computed in each library using the
+ Each gene’s logCPM was computed in each library using the 
 \begin_inset Flex Code
 status open
 
@@ -14726,6 +15347,19 @@ edgeR
 \end_layout
 
 \begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Give these numbers the LaTeX math treatment
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 To evaluate the possibility of globin blocking causing random perturbations
  and reducing sample quality, we computed the Pearson correlation between
  logCPM values for every pair of samples with and without GB and plotted
@@ -14748,7 +15382,7 @@ ons than the non-GB libraries.
  sign-rank test: V = 2195, P ≪ 2.2e-16).
  Performing the same tests on the Spearman correlations gave the same conclusion
  (t-test: t = 26.8, df = 665, P ≪ 2.2e-16; sign-rank test: V = 8781, P ≪ 2.2e-16).
- The
+ The 
 \begin_inset Flex Code
 status open
 
@@ -15318,8 +15952,18 @@ The challenge of doing global gene expression profiling in cynomolgus monkeys
  cover this genome and have not been updated since the first assemblies
  of the cynomolgus genome were published.
  Therefore, we determined that the best strategy for peripheral blood profiling
- was to do deep RNA-seq and inform the workflow using the latest available
- genome assembly and annotation 
+ was to do deep 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ and inform the workflow using the latest available genome assembly and
+ annotation 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Wilson2013"
@@ -15329,8 +15973,18 @@ literal "false"
 
 .
  However, it was not immediately clear whether globin reduction was necessary
- for RNA-seq or how much improvement in efficiency or sensitivity to detect
- differential gene expression would be achieved for the added cost and work.
+ for 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ or how much improvement in efficiency or sensitivity to detect differential
+ gene expression would be achieved for the added cost and work.
  
 \end_layout
 
@@ -15351,7 +16005,17 @@ literal "false"
  and thus, significantly reduces the complexity of the transcriptome.
  Therefore, we could not determine how DeepSAGE results would translate
  to the common strategy in the field for assaying the entire transcript
- population by whole-transcriptome 3’-end RNA-seq.
+ population by whole-transcriptome 3’-end 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+.
  Furthermore, if globin reduction is necessary, we also needed a globin
  reduction method specific to cynomolgus globin sequences that would work
  an organism for which no kit is available off the shelf.
@@ -15379,11 +16043,29 @@ More importantly, globin blocking not only nearly doubles the yield of usable
  Globin blocking thus represents a cost-effective way to squeeze more data
  and statistical power out of the same blood samples and the same amount
  of sequencing.
- In conclusion, globin reduction greatly increases the yield of useful RNA-seq
+ In conclusion, globin reduction greatly increases the yield of useful 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
  reads mapping to the rest of the genome, with minimal perturbations in
  the relative levels of non-globin genes.
  Based on these results, globin transcript reduction using sequence-specific,
- complementary blocking oligonucleotides is recommended for all deep RNA-seq
+ complementary blocking oligonucleotides is recommended for all deep 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
  of cynomolgus and other nonhuman primate blood samples.
 \end_layout
 
@@ -15405,10 +16087,19 @@ te the effectiveness of the method in reducing globin reads while preserving
 
 \begin_layout Standard
 The motivation for developing a fast practical way to enrich for non-globin
- reads in cyno blood samples was to enable a large-scale RNA-seq experiment
- investigating the effects of mesenchymal stem cell infusion on blood gene
- expression in cynomologus transplant recipients in a time course after
- transplantation.
+ reads in cyno blood samples was to enable a large-scale 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ experiment investigating the effects of mesenchymal stem cell infusion
+ on blood gene expression in cynomologus transplant recipients in a time
+ course after transplantation.
  With the globin blocking method in place, the way is now clear for this
  experiment to proceed.
 \end_layout

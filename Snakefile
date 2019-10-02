@@ -128,6 +128,17 @@ account.
             if include_dirs or s.group(1) == '-':
                 yield s.group(2)
 
+def lyx_input_deps(lyxfile):
+    '''Return an iterator over all tex files included by a Lyx file.'''
+    with open(lyxfile) as f:
+        lyx_text = f.read()
+    tex_names = regex.search('\\\\input{(.*?[.]tex)}', lyx_text).group(1).split(',')
+    # Unfortunately LyX doesn't indicate which bib names refer to
+    # files in the current directory and which don't. Currently that's
+    # not a problem for me since all my refs are in bib files in the
+    # current directory.
+    yield from tex_names
+
 def lyx_bib_deps(lyxfile):
     '''Return an iterator over all bib files referenced by a Lyx file.
 
@@ -188,6 +199,7 @@ rule lyx_to_pdf:
     input: lyxfile = '{basename}.lyx',
            gfx_deps = lambda wildcards: lyx_gfx_deps(wildcards.basename + '.lyx'),
            bib_deps = lambda wildcards: lyx_bib_deps(wildcards.basename + '.lyx'),
+           tex_deps = lambda wildcards: lyx_input_deps(wildcards.basename + '.lyx'),
     # Need to exclude pdfs in graphics/
     output: pdf='{basename,(?!graphics/).*}.pdf'
     run:
