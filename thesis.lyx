@@ -44,6 +44,7 @@
 \use_default_options true
 \begin_modules
 todonotes
+logicalmkup
 \end_modules
 \maintain_unincluded_children false
 \language english
@@ -261,7 +262,14 @@ Search and replace: naive -> naïve
 status open
 
 \begin_layout Plain Layout
-Look into auto-generated nomenclature list: https://wiki.lyx.org/Tips/Nomenclature.
+Look into auto-generated nomenclature list: 
+\begin_inset CommandInset href
+LatexCommand href
+target "https://wiki.lyx.org/Tips/Nomenclature"
+
+\end_inset
+
+.
  Otherwise, do a manual pass for all abbreviations at the end.
  Do nomenclature/abbreviations independently for each chapter.
 \end_layout
@@ -442,7 +450,7 @@ My thesis is due Thursday, October 10th, so in order to be useful to me,
  I'll need your feedback at least a few days before that, ideally by Monday,
  October 7th.
  If you have limited time and are unable to get through the whole thesis,
- please focus your effors on Chapters 1 and 2, since those are the roughest
+ please focus your efforts on Chapters 1 and 2, since those are the roughest
  and most in need of revision.
  Chapter 3 is fairly short and straightforward, and Chapter 4 is an adaptation
  of a paper that's already been through a few rounds of revision, so they
@@ -502,13 +510,13 @@ Rejection is the major long-term threat to organ and tissue allografts
 
 \begin_layout Standard
 Organ and tissue transplants are a life-saving treatment for people who
- have lost the function of an important organ.
+ have lost the function of an important organ [CITE?].
  In some cases, it is possible to transplant a patient's own tissue from
  one area of their body to another, referred to as an autograft.
  This is common for tissues that are distributed throughout many areas of
  the body, such as skin and bone.
  However, in cases of organ failure, there is no functional self tissue
- remaining, and a transplant from another person – the donor – is required.
+ remaining, and a transplant from another person – a donor – is required.
  This is referred to as an allograft.
 \end_layout
 
@@ -517,8 +525,14 @@ Organ and tissue transplants are a life-saving treatment for people who
 status open
 
 \begin_layout Plain Layout
-Possible citation for degree of generic variability: https://www.ncbi.nlm.nih.gov/pu
-bmed/22424236?dopt=Abstract
+Possible citation for degree of generic variability: 
+\begin_inset CommandInset href
+LatexCommand href
+target "https://www.ncbi.nlm.nih.gov/pubmed/22424236?dopt=Abstract"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -550,12 +564,13 @@ Because an allograft comes from a different person, it is genetically distinct
 y identify the graft as foreign tissue and begin attacking it, eventually
  resulting in failure and death of the graft, a process referred to as transplan
 t rejection.
- Rejection is the most significant challenge to the long-term health of
- an allograft.
+ Rejection is the most significant challenge to the long-term health and
+ survival of an allograft [CITE?].
  Like any adaptive immune response, graft rejection generally occurs via
- two broad mechanisms: cellular immunity, in which CD8+ T-cells induce apoptosis
- in the graft cells; and humoral immunity, in which B-cells produce antibodies
- that bind to graft proteins and direct an immune response against the graft.
+ two broad mechanisms: cellular immunity, in which CD8+ T-cells recognizing
+ graft-specific antigens induce apoptosis in the graft cells; and humoral
+ immunity, in which B-cells produce antibodies that bind to graft proteins
+ and direct an immune response against the graft [CITE?].
  In either case, rejection shows most of the typical hallmarks of an adaptive
  immune response, in particular mediation by CD4+ T-cells and formation
  of immune memory.
@@ -566,17 +581,18 @@ Diagnosis and treatment of allograft rejection is a major challenge
 \end_layout
 
 \begin_layout Standard
-To prevent rejection, allograft recipients are treated with immune suppression.
+To prevent rejection, allograft recipients are treated with immune suppressive
+ drugs [CITE?].
  The goal is to achieve sufficient suppression of the immune system to prevent
  rejection of the graft without compromising the ability of the immune system
  to raise a normal response against infection.
  As such, a delicate balance must be struck: insufficient immune suppression
- may lead to rejection and ultimately loss of the graft; exceissive suppression
+ may lead to rejection and ultimately loss of the graft; excessive suppression
  leaves the patient vulnerable to life-threatening opportunistic infections.
  Because every patient is different, immune suppression must be tailored
  for each patient.
  Furthermore, immune suppression must be tuned over time, as the immune
- system's activity is not static, nor is it held in a steady state.
+ system's activity is not static, nor is it held in a steady state [CITE?].
  In order to properly adjust the dosage of immune suppression drugs, it
  is necessary to monitor the health of the transplant and increase the dosage
  if evidence of rejection is observed.
@@ -585,9 +601,9 @@ To prevent rejection, allograft recipients are treated with immune suppression.
 \begin_layout Standard
 However, diagnosis of rejection is a significant challenge.
  Early diagnosis is essential in order to step up immune suppression before
- the immune system damages the graft beyond recovery.
+ the immune system damages the graft beyond recovery [CITE?].
  The current gold standard test for graft rejection is a tissue biopsy,
- examained for visible signs of rejection by a trained histologist.
+ examined for visible signs of rejection by a trained histologist [CITE?].
  When a patient shows symptoms of possible rejection, a 
 \begin_inset Quotes eld
 \end_inset
@@ -607,7 +623,7 @@ sub-clinical
 \begin_inset Quotes erd
 \end_inset
 
- rejection.
+ rejection [CITE?].
  In light of this, is is now common to perform 
 \begin_inset Quotes eld
 \end_inset
@@ -640,20 +656,20 @@ literal "false"
 However, biopsies have a number of downsides that limit their effectiveness
  as a diagnostic tool.
  First, the need for manual inspection by a histologist means that diagnosis
- is subject to the biases of the particular histologist examining the biopsy.
- In marginal cases two different histologists may give two different diagnoses
+ is subject to the biases of the particular histologist examining the biopsy
+ [CITE?].
+ In marginal cases, two different histologists may give two different diagnoses
  to the same biopsy.
  Second, a biopsy can only evaluate if rejection is occurring in the section
  of the graft from which the tissue was extracted.
- If rejection is only occurring in one section of the graft and the tissue
- is extracted from a different section, it may result in a false negative
- diagnosis.
- Most importantly, however, extraction of tissue from a graft is invasive
- and is treated as an injury by the body, which results in inflammation
- that in turn promotes increased immune system activity.
+ If rejection is localized to one section of the graft and the tissue is
+ extracted from a different section, a false negative diagnosis may result.
+ Most importantly, extraction of tissue from a graft is invasive and is
+ treated as an injury by the body, which results in inflammation that in
+ turn promotes increased immune system activity [CITE?].
  Hence, the invasiveness of biopsies severely limits the frequency with
- which the can safely be performed.
- Typically protocol biopsies are not scheduled more than about once per
+ which they can safely be performed.
+ Typically, protocol biopsies are not scheduled more than about once per
  month 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -670,11 +686,11 @@ literal "false"
  would make it easier to evaluate when a given test is outside the normal
  parameters for that specific patient, rather than relying on normal ranges
  for the population as a whole.
- Lastly, more frequent tests would be a boon to the transplant research
- community.
- Beyond simply providing more data, the increased time granularity of the
- tests will enable studying the progression of a rejection event on the
- scale of days to weeks, rather than months.
+ Lastly, the accumulated data from more frequent tests would be a boon to
+ the transplant research community.
+ Beyond simply providing more data overall, the better time granularity
+ of the tests will enable studying the progression of a rejection event
+ on the scale of days to weeks, rather than months.
 \end_layout
 
 \begin_layout Subsubsection
@@ -705,8 +721,8 @@ false positive
  immune responses, because antigen-presenting cells usually only express
  the proper co-stimulation after detecting evidence of an infection, such
  as the presence of common bacterial cell components or inflamed tissue.
- Most effector cells die after the foreign antigen is cleared, but some
- remain and differentiate into memory cells.
+ Most effector cells die after the foreign antigen is cleared, since they
+ are no longer needed, but some remain and differentiate into memory cells.
  Like naive cells, memory cells respond to detection of their specific antigen
  by differentiating into effector cells, ready to fight an infection.
  However, unlike naive cells, memory cells do not require the same degree
@@ -719,10 +735,10 @@ In the context of a pathogenic infection, immune memory is a major advantage,
  allowing an organism to rapidly fight off a previously encountered pathogen
  much more quickly and effectively than the first time it was encountered.
  However, if effector cells that recognize an antigen from an allograft
- are allowed to differentiate into memory cells, suppressing rejection of
+ are allowed to differentiate into memory cells, preventing rejection of
  the graft becomes much more difficult.
  Many immune suppression drugs work by interfering with the co-stimulation
- that naive cells require in order to mount an immune response.
+ that naive cells require in order to mount an immune response [CITE?].
  Since memory cells do not require this co-stimulation, these drugs are
  not effective at suppressing an immune response that is mediated by memory
  cells.
@@ -737,13 +753,28 @@ In the context of a pathogenic infection, immune memory is a major advantage,
  cells have been fairly well characterized, the internal regulatory mechanisms
  that allow memory cells to respond more quickly and without co-stimulation
  are still poorly understood.
- In order to develop immune suppression that either prevents the formation
- of memory cells or works more effectively against memory cells, the mechanisms
- of immune memory formation and regulation must be better understood.
+ In order to develop methods of immune suppression that either prevent the
+ formation of memory cells or work more effectively against memory cells,
+ the mechanisms of immune memory formation and regulation must be better
+ understood.
 \end_layout
 
 \begin_layout Subsection
 Overview of bioinformatic analysis methods
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Also cite: R, Bioconductor, snakemake, python, pandas, bedtools, bowtie2,
+ hisat2, STAR, samtools, sra-toolkit, picard tools
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -779,7 +810,15 @@ Linear models are a generalization of the
 \begin_inset Formula $t$
 \end_inset
 
--test and ANOVA to arbitrarily complex experimental designs.
+-test and ANOVA to arbitrarily complex experimental designs 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "chambers:1992"
+literal "false"
+
+\end_inset
+
+.
  In a typical linear model, there is one dependent variable observation
  per sample.
  For example, in a linear model of height as a function of age and sex,
@@ -811,7 +850,9 @@ Linear models are a generalization of the
 \begin_layout Standard
 The central challenge when fitting a linear model is to estimate the variance
  of the data accurately.
- This quantity is the most difficult to estimate when sample sizes are small.
+ Out of all parameters required to evaluate statistical significance of
+ an effect, the variance is the most difficult to estimate when sample sizes
+ are small.
  A single shared variance could be estimated for all of the features together,
  and this estimate would be very stable, in contrast to the individual feature
  variance estimates.
@@ -837,9 +878,9 @@ literal "false"
 
 .
  While the individual feature variance estimates are not stable, the common
- variance estiamate for the entire data set is quite stable, so using a
- combination of the two yields a variance estimate for each feature with
- greater precision than the individual feature varaiances.
+ variance estimate for the entire data set is quite stable, so using a combinati
+on of the two yields a variance estimate for each feature with greater precision
+ than the individual feature variances.
  The trade-off for this improvement is that squeezing each estimated variance
  toward the common value introduces some bias – the variance will be underestima
 ted for features with high variance and overestimated for features with
@@ -871,7 +912,7 @@ literal "false"
  genes.
  While linear models typically assume that all samples have equal variance,
  limma is able to relax this assumption by identifying and down-weighting
- samples the diverge more strongly from the lienar model across many features
+ samples the diverge more strongly from the linear model across many features
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -922,7 +963,7 @@ literal "false"
  The Poisson distribution accurately represents the distribution of counts
  expected for a given gene abundance, and the gamma distribution is then
  used to represent the variation in gene abundance between biological replicates.
- For this reason, the square root of the dispersion paramter of the negative
+ For this reason, the square root of the dispersion parameter of the negative
  binomial is sometimes referred to as the biological coefficient of variation,
  since it represents the variability that was present in the samples prior
  to the Poisson 
@@ -967,8 +1008,8 @@ Unlike RNA-seq data, in which gene annotations provide a well-defined set
  occur anywhere in the genome.
  However, most genome regions will not contain significant ChIP-seq read
  coverage, and analyzing every position in the entire genome is statistically
- and computationally infeasible, so it is necesary to identify regions of
- interest inside which ChIP-seq reads will be counted and analyzed.
+ and computationally infeasible, so it is necessary to identify regions
+ of interest inside which ChIP-seq reads will be counted and analyzed.
  One option is to define a set of interesting regions
 \emph on
  a priori
@@ -1008,7 +1049,7 @@ literal "false"
 
 .
  In contrast, some proteins, chief among them histones, do not bind only
- at a small number of specific sites, but rather bind potentailly almost
+ at a small number of specific sites, but rather bind potentially almost
  everywhere in the entire genome.
  When looking at histone marks, adjacent histones tend to be similarly marked,
  and a given mark may be present on an arbitrary number of consecutive histones
@@ -1097,7 +1138,7 @@ In addition to other considerations, if called peaks are to be used as regions
  are called based on a combination of all ChIP-seq reads from all experimental
  conditions, so that the identified peaks are based on the average abundance
  across all conditions, which is independent of any differential abundance
- between condtions 
+ between conditions 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Lun2015a"
@@ -1109,7 +1150,7 @@ literal "false"
 \end_layout
 
 \begin_layout Subsubsection
-Normalization of high-throughput data is non-trivial and application-dependant
+Normalization of high-throughput data is non-trivial and application-dependent
 \end_layout
 
 \begin_layout Standard
@@ -1122,7 +1163,7 @@ High-throughput data sets invariable require some kind of normalization
 
 \begin_layout Standard
 For Affymetrix expression arrays, the standard normalization algorithm used
- in most analyses is Robust Multichip Average (RMA).
+ in most analyses is Robust Multichip Average (RMA) [CITE].
  RMA is designed with the assumption that some fraction of probes on each
  array will be artifactual and takes advantage of the fact that each gene
  is represented by multiple probes by implementing normalization and summarizati
@@ -1143,7 +1184,9 @@ frozen
 \end_inset
 
 , so that each array is effectively normalized against this frozen reference
- set rather than the other arrays in the data set under study.
+ set rather than the other arrays in the data set under study [CITE].
+ Other array normalization methods considered include dChip, GRSN, and SCAN
+ [CITEx3].
 \end_layout
 
 \begin_layout Standard
@@ -1159,7 +1202,7 @@ n challenges.
  (CPM).
  Furthermore, if the abundance of a single gene increases, then in order
  for its fraction of the total reads to increase, all other genes' fractions
- must decrease to accomodate it.
+ must decrease to accommodate it.
  This effect is known as composition bias, and it is an artifact of the
  read sampling process that has nothing to do with the biology of the samples
  and must therefore be normalized out.
@@ -1204,7 +1247,7 @@ literal "false"
  to implement a normalization as a smooth function of abundance.
  However, this strategy makes a much stronger assumption about the data:
  that the average log fold change is zero across all abundance levels.
- Hence, the simpler scaling normalziations based on background or signal
+ Hence, the simpler scaling normalization based on background or signal
  regions are generally preferred whenever possible.
 \end_layout
 
@@ -1439,7 +1482,7 @@ CD4 T-cell
 \end_inset
 
 .
- I think there might be a plus sign somwehere in there now? Also, maybe
+ I think there might be a plus sign somewhere in there now? Also, maybe
  figure out a reasonable way to abbreviate 
 \begin_inset Quotes eld
 \end_inset
@@ -1485,7 +1528,7 @@ CD4 T-cells are central to all adaptive immune responses, as well as immune
  to that infection differentiate into memory CD4 T-cells, which are responsible
  for responding to the same pathogen in the future.
  Memory CD4 T-cells are functionally distinct, able to respond to an infection
- more quickly and without the co-stimulation requried by naive CD4 T-cells.
+ more quickly and without the co-stimulation required by naive CD4 T-cells.
  However, the molecular mechanisms underlying this functional distinction
  are not well-understood.
  Epigenetic regulation via histone modification is thought to play an important
@@ -1532,17 +1575,17 @@ In order to investigate the relationship between gene expression and these
  before and after activation.
  Like the original analysis, this analysis looks at the dynamics of these
  marks histone marks and compare them to gene expression dynamics at the
- same time points during activation, as well as comapre them between naive
+ same time points during activation, as well as compare them between naive
  and memory cells, in hope of discovering evidence of new mechanistic details
  in the interplay between them.
- The original analysis of this data treated each gene promoter as a monolithinc
- unit and mostly assumed that ChIP-seq reads or peaks occuring anywhere
+ The original analysis of this data treated each gene promoter as a monolithic
+ unit and mostly assumed that ChIP-seq reads or peaks occurring anywhere
  within a promoter were equivalent, regardless of where they occurred relative
  to the gene structure.
  For an initial analysis of the data, this was a necessary simplifying assumptio
 n.
  The current analysis aims to relax this assumption, first by directly analyzing
- ChIP-seq peaks for differential modification, and second by taking a mor
+ ChIP-seq peaks for differential modification, and second by taking a more
  granular look at the ChIP-seq read coverage within promoter regions to
  ask whether the location of histone modifications relative to the gene's
  TSS is an important factor, as opposed to simple proximity.
@@ -1739,7 +1782,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Salomn vs STAR quantification, Ensembl gene annotation
+Salmon vs STAR quantification, Ensembl gene annotation
 \end_layout
 
 \end_inset
@@ -2032,7 +2075,7 @@ literal "false"
 
 , ignoring the time point variable due to the confounding with the batch
  variable.
- The result is a marked improvement, but the unavoidable counfounding with
+ The result is a marked improvement, but the unavoidable confounding with
  time point means that certain real patterns of gene expression will be
  indistinguishable from the batch effect and subtracted out as a result.
  Specifically, any 
@@ -2123,7 +2166,7 @@ literal "false"
 
 .
  The resulting analysis gives an accurate assessment of statistical significance
- for all comparisons, which unfortuantely means a loss of statistical power
+ for all comparisons, which unfortunately means a loss of statistical power
  for comparisons involving samples in batch 1.
 \end_layout
 
@@ -2137,8 +2180,17 @@ literal "false"
 
 \end_inset
 
-, converted to normalized logCPM with quality weights using voomWithQualityWeigh
-ts 
+, converted to normalized logCPM with quality weights using 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+voomWithQualityWeights
+\end_layout
+
+\end_inset
+
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Law2013,Liu2015"
@@ -3096,7 +3148,7 @@ noprefix "false"
 
 .
  Latent factors 1, 4, and 5 were determined to explain the most variation
- consistently across all data sets (Fgure 
+ consistently across all data sets (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:mofa-varexplained"
@@ -4490,7 +4542,7 @@ status open
 
 \begin_layout Plain Layout
 This figure is generated from the old analysis.
- Eiher note that in some way or re-generate it from the new peak calls.
+ Either note that in some way or re-generate it from the new peak calls.
 \end_layout
 
 \end_inset
@@ -5283,7 +5335,7 @@ name "fig:RNA-PCA-group"
 
 \end_inset
 
-RNA-seq PCoA showing principal coordiantes 2 and 3.
+RNA-seq PCoA showing principal coordinates 2 and 3.
 \end_layout
 
 \end_inset
@@ -5379,7 +5431,7 @@ noprefix "false"
 
 \end_inset
 
-), albiet in the 2nd and 3rd principal coordinates, indicating that it is
+), albeit in the 2nd and 3rd principal coordinates, indicating that it is
  not the most dominant pattern driving gene expression.
  Taken together, the data show that promoter histone methylation for these
  3 histone marks and RNA expression for naive and memory cells are most
@@ -6564,7 +6616,7 @@ clusters
  are really just sections of a single connected cloud rather than discrete
  clusters.
  The cloud is approximately ellipsoid-shaped, with each PC being an axis
- of the ellipse, and each cluster consisting of a pyrimidal section of the
+ of the ellipse, and each cluster consisting of a pyramidal section of the
  ellipsoid.
 \end_layout
 
@@ -6709,7 +6761,7 @@ one size fits all
  data within an experiment may not be appropriate, and a better approach
  may be to use a separate promoter radius for each kind of data, with each
  radius being derived from the data itself.
- Furthermore, the apparent assymetry of upstream and downstream promoter
+ Furthermore, the apparent asymmetry of upstream and downstream promoter
  histone modification with respect to gene expression, seen in Figures 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -6787,7 +6839,7 @@ noprefix "false"
 \end_inset
 
 kb is approximately consistent with the distance from the TSS at which enrichmen
-t of H3K4 methylationis correlates with increased expression, showing that
+t of H3K4 methylation correlates with increased expression, showing that
  this radius, which was determined by a simple analysis of measuring the
  distance from each TSS to the nearest peak, also has functional significance.
  For H3K27me3, the correlation between histone modification near the promoter
@@ -7378,7 +7430,7 @@ effective promoter radius
 \begin_inset Quotes erd
 \end_inset
 
- specific to each histone mark based on distince from the TSS within which
+ specific to each histone mark based on distance from the TSS within which
  an excess of peaks was called for that mark.
  This concept was then used to guide further analyses throughout the study.
  However, while the effective promoter radius was useful in those analyses,
@@ -7593,7 +7645,7 @@ To better study the convergence hypothesis, a new experiment should be designed
  the same cell cultures could be activated serially multiple times, and
  sequenced after each activation cycle right before the next activation.
  It is likely that several activations in the same model system will settle
- into a cylical pattern, converging to a consistent 
+ into a cyclical pattern, converging to a consistent 
 \begin_inset Quotes eld
 \end_inset
 
@@ -7715,7 +7767,7 @@ These three hypotheses could be disentangled by single-cell ChIP-seq.
  is consistent with allele-specific modification.
  Finally if the modifications do not separate by either cell or allele,
  the colocation of these two marks is most likely occurring at the level
- of individual histones, with the heterogenously modified histone representing
+ of individual histones, with the heterogeneously modified histone representing
  a distinct state.
  
 \end_layout
@@ -7803,7 +7855,7 @@ This section could probably use some citations
 \begin_layout Standard
 Microarrays, bead arrays, and similar assays produce raw data in the form
  of fluorescence intensity measurements, with the each intensity measurement
- proportional to the abundance of some fluorescently-labelled target DNA
+ proportional to the abundance of some fluorescently labelled target DNA
  or RNA sequence that base pairs to a specific probe sequence.
  However, these measurements for each probe are also affected my many technical
  confounding factors, such as the concentration of target material, strength
@@ -7902,7 +7954,7 @@ literal "false"
 
 .
  Quantile normalization is performed against a pre-generated set of quantiles
- learned from a collection of 850 publically available arrays sampled from
+ learned from a collection of 850 publicly available arrays sampled from
  a wide variety of tissues in the Gene Expression Omnibus (GEO).
  Each array's probe intensity distribution is normalized against these pre-gener
 ated quantiles.
@@ -7947,7 +7999,7 @@ literal "false"
 
 .
  SCAN is truly single-channel in that it does not require a set of normalization
- paramters estimated from an external set of reference samples like fRMA
+ parameters estimated from an external set of reference samples like fRMA
  does.
 \end_layout
 
@@ -7960,7 +8012,7 @@ DNA methylation arrays are a relatively new kind of assay that uses microarrays
  to measure the degree of methylation on cytosines in specific regions arrayed
  across the genome.
  First, bisulfite treatment converts all unmethylated cytosines to uracil
- (which then become thymine after amplication) while leaving methylated
+ (which then become thymine after amplification) while leaving methylated
  cytosines unaffected.
  Then, each target region is interrogated with two probes: one binds to
  the original genomic sequence and interrogates the level of methylated
@@ -8048,7 +8100,7 @@ noprefix "false"
 \end_inset
 
 ).
- This transformation results in values with better statistical perperties:
+ This transformation results in values with better statistical properties:
  the unconstrained range is suitable for linear modeling, and the error
  distributions are more normal.
  Hence, most linear modeling and other statistical testing on methylation
@@ -8171,7 +8223,7 @@ on of TX and AR samples was considered.
  The ADNR samples were included during normalization but excluded from all
  classifier training and validation.
  This ensures that the performance on internal and external validation sets
- is directly comparable, since both are performing the same task: distinguising
+ is directly comparable, since both are performing the same task: distinguishing
  TX from AR.
 \end_layout
 
@@ -8226,9 +8278,9 @@ literal "false"
 \end_inset
 
 .
- When evaluting internal validation performance, only the 157 internal samples
- were normalized; when evaluating external validation performance, all 157
- internal samples and 75 external samples were normalized together.
+ When evaluating internal validation performance, only the 157 internal
+ samples were normalized; when evaluating external validation performance,
+ all 157 internal samples and 75 external samples were normalized together.
 \end_layout
 
 \begin_layout Standard
@@ -8248,8 +8300,17 @@ Generating custom fRMA vectors for hthgu133pluspm array platform
 
 \begin_layout Standard
 In order to enable fRMA normalization for the hthgu133pluspm array platform,
- custom fRMA normalization vectors were trained using the frmaTools package
- 
+ custom fRMA normalization vectors were trained using the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+frmaTools
+\end_layout
+
+\end_inset
+
+ package 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "McCall2011"
@@ -8306,15 +8367,15 @@ Put code on Github and reference it.
 To investigate the whether DNA methylation could be used to distinguish
  between healthy and dysfunctional transplants, a data set of 78 Illumina
  450k methylation arrays from human kidney graft biopsies was analyzed for
- differential metylation between 4 transplant statuses: healthy transplant
+ differential methylation between 4 transplant statuses: healthy transplant
  (TX), transplants undergoing acute rejection (AR), acute dysfunction with
- no rejection (ADNR), and chronic allograpft nephropathy (CAN).
+ no rejection (ADNR), and chronic allograft nephropathy (CAN).
  The data consisted of 33 TX, 9 AR, 8 ADNR, and 28 CAN samples.
  The uneven group sizes are a result of taking the biopsy samples before
  the eventual fate of the transplant was known.
  Each sample was additionally annotated with a donor ID (anonymized), Sex,
- Age, Ethnicity, Creatinine Level, and Diabetes diagnosois (all samples
- in this data set came from patients with either Type 1 or Type 2 diabetes).
+ Age, Ethnicity, Creatinine Level, and Diabetes diagnosis (all samples in
+ this data set came from patients with either Type 1 or Type 2 diabetes).
  
 \end_layout
 
@@ -8668,7 +8729,7 @@ literal "false"
 
 \begin_layout Standard
 From the M-values, a series of parallel analyses was performed, each adding
- additional steps into the model fit to accomodate a feature of the data
+ additional steps into the model fit to accommodate a feature of the data
  (see Table 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -10029,7 +10090,7 @@ noprefix "false"
  Comparing RMA to each of the 5 fRMA normalizations, the distribution of
  log ratios is somewhat wide, indicating that the normalizations disagree
  on the expression values of a fair number of probe sets.
- In contrast, comparisons of fRMA against fRMA, the vast mojority of probe
+ In contrast, comparisons of fRMA against fRMA, the vast majority of probe
  sets have very small log ratios, indicating a very high agreement between
  the normalized values generated by the two normalizations.
  This shows that the fRMA normalization's behavior is not very sensitive
@@ -10546,8 +10607,8 @@ Mean-variance trend modeling in methylation array data.
 \series default
 The estimated log2(standard deviation) for each probe is plotted against
  the probe's average M-value across all samples as a black point, with some
- transparency to make overplotting more visible, since there are about 450,000
- points.
+ transparency to make over-plotting more visible, since there are about
+ 450,000 points.
  Density of points is also indicated by the dark blue contour lines.
  The prior variance trend estimated by eBayes is shown in light blue, while
  the lowess trend of the points is shown in red.
@@ -10602,7 +10663,7 @@ noprefix "false"
  M-values of +4 and -4.
  These modes correspond to methylation sites that are nearly 100% methylated
  and nearly 100% unmethylated, respectively.
- The strong bomodality indicates that a majority of probes interrogate sites
+ The strong bimodality indicates that a majority of probes interrogate sites
  that fall into one of these two categories.
  The points in between these modes represent sites that are either partially
  methylated in many samples, or are fully methylated in some samples and
@@ -10622,8 +10683,7 @@ noprefix "false"
 
 ).
  However, the uptick in the center is interesting: it indicates that sites
- that are not constitutitively methylated or unmethylated have a higher
- variance.
+ that are not constitutively methylated or unmethylated have a higher variance.
  This could be a genuine biological effect, or it could be spurious noise
  that is only observable at sites with varying methylation.
 \end_layout
@@ -10708,7 +10768,7 @@ noprefix "false"
  This shows that the observations with extreme M-values have been appropriately
  down-weighted to account for the fact that the noise in those observations
  has been amplified by the non-linear M-value transformation.
- In turn, this gives relatively more weight to observervations in the middle
+ In turn, this gives relatively more weight to observations in the middle
  region, which are more likely to correspond to probes measuring interesting
  biology (not constitutively methylated or unmethylated).
 \end_layout
@@ -12314,7 +12374,7 @@ noprefix "false"
 ).
  In analysis C, the trend is still estimated at the probe level, but instead
  of estimating a single variance value shared across all observations for
- a given probe, the voom method computes an initial estiamte of the variance
+ a given probe, the voom method computes an initial estimate of the variance
  for each observation individually based on where its model-fitted M-value
  falls on the trend line and then assigns inverse-variance weights to model
  the difference in variance between observations.
@@ -12367,21 +12427,21 @@ and
 \end_layout
 
 \begin_layout Standard
-The significant association of diebetes diagnosis with sample quality is
+The significant association of diabetes diagnosis with sample quality is
  interesting.
  The samples with Type 2 diabetes tended to have more variation, averaged
  across all probes, than those with Type 1 diabetes.
- This is consistent with the consensus that type 2 disbetes and the associated
+ This is consistent with the consensus that type 2 diabetes and the associated
  metabolic syndrome represent a broad dysregulation of the body's endocrine
- signalling related to metabolism [citation needed].
+ signaling related to metabolism [citation needed].
  This dysregulation could easily manifest as a greater degree of variation
  in the DNA methylation patterns of affected tissues.
- In contrast, Type 1 disbetes has a more specific cause and effect, so a
+ In contrast, Type 1 diabetes has a more specific cause and effect, so a
  less variable methylation signature is expected.
 \end_layout
 
 \begin_layout Standard
-This preliminary anlaysis suggests that some degree of differential methylation
+This preliminary analysis suggests that some degree of differential methylation
  exists between TX and each of the three types of transplant disfunction
  studied.
  Hence, it may be feasible to train a classifier to diagnose transplant
@@ -12451,7 +12511,7 @@ researcher degree of freedom
 
  into the analysis, since the generated normalization vectors now depend
  on the choice of batch size based on vague selection criteria and instinct,
- which can unintentionally inproduce bias if the researcher chooses a batch
+ which can unintentionally introduce bias if the researcher chooses a batch
  size based on what seems to yield the most favorable downstream results
  
 \begin_inset CommandInset citation
@@ -12581,9 +12641,15 @@ g for gene expression profiling by globin reduction of peripheral blood
 status open
 
 \begin_layout Plain Layout
-Chapter author list: https://tex.stackexchange.com/questions/156862/displaying-aut
-hor-for-each-chapter-in-book Every chapter gets an author list, which may
- or may not be part of a citation to a published/preprinted paper.
+Chapter author list: 
+\begin_inset CommandInset href
+LatexCommand href
+target "https://tex.stackexchange.com/questions/156862/displaying-author-for-each-chapter-in-book"
+
+\end_inset
+
+ Every chapter gets an author list, which may or may not be part of a citation
+ to a published/preprinted paper.
 \end_layout
 
 \end_inset
@@ -12814,9 +12880,26 @@ RNA-seq Library Preparation
 \end_layout
 
 \begin_layout Standard
-Sequencing libraries were prepared with 200ng total RNA from each sample.
- Polyadenylated mRNA was selected from 200 ng aliquots of cynomologus blood-deri
-ved total RNA using Ambion Dynabeads Oligo(dT)25 beads (Invitrogen) following
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Add protected spaces where appropriate to prevent unwanted line breaks.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sequencing libraries were prepared with 200
+\begin_inset space ~
+\end_inset
+
+ng total RNA from each sample.
+ Polyadenylated mRNA was selected from 200 ng aliquots of cynomolgus blood-deriv
+ed total RNA using Ambion Dynabeads Oligo(dT)25 beads (Invitrogen) following
  manufacturer’s recommended protocol.
  PolyA selected RNA was then combined with 8 pmol of HBA1/2 (site 1), 8
  pmol of HBA1/2 (site 2), 12 pmol of HBB (site 1) and 12 pmol of HBB (site
@@ -12901,9 +12984,37 @@ literal "false"
 
 .
  Counts of uniquely mapped reads were obtained for every gene in each sample
- with the “featureCounts” function from the Rsubread package, using each
- of the three possibilities for the “strandSpecific” option: sense, antisense,
- and unstranded 
+ with the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+featureCounts
+\end_layout
+
+\end_inset
+
+ function from the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+Rsubread
+\end_layout
+
+\end_inset
+
+ package, using each of the three possibilities for the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+strandSpecific
+\end_layout
+
+\end_inset
+
+ option: sense, antisense, and unstranded 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Liao2014"
@@ -12947,8 +13058,17 @@ Normalization and Exploratory Data Analysis
 \end_layout
 
 \begin_layout Standard
-Libraries were normalized by computing scaling factors using the edgeR package’s
- Trimmed Mean of M-values method 
+Libraries were normalized by computing scaling factors using the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+edgeR
+\end_layout
+
+\end_inset
+
+ package’s Trimmed Mean of M-values method 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Robinson2010"
@@ -12972,8 +13092,28 @@ literal "false"
 In order to assess the effect of blocking on reproducibility, Pearson and
  Spearman correlation coefficients were computed between the logCPM values
  for every pair of libraries within the globin-blocked (GB) and unblocked
- (non-GB) groups, and edgeR's “estimateDisp” function was used to compute
- negative binomial dispersions separately for the two groups 
+ (non-GB) groups, and 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+edgeR
+\end_layout
+
+\end_inset
+
+'s 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+estimateDisp
+\end_layout
+
+\end_inset
+
+ function was used to compute negative binomial dispersions separately for
+ the two groups 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Chen2014"
