@@ -18567,7 +18567,17 @@ glspl*{oligo}
 , and were then sequenced on an Illumina NextSeq500 instrument.
  The number of reads aligning to each gene in the cynomolgus genome was
  counted.
- Table 1 summarizes the distribution of read fractions among the 
+ Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Fractions-of-reads"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ summarizes the distribution of read fractions among the 
 \begin_inset Flex Glossary Term
 status open
 
