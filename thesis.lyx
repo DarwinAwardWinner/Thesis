@@ -52,11 +52,6 @@
 \setabbreviationstyle{long-short}
 \input{abbrevs.tex}
 \makeglossaries
-
-% arara: pdflatex
-% arara: biblatex
-% arara: makeglossaries
-% arara: pdflatex
 \end_preamble
 \use_default_options true
 \begin_modules
@@ -80,6 +75,60 @@ InsetLayout "Flex:Glossary Term (Capital)"
         LabelString           Gls
         LatexType             command
         LatexName             Gls*
+        InToc                 true
+        CustomPars            false
+End
+
+InsetLayout "Flex:Glossary Term (glstext)"
+        LyxType               custom
+        LabelString           glstext
+        LatexType             command
+        LatexName             glstext*
+        InToc                 true
+        CustomPars            false
+End
+
+InsetLayout "Flex:Glossary Term (Glstext)"
+        LyxType               custom
+        LabelString           Glstext
+        LatexType             command
+        LatexName             Glstext*
+        InToc                 true
+        CustomPars            false
+End
+
+InsetLayout "Flex:Glossary Term (glsfirst)"
+        LyxType               custom
+        LabelString           glsfirst
+        LatexType             command
+        LatexName             glsfirst*
+        InToc                 true
+        CustomPars            false
+End
+
+InsetLayout "Flex:Glossary Term (Glsfirst)"
+        LyxType               custom
+        LabelString           Glsfirst
+        LatexType             command
+        LatexName             Glsfirst*
+        InToc                 true
+        CustomPars            false
+End
+
+InsetLayout "Flex:Glossary Term (glsdesc)"
+        LyxType               custom
+        LabelString           glsdesc
+        LatexType             command
+        LatexName             glsdesc*
+        InToc                 true
+        CustomPars            false
+End
+
+InsetLayout "Flex:Glossary Term (Glsdesc)"
+        LyxType               custom
+        LabelString           Glsdesc
+        LatexType             command
+        LatexName             Glsdesc*
         InToc                 true
         CustomPars            false
 End
@@ -915,6 +964,15 @@ RNA-seq
 
 \end_inset
 
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "RNA-seq"
+description "High-throughput RNA sequencing"
+literal "false"
+
+\end_inset
+
  experiment, the dependent variables may be the count of 
 \begin_inset Flex Glossary Term
 status open
@@ -1196,8 +1254,17 @@ ChIP-seq
 
 \end_inset
 
- data, which tend to be much smaller and therefore violate the assumption
- of a normal distribution more severely.
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "ChIP-seq"
+description "Chromatin immunoprecipitation followed by high-throughput DNA sequencing"
+literal "false"
+
+\end_inset
+
+, which tend to be much smaller and therefore violate the assumption of
+ a normal distribution more severely.
  For all count-based data, the 
 \begin_inset Flex Code
 status open
@@ -1218,8 +1285,49 @@ limma
 
 \end_inset
 
-, but uses a generalized linear model instead of a linear model.
- The most important difference is that the GLM in 
+, but uses a 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GLM
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "GLM"
+description "generalized linear model"
+literal "false"
+
+\end_inset
+
+ instead of a linear model.
+ Relative to a linear model, a 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GLM
+\end_layout
+
+\end_inset
+
+ gains flexibility by relaxing several assumptions, the most important of
+ which is the assumption of normally distributed errors.
+ This allows the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GLM
+\end_layout
+
+\end_inset
+
+ in 
 \begin_inset Flex Code
 status open
 
@@ -1229,8 +1337,27 @@ edgeR
 
 \end_inset
 
- models the counts directly using a negative binomial distribution rather
- than modeling the normalized log counts using a normal distribution 
+ to model the counts directly using a 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+NB
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "NB"
+description "negative binomial"
+literal "false"
+
+\end_inset
+
+ distribution rather than modeling the normalized log counts using a normal
+ distribution 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Chen2014,McCarthy2012,Robinson2010a"
@@ -1239,14 +1366,42 @@ literal "false"
 \end_inset
 
 .
- The negative binomial is a good fit for count data because it can be derived
- as a gamma-distributed mixture of Poisson distributions.
+ The 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+NB
+\end_layout
+
+\end_inset
+
+ is a good fit for count data because it can be derived as a gamma-distributed
+ mixture of Poisson distributions.
  The Poisson distribution accurately represents the distribution of counts
  expected for a given gene abundance, and the gamma distribution is then
  used to represent the variation in gene abundance between biological replicates.
- For this reason, the square root of the dispersion parameter of the negative
- binomial is sometimes referred to as the biological coefficient of variation,
- since it represents the variability that was present in the samples prior
+ For this reason, the square root of the dispersion parameter of the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+NB
+\end_layout
+
+\end_inset
+
+ is sometimes referred to as the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+BCV
+\end_layout
+
+\end_inset
+
+, since it represents the variability that was present in the samples prior
  to the Poisson 
 \begin_inset Quotes eld
 \end_inset
@@ -1259,7 +1414,17 @@ noise
  abundances.
  The choice of a gamma distribution is arbitrary and motivated by mathematical
  convenience, since a gamma-Poisson mixture yields the numerically tractable
- negative binomial distribution.
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+NB
+\end_layout
+
+\end_inset
+
+ distribution.
  Thus, 
 \begin_inset Flex Code
 status open
@@ -1314,20 +1479,66 @@ RNA-seq
 \end_inset
 
  data, in which gene annotations provide a well-defined set of discrete
- genomic regions in which to count reads, ChIP-seq reads can potentially
- occur anywhere in the genome.
- However, most genome regions will not contain significant ChIP-seq read
- coverage, and analyzing every position in the entire genome is statistically
- and computationally infeasible, so it is necessary to identify regions
- of interest inside which ChIP-seq reads will be counted and analyzed.
+ genomic regions in which to count reads, 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ reads can potentially occur anywhere in the genome.
+ However, most genome regions will not contain significant 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ read coverage, and analyzing every position in the entire genome is statistical
+ly and computationally infeasible, so it is necessary to identify regions
+ of interest inside which 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ reads will be counted and analyzed.
  One option is to define a set of interesting regions
 \emph on
  a priori
 \emph default
 , for example by defining a promoter region for each annotated gene.
- However, it is also possible to use the ChIP-seq data itself to identify
- regions with ChIP-seq read coverage significantly above the background
- level, known as peaks.
+ However, it is also possible to use the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ data itself to identify regions with 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ read coverage significantly above the background level, known as peaks.
  
 \end_layout
 
@@ -1335,8 +1546,18 @@ RNA-seq
 There are generally two kinds of peaks that can be identified: narrow peaks
  and broadly enriched regions.
  Proteins like transcription factors that bind specific sites in the genome
- typically show most of their ChIP-seq read coverage at these specific sites
- and very little coverage anywhere else.
+ typically show most of their 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ read coverage at these specific sites and very little coverage anywhere
+ else.
  Because the footprint of the protein is consistent wherever it binds, each
  peak has a consistent width, typically tens to hundreds of base pairs,
  representing the length of DNA that it binds to.
@@ -1349,8 +1570,17 @@ narrow peaks
 \begin_inset Quotes erd
 \end_inset
 
- occur by looking for the characteristic peak shape in the ChIP-seq coverage
- rising above the surrounding background coverage 
+ occur by looking for the characteristic peak shape in the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ coverage rising above the surrounding background coverage 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Zhang2008"
@@ -1373,13 +1603,31 @@ footprint size
 \begin_inset Quotes erd
 \end_inset
 
- for ChIP-seq peaks based on histone marks, and peaks typically span many
- histones.
+ for 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ peaks based on histone marks, and peaks typically span many histones.
  Hence, typical peaks span many hundreds or even thousands of base pairs.
  Instead of identifying specific loci of strong enrichment, algorithms like
- SICER assume that peaks are represented in the ChIP-seq data by modest
- enrichment above background occurring across broad regions, and they attempt
- to identify the extent of those regions 
+ SICER assume that peaks are represented in the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ data by modest enrichment above background occurring across broad regions,
+ and they attempt to identify the extent of those regions 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Zang2009"
@@ -1389,15 +1637,42 @@ literal "false"
 
 .
  In all cases, better results are obtained if the local background coverage
- level can be estimated from ChIP-seq input samples, since various biases
- can result in uneven background coverage.
+ level can be estimated from 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ input samples, since various biases can result in uneven background coverage.
 \end_layout
 
 \begin_layout Standard
 Regardless of the type of peak identified, it is important to identify peaks
  that occur consistently across biological replicates.
- The ENCODE project has developed a method called irreproducible discovery
- rate for this purpose 
+ The ENCODE project has developed a method called 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+IDR
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "IDR"
+description "irreproducible discovery rate"
+literal "false"
+
+\end_inset
+
+ for this purpose 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Li2006"
@@ -1406,7 +1681,17 @@ literal "false"
 \end_inset
 
 .
- The IDR is defined as the probability that a peak identified in one biological
+ The 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+IDR
+\end_layout
+
+\end_inset
+
+ is defined as the probability that a peak identified in one biological
  replicate will 
 \emph on
 not
@@ -1414,9 +1699,29 @@ not
  also be identified in a second replicate.
  Where the more familiar false discovery rate measures the degree of corresponde
 nce between a data-derived ranked list and the true list of significant
- features, IDR instead measures the degree of correspondence between two
- ranked lists derived from different data.
- IDR assumes that the highest-ranked features are 
+ features, 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+IDR
+\end_layout
+
+\end_inset
+
+ instead measures the degree of correspondence between two ranked lists
+ derived from different data.
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+IDR
+\end_layout
+
+\end_inset
+
+ assumes that the highest-ranked features are 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1427,7 +1732,17 @@ signal
  peaks that tend to be listed in the same order in both lists, while the
  lowest-ranked features are essentially noise peaks, listed in random order
  with no correspondence between the lists.
- IDR attempts to locate the 
+ 
+\begin_inset Flex Glossary Term (Capital)
+status open
+
+\begin_layout Plain Layout
+IDR
+\end_layout
+
+\end_inset
+
+ attempts to locate the 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1456,10 +1771,19 @@ csaw
 \end_inset
 
  package provides guidelines for calling peaks in this way: peaks are called
- based on a combination of all ChIP-seq reads from all experimental conditions,
- so that the identified peaks are based on the average abundance across
- all conditions, which is independent of any differential abundance between
- conditions 
+ based on a combination of all 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ reads from all experimental conditions, so that the identified peaks are
+ based on the average abundance across all conditions, which is independent
+ of any differential abundance between conditions 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Lun2015a"
@@ -1579,7 +1903,17 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-In ChIP-seq data, normalization is not as straightforward.
+In 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ data, normalization is not as straightforward.
  The 
 \begin_inset Flex Code
 status open
@@ -1600,9 +1934,19 @@ literal "false"
 \end_inset
 
 .
- Briefly, a typical ChIP-seq sample has a bimodal distribution of read counts:
- a low-abundance mode representing background regions and a high-abundance
- mode representing signal regions.
+ Briefly, a typical 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ sample has a bimodal distribution of read counts: a low-abundance mode
+ representing background regions and a high-abundance mode representing
+ signal regions.
  This offers two potential normalization targets: equalizing background
  coverage or equalizing signal coverage.
  If the experiment is well controlled and ChIP efficiency is known to be
@@ -1621,9 +1965,19 @@ RNA-seq
 
  data by assuming that the average signal region is not changing abundance
  between samples.
- Beyond this, if a ChIP-seq experiment has a more complicated structure
- that doesn't show the typical bimodal count distribution, it may be necessary
- to implement a normalization as a smooth function of abundance.
+ Beyond this, if a 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ experiment has a more complicated structure that doesn't show the typical
+ bimodal count distribution, it may be necessary to implement a normalization
+ as a smooth function of abundance.
  However, this strategy makes a much stronger assumption about the data:
  that the average log fold change is zero across all abundance levels.
  Hence, the simpler scaling normalization based on background or signal
@@ -1678,24 +2032,71 @@ literal "false"
 In some data sets, unknown batch effects may be present due to inherent
  variability in in the data, either caused by technical or biological effects.
  Examples of unknown batch effects include variations in enrichment efficiency
- between ChIP-seq samples, variations in populations of different cell types,
- and the effects of uncontrolled environmental factors on gene expression
- in humans or live animals.
+ between 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ samples, variations in populations of different cell types, and the effects
+ of uncontrolled environmental factors on gene expression in humans or live
+ animals.
  In an ordinary linear model context, unknown batch effects cannot be inferred
  and must be treated as random noise.
  However, in high-throughput experiments, once again information can be
  shared across features to identify patterns of un-modeled variation that
  are repeated in many features.
- One attractive strategy would be to perform singular value decomposition
- (SVD) on the matrix of linear model residuals (which contain all the un-modeled
+ One attractive strategy would be to perform 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+SVD
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "SVD"
+description "singular value decomposition"
+literal "false"
+
+\end_inset
+
+ on the matrix of linear model residuals (which contain all the un-modeled
  variation in the data) and take the first few singular vectors as batch
  effects.
  While this can be effective, it makes the unreasonable assumption that
  all batch effects are uncorrelated with any of the effects being modeled.
- Surrogate variable analysis (SVA) starts with this approach, but takes
- some additional steps to identify batch effects in the full data that are
- both highly correlated with the singular vectors in the residuals and least
- correlated with the effects of interest 
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+SVA
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "SVA"
+description "surrogate variable analysis"
+literal "false"
+
+\end_inset
+
+ starts with this approach, but takes some additional steps to identify
+ batch effects in the full data that are both highly correlated with the
+ singular vectors in the residuals and least correlated with the effects
+ of interest 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Leek2007"
@@ -1706,8 +2107,28 @@ literal "false"
 .
  Since the final batch effects are estimated from the full data, moderate
  correlations between the batch effects and effects of interest are allowed,
- which gives SVA much more freedom to estimate the true extent of the batch
- effects compared to simple residual SVD.
+ which gives 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+SVA
+\end_layout
+
+\end_inset
+
+ much more freedom to estimate the true extent of the batch effects compared
+ to simple residual 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+SVD
+\end_layout
+
+\end_inset
+
+.
  Once the surrogate variables are estimated, they can be included as coefficient
 s in the linear model in a similar fashion to known batch effects in order
  to subtract out their effects on each feature's abundance.
@@ -1992,8 +2413,18 @@ RNA-seq
 
 \end_inset
 
- data and ChIP-seq data was re-analyzed using up-to-date methods designed
- to address the specific analysis challenges posed by this data set.
+ data and 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ data was re-analyzed using up-to-date methods designed to address the specific
+ analysis challenges posed by this data set.
  The data set contains naïve and memory CD4 T-cell samples in a time course
  before and after activation.
  Like the original analysis, this analysis looks at the dynamics of these
@@ -2002,16 +2433,45 @@ RNA-seq
  and memory cells, in hope of discovering evidence of new mechanistic details
  in the interplay between them.
  The original analysis of this data treated each gene promoter as a monolithic
- unit and mostly assumed that ChIP-seq reads or peaks occurring anywhere
- within a promoter were equivalent, regardless of where they occurred relative
- to the gene structure.
+ unit and mostly assumed that 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ reads or peaks occurring anywhere within a promoter were equivalent, regardless
+ of where they occurred relative to the gene structure.
  For an initial analysis of the data, this was a necessary simplifying assumptio
 n.
  The current analysis aims to relax this assumption, first by directly analyzing
- ChIP-seq peaks for differential modification, and second by taking a more
- granular look at the ChIP-seq read coverage within promoter regions to
- ask whether the location of histone modifications relative to the gene's
- TSS is an important factor, as opposed to simple proximity.
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ peaks for differential modification, and second by taking a more granular
+ look at the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ read coverage within promoter regions to ask whether the location of histone
+ modifications relative to the gene's TSS is an important factor, as opposed
+ to simple proximity.
 \end_layout
 
 \begin_layout Section
@@ -2033,7 +2493,17 @@ Look up some more details from the papers (e.g.
 \end_layout
 
 \begin_layout Standard
-A reproducible workflow was written to analyze the raw ChIP-seq and 
+A reproducible workflow was written to analyze the raw 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ and 
 \begin_inset Flex Glossary Term
 status open
 
@@ -2062,15 +2532,44 @@ RNA-seq
 
 \end_inset
 
- and ChIP-seq from CD4 T-cells cultured from 4 donors.
+ and 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ from CD4 T-cells cultured from 4 donors.
  From each donor, naïve and memory CD4 T-cells were isolated separately.
  Then cultures of both cells were activated [how?], and samples were taken
  at 4 time points: Day 0 (pre-activation), Day 1 (early activation), Day
  5 (peak activation), and Day 14 (post-activation).
  For each combination of cell type and time point, RNA was isolated and
- sequenced, and ChIP-seq was performed for each of 3 histone marks: H3K4me2,
- H3K4me3, and H3K27me3.
- The ChIP-seq input DNA was also sequenced for each sample.
+ sequenced, and 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ was performed for each of 3 histone marks: H3K4me2, H3K4me3, and H3K27me3.
+ The 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ input DNA was also sequenced for each sample.
  The result was 32 samples for each assay.
 \end_layout
 
@@ -2703,6 +3202,26 @@ literal "false"
 \end_inset
 
 .
+ P-values were corrected for multiple testing using the Benjamini-Hochberg
+ procedure for 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+FDR
+\end_layout
+
+\end_inset
+
+ control 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Benjamini1995"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsection
@@ -2949,8 +3468,18 @@ literal "false"
 \end_inset
 
 .
- ChIP-seq (and input) reads were aligned to GRCh38 genome assembly using
- Bowtie 2 
+ 
+\begin_inset Flex Glossary Term (Capital)
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ (and input) reads were aligned to GRCh38 genome assembly using Bowtie 2
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Langmead2012,Schneider2017,gh-hg38-ref"
@@ -2999,7 +3528,17 @@ noprefix "false"
 \end_inset
 
  shows the improvement after blacklisting in the strand cross-correlation
- plots, a common quality control plot for ChIP-seq data.
+ plots, a common quality control plot for 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ data.
  Peaks were called using epic, an implementation of the SICER algorithm
  
 \begin_inset CommandInset citation
@@ -3021,8 +3560,17 @@ literal "false"
 \end_inset
 
 .
- Consensus peaks were determined by applying the irreproducible discovery
- rate (IDR) framework 
+ Consensus peaks were determined by applying the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+IDR
+\end_layout
+
+\end_inset
+
+ framework 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Li2006,gh-idr"
@@ -3395,8 +3943,27 @@ literal "false"
 \end_inset
 
 .
- Unobserved confounding factors in the ChIP-seq data were corrected using
- SVA 
+ Unobserved confounding factors in the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ data were corrected using 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+SVA
+\end_layout
+
+\end_inset
+
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Leek2007,Leek2014"
@@ -3642,8 +4209,18 @@ end{landscape}
 \end_layout
 
 \begin_layout Standard
-MOFA was run on all the ChIP-seq windows overlapping consensus peaks for
- each histone mark, as well as the 
+MOFA was run on all the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ windows overlapping consensus peaks for each histone mark, as well as the
+ 
 \begin_inset Flex Glossary Term
 status open
 
@@ -3811,10 +4388,6 @@ Maybe reorder these sections to do RNA-seq, then ChIP-seq, then combined
 \end_inset
 
 
-\end_layout
-
-\begin_layout Subsection
-Interpretation of RNA-seq analysis is limited by a major confounding factor
 \end_layout
 
 \begin_layout Standard
@@ -4282,8 +4855,23 @@ trajectory
 
 \end_layout
 
-\begin_layout Plain Layout
+\end_inset
 
+
+\end_layout
+
+\begin_layout Subsection
+Interpretation of RNA-seq analysis is limited by a major confounding factor
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Putting a float here causes an error.
+ No idea why.
+ See above for the floats that should be placed here.
 \end_layout
 
 \end_inset
@@ -4292,7 +4880,7 @@ trajectory
 \end_layout
 
 \begin_layout Standard
-Genes called present in the 
+Genes called as present in the 
 \begin_inset Flex Glossary Term
 status open
 
@@ -4653,6 +5241,19 @@ H3K27me3
 </cell>
 </row>
 </lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Get the IDR threshold
+\end_layout
 
 \end_inset
 
@@ -6346,12 +6947,22 @@ landscape
 \begin_inset Quotes erd
 \end_inset
 
- of ChIP-seq read coverage in naïve Day 0 samples within 5 kb of each gene's
- TSS by binning reads into 500-bp windows tiled across each promoter LogCPM
- values were calculated for the bins in each promoter and then the average
- logCPM for each promoter's bins was normalized to zero, such that the values
- represent coverage relative to other regions of the same promoter rather
- than being proportional to absolute read count.
+ of 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ read coverage in naïve Day 0 samples within 5 kb of each gene's TSS by
+ binning reads into 500-bp windows tiled across each promoter LogCPM values
+ were calculated for the bins in each promoter and then the average logCPM
+ for each promoter's bins was normalized to zero, such that the values represent
+ coverage relative to other regions of the same promoter rather than being
+ proportional to absolute read count.
  The promoters were then clustered based on the normalized bin abundances
  using 
 \begin_inset Formula $k$
@@ -6511,9 +7122,18 @@ baseline
  with elevated expression.
  As might be expected, the 3 clusters representing peaks closest to the
  TSS, Clusters 1, 3, and 4, show the highest average expression distributions.
- Specifically, these clusters all have their highest ChIP-seq abundance
- within 1kb of the TSS, consistent with the previously determined promoter
- radius.
+ Specifically, these clusters all have their highest 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ abundance within 1kb of the TSS, consistent with the previously determined
+ promoter radius.
  In contrast, cluster 6, which represents peaks several kb upstream of the
  TSS, shows a slightly higher average expression than baseline, while Cluster
  2, which represents peaks several kb downstream, doesn't appear to show
@@ -6806,8 +7426,17 @@ Is there more to say here?
 \end_layout
 
 \begin_layout Standard
-All observations described above for H3K4me2 ChIP-seq also appear to hold
- for H3K4me3 as well (Figure 
+All observations described above for H3K4me2 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ also appear to hold for H3K4me3 as well (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:H3K4me3-neighborhood"
@@ -7652,7 +8281,17 @@ noprefix "false"
 
 \end_inset
 
-, which have been corrected for confounding factors by ComBat and SVA.
+, which have been corrected for confounding factors by ComBat and 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+SVA
+\end_layout
+
+\end_inset
+
+.
  This shows that proper batch correction assists in extracting meaningful
  patterns in the data while eliminating systematic sources of irrelevant
  variation in the data, allowing simple automated procedures like PCoA to
@@ -7886,7 +8525,17 @@ noprefix "false"
 \end_inset
 
 , the workflow includes many steps with complex dependencies between them.
- For example, the step that counts the number of ChIP-seq reads in 500
+ For example, the step that counts the number of 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ reads in 500
 \begin_inset space ~
 \end_inset
 
@@ -7941,8 +8590,28 @@ RNA-seq
 \end_inset
 
  abundance estimates in order to select the most-used TSS for each gene,
- the aligned ChIP-seq reads, the index for those reads, and the blacklist
- of regions to be excluded from ChIP-seq analysis.
+ the aligned 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ reads, the index for those reads, and the blacklist of regions to be excluded
+ from 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ analysis.
  Each step declares its inputs and outputs, and Snakemake uses these to
  determine the dependencies between steps.
  Each step is marked as depending on all the steps whose outputs match its
@@ -8035,8 +8704,18 @@ RNA-seq
 
 \end_inset
 
- and ChIP-seq in CD4 T-cells in Chapter 2 is in many ways a preliminary
- study that suggests a multitude of new avenues of investigation.
+ and 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ in CD4 T-cells in Chapter 2 is in many ways a preliminary study that suggests
+ a multitude of new avenues of investigation.
  Here we consider a selection of such avenues.
 \end_layout
 
@@ -8049,9 +8728,18 @@ Two additional analyses were conducted beyond those reported in the results.
  First, we searched for evidence that the presence or absence of a CpG island
  in the promoter was correlated with increases or decreases in gene expression
  or any histone mark in any of the tested contrasts.
- Second, we searched for evidence that the relative ChIP-seq coverage profiles
- prior to activations could predict the change in expression of a gene after
- activation.
+ Second, we searched for evidence that the relative 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ coverage profiles prior to activations could predict the change in expression
+ of a gene after activation.
  Neither analysis turned up any clear positive results.
 \end_layout
 
@@ -8133,10 +8821,20 @@ nt limitation of being based on the peak calling method.
  It is thus very sensitive to the choice of peak caller and significance
  threshold for calling peaks, as well as the degree of saturation in the
  sequencing.
- Calling peaks from ChIP-seq samples with insufficient coverage depth, with
- the wrong peak caller, or with a different significance threshold could
- give a drastically different number of called peaks, and hence a drastically
- different distribution of peak-to-TSS distances.
+ Calling peaks from 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ samples with insufficient coverage depth, with the wrong peak caller, or
+ with a different significance threshold could give a drastically different
+ number of called peaks, and hence a drastically different distribution
+ of peak-to-TSS distances.
  To address this, it is desirable to develop a better method of determining
  the effective promoter radius that relies only on the distribution of read
  coverage around the TSS, independent of the peak calling.
@@ -8395,7 +9093,17 @@ same
 \end_layout
 
 \begin_layout Standard
-These three hypotheses could be disentangled by single-cell ChIP-seq.
+These three hypotheses could be disentangled by single-cell 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+.
  If the correlation between these two histone marks persists even within
  the reads for each individual cell, then cell population heterogeneity
  cannot explain the correlation.
@@ -9448,7 +10156,17 @@ literal "false"
  Finally, t-tests or F-tests were performed as appropriate for each test:
  t-tests for single contrasts, and F-tests for multiple contrasts.
  P-values were corrected for multiple testing using the Benjamini-Hochberg
- procedure for FDR control 
+ procedure for 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+FDR
+\end_layout
+
+\end_inset
+
+ control 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Benjamini1995"
@@ -9460,8 +10178,18 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-For the analysis B, surrogate variable analysis (SVA) was used to infer
- additional unobserved sources of heterogeneity in the data 
+For the analysis B, 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+SVA
+\end_layout
+
+\end_inset
+
+ was used to infer additional unobserved sources of heterogeneity in the
+ data 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Leek2007"
@@ -12747,7 +13475,17 @@ noprefix "false"
 \end_inset
 
  shows the number of significantly differentially methylated probes reported
- by each analysis for each comparison of interest at an FDR of 10%.
+ by each analysis for each comparison of interest at an 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+FDR
+\end_layout
+
+\end_inset
+
+ of 10%.
  As expected, the more elaborate analyses, B and C, report more significant
  probes than the more basic analysis A, consistent with the conclusions
  above that the data contain hidden systematic variations that must be modeled.
@@ -13118,17 +13856,35 @@ This preliminary analysis suggests that some degree of differential methylation
  studied.
  Hence, it may be feasible to train a classifier to diagnose transplant
  disfunction from DNA methylation array data.
- However, the major importance of both SVA and sample quality weighting
- for proper modeling of this data poses significant challenges for any attempt
- at a machine learning on data of similar quality.
+ However, the major importance of both 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+SVA
+\end_layout
+
+\end_inset
+
+ and sample quality weighting for proper modeling of this data poses significant
+ challenges for any attempt at a machine learning on data of similar quality.
  While these are easily used in a modeling context with full sample information,
  neither of these methods is directly applicable in a machine learning context,
  where the diagnosis is not known ahead of time.
  If a machine learning approach for methylation-based diagnosis is to be
  pursued, it will either require machine-learning-friendly methods to address
- the same systematic trends in the data that SVA and sample quality weighting
- address, or it will require higher quality data with substantially less
- systematic perturbation of the data.
+ the same systematic trends in the data that 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+SVA
+\end_layout
+
+\end_inset
+
+ and sample quality weighting address, or it will require higher quality
+ data with substantially less systematic perturbation of the data.
 \end_layout
 
 \begin_layout Section
@@ -13262,21 +14018,60 @@ ons, including rejection.
  methylated between healthy and dysfunctional transplants.
  One likely explanation for this is the predominant influence of unobserved
  confounding factors.
- SVA can model and correct for such factors, but the correction can never
- be perfect, so some degree of unwanted systematic variation will always
- remain after SVA correction.
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+SVA
+\end_layout
+
+\end_inset
+
+ can model and correct for such factors, but the correction can never be
+ perfect, so some degree of unwanted systematic variation will always remain
+ after 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+SVA
+\end_layout
+
+\end_inset
+
+ correction.
  If the effect size of the confounding factors was similar to that of the
  factor of interest (in this case, transplant status), this would be an
  acceptable limitation, since removing most of the confounding factors'
  effects would allow the main effect to stand out.
  However, in this data set, the confounding factors have a much larger effect
  size than transplant status, which means that the small degree of remaining
- variation not removed by SVA can still swamp the effect of interest, making
- it difficult to detect.
+ variation not removed by 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+SVA
+\end_layout
+
+\end_inset
+
+ can still swamp the effect of interest, making it difficult to detect.
  This is, of course, a major issue when the end goal is to develop a classifier
  to diagnose transplant rejection from methylation data, since batch-correction
- methods like SVA that work in a linear modeling context cannot be applied
- in a machine learning context.
+ methods like 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+SVA
+\end_layout
+
+\end_inset
+
+ that work in a linear modeling context cannot be applied in a machine learning
+ context.
 \end_layout
 
 \begin_layout Standard
@@ -13284,9 +14079,18 @@ Currently, the source of these unwanted systematic variations in the data
  is unknown.
  The best solution would be to determine the cause of the variation and
  eliminate it, thereby eliminating the need to model and remove that variation.
- However, if this proves impractical, another option is to use SVA to identify
- probes that are highly associated with the surrogate variables that describe
- the unwanted variation in the data.
+ However, if this proves impractical, another option is to use 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+SVA
+\end_layout
+
+\end_inset
+
+ to identify probes that are highly associated with the surrogate variables
+ that describe the unwanted variation in the data.
  These probes could be discarded prior to classifier training, in order
  to maximize the chance that the training algorithm will be able to identify
  highly predictive probes from those remaining.
@@ -13943,8 +14747,17 @@ estimateDisp
 
 \end_inset
 
- function was used to compute negative binomial dispersions separately for
- the two groups 
+ function was used to compute 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+NB
+\end_layout
+
+\end_inset
+
+ dispersions separately for the two groups 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Chen2014"
@@ -13970,9 +14783,28 @@ edgeR
 
 \end_inset
 
-, by first fitting a negative binomial generalized linear model to the counts
- and normalization factors and then performing a quasi-likelihood F-test
- with robust estimation of outlier gene dispersions 
+, by first fitting a 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+NB
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GLM
+\end_layout
+
+\end_inset
+
+ to the counts and normalization factors and then performing a quasi-likelihood
+ F-test with robust estimation of outlier gene dispersions 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Lund2012,Phipson2016"
@@ -13996,7 +14828,17 @@ literal "false"
  variation using an additive model with coefficients for transplant and
  animal ID.
  In all analyses, p-values were adjusted using the Benjamini-Hochberg procedure
- for FDR control 
+ for 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+FDR
+\end_layout
+
+\end_inset
+
+ control 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Benjamini1995"
@@ -15164,7 +16006,17 @@ noprefix "false"
 
 , and genes with an average logCPM below -1 were filtered out.
  Each remaining gene was tested for differential abundance with respect
- to globin blocking (GB) using 
+ to 
+\begin_inset Flex Glossary Term (glstext)
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ using 
 \begin_inset Flex Code
 status open
 
@@ -15174,8 +16026,8 @@ edgeR
 
 \end_inset
 
-’s quasi-likelihood F-test, fitting a negative binomial generalized linear
- model to table of read counts in each library.
+’s quasi-likelihood F-test, fitting a NB GLM to table of read counts in
+ each library.
  For each gene, 
 \begin_inset Flex Code
 status open
@@ -15186,7 +16038,7 @@ edgeR
 
 \end_inset
 
- reported average abundance (logCPM), 
+ reported average logCPM, 
 \begin_inset Formula $\log_{2}$
 \end_inset
 
@@ -15201,10 +16053,6 @@ edgeR
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -15392,14 +16240,43 @@ edgeR
 
 \end_inset
 
- package was used to compute the overall biological coefficient of variation
- (BCV) for GB and non-GB libraries, and found that globin blocking resulted
- in a negligible increase in the BCV (0.417 with GB vs.
+ package was used to compute the overall 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+BCV
+\end_layout
+
+\end_inset
+
+ for GB and non-GB libraries, and found that globin blocking resulted in
+ a negligible increase in the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+BCV
+\end_layout
+
+\end_inset
+
+ (0.417 with GB vs.
  0.400 without).
- The near equality of the BCVs for both sets indicates that the higher correlati
-ons in the GB libraries are most likely a result of the increased yield
- of useful reads, which reduces the contribution of Poisson counting uncertainty
- to the overall variance of the logCPM values 
+ The near equality of the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+BCV
+\end_layout
+
+\end_inset
+
+ for both sets indicates that the higher correlations in the GB libraries
+ are most likely a result of the increased yield of useful reads, which
+ reduces the contribution of Poisson counting uncertainty to the overall
+ variance of the logCPM values 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "McCarthy2012"
@@ -15409,7 +16286,17 @@ literal "false"
 
 .
  This improves the precision of expression measurements and more than offsets
- the negligible increase in BCV.
+ the negligible increase in 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+BCV
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsection
@@ -15862,7 +16749,17 @@ To compare performance on differential gene expression tests, we took subsets
  The same test for pre- vs.
  post-transplant differential gene expression was performed on the same
  7 pairs of samples from GB libraries and non-GB libraries, in each case
- using an FDR of 10% as the threshold of significance.
+ using an 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+FDR
+\end_layout
+
+\end_inset
+
+ of 10% as the threshold of significance.
  Out of 12954 genes that passed the detection threshold in both subsets,
  358 were called significantly differentially expressed in the same direction
  in both sets; 1063 were differentially expressed in the GB set only; 296
@@ -15881,8 +16778,31 @@ noprefix "false"
 \end_inset
 
 .
- The differences in BCV calculated by EdgeR for these subsets of samples
- were negligible (BCV = 0.302 for GB and 0.297 for non-GB).
+ The differences in 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+BCV
+\end_layout
+
+\end_inset
+
+ calculated by 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+edgeR
+\end_layout
+
+\end_inset
+
+ for these subsets of samples were negligible (
+\begin_inset Formula $\textrm{BCV}=0.302$
+\end_inset
+
+ for GB and 0.297 for non-GB).
 \end_layout
 
 \begin_layout Standard
@@ -15892,9 +16812,22 @@ The key point is that the GB data results in substantially more differentially
  certain whether this is due to under-calling of differential expression
  in the non-GB samples or over-calling in the GB samples.
  However, given that both datasets are derived from the same biological
- samples and have nearly equal BCVs, it is more likely that the larger number
- of DE calls in the GB samples are genuine detections that were enabled
- by the higher sequencing depth and measurement precision of the GB samples.
+ samples and have nearly equal 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+glspl*{BCV}
+\end_layout
+
+\end_inset
+
+, it is more likely that the larger number of DE calls in the GB samples
+ are genuine detections that were enabled by the higher sequencing depth
+ and measurement precision of the GB samples.
  Note that the same set of genes was considered in both subsets, so the
  larger number of differentially expressed gene calls in the GB data set
  reflects a greater sensitivity to detect significant differential gene
@@ -16000,9 +16933,9 @@ literal "false"
 \end_inset
 
 .
- The approach to DeepSAGE involves two different restriction enzymes that
- purify and then tag small fragments of transcripts at specific locations
- and thus, significantly reduces the complexity of the transcriptome.
+ The DeepSAGE method involves two different restriction enzymes that purify
+ and then tag small fragments of transcripts at specific locations and thus
+ significantly reduces the complexity of the transcriptome.
  Therefore, we could not determine how DeepSAGE results would translate
  to the common strategy in the field for assaying the entire transcript
  population by whole-transcriptome 3’-end 
@@ -16115,7 +17048,6 @@ status open
 \begin_layout Plain Layout
 If there are any chapter-independent future directions, put them here.
  Otherwise, delete this section.
- Check in the directions if this is OK.
 \end_layout
 
 \end_inset
