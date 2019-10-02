@@ -1561,8 +1561,26 @@ ChIP-seq
  Because the footprint of the protein is consistent wherever it binds, each
  peak has a consistent width, typically tens to hundreds of base pairs,
  representing the length of DNA that it binds to.
- Algorithms like MACS exploit this pattern to identify specific loci at
- which such 
+ Algorithms like 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+MACS
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "MACS"
+description "Model-based Analysis of ChIP-seq"
+literal "false"
+
+\end_inset
+
+ exploit this pattern to identify specific loci at which such 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1616,7 +1634,26 @@ ChIP-seq
  peaks based on histone marks, and peaks typically span many histones.
  Hence, typical peaks span many hundreds or even thousands of base pairs.
  Instead of identifying specific loci of strong enrichment, algorithms like
- SICER assume that peaks are represented in the 
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+SICER
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "SICER"
+description "Spatial Clustering for Identification of ChIP-Enriched Regions"
+literal "false"
+
+\end_inset
+
+ assume that peaks are represented in the 
 \begin_inset Flex Glossary Term
 status open
 
@@ -1653,7 +1690,26 @@ ChIP-seq
 \begin_layout Standard
 Regardless of the type of peak identified, it is important to identify peaks
  that occur consistently across biological replicates.
- The ENCODE project has developed a method called 
+ The 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ENCODE
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "ENCODE"
+description "Encyclopedia Of DNA Elements"
+literal "false"
+
+\end_inset
+
+ project has developed a method called 
 \begin_inset Flex Glossary Term
 status open
 
@@ -1808,19 +1864,84 @@ High-throughput data sets invariably require some kind of normalization
 
 \begin_layout Standard
 For Affymetrix expression arrays, the standard normalization algorithm used
- in most analyses is Robust Multichip Average (RMA) [CITE].
- RMA is designed with the assumption that some fraction of probes on each
- array will be artifactual and takes advantage of the fact that each gene
- is represented by multiple probes by implementing normalization and summarizati
-on steps that are robust against outlier probes.
- However, RMA uses the probe intensities of all arrays in the data set in
- the normalization of each individual array, meaning that the normalized
- expression values in each array depend on every array in the data set,
- and will necessarily change each time an array is added or removed from
- the data set.
- If this is undesirable, frozen RMA implements a variant of RMA where the
- relevant distributional parameters are learned from a large reference set
- of diverse public array data sets and then 
+ in most analyses is 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RMA
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "RMA"
+description "robust multichip average"
+literal "false"
+
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Irizarry2003a"
+literal "false"
+
+\end_inset
+
+.
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RMA
+\end_layout
+
+\end_inset
+
+ is designed with the assumption that some fraction of probes on each array
+ will be artifactual and takes advantage of the fact that each gene is represent
+ed by multiple probes by implementing normalization and summarization steps
+ that are robust against outlier probes.
+ However, 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RMA
+\end_layout
+
+\end_inset
+
+ uses the probe intensities of all arrays in the data set in the normalization
+ of each individual array, meaning that the normalized expression values
+ in each array depend on every array in the data set, and will necessarily
+ change each time an array is added or removed from the data set.
+ If this is undesirable, 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ implements a variant of 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RMA
+\end_layout
+
+\end_inset
+
+ where the relevant distributional parameters are learned from a large reference
+ set of diverse public array data sets and then 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1830,8 +1951,53 @@ frozen
 
 , so that each array is effectively normalized against this frozen reference
  set rather than the other arrays in the data set under study [CITE].
- Other array normalization methods considered include dChip, GRSN, and SCAN
- [CITEx3].
+ Other array normalization methods considered include dChip, 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GRSN
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "GRSN"
+description "global rank-invariant set normalization"
+literal "false"
+
+\end_inset
+
+, and 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+SCAN
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "SCAN"
+description "single-channel array normalization"
+literal "false"
+
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Li2001,Pelz2008,Piccolo2012"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -1873,7 +2039,26 @@ RNA-seq
 
 \end_inset
 
- abundances are often reported as counts per million (CPM).
+ abundances are often reported as 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+CPM
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "CPM"
+description "counts per million"
+literal "false"
+
+\end_inset
+
+.
  Furthermore, if the abundance of a single gene increases, then in order
  for its fraction of the total reads to increase, all other genes' fractions
  must decrease to accommodate it.
@@ -1979,7 +2164,17 @@ ChIP-seq
  bimodal count distribution, it may be necessary to implement a normalization
  as a smooth function of abundance.
  However, this strategy makes a much stronger assumption about the data:
- that the average log fold change is zero across all abundance levels.
+ that the average 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+logFC
+\end_layout
+
+\end_inset
+
+ is zero across all abundance levels.
  Hence, the simpler scaling normalization based on background or signal
  regions are generally preferred whenever possible.
 \end_layout
@@ -2152,8 +2347,17 @@ Not sure if this merits a subsection here.
 \end_layout
 
 \begin_layout Itemize
-Batch-corrected PCA is informative, but careful application is required
- to avoid bias
+Batch-corrected 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+PCA
+\end_layout
+
+\end_inset
+
+ is informative, but careful application is required to avoid bias
 \end_layout
 
 \begin_layout Section
@@ -2470,8 +2674,26 @@ ChIP-seq
 \end_inset
 
  read coverage within promoter regions to ask whether the location of histone
- modifications relative to the gene's TSS is an important factor, as opposed
- to simple proximity.
+ modifications relative to the gene's 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "TSS"
+description "transcription start site"
+literal "false"
+
+\end_inset
+
+ is an important factor, as opposed to simple proximity.
 \end_layout
 
 \begin_layout Section
@@ -2838,7 +3060,26 @@ RNA-seq comparisons
 \end_layout
 
 \begin_layout Standard
-Sequence reads were retrieved from the Sequence Read Archive (SRA) 
+Sequence reads were retrieved from the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+SRA
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "SRA"
+description "Sequence Read Archive"
+literal "false"
+
+\end_inset
+
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Leinonen2011"
@@ -3141,7 +3382,26 @@ RNA-seq
 
 \end_inset
 
- counts were first normalized using trimmed mean of M-values 
+ counts were first normalized using 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TMM
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "TMM"
+description "trimmed mean of M-values"
+literal "false"
+
+\end_inset
+
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Robinson2010"
@@ -3149,7 +3409,26 @@ literal "false"
 
 \end_inset
 
-, converted to normalized logCPM with quality weights using 
+, converted to normalized 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+logCPM
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "logCPM"
+description "$\\log_2$ counts per million"
+literal "false"
+
+\end_inset
+
+ with quality weights using 
 \begin_inset Flex Code
 status open
 
@@ -3202,7 +3481,25 @@ literal "false"
 \end_inset
 
 .
- P-values were corrected for multiple testing using the Benjamini-Hochberg
+ P-values were corrected for multiple testing using the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+BH
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "BH"
+description "Benjamini-Hochberg"
+literal "false"
+
+\end_inset
+
  procedure for 
 \begin_inset Flex Glossary Term
 status open
@@ -3459,7 +3756,17 @@ differential modification
 \end_layout
 
 \begin_layout Standard
-Sequence reads were retrieved from SRA 
+Sequence reads were retrieved from 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+SRA
+\end_layout
+
+\end_inset
+
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Leinonen2011"
@@ -3506,7 +3813,17 @@ greylists
 \begin_inset Quotes erd
 \end_inset
 
- were merged with the published ENCODE blacklists 
+ were merged with the published 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ENCODE
+\end_layout
+
+\end_inset
+
+ blacklists 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "greylistchip,Amemiya2019,Dunham2012,gh-cd4-csaw"
@@ -3539,8 +3856,27 @@ ChIP-seq
 \end_inset
 
  data.
- Peaks were called using epic, an implementation of the SICER algorithm
- 
+ Peaks were called using 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+epic
+\end_layout
+
+\end_inset
+
+, an implementation of the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+SICER
+\end_layout
+
+\end_inset
+
+ algorithm 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Zang2009,gh-epic"
@@ -3549,9 +3885,28 @@ literal "false"
 \end_inset
 
 .
- Peaks were also called separately using MACS, but MACS was determined to
- be a poor fit for the data, and these peak calls are not used in any further
- analyses 
+ Peaks were also called separately using 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+MACS
+\end_layout
+
+\end_inset
+
+, but 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+MACS
+\end_layout
+
+\end_inset
+
+ was determined to be a poor fit for the data, and these peak calls are
+ not used in any further analyses 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Zhang2008"
@@ -3582,10 +3937,29 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-Promoters were defined by computing the distance from each annotated TSS
+Promoters were defined by computing the distance from each annotated 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
  to the nearest called peak and examining the distribution of distances,
  observing that peaks for each histone mark were enriched within a certain
- distance of the TSS.
+ distance of the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+.
  For H3K4me2 and H3K4me3, this distance was about 1
 \begin_inset space ~
 \end_inset
@@ -3605,10 +3979,54 @@ effective promoter radius
 
  for each mark.
  The promoter region for each gene was defined as the region of the genome
- within this distance upstream or downstream of the gene's annotated TSS.
- For genes with multiple annotated TSSs, a promoter region was defined for
- each TSS individually, and any promoters that overlapped (due to multiple
- TSSs being closer than 2 times the radius) were merged into one large promoter.
+ within this distance upstream or downstream of the gene's annotated 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+.
+ For genes with multiple annotated 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+glspl*{TSS}
+\end_layout
+
+\end_inset
+
+, a promoter region was defined for each 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+ individually, and any promoters that overlapped (due to multiple 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+glspl*{TSS}
+\end_layout
+
+\end_inset
+
+ being closer than 2 times the radius) were merged into one large promoter.
  Thus, some genes had multiple promoters defined, which were each analyzed
  separately for differential modification.
 \end_layout
@@ -3998,16 +4416,73 @@ relative coverage profiles
 \end_inset
 
  were generated.
- First, 500-bp sliding windows were tiled around each annotated TSS: one
- window centered on the TSS itself, and 10 windows each upstream and downstream,
- thus covering a 10.5-kb region centered on the TSS with 21 windows.
- Reads in each window for each TSS were counted in each sample, and the
- counts were normalized and converted to log CPM as in the differential
- modification analysis.
- Then, the logCPM values within each promoter were normalized to an average
- of zero, such that each window's normalized abundance now represents the
- relative read depth of that window compared to all other windows in the
- same promoter.
+ First, 500-bp sliding windows were tiled around each annotated 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+: one window centered on the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+ itself, and 10 windows each upstream and downstream, thus covering a 10.5-kb
+ region centered on the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+ with 21 windows.
+ Reads in each window for each 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+ were counted in each sample, and the counts were normalized and converted
+ to 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+logCPM
+\end_layout
+
+\end_inset
+
+ as in the differential modification analysis.
+ Then, the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+logCPM
+\end_layout
+
+\end_inset
+
+ values within each promoter were normalized to an average of zero, such
+ that each window's normalized abundance now represents the relative read
+ depth of that window compared to all other windows in the same promoter.
  The normalized abundance values for each window in a promoter are collectively
  referred to as that promoter's 
 \begin_inset Quotes eld
@@ -4088,8 +4563,8 @@ name "fig:mofa-varexplained"
 Variance explained in each data set by each latent factor estimated by MOFA.
 
 \series default
- For each latent factor (LF) learned by MOFA, the variance explained by
- that factor in each data set (
+ For each LF learned by MOFA, the variance explained by that factor in each
+ data set (
 \begin_inset Quotes eld
 \end_inset
 
@@ -4209,7 +4684,25 @@ end{landscape}
 \end_layout
 
 \begin_layout Standard
-MOFA was run on all the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+MOFA
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "MOFA"
+description "Multi-Omics Factor Analysis"
+literal "false"
+
+\end_inset
+
+ was run on all the 
 \begin_inset Flex Glossary Term
 status open
 
@@ -4251,8 +4744,30 @@ noprefix "false"
 \end_inset
 
 .
- Latent factors 1, 4, and 5 were determined to explain the most variation
- consistently across all data sets (Figure 
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Glspl*{LF}
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "LF"
+description "latent factor"
+literal "false"
+
+\end_inset
+
+ 1, 4, and 5 were determined to explain the most variation consistently
+ across all data sets (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:mofa-varexplained"
@@ -4274,7 +4789,17 @@ noprefix "false"
 \end_inset
 
 ).
- Latent factor 2 captures the batch effect in the 
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+LF
+\end_layout
+
+\end_inset
+
+2 captures the batch effect in the 
 \begin_inset Flex Glossary Term
 status open
 
@@ -4285,8 +4810,28 @@ RNA-seq
 \end_inset
 
  data.
- Removing the effect of LF2 using MOFA theoretically yields a batch correction
- that does not depend on knowing the experimental factors.
+ Removing the effect of 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+LF
+\end_layout
+
+\end_inset
+
+2 using 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+MOFA
+\end_layout
+
+\end_inset
+
+ theoretically yields a batch correction that does not depend on knowing
+ the experimental factors.
  When this was attempted, the resulting batch correction was comparable
  to ComBat (see Figure 
 \begin_inset CommandInset ref
@@ -4355,34 +4900,12 @@ Result of RNA-seq batch-correction using MOFA latent factors
 
 \end_layout
 
-\begin_layout Section
-Results
-\end_layout
-
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
+\begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
-Focus on what hypotheses were tested, then select figures that show how
- those hypotheses were tested, even if the result is a negative.
- Not every interesting result needs to be in here.
- Chapter should tell a story.
- 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Maybe reorder these sections to do RNA-seq, then ChIP-seq, then combined
- analyses?
+Placing these floats is a challenge
 \end_layout
 
 \end_inset
@@ -4801,58 +5324,34 @@ literal "false"
 
 \end_layout
 
+\begin_layout Section
+Results
+\end_layout
+
 \begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
+\begin_inset Flex TODO Note (inline)
+status open
 
 \begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/RNA-seq/PCA-final-12-CROP.png
-	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:rna-pca-final"
-
-\end_inset
-
-PCoA plot of RNA-seq samples after ComBat batch correction.
+Focus on what hypotheses were tested, then select figures that show how
+ those hypotheses were tested, even if the result is a negative.
+ Not every interesting result needs to be in here.
+ Chapter should tell a story.
  
-\series default
-Each point represents an individual sample.
- Samples with the same combination of cell type and time point are encircled
- with a shaded region to aid in visual identification of the sample groups.
- Samples with of same cell type from the same donor are connected by lines
- to indicate the 
-\begin_inset Quotes eld
-\end_inset
-
-trajectory
-\begin_inset Quotes erd
-\end_inset
-
- of each donor's cells over time in PCoA space.
 \end_layout
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Maybe reorder these sections to do RNA-seq, then ChIP-seq, then combined
+ analyses?
 \end_layout
 
 \end_inset
@@ -4952,6 +5451,65 @@ noprefix "false"
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/RNA-seq/PCA-final-12-CROP.png
+	lyxscale 25
+	width 100col%
+	groupId colwidth-raster
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:rna-pca-final"
+
+\end_inset
+
+PCoA plot of RNA-seq samples after ComBat batch correction.
+ 
+\series default
+Each point represents an individual sample.
+ Samples with the same combination of cell type and time point are encircled
+ with a shaded region to aid in visual identification of the sample groups.
+ Samples with of same cell type from the same donor are connected by lines
+ to indicate the 
+\begin_inset Quotes eld
+\end_inset
+
+trajectory
+\begin_inset Quotes erd
+\end_inset
+
+ of each donor's cells over time in PCoA space.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 Despite the difficulty in detecting specific differentially expressed genes,
  there is still evidence that differential expression is present for these
  time points.
@@ -4981,7 +5539,27 @@ noprefix "false"
 \end_inset
 
 .
- In addition, the MOFA latent factor plots in Figure 
+ In addition, the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+MOFA
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+LF
+\end_layout
+
+\end_inset
+
+ plots in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:mofa-lf-scatter"
@@ -5622,8 +6200,17 @@ noprefix "false"
  The majority of each density distribution is flat, representing the background
  density of peaks genome-wide.
  Each distribution has a peak near zero, representing an enrichment of peaks
- close transcription start site (TSS) positions relative to the remainder
- of the genome.
+ close to 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+ positions relative to the remainder of the genome.
  Interestingly, the 
 \begin_inset Quotes eld
 \end_inset
@@ -5648,8 +6235,17 @@ noprefix "false"
 \begin_inset space ~
 \end_inset
 
-kbp of TSS positions, while for H3K27me3, enrichment is broader, extending
- to 2.5
+kbp of 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+ positions, while for H3K27me3, enrichment is broader, extending to 2.5
 \begin_inset space ~
 \end_inset
 
@@ -5783,8 +6379,30 @@ t
 \end_inset
 
 ).
- The difference in average log FPKM values when a peak overlaps the promoter
- is about 
+ The difference in average 
+\begin_inset Formula $\log_{2}$
+\end_inset
+
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+FPKM
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "FPKM"
+description "fragments per kilobase per million fragments"
+literal "false"
+
+\end_inset
+
+ values when a peak overlaps the promoter is about 
 \begin_inset Formula $+5.67$
 \end_inset
 
@@ -6559,7 +7177,26 @@ noprefix "false"
 \end_inset
 
  shows the patterns of variation in all 3 histone marks in the promoter
- regions of the genome using principal coordinate analysis.
+ regions of the genome using 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+PCoA
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "PCoA"
+description "principal coordinate analysis"
+literal "false"
+
+\end_inset
+
+.
  All 3 marks show a noticeable convergence between the naïve and memory
  samples at day 14, visible as an overlapping of the day 14 groups on each
  plot.
@@ -6603,8 +7240,27 @@ noprefix "false"
  Taken together, the data show that promoter histone methylation for these
  3 histone marks and RNA expression for naïve and memory cells are most
  similar at day 14, the furthest time point after activation.
- MOFA was also able to capture this day 14 convergence pattern in latent
- factor 5 (Figure 
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+MOFA
+\end_layout
+
+\end_inset
+
+ was also able to capture this day 14 convergence pattern in 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+LF
+\end_layout
+
+\end_inset
+
+5 (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:mofa-lf-scatter"
@@ -6900,8 +7556,8 @@ shape
 \end_inset
 
  of the promoter coverage for promoters in that cluster.
- PCA was performed on the same data, and the first two principal components
- were plotted, coloring each point by its K-means cluster identity (b).
+ PCA was performed on the same data, and the first two PCs were plotted,
+ coloring each point by its K-means cluster identity (b).
  For each cluster, the distribution of gene expression values was plotted
  (c).
 \end_layout
@@ -6938,8 +7594,17 @@ end{landscape}
 \end_layout
 
 \begin_layout Standard
-To test whether the position of a histone mark relative to a gene's transcriptio
-n start site (TSS) was important, we looked at the 
+To test whether the position of a histone mark relative to a gene's 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+ was important, we looked at the 
 \begin_inset Quotes eld
 \end_inset
 
@@ -6957,9 +7622,37 @@ ChIP-seq
 
 \end_inset
 
- read coverage in naïve Day 0 samples within 5 kb of each gene's TSS by
- binning reads into 500-bp windows tiled across each promoter LogCPM values
- were calculated for the bins in each promoter and then the average logCPM
+ read coverage in naïve Day 0 samples within 5 kb of each gene's 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+ by binning reads into 500-bp windows tiled across each promoter 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+logCPM
+\end_layout
+
+\end_inset
+
+ values were calculated for the bins in each promoter and then the average
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+logCPM
+\end_layout
+
+\end_inset
+
  for each promoter's bins was normalized to zero, such that the values represent
  coverage relative to other regions of the same promoter rather than being
  proportional to absolute read count.
@@ -6996,13 +7689,42 @@ noprefix "false"
 ): Cluster 5 represents a completely flat promoter coverage profile, likely
  consisting of genes with no H3K4me2 methylation in the promoter.
  All the other clusters represent a continuum of peak positions relative
- to the TSS.
+ to the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+.
  In order from must upstream to most downstream, they are Clusters 6, 4,
  3, 1, and 2.
  There do not appear to be any clusters representing coverage patterns other
  than lone peaks, such as coverage troughs or double peaks.
- Next, all promoters were plotted in a PCA plot based on the same relative
- bin abundance data, and colored based on cluster membership (Figure 
+ Next, all promoters were plotted in a 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+PCA
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "PCA"
+description "principal component analysis"
+literal "false"
+
+\end_inset
+
+ plot based on the same relative bin abundance data, and colored based on
+ cluster membership (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:H3K4me2-neighborhood-pca"
@@ -7013,7 +7735,17 @@ noprefix "false"
 \end_inset
 
 ).
- The PCA plot shows Cluster 5 (the 
+ The 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+PCA
+\end_layout
+
+\end_inset
+
+ plot shows Cluster 5 (the 
 \begin_inset Quotes eld
 \end_inset
 
@@ -7048,7 +7780,17 @@ cloud
  A better representation might be something like a polar coordinate system
  with the origin at the center of Cluster 5, where the radius represents
  the peak height above the background and the angle represents the peak's
- position upstream or downstream of the TSS.
+ position upstream or downstream of the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+.
  The continuous nature of the distribution also explains why different values
  of 
 \begin_inset Formula $K$
@@ -7121,7 +7863,17 @@ baseline
  other clusters' distributions to determine which peak positions are associated
  with elevated expression.
  As might be expected, the 3 clusters representing peaks closest to the
- TSS, Clusters 1, 3, and 4, show the highest average expression distributions.
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+, Clusters 1, 3, and 4, show the highest average expression distributions.
  Specifically, these clusters all have their highest 
 \begin_inset Flex Glossary Term
 status open
@@ -7132,17 +7884,66 @@ ChIP-seq
 
 \end_inset
 
- abundance within 1kb of the TSS, consistent with the previously determined
- promoter radius.
+ abundance within 1kb of the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+, consistent with the previously determined promoter radius.
  In contrast, cluster 6, which represents peaks several kb upstream of the
- TSS, shows a slightly higher average expression than baseline, while Cluster
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+, shows a slightly higher average expression than baseline, while Cluster
  2, which represents peaks several kb downstream, doesn't appear to show
  any appreciable difference.
  Interestingly, the cluster with the highest average expression is Cluster
- 1, which represents peaks about 1 kb downstream of the TSS, rather than
- Cluster 3, which represents peaks centered directly at the TSS.
+ 1, which represents peaks about 1 kb downstream of the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+, rather than Cluster 3, which represents peaks centered directly at the
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+.
  This suggests that conceptualizing the promoter as a region centered on
- the TSS with a certain 
+ the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+ with a certain 
 \begin_inset Quotes eld
 \end_inset
 
@@ -7151,8 +7952,28 @@ radius
 \end_inset
 
  may be an oversimplification – a peak that is a specific distance from
- the TSS may have a different degree of influence depending on whether it
- is upstream or downstream of the TSS.
+ the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+ may have a different degree of influence depending on whether it is upstream
+ or downstream of the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -7375,8 +8196,8 @@ shape
 \end_inset
 
  of the promoter coverage for promoters in that cluster.
- PCA was performed on the same data, and the first two principal components
- were plotted, coloring each point by its K-means cluster identity (b).
+ PCA was performed on the same data, and the first two PCs were plotted,
+ coloring each point by its K-means cluster identity (b).
  For each cluster, the distribution of gene expression values was plotted
  (c).
 \end_layout
@@ -7696,8 +8517,8 @@ shape
 \end_inset
 
  of the promoter coverage for promoters in that cluster.
- PCA was performed on the same data, and the first two principal components
- were plotted, coloring each point by its K-means cluster identity (b).
+ PCA was performed on the same data, and the first two PCs were plotted,
+ coloring each point by its K-means cluster identity (b).
  For each cluster, the distribution of gene expression values was plotted
  (c).
 \end_layout
@@ -7762,8 +8583,18 @@ noprefix "false"
 
 ).
  Once again looking at the relative coverage in a 500-bp wide bins in a
- 5kb radius around each TSS, promoters were clustered based on the normalized
- relative coverage values in each bin using 
+ 5kb radius around each 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+, promoters were clustered based on the normalized relative coverage values
+ in each bin using 
 \begin_inset Formula $k$
 \end_inset
 
@@ -7794,12 +8625,64 @@ axes
  patterns.
  The first axis is greater upstream coverage (Cluster 1) vs.
  greater downstream coverage (Cluster 3); the second axis is the coverage
- at the TSS itself: peak (Cluster 4) or trough (Cluster 2); lastly, the
- third axis represents a trough upstream of the TSS (Cluster 5) vs.
- downstream of the TSS (Cluster 6).
+ at the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+ itself: peak (Cluster 4) or trough (Cluster 2); lastly, the third axis
+ represents a trough upstream of the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+ (Cluster 5) vs.
+ downstream of the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+ (Cluster 6).
  Referring to these opposing pairs of clusters as axes of variation is justified
-, because they correspond precisely to the first 3 principal components
- in the PCA plot of the relative coverage values (Figure 
+, because they correspond precisely to the first 3 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+glspl*{PC}
+\end_layout
+
+\end_inset
+
+ in the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+PCA
+\end_layout
+
+\end_inset
+
+ plot of the relative coverage values (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:H3K27me3-neighborhood-pca"
@@ -7810,7 +8693,17 @@ noprefix "false"
 \end_inset
 
 ).
- The PCA plot reveals that as in the case of H3K4me2, all the 
+ The 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+PCA
+\end_layout
+
+\end_inset
+
+ plot reveals that as in the case of H3K4me2, all the 
 \begin_inset Quotes eld
 \end_inset
 
@@ -7843,13 +8736,32 @@ noprefix "false"
  Hence, elevated expression in cluster 2 is consistent with the conventional
  view of H3K27me3 as a deactivating mark.
  However, Cluster 1, the cluster with the most elevated gene expression,
- represents genes with elevated coverage upstream of the TSS, or equivalently,
- decreased coverage downstream, inside the gene body.
+ represents genes with elevated coverage upstream of the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+, or equivalently, decreased coverage downstream, inside the gene body.
  The opposite pattern, in which H3K27me3 is more abundant within the gene
  body and less abundance in the upstream promoter region, does not show
  any elevation in gene expression.
  As with H3K4me2, this shows that the location of H3K27 trimethylation relative
- to the TSS is potentially an important factor beyond simple proximity.
+ to the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+ is potentially an important factor beyond simple proximity.
 \end_layout
 
 \begin_layout Standard
@@ -7961,8 +8873,17 @@ one size fits all
 \begin_inset Quotes erd
 \end_inset
 
- approach of defining a single promoter region for each gene (or each TSS)
- and using that same promoter region for analyzing all types of genomic
+ approach of defining a single promoter region for each gene (or each 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+) and using that same promoter region for analyzing all types of genomic
  data within an experiment may not be appropriate, and a better approach
  may be to use a separate promoter radius for each kind of data, with each
  radius being derived from the data itself.
@@ -8043,14 +8964,43 @@ noprefix "false"
 \begin_inset space ~
 \end_inset
 
-kb is approximately consistent with the distance from the TSS at which enrichmen
-t of H3K4 methylation correlates with increased expression, showing that
- this radius, which was determined by a simple analysis of measuring the
- distance from each TSS to the nearest peak, also has functional significance.
+kb is approximately consistent with the distance from the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+ at which enrichment of H3K4 methylation correlates with increased expression,
+ showing that this radius, which was determined by a simple analysis of
+ measuring the distance from each 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+ to the nearest peak, also has functional significance.
  For H3K27me3, the correlation between histone modification near the promoter
  and gene expression is more complex, involving non-peak variations such
- as troughs in coverage at the TSS and asymmetric coverage upstream and
- downstream, so it is difficult in this case to evaluate whether the 2.5
+ as troughs in coverage at the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+ and asymmetric coverage upstream and downstream, so it is difficult in
+ this case to evaluate whether the 2.5
 \begin_inset space ~
 \end_inset
 
@@ -8123,7 +9073,27 @@ noprefix "false"
 \end_inset
 
 ).
- The MOFA latent factor scatter plots (Figure 
+ The 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+MOFA
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+LF
+\end_layout
+
+\end_inset
+
+ scatter plots (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:mofa-lf-scatter"
@@ -8133,10 +9103,33 @@ noprefix "false"
 
 \end_inset
 
-) show that this pattern of convergence is captured in latent factor 5.
- Like all the latent factors in this plot, this factor explains a substantial
- portion of the variance in all 4 data sets, indicating a coordinated pattern
- of variation shared across all histone marks and gene expression.
+) show that this pattern of convergence is captured in 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+LF
+\end_layout
+
+\end_inset
+
+5.
+ Like all the 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+glspl*{LF}
+\end_layout
+
+\end_inset
+
+ in this plot, this factor explains a substantial portion of the variance
+ in all 4 data sets, indicating a coordinated pattern of variation shared
+ across all histone marks and gene expression.
  This, of course, is consistent with the expectation that any naïve CD4
  T-cells remaining at day 14 should have differentiated into memory cells
  by that time, and should therefore have a genomic state similar to memory
@@ -8270,8 +9263,17 @@ noprefix "false"
 
 , which shows the pattern of H3K4 methylation and expression for naïve cells
  and memory cells converging at day 5.
- This model was developed without the benefit of the PCoA plots in Figure
- 
+ This model was developed without the benefit of the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+PCoA
+\end_layout
+
+\end_inset
+
+ plots in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:PCoA-promoters"
@@ -8294,9 +9296,18 @@ SVA
 .
  This shows that proper batch correction assists in extracting meaningful
  patterns in the data while eliminating systematic sources of irrelevant
- variation in the data, allowing simple automated procedures like PCoA to
- reveal interesting behaviors in the data that were previously only detectable
- by a detailed manual analysis.
+ variation in the data, allowing simple automated procedures like 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+PCoA
+\end_layout
+
+\end_inset
+
+ to reveal interesting behaviors in the data that were previously only detectabl
+e by a detailed manual analysis.
 \end_layout
 
 \begin_layout Standard
@@ -8323,11 +9334,31 @@ Positional
 
 \begin_layout Standard
 When looking at patterns in the relative coverage of each histone mark near
- the TSS of each gene, several interesting patterns were apparent.
+ the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+ of each gene, several interesting patterns were apparent.
  For H3K4me2 and H3K4me3, the pattern was straightforward: the consistent
  pattern across all promoters was a single peak a few kb wide, with the
  main axis of variation being the position of this peak relative to the
- TSS (Figures 
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+ (Figures 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:H3K4me2-neighborhood"
@@ -8359,10 +9390,29 @@ preferred
  positions, but rather a continuous distribution of relative positions ranging
  all across the promoter region.
  The association with gene expression was also straightforward: peaks closer
- to the TSS were more strongly associated with elevated gene expression.
- Coverage downstream of the TSS appears to be more strongly associated with
- elevated expression than coverage the same distance upstream, indicating
- that the 
+ to the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+ were more strongly associated with elevated gene expression.
+ Coverage downstream of the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+ appears to be more strongly associated with elevated expression than coverage
+ the same distance upstream, indicating that the 
 \begin_inset Quotes eld
 \end_inset
 
@@ -8370,15 +9420,44 @@ effective promoter region
 \begin_inset Quotes erd
 \end_inset
 
- for H3K4me2 and H3K4me3 may be centered downstream of the TSS.
+ for H3K4me2 and H3K4me3 may be centered downstream of the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
 The relative promoter coverage for H3K27me3 had a more complex pattern,
  with two specific patterns of promoter coverage associated with elevated
- expression: a sharp depletion of H3K27me3 around the TSS relative to the
- surrounding area, and a depletion of H3K27me3 downstream of the TSS relative
- to upstream (Figure 
+ expression: a sharp depletion of H3K27me3 around the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+ relative to the surrounding area, and a depletion of H3K27me3 downstream
+ of the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+ relative to upstream (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:H3K27me3-neighborhood"
@@ -8401,13 +9480,31 @@ literal "false"
 
 .
  This is consistent with the second pattern described here.
- This study also reported that a spike in coverage at the TSS was associated
- with 
+ This study also reported that a spike in coverage at the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+ was associated with 
 \emph on
 lower
 \emph default
  expression, which is indirectly consistent with the first pattern described
- here, in the sense that it associates lower H3K27me3 levels near the TSS
+ here, in the sense that it associates lower H3K27me3 levels near the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
  with higher expression.
 \end_layout
 
@@ -8589,8 +9686,17 @@ RNA-seq
 
 \end_inset
 
- abundance estimates in order to select the most-used TSS for each gene,
- the aligned 
+ abundance estimates in order to select the most-used 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+ for each gene, the aligned 
 \begin_inset Flex Glossary Term
 status open
 
@@ -8663,8 +9769,27 @@ RNA-seq
  because Snakemake was able to automate running this script for every combinatio
 n of method and reference.
  In a similar manner, two different peak calling methods were tested against
- each other, and in this case it was determined that SICER was unambiguously
- superior to MACS for all histone marks studied.
+ each other, and in this case it was determined that 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+SICER
+\end_layout
+
+\end_inset
+
+ was unambiguously superior to 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+MACS
+\end_layout
+
+\end_inset
+
+ for all histone marks studied.
  By enabling these types of comparisons, structuring the analysis as an
  automated workflow allowed important analysis decisions to be made in a
  data-driven way, by running every reasonable option through the downstream
@@ -8725,7 +9850,25 @@ Negative results
 
 \begin_layout Standard
 Two additional analyses were conducted beyond those reported in the results.
- First, we searched for evidence that the presence or absence of a CpG island
+ First, we searched for evidence that the presence or absence of a 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+CpGi
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "CpGi"
+description "CpG island"
+literal "false"
+
+\end_inset
+
  in the promoter was correlated with increases or decreases in gene expression
  or any histone mark in any of the tested contrasts.
  Second, we searched for evidence that the relative 
@@ -8756,8 +9899,17 @@ effective promoter radius
 \begin_inset Quotes erd
 \end_inset
 
- specific to each histone mark based on distance from the TSS within which
- an excess of peaks was called for that mark.
+ specific to each histone mark based on distance from the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+ within which an excess of peaks was called for that mark.
  This concept was then used to guide further analyses throughout the study.
  However, while the effective promoter radius was useful in those analyses,
  it is both limited in theory and shown in practice to be a possible oversimplif
@@ -8837,7 +9989,17 @@ ChIP-seq
  of peak-to-TSS distances.
  To address this, it is desirable to develop a better method of determining
  the effective promoter radius that relies only on the distribution of read
- coverage around the TSS, independent of the peak calling.
+ coverage around the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+, independent of the peak calling.
  Furthermore, as demonstrated by the upstream-downstream asymmetries observed
  in Figures 
 \begin_inset CommandInset ref
@@ -8887,8 +10049,17 @@ radius
 \begin_inset Quotes erd
 \end_inset
 
-, since a radius implies a symmetry about the TSS that is not supported
- by the data.
+, since a radius implies a symmetry about the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+ that is not supported by the data.
 \end_layout
 
 \begin_layout Standard
@@ -8923,7 +10094,17 @@ noprefix "false"
  For example, correlations could be computed between read counts in peaks
  nearby gene promoters and the expression level of those genes, and these
  correlations could be plotted against the distance of the peak upstream
- or downstream of the gene's TSS.
+ or downstream of the gene's 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+.
  If the promoter extent truly defines a 
 \begin_inset Quotes eld
 \end_inset
@@ -9002,8 +10183,18 @@ In addition, if naïve-to-memory convergence is a general pattern, it should
  An experiment should be designed studying a large number of epigenetic
  marks known or suspected to be involved in regulation of gene expression,
  assaying all of these at the same pre- and post-activation time points.
- Multi-dataset factor analysis methods like MOFA can then be used to identify
- coordinated patterns of regulation shared across many epigenetic marks.
+ Multi-dataset factor analysis methods like 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+MOFA
+\end_layout
+
+\end_inset
+
+ can then be used to identify coordinated patterns of regulation shared
+ across many epigenetic marks.
  If possible, some 
 \begin_inset Quotes eld
 \end_inset
@@ -9250,10 +10441,79 @@ Clinical diagnostic applications for microarrays require single-channel
 \begin_layout Standard
 As the cost of performing microarray assays falls, there is increasing interest
  in using genomic assays for diagnostic purposes, such as distinguishing
- healthy transplants (TX) from transplants undergoing acute rejection (AR)
- or acute dysfunction with no rejection (ADNR).
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+glsdisp*{TX}{healthy transplants (TX)}
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "TX"
+description "healthy transplant"
+literal "false"
+
+\end_inset
+
+ from transplants undergoing 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+AR
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "AR"
+description "acute rejection"
+literal "false"
+
+\end_inset
+
+ or 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ADNR
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "ADNR"
+description "acute dysfunction with no rejection"
+literal "false"
+
+\end_inset
+
+.
  However, the the standard normalization algorithm used for microarray data,
- Robust Multi-chip Average (RMA) 
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RMA
+\end_layout
+
+\end_inset
+
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Irizarry2003a"
@@ -9262,14 +10522,34 @@ literal "false"
 \end_inset
 
 , is not applicable in a clinical setting.
- Two of the steps in RMA, quantile normalization and probe summarization
- by median polish, depend on every array in the data set being normalized.
+ Two of the steps in 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RMA
+\end_layout
+
+\end_inset
+
+, quantile normalization and probe summarization by median polish, depend
+ on every array in the data set being normalized.
  This means that adding or removing any arrays from a data set changes the
  normalized values for all arrays, and data sets that have been normalized
  separately cannot be compared to each other.
- Hence, when using RMA, any arrays to be analyzed together must also be
- normalized together, and the set of arrays included in the data set must
- be held constant throughout an analysis.
+ Hence, when using 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RMA
+\end_layout
+
+\end_inset
+
+, any arrays to be analyzed together must also be normalized together, and
+ the set of arrays included in the data set must be held constant throughout
+ an analysis.
 \end_layout
 
 \begin_layout Standard
@@ -9303,10 +10583,18 @@ single-channel normalization
 \end_layout
 
 \begin_layout Standard
-Frozen RMA (fRMA) addresses these concerns by replacing the quantile normalizati
-on and median polish with alternatives that do not introduce inter-array
- dependence, allowing each array to be normalized independently of all others
- 
+\begin_inset Flex Glossary Term (Capital)
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ addresses these concerns by replacing the quantile normalization and median
+ polish with alternatives that do not introduce inter-array dependence,
+ allowing each array to be normalized independently of all others 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "McCall2010"
@@ -9317,27 +10605,78 @@ literal "false"
 .
  Quantile normalization is performed against a pre-generated set of quantiles
  learned from a collection of 850 publicly available arrays sampled from
- a wide variety of tissues in the Gene Expression Omnibus (GEO).
+ a wide variety of tissues in 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+glsdisp*{GEO}{the Gene Expression Omnibus (GEO)}
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "GEO"
+description "Gene Expression Omnibus"
+literal "false"
+
+\end_inset
+
+.
  Each array's probe intensity distribution is normalized against these pre-gener
 ated quantiles.
  The median polish step is replaced with a robust weighted average of probe
  intensities, using inverse variance weights learned from the same public
- GEO data.
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GEO
+\end_layout
+
+\end_inset
+
+ data.
  The result is a normalization that satisfies the requirements mentioned
  above: each array is normalized independently of all others, and any two
  normalized arrays can be compared directly to each other.
 \end_layout
 
 \begin_layout Standard
-One important limitation of fRMA is that it requires a separate reference
- data set from which to learn the parameters (reference quantiles and probe
- weights) that will be used to normalize each array.
+One important limitation of 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ is that it requires a separate reference data set from which to learn the
+ parameters (reference quantiles and probe weights) that will be used to
+ normalize each array.
  These parameters are specific to a given array platform, and pre-generated
  parameters are only provided for the most common platforms, such as Affymetrix
  hgu133plus2.
  For a less common platform, such as hthgu133pluspm, is is necessary to
- learn custom parameters from in-house data before fRMA can be used to normalize
- samples on that platform 
+ learn custom parameters from in-house data before 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ can be used to normalize samples on that platform 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "McCall2011"
@@ -9349,8 +10688,29 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-One other option is the aptly-named Single Channel Array Normalization (SCAN),
- which adapts a normalization method originally designed for tiling arrays
+One other option is the aptly-named 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+glsdisp*{SCAN}{Single Channel Array Normalization (SCAN)}
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "SCAN"
+description "Single-Channel Array Normalization"
+literal "false"
+
+\end_inset
+
+, which adapts a normalization method originally designed for tiling arrays
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -9360,8 +10720,27 @@ literal "false"
 \end_inset
 
 .
- SCAN is truly single-channel in that it does not require a set of normalization
- parameters estimated from an external set of reference samples like fRMA
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+SCAN
+\end_layout
+
+\end_inset
+
+ is truly single-channel in that it does not require a set of normalization
+ parameters estimated from an external set of reference samples like 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
  does.
 \end_layout
 
@@ -9539,8 +10918,37 @@ Evaluation of classifier performance with different normalization methods
 \begin_layout Standard
 For testing different expression microarray normalizations, a data set of
  157 hgu133plus2 arrays was used, consisting of blood samples from kidney
- transplant patients whose grafts had been graded as TX, AR, or ADNR via
- biopsy and histology (46 TX, 69 AR, 42 ADNR) 
+ transplant patients whose grafts had been graded as 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TX
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+AR
+\end_layout
+
+\end_inset
+
+, or 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ADNR
+\end_layout
+
+\end_inset
+
+ via biopsy and histology (46 TX, 69 AR, 42 ADNR) 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Kurian2014"
@@ -9550,7 +10958,17 @@ literal "true"
 
 .
  Additionally, an external validation set of 75 samples was gathered from
- public GEO data (37 TX, 38 AR, no ADNR).
+ public 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GEO
+\end_layout
+
+\end_inset
+
+ data (37 TX, 38 AR, no ADNR).
  
 \end_layout
 
@@ -9577,8 +10995,45 @@ To evaluate the effect of each normalization on classifier performance,
  on the training set and select the appropriate threshold for centroid shrinking.
  Then the trained classifier was used to predict the class probabilities
  of each validation sample.
- From these class probabilities, ROC curves and area-under-curve (AUC) values
- were generated 
+ From these class probabilities, 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ROC
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "ROC"
+description "receiver operating characteristic"
+literal "false"
+
+\end_inset
+
+ curves and 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+AUC
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "AUC"
+description "area under ROC curve"
+literal "false"
+
+\end_inset
+
+ values were generated 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Turck2011"
@@ -9589,22 +11044,178 @@ literal "false"
 .
  Each normalization was tested on two different sets of training and validation
  samples.
- For internal validation, the 115 TX and AR arrays in the internal set were
- split at random into two equal sized sets, one for training and one for
- validation, each containing the same numbers of TX and AR samples as the
- other set.
- For external validation, the full set of 115 TX and AR samples were used
- as a training set, and the 75 external TX and AR samples were used as the
- validation set.
- Thus, 2 ROC curves and AUC values were generated for each normalization
- method: one internal and one external.
- Because the external validation set contains no ADNR samples, only classificati
-on of TX and AR samples was considered.
- The ADNR samples were included during normalization but excluded from all
- classifier training and validation.
+ For internal validation, the 115 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TX
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+AR
+\end_layout
+
+\end_inset
+
+ arrays in the internal set were split at random into two equal sized sets,
+ one for training and one for validation, each containing the same numbers
+ of 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TX
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+AR
+\end_layout
+
+\end_inset
+
+ samples as the other set.
+ For external validation, the full set of 115 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TX
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+AR
+\end_layout
+
+\end_inset
+
+ samples were used as a training set, and the 75 external 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TX
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+AR
+\end_layout
+
+\end_inset
+
+ samples were used as the validation set.
+ Thus, 2 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ROC
+\end_layout
+
+\end_inset
+
+ curves and 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+AUC
+\end_layout
+
+\end_inset
+
+ values were generated for each normalization method: one internal and one
+ external.
+ Because the external validation set contains no 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ADNR
+\end_layout
+
+\end_inset
+
+ samples, only classification of 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TX
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+AR
+\end_layout
+
+\end_inset
+
+ samples was considered.
+ The 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ADNR
+\end_layout
+
+\end_inset
+
+ samples were included during normalization but excluded from all classifier
+ training and validation.
  This ensures that the performance on internal and external validation sets
  is directly comparable, since both are performing the same task: distinguishing
- TX from AR.
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TX
+\end_layout
+
+\end_inset
+
+ from 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+AR
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -9624,7 +11235,17 @@ Summarize the get.best.threshold algorithm for PAM threshold selection, or
 \begin_layout Standard
 Six different normalization strategies were evaluated.
  First, 2 well-known non-single-channel normalization methods were considered:
- RMA and dChip 
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RMA
+\end_layout
+
+\end_inset
+
+ and dChip 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Li2001,Irizarry2003a"
@@ -9633,10 +11254,46 @@ literal "false"
 \end_inset
 
 .
- Since RMA produces expression values on a log2 scale and dChip does not,
- the values from dChip were log2 transformed after normalization.
- Next, RMA and dChip followed by Global Rank-invariant Set Normalization
- (GRSN) were tested 
+ Since 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RMA
+\end_layout
+
+\end_inset
+
+ produces expression values on a 
+\begin_inset Formula $\log_{2}$
+\end_inset
+
+ scale and dChip does not, the values from dChip were 
+\begin_inset Formula $\log_{2}$
+\end_inset
+
+ transformed after normalization.
+ Next, 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RMA
+\end_layout
+
+\end_inset
+
+ and dChip followed by 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GRSN
+\end_layout
+
+\end_inset
+
+ were tested 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Pelz2008"
@@ -9645,11 +11302,49 @@ literal "false"
 \end_inset
 
 .
- Post-processing with GRSN does not turn RMA or dChip into single-channel
- methods, but it may help mitigate batch effects and is therefore useful
- as a benchmark.
- Lastly, the two single-channel normalization methods, fRMA and SCAN, were
- tested 
+ Post-processing with 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GRSN
+\end_layout
+
+\end_inset
+
+ does not turn 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RMA
+\end_layout
+
+\end_inset
+
+ or dChip into single-channel methods, but it may help mitigate batch effects
+ and is therefore useful as a benchmark.
+ Lastly, the two single-channel normalization methods, 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+SCAN
+\end_layout
+
+\end_inset
+
+, were tested 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "McCall2010,Piccolo2012"
@@ -9666,12 +11361,30 @@ literal "false"
 \begin_layout Standard
 For demonstrating the problem with separate normalization of training and
  validation data, one additional normalization was performed: the internal
- and external sets were each normalized separately using RMA, and the normalized
- data for each set were combined into a single set with no further attempts
- at normalizing between the two sets.
- The represents approximately how RMA would have to be used in a clinical
- setting, where the samples to be classified are not available at the time
- the classifier is trained.
+ and external sets were each normalized separately using 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RMA
+\end_layout
+
+\end_inset
+
+, and the normalized data for each set were combined into a single set with
+ no further attempts at normalizing between the two sets.
+ The represents approximately how 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RMA
+\end_layout
+
+\end_inset
+
+ would have to be used in a clinical setting, where the samples to be classified
+ are not available at the time the classifier is trained.
 \end_layout
 
 \begin_layout Subsection
@@ -9679,8 +11392,27 @@ Generating custom fRMA vectors for hthgu133pluspm array platform
 \end_layout
 
 \begin_layout Standard
-In order to enable fRMA normalization for the hthgu133pluspm array platform,
- custom fRMA normalization vectors were trained using the 
+In order to enable 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ normalization for the hthgu133pluspm array platform, custom 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ normalization vectors were trained using the 
 \begin_inset Flex Code
 status open
 
@@ -9717,12 +11449,42 @@ ed batches, which means a batch size must be chosen, and then batches smaller
 
 \begin_layout Standard
 To evaluate the consistency of the generated normalization vectors, the
- 5 fRMA vector sets generated from 5 random batch samplings were each used
- to normalize the same 20 randomly selected samples from each tissue.
+ 5 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ vector sets generated from 5 random batch samplings were each used to normalize
+ the same 20 randomly selected samples from each tissue.
  Then the normalized expression values for each probe on each array were
  compared across all normalizations.
- Each fRMA normalization was also compared against the normalized expression
- values obtained by normalizing the same 20 samples with ordinary RMA.
+ Each 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ normalization was also compared against the normalized expression values
+ obtained by normalizing the same 20 samples with ordinary 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RMA
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsection
@@ -9747,21 +11509,124 @@ Put code on Github and reference it.
 To investigate the whether DNA methylation could be used to distinguish
  between healthy and dysfunctional transplants, a data set of 78 Illumina
  450k methylation arrays from human kidney graft biopsies was analyzed for
- differential methylation between 4 transplant statuses: healthy transplant
- (TX), transplants undergoing acute rejection (AR), acute dysfunction with
- no rejection (ADNR), and chronic allograft nephropathy (CAN).
+ differential methylation between 4 transplant statuses: 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TX
+\end_layout
+
+\end_inset
+
+, transplants undergoing 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+AR
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ADNR
+\end_layout
+
+\end_inset
+
+, and 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+CAN
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "CAN"
+description "chronic allograft nephropathy"
+literal "false"
+
+\end_inset
+
+.
  The data consisted of 33 TX, 9 AR, 8 ADNR, and 28 CAN samples.
  The uneven group sizes are a result of taking the biopsy samples before
  the eventual fate of the transplant was known.
- Each sample was additionally annotated with a donor ID (anonymized), Sex,
- Age, Ethnicity, Creatinine Level, and Diabetes diagnosis (all samples in
- this data set came from patients with either Type 1 or Type 2 diabetes).
+ Each sample was additionally annotated with a donor ID (anonymized), sex,
+ age, ethnicity, creatinine level, and diabetes diagnosis (all samples in
+ this data set came from patients with either 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+T1D
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "T1D"
+description "Type 1 diabetes"
+literal "false"
+
+\end_inset
+
+ or 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+T2D
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "T2D"
+description "Type 2 diabetes"
+literal "false"
+
+\end_inset
+
+).
  
 \end_layout
 
 \begin_layout Standard
-The intensity data were first normalized using subset-quantile within array
- normalization (SWAN) 
+The intensity data were first normalized using 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+SWAN
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "SWAN"
+description "subset-quantile within array normalization"
+literal "false"
+
+\end_inset
+
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Maksimovic2012"
@@ -10155,7 +12020,16 @@ literal "false"
 .
  Finally, t-tests or F-tests were performed as appropriate for each test:
  t-tests for single contrasts, and F-tests for multiple contrasts.
- P-values were corrected for multiple testing using the Benjamini-Hochberg
+ P-values were corrected for multiple testing using the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+BH
+\end_layout
+
+\end_inset
+
  procedure for 
 \begin_inset Flex Glossary Term
 status open
@@ -10329,13 +12203,41 @@ The PAM classifier algorithm was trained on the training set of arrays to
 
 \begin_layout Standard
 To demonstrate the problem with non-single-channel normalization methods,
- we considered the problem of training a classifier to distinguish TX from
- AR using the samples from the internal set as training data, evaluating
- performance on the external set.
+ we considered the problem of training a classifier to distinguish 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TX
+\end_layout
+
+\end_inset
+
+ from 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+AR
+\end_layout
+
+\end_inset
+
+ using the samples from the internal set as training data, evaluating performanc
+e on the external set.
  First, training and evaluation were performed after normalizing all array
- samples together as a single set using RMA, and second, the internal samples
- were normalized separately from the external samples and the training and
- evaluation were repeated.
+ samples together as a single set using 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RMA
+\end_layout
+
+\end_inset
+
+, and second, the internal samples were normalized separately from the external
+ samples and the training and evaluation were repeated.
  For each sample in the validation set, the classifier probabilities from
  both classifiers were plotted against each other (Fig.
  
@@ -10352,7 +12254,17 @@ noprefix "false"
  As expected, separate normalization biases the classifier probabilities,
  resulting in several misclassifications.
  In this case, the bias from separate normalization causes the classifier
- to assign a lower probability of AR to every sample.
+ to assign a lower probability of 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+AR
+\end_layout
+
+\end_inset
+
+ to every sample.
  
 \end_layout
 
@@ -11088,11 +13000,119 @@ noprefix "false"
 \end_inset
 
 .
- Among the non-single-channel normalizations, dChip outperformed RMA, while
- GRSN reduced the AUC values for both dChip and RMA.
- Both single-channel methods, fRMA and SCAN, slightly outperformed RMA,
- with fRMA ahead of SCAN.
- However, the difference between RMA and fRMA is still quite small.
+ Among the non-single-channel normalizations, dChip outperformed 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RMA
+\end_layout
+
+\end_inset
+
+, while 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GRSN
+\end_layout
+
+\end_inset
+
+ reduced the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+AUC
+\end_layout
+
+\end_inset
+
+ values for both dChip and 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RMA
+\end_layout
+
+\end_inset
+
+.
+ Both single-channel methods, 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+SCAN
+\end_layout
+
+\end_inset
+
+, slightly outperformed 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RMA
+\end_layout
+
+\end_inset
+
+, with 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ ahead of 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+SCAN
+\end_layout
+
+\end_inset
+
+.
+ However, the difference between 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RMA
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ is still quite small.
  Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -11103,14 +13123,72 @@ noprefix "false"
 
 \end_inset
 
- shows that the ROC curves for RMA, dChip, and fRMA look very similar and
- relatively smooth, while both GRSN curves and the curve for SCAN have a
- more jagged appearance.
+ shows that the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ROC
+\end_layout
+
+\end_inset
+
+ curves for 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RMA
+\end_layout
+
+\end_inset
+
+, dChip, and 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ look very similar and relatively smooth, while both 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GRSN
+\end_layout
+
+\end_inset
+
+ curves and the curve for 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+SCAN
+\end_layout
+
+\end_inset
+
+ have a more jagged appearance.
 \end_layout
 
 \begin_layout Standard
-For external validation, as expected, all the AUC values are lower than
- the internal validations, ranging from 0.642 to 0.750 (Table 
+For external validation, as expected, all the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+AUC
+\end_layout
+
+\end_inset
+
+ values are lower than the internal validations, ranging from 0.642 to 0.750
+ (Table 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:AUC-PAM"
@@ -11121,12 +13199,79 @@ noprefix "false"
 \end_inset
 
 ).
- With or without GRSN, RMA shows its dominance over dChip in this more challengi
-ng test.
- Unlike in the internal validation, GRSN actually improves the classifier
- performance for RMA, although it does not for dChip.
- Once again, both single-channel methods perform about on par with RMA,
- with fRMA performing slightly better and SCAN performing a bit worse.
+ With or without 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GRSN
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RMA
+\end_layout
+
+\end_inset
+
+ shows its dominance over dChip in this more challenging test.
+ Unlike in the internal validation, 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GRSN
+\end_layout
+
+\end_inset
+
+ actually improves the classifier performance for 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RMA
+\end_layout
+
+\end_inset
+
+, although it does not for dChip.
+ Once again, both single-channel methods perform about on par with 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RMA
+\end_layout
+
+\end_inset
+
+, with 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ performing slightly better and 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+SCAN
+\end_layout
+
+\end_inset
+
+ performing a bit worse.
  Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -11137,11 +13282,50 @@ noprefix "false"
 
 \end_inset
 
- shows the ROC curves for the external validation test.
+ shows the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ROC
+\end_layout
+
+\end_inset
+
+ curves for the external validation test.
  As expected, none of them are as clean-looking as the internal validation
- ROC curves.
- The curves for RMA, RMA+GRSN, and fRMA all look similar, while the other
- curves look more divergent.
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ROC
+\end_layout
+
+\end_inset
+
+ curves.
+ The curves for 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RMA
+\end_layout
+
+\end_inset
+
+, RMA+GRSN, and 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ all look similar, while the other curves look more divergent.
 \end_layout
 
 \begin_layout Subsection
@@ -11282,8 +13466,27 @@ For batch sizes ranging from 3 to 15, the number of batches (a) and samples
 \end_layout
 
 \begin_layout Standard
-In order to enable use of fRMA to normalize hthgu133pluspm, a custom set
- of fRMA vectors was created.
+In order to enable use of 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ to normalize hthgu133pluspm, a custom set of 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ vectors was created.
  First, an appropriate batch size was chosen by looking at the number of
  batches and number of samples included as a function of batch size (Figure
  
@@ -11466,16 +13669,35 @@ Each of 20 randomly selected samples was normalized with RMA and with 5
 \end_layout
 
 \begin_layout Standard
-Since fRMA training requires equal-size batches, larger batches are downsampled
- randomly.
+Since 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ training requires equal-size batches, larger batches are downsampled randomly.
  This introduces a nondeterministic step in the generation of normalization
  vectors.
  To show that this randomness does not substantially change the outcome,
  the random downsampling and subsequent vector learning was repeated 5 times,
  with a different random seed each time.
  20 samples were selected at random as a test set and normalized with each
- of the 5 sets of fRMA normalization vectors as well as ordinary RMA, and
- the normalized expression values were compared across normalizations.
+ of the 5 sets of 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ normalization vectors as well as ordinary RMA, and the normalized expression
+ values were compared across normalizations.
  Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -11487,14 +13709,54 @@ noprefix "false"
 \end_inset
 
  shows a summary of these comparisons for biopsy samples.
- Comparing RMA to each of the 5 fRMA normalizations, the distribution of
- log ratios is somewhat wide, indicating that the normalizations disagree
- on the expression values of a fair number of probe sets.
- In contrast, comparisons of fRMA against fRMA, the vast majority of probe
- sets have very small log ratios, indicating a very high agreement between
- the normalized values generated by the two normalizations.
- This shows that the fRMA normalization's behavior is not very sensitive
- to the random downsampling of larger batches during training.
+ Comparing RMA to each of the 5 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ normalizations, the distribution of log ratios is somewhat wide, indicating
+ that the normalizations disagree on the expression values of a fair number
+ of probe sets.
+ In contrast, comparisons of 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ against 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+, the vast majority of probe sets have very small log ratios, indicating
+ a very high agreement between the normalized values generated by the two
+ normalizations.
+ This shows that the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ normalization's behavior is not very sensitive to the random downsampling
+ of larger batches during training.
 \end_layout
 
 \begin_layout Standard
@@ -11748,9 +14010,27 @@ noprefix "false"
  but the trend of M-values is dependent on the average normalized intensity.
  This is expected, since the overall trend represents the differences in
  the quantile normalization step.
- When running RMA, only the quantiles for these specific 20 arrays are used,
- while for fRMA the quantile distribution is taking from all arrays used
- in training.
+ When running 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RMA
+\end_layout
+
+\end_inset
+
+, only the quantiles for these specific 20 arrays are used, while for 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ the quantile distribution is taking from all arrays used in training.
  Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -11761,8 +14041,17 @@ noprefix "false"
 
 \end_inset
 
- shows a similar MA plot comparing 2 different fRMA normalizations, correspondin
-g to the 6th row of Figure 
+ shows a similar MA plot comparing 2 different 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ normalizations, corresponding to the 6th row of Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:m-bx-violin"
@@ -11809,9 +14098,28 @@ noprefix "false"
  across 20 randomly selected test arrays.
  Once again, there is a wider distribution of log ratios between RMA-normalized
  values and fRMA-normalized, and a much tighter distribution when comparing
- different fRMA normalizations to each other, indicating that the fRMA training
- process is robust to random batch downsampling for the blood samples as
- well.
+ different 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ normalizations to each other, indicating that the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ training process is robust to random batch downsampling for the blood samples
+ as well.
 \end_layout
 
 \begin_layout Subsection
@@ -12005,10 +14313,13 @@ Mean-variance trend after voom modeling in analysis C.
 Mean-variance trend modeling in methylation array data.
  
 \series default
-The estimated log2(standard deviation) for each probe is plotted against
- the probe's average M-value across all samples as a black point, with some
- transparency to make over-plotting more visible, since there are about
- 450,000 points.
+The estimated 
+\begin_inset Formula $\log_{2}$
+\end_inset
+
+(standard deviation) for each probe is plotted against the probe's average
+ M-value across all samples as a black point, with some transparency to
+ make over-plotting more visible, since there are about 450,000 points.
  Density of points is also indicated by the dark blue contour lines.
  The prior variance trend estimated by eBayes is shown in light blue, while
  the lowess trend of the points is shown in red.
@@ -12491,10 +14802,39 @@ noprefix "false"
 \end_inset
 
  shows the distribution of sample weights grouped by diabetes diagnosis.
- The samples from patients with Type 2 diabetes were assigned significantly
- lower weights than those from patients with Type 1 diabetes.
- This indicates that the type 2 diabetes samples had an overall higher variance
- on average across all probes.
+ The samples from patients with 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+T2D
+\end_layout
+
+\end_inset
+
+ were assigned significantly lower weights than those from patients with
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+T1D
+\end_layout
+
+\end_inset
+
+.
+ This indicates that the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+T2D
+\end_layout
+
+\end_inset
+
+ samples had an overall higher variance on average across all probes.
  
 \end_layout
 
@@ -13603,32 +15943,138 @@ The major concern in using a single-channel normalization is that non-single-cha
 nnel methods can share information between arrays to improve the normalization,
  and single-channel methods risk sacrificing the gains in normalization
  accuracy that come from this information sharing.
- In the case of RMA, this information sharing is accomplished through quantile
- normalization and median polish steps.
+ In the case of 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RMA
+\end_layout
+
+\end_inset
+
+, this information sharing is accomplished through quantile normalization
+ and median polish steps.
  The need for information sharing in quantile normalization can easily be
  removed by learning a fixed set of quantiles from external data and normalizing
  each array to these fixed quantiles, instead of the quantiles of the data
  itself.
  As long as the fixed quantiles are reasonable, the result will be similar
- to standard RMA.
+ to standard 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RMA
+\end_layout
+
+\end_inset
+
+.
  However, there is no analogous way to eliminate cross-array information
- sharing in the median polish step, so fRMA replaces this with a weighted
- average of probes on each array, with the weights learned from external
- data.
- This step of fRMA has the greatest potential to diverge from RMA un undesirable
- ways.
+ sharing in the median polish step, so 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ replaces this with a weighted average of probes on each array, with the
+ weights learned from external data.
+ This step of 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ has the greatest potential to diverge from RMA un undesirable ways.
 \end_layout
 
 \begin_layout Standard
-However, when run on real data, fRMA performed at least as well as RMA in
- both the internal validation and external validation tests.
- This shows that fRMA can be used to normalize individual clinical samples
- in a class prediction context without sacrificing the classifier performance
- that would be obtained by using the more well-established RMA for normalization.
- The other single-channel normalization method considered, SCAN, showed
- some loss of AUC in the external validation test.
- Based on these results, fRMA is the preferred normalization for clinical
- samples in a class prediction context.
+However, when run on real data, 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ performed at least as well as 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RMA
+\end_layout
+
+\end_inset
+
+ in both the internal validation and external validation tests.
+ This shows that 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ can be used to normalize individual clinical samples in a class prediction
+ context without sacrificing the classifier performance that would be obtained
+ by using the more well-established 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RMA
+\end_layout
+
+\end_inset
+
+ for normalization.
+ The other single-channel normalization method considered, 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+SCAN
+\end_layout
+
+\end_inset
+
+, showed some loss of 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+AUC
+\end_layout
+
+\end_inset
+
+ in the external validation test.
+ Based on these results, 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ is the preferred normalization for clinical samples in a class prediction
+ context.
 \end_layout
 
 \begin_layout Subsection
@@ -13657,10 +16103,20 @@ Look up the exact numbers, do a find & replace for
 \end_layout
 
 \begin_layout Standard
-The published fRMA normalization vectors for the hgu133plus2 platform were
- generated from a set of about 850 samples chosen from a wide range of tissues,
- which the authors determined was sufficient to generate a robust set of
- normalization vectors that could be applied across all tissues 
+The published 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ normalization vectors for the hgu133plus2 platform were generated from
+ a set of about 850 samples chosen from a wide range of tissues, which the
+ authors determined was sufficient to generate a robust set of normalization
+ vectors that could be applied across all tissues 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "McCall2010"
@@ -13672,14 +16128,33 @@ literal "false"
  Since we only had hthgu133pluspm for 2 tissues of interest, our needs were
  more modest.
  Even using only 130 samples in 26 batches of 5 samples each for kidney
- biopsies, we were able to train a robust set of fRMA normalization vectors
- that were not meaningfully affected by the random selection of 5 samples
- from each batch.
+ biopsies, we were able to train a robust set of 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ normalization vectors that were not meaningfully affected by the random
+ selection of 5 samples from each batch.
  As expected, the training process was just as robust for the blood samples
  with 230 samples in 46 batches of 5 samples each.
  Because these vectors were each generated using training samples from a
  single tissue, they are not suitable for general use, unlike the vectors
- provided with fRMA itself.
+ provided with 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ itself.
  They are purpose-built for normalizing a specific type of sample on a specific
  platform.
  This is a mostly acceptable limitation in the context of developing a machine
@@ -13818,14 +16293,83 @@ The difference between the standard empirical Bayes trended variance modeling
  do the most good.
  For example, if a particular probe's M-values are always at the extreme
  of the M-value range (e.g.
- less than -4) for ADNR samples, but the M-values for that probe in TX and
- CAN samples are within the flat region of the mean-variance trend (between
+ less than -4) for 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ADNR
+\end_layout
+
+\end_inset
+
+ samples, but the M-values for that probe in 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TX
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+CAN
+\end_layout
+
+\end_inset
+
+ samples are within the flat region of the mean-variance trend (between
  -3 and +3), voom is able to down-weight the contribution of the high-variance
- M-values from the ADNR samples in order to gain more statistical power
- while testing for differential methylation between TX and CAN.
+ M-values from the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ADNR
+\end_layout
+
+\end_inset
+
+ samples in order to gain more statistical power while testing for differential
+ methylation between 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TX
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+CAN
+\end_layout
+
+\end_inset
+
+.
  In contrast, modeling the mean-variance trend only at the probe level would
- combine the high-variance ADNR samples and lower-variance samples from
- other conditions and estimate an intermediate variance for this probe.
+ combine the high-variance 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ADNR
+\end_layout
+
+\end_inset
+
+ samples and lower-variance samples from other conditions and estimate an
+ intermediate variance for this probe.
  In practice, analysis B shows that this approach is adequate, but the voom
  approach in analysis C is at least as good on all model fit criteria and
  yields a larger estimate for the number of differentially methylated genes,
@@ -13839,21 +16383,69 @@ and
 \begin_layout Standard
 The significant association of diabetes diagnosis with sample quality is
  interesting.
- The samples with Type 2 diabetes tended to have more variation, averaged
- across all probes, than those with Type 1 diabetes.
- This is consistent with the consensus that type 2 diabetes and the associated
- metabolic syndrome represent a broad dysregulation of the body's endocrine
- signaling related to metabolism [citation needed].
+ The samples with 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+T2D
+\end_layout
+
+\end_inset
+
+ tended to have more variation, averaged across all probes, than those with
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+T1D
+\end_layout
+
+\end_inset
+
+.
+ This is consistent with the consensus that 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+T2D
+\end_layout
+
+\end_inset
+
+ and the associated metabolic syndrome represent a broad dysregulation of
+ the body's endocrine signaling related to metabolism [citation needed].
  This dysregulation could easily manifest as a greater degree of variation
  in the DNA methylation patterns of affected tissues.
- In contrast, Type 1 diabetes has a more specific cause and effect, so a
- less variable methylation signature is expected.
+ In contrast, 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+T1D
+\end_layout
+
+\end_inset
+
+ has a more specific cause and effect, so a less variable methylation signature
+ is expected.
 \end_layout
 
 \begin_layout Standard
 This preliminary analysis suggests that some degree of differential methylation
- exists between TX and each of the three types of transplant disfunction
- studied.
+ exists between 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TX
+\end_layout
+
+\end_inset
+
+ and each of the three types of transplant disfunction studied.
  Hence, it may be feasible to train a classifier to diagnose transplant
  disfunction from DNA methylation array data.
  However, the major importance of both 
@@ -13910,8 +16502,18 @@ Improving fRMA to allow training from batches of unequal size
 \end_layout
 
 \begin_layout Standard
-Because the tools for building fRMA normalization vectors require equal-size
- batches, many samples must be discarded from the training data.
+Because the tools for building 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ normalization vectors require equal-size batches, many samples must be
+ discarded from the training data.
  This is undesirable for a few reasons.
  First, more data is simply better, all other things being equal.
  In this case, 
@@ -13954,7 +16556,17 @@ literal "false"
 
 \begin_layout Standard
 Fortunately, the requirement for equal-size batches is not inherent to the
- fRMA algorithm but rather a limitation of the implementation in the 
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ algorithm but rather a limitation of the implementation in the 
 \begin_inset Flex Code
 status open
 
@@ -14163,7 +16775,7 @@ target "https://tex.stackexchange.com/questions/156862/displaying-author-for-eac
 status open
 
 \begin_layout Plain Layout
-Preprint then cite the paper
+Fix primes and such using math-insert
 \end_layout
 
 \end_inset
@@ -14175,12 +16787,36 @@ Preprint then cite the paper
 Abstract
 \end_layout
 
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+If the other chapters don't get abstracts, this one probably shouldn't either.
+ But parts of it can be copied into the final abstract.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Paragraph
 Background
 \end_layout
 
 \begin_layout Standard
-Primate blood contains high concentrations of globin messenger RNA.
+Primate blood contains high concentrations of globin 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+mRNA
+\end_layout
+
+\end_inset
+
+.
  Globin reduction is a standard technique used to improve the expression
  results obtained by DNA microarrays on RNA from blood samples.
  However, with 
@@ -14225,11 +16861,45 @@ RNA-seq
 
 \end_inset
 
- in primate blood samples that uses complimentary oligonucleotides to block
- reverse transcription of the alpha and beta globin genes.
- In test samples from cynomolgus monkeys (Macaca fascicularis), this globin
- blocking protocol approximately doubles the yield of informative (non-globin)
- reads by greatly reducing the fraction of globin reads, while also improving
+ in primate blood samples that uses complimentary 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+glspl*{oligo}
+\end_layout
+
+\end_inset
+
+ to block reverse transcription of the alpha and beta globin genes.
+ In test samples from cynomolgus monkeys (
+\emph on
+Macaca fascicularis
+\emph default
+), this 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "GB"
+description "globin blocking"
+literal "false"
+
+\end_inset
+
+ protocol approximately doubles the yield of informative (non-globin) reads
+ by greatly reducing the fraction of globin reads, while also improving
  the consistency in sequencing depth between samples.
  The increased yield enables detection of about 2000 more genes, significantly
  increases the correlation in measured gene expression levels between samples,
@@ -14241,10 +16911,29 @@ Conclusions
 \end_layout
 
 \begin_layout Standard
-These results show that globin blocking significantly improves the cost-effectiv
-eness of mRNA sequencing in primate blood samples by doubling the yield
- of useful reads, allowing detection of more genes, and improving the precision
- of gene expression measurements.
+These results show that 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ significantly improves the cost-effectiveness of 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ in primate blood samples by doubling the yield of useful reads, allowing
+ detection of more genes, and improving the precision of gene expression
+ measurements.
  Based on these results, a globin reducing or blocking protocol is recommended
  for all 
 \begin_inset Flex Glossary Term
@@ -14344,9 +17033,38 @@ literal "false"
  The advantages are even greater for study of model organisms with no well-estab
 lished array platforms available, such as the cynomolgus monkey (Macaca
  fascicularis).
- High fractions of globin mRNA are naturally present in mammalian peripheral
- blood samples (up to 70% of total mRNA) and these are known to interfere
- with the results of array-based expression profiling 
+ High fractions of globin 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+mRNA
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "mRNA"
+description "messenger RNA"
+literal "false"
+
+\end_inset
+
+ are naturally present in mammalian peripheral blood samples (up to 70%
+ of total 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+mRNA
+\end_layout
+
+\end_inset
+
+) and these are known to interfere with the results of array-based expression
+ profiling 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Winn2010"
@@ -14376,7 +17094,20 @@ literal "false"
 
 .
  In the present report, we evaluated globin reduction using custom blocking
- oligonucleotides for deep 
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+glspl*{oligo}
+\end_layout
+
+\end_inset
+
+ for deep 
 \begin_inset Flex Glossary Term
 status open
 
@@ -14413,7 +17144,17 @@ RNA-seq
 
  for gene expression profiling of nonhuman primate blood samples.
  Our method can be generally applied to any species by designing complementary
- oligonucleotide blocking probes to the globin gene sequences of that species.
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+oligo
+\end_layout
+
+\end_inset
+
+ blocking probes to the globin gene sequences of that species.
  Indeed, any highly expressed but biologically uninformative transcripts
  can also be blocked to further increase sequencing efficiency and value
  
@@ -14454,12 +17195,45 @@ Globin Blocking
 \end_layout
 
 \begin_layout Standard
-Four oligonucleotides were designed to hybridize to the 3’ end of the transcript
-s for Cynomolgus HBA1, HBA2 and HBB, with two hybridization sites for HBB
- and 2 sites for HBA (the chosen sites were identical in both HBA genes).
- All oligos were purchased from Sigma and were entirely composed of 2’O-Me
- bases with a C3 spacer positioned at the 3’ ends to prevent any polymerase
- mediated primer extension.
+Four 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+glspl*{oligo}
+\end_layout
+
+\end_inset
+
+ were designed to hybridize to the 
+\begin_inset Formula $3^{\prime}$
+\end_inset
+
+ end of the transcripts for the Cynomolgus HBA1, HBA2 and HBB genes, with
+ two hybridization sites for HBB and 2 sites for HBA (the chosen sites were
+ identical in both HBA genes).
+ All 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+glspl*{oligo}
+\end_layout
+
+\end_inset
+
+ were purchased from Sigma and were entirely composed of 2’O-Me bases with
+ a C3 spacer positioned at the 
+\begin_inset Formula $3^{\prime}$
+\end_inset
+
+ ends to prevent any polymerase mediated primer extension.
 \end_layout
 
 \begin_layout Quote
@@ -14501,12 +17275,35 @@ Sequencing libraries were prepared with 200
 \end_inset
 
 ng total RNA from each sample.
- Polyadenylated mRNA was selected from 200 ng aliquots of cynomolgus blood-deriv
-ed total RNA using Ambion Dynabeads Oligo(dT)25 beads (Invitrogen) following
- manufacturer’s recommended protocol.
+ Polyadenylated 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+mRNA
+\end_layout
+
+\end_inset
+
+ was selected from 200 ng aliquots of cynomolgus blood-derived total RNA
+ using Ambion Dynabeads Oligo(dT)25 beads (Invitrogen) following manufacturer’s
+ recommended protocol.
  PolyA selected RNA was then combined with 8 pmol of HBA1/2 (site 1), 8
  pmol of HBA1/2 (site 2), 12 pmol of HBB (site 1) and 12 pmol of HBB (site
- 2) oligonucleotides.
+ 2) 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+glspl*{oligo}
+\end_layout
+
+\end_inset
+
+.
  In addition, 20 pmol of RT primer containing a portion of the Illumina
  adapter sequence (B-oligo-dTV: GAGTTCCTTGGCACCCGAGAATTCCATTTTTTTTTTTTTTTTTTTV)
  and 4 µL of 5X First Strand buffer (250 mM Tris-HCl pH 8.3, 375 mM KCl,
@@ -14518,7 +17315,20 @@ ed total RNA using Ambion Dynabeads Oligo(dT)25 beads (Invitrogen) following
  dCTP (TriLink Biotech, San Diego, CA), 1 µL Superscript II (200U/ µL, Thermo-Fi
 sher).
  A second “unblocked” library was prepared in the same way for each sample
- but replacing the blocking oligos with an equivalent volume of water.
+ but replacing the blocking 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+glspl*{oligo}
+\end_layout
+
+\end_inset
+
+ with an equivalent volume of water.
  The reaction was carried out at 25°C for 15 minutes and 42°C for 40 minutes,
  followed by incubation at 75°C for 10 minutes to inactivate the reverse
  transcriptase.
@@ -14536,9 +17346,12 @@ The cDNA/RNA hybrid molecules were purified using 1.8X Ampure XP beads (Agencour
 \end_layout
 
 \begin_layout Standard
-Subsequent attachment of the 5-prime Illumina A adapter was performed by
- on-bead random primer extension of the following sequence (A-N8 primer:
- TTCAGAGTTCTACAGTCCGACGATCNNNNNNNN).
+Subsequent attachment of the 
+\begin_inset Formula $5^{\prime}$
+\end_inset
+
+ Illumina A adapter was performed by on-bead random primer extension of
+ the following sequence (A-N8 primer: TTCAGAGTTCTACAGTCCGACGATCNNNNNNNN).
  Briefly, beads were resuspended in a 20 µL reaction containing 5 µM A-N8
  primer, 40mM Tris-HCl pH 7.5, 20mM MgCl2, 50mM NaCl, 0.325U/µL Sequenase
  2.0 (Affymetrix, Santa Clara, CA), 0.0025U/µL inorganic pyrophosphatase (Affymetr
@@ -14549,17 +17362,64 @@ ix) and 300 µM each dNTP.
 
 \begin_layout Standard
 The magnetic streptavidin beads were resuspended in 34 µL nuclease-free
- water and added directly to a PCR tube.
- The two Illumina protocol-specified PCR primers were added at 0.53 µM (Illumina
- TruSeq Universal Primer 1 and Illumina TruSeq barcoded PCR primer 2), along
- with 40 µL 2X KAPA HiFi Hotstart ReadyMix (KAPA, Willmington MA) and thermocycl
-ed as follows: starting with 98°C (2 min-hold); 15 cycles of 98°C, 20sec;
- 60°C, 30sec; 72°C, 30sec; and finished with a 72°C (2 min-hold).
+ water and added directly to a 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+PCR
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "PCR"
+description "polymerase chain reaction"
+literal "false"
+
+\end_inset
+
+ tube.
+ The two Illumina protocol-specified 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+PCR
+\end_layout
+
+\end_inset
+
+ primers were added at 0.53 µM (Illumina TruSeq Universal Primer 1 and Illumina
+ TruSeq barcoded 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+PCR
+\end_layout
+
+\end_inset
+
+ primer 2), along with 40 µL 2X KAPA HiFi Hotstart ReadyMix (KAPA, Willmington
+ MA) and thermocycled as follows: starting with 98°C (2 min-hold); 15 cycles
+ of 98°C, 20sec; 60°C, 30sec; 72°C, 30sec; and finished with a 72°C (2 min-hold).
 \end_layout
 
 \begin_layout Standard
-PCR products were purified with 1X Ampure Beads following manufacturer’s
- recommended protocol.
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+PCR
+\end_layout
+
+\end_inset
+
+ products were purified with 1X Ampure Beads following manufacturer’s recommende
+d protocol.
  Libraries were then analyzed using the Agilent TapeStation and quantitation
  of desired size range was performed by “smear analysis”.
  Samples were pooled in equimolar batches of 16 samples.
@@ -14646,8 +17506,26 @@ literal "false"
 91), which overlaps the HBA-like gene (LOC102136192) on the opposite strand.
  If counting is not performed in stranded mode (or if a non-strand-specific
  sequencing protocol is used), many reads mapping to the globin gene will
- be discarded as ambiguous due to their overlap with this ncRNA gene, resulting
- in significant undercounting of globin reads.
+ be discarded as ambiguous due to their overlap with this 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ncRNA
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "ncRNA"
+description "non-coding RNA"
+literal "false"
+
+\end_inset
+
+ gene, resulting in significant undercounting of globin reads.
  Therefore, stranded sense counts were used for all further analysis in
  the present study to insure that we accurately accounted for globin transcript
  reduction.
@@ -14670,6 +17548,19 @@ Normalization and Exploratory Data Analysis
 \end_layout
 
 \begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+This paragraph is throwing LaTeX errors.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 Libraries were normalized by computing scaling factors using the 
 \begin_inset Flex Code
 status open
@@ -14680,7 +17571,17 @@ edgeR
 
 \end_inset
 
- package’s Trimmed Mean of M-values method 
+ package's 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TMM
+\end_layout
+
+\end_inset
+
+ method 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Robinson2010"
@@ -14689,8 +17590,30 @@ literal "false"
 \end_inset
 
 .
- Log2 counts per million values (logCPM) were calculated using the cpm function
- in 
+ HELLO 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+gls*{logCPM}
+\end_layout
+
+\end_inset
+
+ values were calculated using the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+cpm
+\end_layout
+
+\end_inset
+
+ function in 
 \begin_inset Flex Code
 status open
 
@@ -14712,22 +17635,53 @@ aveLogCPM
 
  function for averages across groups of samples, using those functions’
  default prior count values to avoid taking the logarithm of 0.
- Genes were considered “present” if their average normalized logCPM values
- across all libraries were at least 
+ Genes were considered “present” if their average normalized 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+logCPM
+\end_layout
+
+\end_inset
+
+ values across all libraries were at least 
 \begin_inset Formula $-1$
 \end_inset
 
 .
  Normalizing for gene length was unnecessary because the sequencing protocol
- is 3’-biased and hence the expected read count for each gene is related
- to the transcript’s copy number but not its length.
+ is 
+\begin_inset Formula $3^{\prime}$
+\end_inset
+
+-biased and hence the expected read count for each gene is related to the
+ transcript’s copy number but not its length.
 \end_layout
 
 \begin_layout Standard
 In order to assess the effect of blocking on reproducibility, Pearson and
- Spearman correlation coefficients were computed between the logCPM values
- for every pair of libraries within the globin-blocked (GB) and unblocked
- (non-GB) groups, and 
+ Spearman correlation coefficients were computed between the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+logCPM
+\end_layout
+
+\end_inset
+
+ values for every pair of libraries within the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ non-GB groups, and 
 \begin_inset Flex Code
 status open
 
@@ -14813,22 +17767,68 @@ literal "false"
 \end_inset
 
 .
- To investigate the effects of globin blocking on each gene, an additive
- model was fit to the full data with coefficients for globin blocking and
- SampleID.
- To test the effect of globin blocking on detection of differentially expressed
- genes, the GB samples and non-GB samples were each analyzed independently
- as follows: for each animal with both a pre-transplant and a post-transplant
- time point in the data set, the pre-transplant sample and the earliest
- post-transplant sample were selected, and all others were excluded, yielding
- a pre-/post-transplant pair of samples for each animal (N=7 animals with
- paired samples).
+ To investigate the effects of 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ on each gene, an additive model was fit to the full data with coefficients
+ for 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ and SampleID.
+ To test the effect of 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ on detection of differentially expressed genes, the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ samples and non-GB samples were each analyzed independently as follows:
+ for each animal with both a pre-transplant and a post-transplant time point
+ in the data set, the pre-transplant sample and the earliest post-transplant
+ sample were selected, and all others were excluded, yielding a pre-/post-transp
+lant pair of samples for each animal (N=7 animals with paired samples).
  These samples were analyzed for pre-transplant vs.
  post-transplant differential gene expression while controlling for inter-animal
  variation using an additive model with coefficients for transplant and
  animal ID.
- In all analyses, p-values were adjusted using the Benjamini-Hochberg procedure
- for 
+ In all analyses, p-values were adjusted using the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+BH
+\end_layout
+
+\end_inset
+
+ procedure for 
 \begin_inset Flex Glossary Term
 status open
 
@@ -15546,24 +18546,93 @@ RNA-seq
  The details of the analysis with respect to transplant outcomes and the
  impact of mesenchymal stem cell treatment will be reported in a separate
  manuscript (in preparation).
- To focus on the efficacy of our globin blocking protocol, 37 blood samples,
- 16 from pre-transplant and 21 from post-transplant time points, were each
- prepped once with and once without globin blocking oligos, and were then
- sequenced on an Illumina NextSeq500 instrument.
+ To focus on the efficacy of our 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ protocol, 37 blood samples, 16 from pre-transplant and 21 from post-transplant
+ time points, were each prepped once with and once without 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+glspl*{oligo}
+\end_layout
+
+\end_inset
+
+, and were then sequenced on an Illumina NextSeq500 instrument.
  The number of reads aligning to each gene in the cynomolgus genome was
  counted.
- Table 1 summarizes the distribution of read fractions among the GB and
- non-GB libraries.
- In the libraries with no globin blocking, globin reads made up an average
- of 44.6% of total input reads, while reads assigned to all other genes made
- up an average of 26.3%.
+ Table 1 summarizes the distribution of read fractions among the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ and non-GB libraries.
+ In the libraries with no 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+, globin reads made up an average of 44.6% of total input reads, while reads
+ assigned to all other genes made up an average of 26.3%.
  The remaining reads either aligned to intergenic regions (that include
  long non-coding RNAs) or did not align with any annotated transcripts in
  the current build of the cynomolgus genome.
- In the GB libraries, globin reads made up only 3.48% and reads assigned
- to all other genes increased to 50.4%.
- Thus, globin blocking resulted in a 92.2% reduction in globin reads and
- a 91.6% increase in yield of useful non-globin reads.
+ In the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ libraries, globin reads made up only 3.48% and reads assigned to all other
+ genes increased to 50.4%.
+ Thus, 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ resulted in a 92.2% reduction in globin reads and a 91.6% increase in yield
+ of useful non-globin reads.
 \end_layout
 
 \begin_layout Standard
@@ -15580,15 +18649,62 @@ literal "false"
 .
  Nonetheless, this degree of globin reduction is sufficient to nearly double
  the yield of useful reads.
- Thus, globin blocking cuts the required sequencing effort (and costs) to
- achieve a target coverage depth by almost 50%.
+ Thus, 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ cuts the required sequencing effort (and costs) to achieve a target coverage
+ depth by almost 50%.
  Consistent with this near doubling of yield, the average difference in
- un-normalized logCPM across all genes between the GB libraries and non-GB
- libraries is approximately 1 (mean = 1.01, median = 1.08), an overall 2-fold
- increase.
- Un-normalized values are used here because the TMM normalization correctly
- identifies this 2-fold difference as biologically irrelevant and removes
- it.
+ un-normalized 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+logCPM
+\end_layout
+
+\end_inset
+
+ across all genes between the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ libraries and non-GB libraries is approximately 1 (mean = 1.01, median =
+ 1.08), an overall 2-fold increase.
+ Un-normalized values are used here because the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TMM
+\end_layout
+
+\end_inset
+
+ normalization correctly identifies this 2-fold difference as biologically
+ irrelevant and removes it.
 \end_layout
 
 \begin_layout Standard
@@ -15620,7 +18736,7 @@ status collapsed
 
 \begin_layout Plain Layout
 Fraction of genic reads in each sample aligned to non-globin genes, with
- and without globin blocking (GB).
+ and without GB.
 \end_layout
 
 \end_inset
@@ -15633,7 +18749,7 @@ name "fig:Fraction-of-genic-reads"
 \end_inset
 
 Fraction of genic reads in each sample aligned to non-globin genes, with
- and without globin blocking (GB).
+ and without GB.
 
 \series default
  All reads in each sequencing library were aligned to the cyno genome, and
@@ -15670,12 +18786,31 @@ noprefix "false"
 
 \end_inset
 
- are uniformly smaller in the GB samples than the non-GB ones, indicating
- much greater consistency of yield.
+ are uniformly smaller in the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ samples than the non-GB ones, indicating much greater consistency of yield.
  This is best seen in the percentage of non-globin reads as a fraction of
  total reads aligned to annotated genes (genic reads).
  For the non-GB samples, this measure ranges from 10.9% to 80.9%, while for
- the GB samples it ranges from 81.9% to 99.9% (Figure 
+ the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ samples it ranges from 81.9% to 99.9% (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Fraction-of-genic-reads"
@@ -15689,13 +18824,41 @@ noprefix "false"
  This means that for applications where it is critical that each sample
  achieve a specified minimum coverage in order to provide useful information,
  it would be necessary to budget up to 10 times the sequencing depth per
- sample without globin blocking, even though the average yield improvement
- for globin blocking is only 2-fold, because every sample has a chance of
- being 90% globin and 10% useful reads.
- Hence, the more consistent behavior of GB samples makes planning an experiment
- easier and more efficient because it eliminates the need to over-sequence
- every sample in order to guard against the worst case of a high-globin
- fraction.
+ sample without 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+, even though the average yield improvement for 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ is only 2-fold, because every sample has a chance of being 90% globin and
+ 10% useful reads.
+ Hence, the more consistent behavior of 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ samples makes planning an experiment easier and more efficient because
+ it eliminates the need to over-sequence every sample in order to guard
+ against the worst case of a high-globin fraction.
 \end_layout
 
 \begin_layout Subsection
@@ -15765,13 +18928,16 @@ Distributions of average group gene abundances when normalized separately
  the number of reads uniquely aligning to each gene was counted.
  Genes with zero counts in all libraries were discarded.
  Libraries were normalized using the TMM method.
- Libraries were split into globin-blocked (GB) and non-GB groups and the
- average abundance for each gene in both groups, measured in log2 counts
- per million reads counted, was computed using the aveLogCPM function.
+ Libraries were split into GB and non-GB groups and the average logCPM was
+ computed.
  The distribution of average gene logCPM values was plotted for both groups
  using a kernel density plot to approximate a continuous distribution.
- The logCPM GB distributions are marked in red, non-GB in blue.
- The black vertical line denotes the chosen detection threshold of -1.
+ The GB logCPM distributions are marked in red, non-GB in blue.
+ The black vertical line denotes the chosen detection threshold of 
+\begin_inset Formula $-1$
+\end_inset
+
+.
  Top panel: Libraries were split into GB and non-GB groups first and normalized
  separately.
  Bottom panel: Libraries were all normalized together first and then split
@@ -15793,13 +18959,33 @@ Distributions of average group gene abundances when normalized separately
 \end_layout
 
 \begin_layout Standard
-Since globin blocking yields more usable sequencing depth, it should also
- allow detection of more genes at any given threshold.
- When we looked at the distribution of average normalized logCPM values
- across all libraries for genes with at least one read assigned to them,
- we observed the expected bimodal distribution, with a high-abundance "signal"
- peak representing detected genes and a low-abundance "noise" peak representing
- genes whose read count did not rise above the noise floor (Figure 
+Since 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ yields more usable sequencing depth, it should also allow detection of
+ more genes at any given threshold.
+ When we looked at the distribution of average normalized 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+logCPM
+\end_layout
+
+\end_inset
+
+ values across all libraries for genes with at least one read assigned to
+ them, we observed the expected bimodal distribution, with a high-abundance
+ "signal" peak representing detected genes and a low-abundance "noise" peak
+ representing genes whose read count did not rise above the noise floor
+ (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:logcpm-dists"
@@ -15811,14 +18997,42 @@ noprefix "false"
 
 ).
  Consistent with the 2-fold increase in raw counts assigned to non-globin
- genes, the signal peak for GB samples is shifted to the right relative
- to the non-GB signal peak.
+ genes, the signal peak for 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ samples is shifted to the right relative to the non-GB signal peak.
  When all the samples are normalized together, this difference is normalized
  out, lining up the signal peaks, and this reveals that, as expected, the
- noise floor for the GB samples is about 2-fold lower.
- This greater separation between signal and noise peaks in the GB samples
- means that low-expression genes should be more easily detected and more
- precisely quantified than in the non-GB samples.
+ noise floor for the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ samples is about 2-fold lower.
+ This greater separation between signal and noise peaks in the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ samples means that low-expression genes should be more easily detected
+ and more precisely quantified than in the non-GB samples.
 \end_layout
 
 \begin_layout Standard
@@ -15849,8 +19063,7 @@ status collapsed
 status collapsed
 
 \begin_layout Plain Layout
-Gene detections as a function of abundance thresholds in globin-blocked
- (GB) and non-GB samples.
+Gene detections as a function of abundance thresholds in GB and non-GB samples.
 \end_layout
 
 \end_inset
@@ -15862,16 +19075,11 @@ name "fig:Gene-detections"
 
 \end_inset
 
-Gene detections as a function of abundance thresholds in globin-blocked
- (GB) and non-GB samples.
+Gene detections as a function of abundance thresholds in GB and non-GB samples.
 
 \series default
- Average abundance (logCPM, 
-\begin_inset Formula $\log_{2}$
-\end_inset
-
- counts per million reads counted) was computed by separate group normalization
- as described in Figure 
+ Average logCPM was computed by separate group normalization as described
+ in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:logcpm-dists"
@@ -15883,8 +19091,12 @@ noprefix "false"
 
  for both the GB and non-GB groups, as well as for all samples considered
  as one large group.
- For each every integer threshold from -2 to 3, the number of genes detected
- at or above that logCPM threshold was plotted for each group.
+ For each every integer threshold from 
+\begin_inset Formula $-2$
+\end_inset
+
+ to 3, the number of genes detected at or above that logCPM threshold was
+ plotted for each group.
 \end_layout
 
 \end_inset
@@ -15912,15 +19124,63 @@ Based on these distributions, we selected a detection threshold of
  call substantial numbers of noise genes as detected.
  Among the full dataset, 13429 genes were detected at this threshold, and
  22276 were not.
- When considering the GB libraries and non-GB libraries separately and re-comput
-ing normalization factors independently within each group, 14535 genes were
- detected in the GB libraries while only 12460 were detected in the non-GB
- libraries.
- Thus, GB allowed the detection of 2000 extra genes that were buried under
- the noise floor without GB.
- This pattern of at least 2000 additional genes detected with GB was also
- consistent across a wide range of possible detection thresholds, from -2
- to 3 (see Figure 
+ When considering the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ libraries and non-GB libraries separately and re-computing normalization
+ factors independently within each group, 14535 genes were detected in the
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ libraries while only 12460 were detected in the non-GB libraries.
+ Thus, 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ allowed the detection of 2000 extra genes that were buried under the noise
+ floor without 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+.
+ This pattern of at least 2000 additional genes detected with 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ was also consistent across a wide range of possible detection thresholds,
+ from -2 to 3 (see Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Gene-detections"
@@ -15939,8 +19199,17 @@ Globin blocking does not add significant additional noise or decrease sample
 \end_layout
 
 \begin_layout Standard
-One potential worry is that the globin blocking protocol could perturb the
- levels of non-globin genes.
+One potential worry is that the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ protocol could perturb the levels of non-globin genes.
  There are two kinds of possible perturbations: systematic and random.
  The former is not a major concern for detection of differential expression,
  since a 2-fold change in every sample has no effect on the relative fold
@@ -15977,7 +19246,7 @@ status collapsed
 status collapsed
 
 \begin_layout Plain Layout
-MA plot showing effects of globin blocking on each gene's abundance.
+MA plot showing effects of GB on each gene's abundance.
 \end_layout
 
 \end_inset
@@ -15991,7 +19260,7 @@ name "fig:MA-plot"
 
 
 \series bold
-MA plot showing effects of globin blocking on each gene's abundance.
+MA plot showing effects of GB on each gene's abundance.
  
 \series default
 All libraries were normalized together as described in Figure 
@@ -16004,7 +19273,11 @@ noprefix "false"
 
 \end_inset
 
-, and genes with an average logCPM below -1 were filtered out.
+, and genes with an average logCPM below 
+\begin_inset Formula $-1$
+\end_inset
+
+ were filtered out.
  Each remaining gene was tested for differential abundance with respect
  to 
 \begin_inset Flex Glossary Term (glstext)
@@ -16038,12 +19311,7 @@ edgeR
 
 \end_inset
 
- reported average logCPM, 
-\begin_inset Formula $\log_{2}$
-\end_inset
-
- fold change (logFC), p-value, and Benjamini-Hochberg adjusted false discovery
- rate (FDR).
+ reported average logCPM, logFC, p-value, and BH-adjusted FDR.
  Each gene's logFC was plotted against its logCPM, colored by FDR.
  Red points are significant at ≤10% FDR, and blue are not significant at
  that threshold.
@@ -16096,19 +19364,94 @@ noprefix "false"
 
 ).
  Other than the 3 designated alpha and beta globin genes, two other genes
- stand out as having especially large negative log fold changes: HBD and
- LOC1021365.
- HBD, delta globin, is most likely targeted by the blocking oligos due to
- high sequence homology with the other globin genes.
- LOC1021365 is the aforementioned ncRNA that is reverse-complementary to
- one of the alpha-like genes and that would be expected to be removed during
- the globin blocking step.
+ stand out as having especially large negative 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+glspl*{logFC}
+\end_layout
+
+\end_inset
+
+: HBD and LOC1021365.
+ HBD, delta globin, is most likely targeted by the blocking 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+glspl*{oligo}
+\end_layout
+
+\end_inset
+
+ due to high sequence homology with the other globin genes.
+ LOC1021365 is the aforementioned 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ncRNA
+\end_layout
+
+\end_inset
+
+ that is reverse-complementary to one of the alpha-like genes and that would
+ be expected to be removed during the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ step.
  All other genes appear in a cluster centered vertically at 0, and the vast
- majority of genes in this cluster show an absolute log2(FC) of 0.5 or less.
+ majority of genes in this cluster show an absolute 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+logFC
+\end_layout
+
+\end_inset
+
+ of 0.5 or less.
  Nevertheless, many of these small perturbations are still statistically
- significant, indicating that the globin blocking oligos likely cause very
- small but non-zero systematic perturbations in measured gene expression
- levels.
+ significant, indicating that the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+glspl*{oligo}
+\end_layout
+
+\end_inset
+
+ likely cause very small but non-zero systematic perturbations in measured
+ gene expression levels.
 \end_layout
 
 \begin_layout Standard
@@ -16140,7 +19483,7 @@ status collapsed
 
 \begin_layout Plain Layout
 Comparison of inter-sample gene abundance correlations with and without
- globin blocking.
+ GB.
 \end_layout
 
 \end_inset
@@ -16153,13 +19496,16 @@ name "fig:gene-abundance-correlations"
 \end_inset
 
 Comparison of inter-sample gene abundance correlations with and without
- globin blocking (GB).
+ GB.
 
 \series default
  All libraries were normalized together as described in Figure 2, and genes
- with an average abundance (logCPM, log2 counts per million reads counted)
- less than -1 were filtered out.
- Each gene’s logCPM was computed in each library using the 
+ with an average logCPM less than 
+\begin_inset Formula $-1$
+\end_inset
+
+ were filtered out.
+ Each gene’s logCPM was computed in each library using 
 \begin_inset Flex Code
 status open
 
@@ -16169,7 +19515,17 @@ edgeR
 
 \end_inset
 
- cpm function.
+'s 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+cpm
+\end_layout
+
+\end_inset
+
+ function.
  For each pair of biological samples, the Pearson correlation between those
  samples' GB libraries was plotted against the correlation between the same
  samples’ non-GB libraries.
@@ -16208,10 +19564,38 @@ Give these numbers the LaTeX math treatment
 \end_layout
 
 \begin_layout Standard
-To evaluate the possibility of globin blocking causing random perturbations
- and reducing sample quality, we computed the Pearson correlation between
- logCPM values for every pair of samples with and without GB and plotted
- them against each other (Figure 
+To evaluate the possibility of 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ causing random perturbations and reducing sample quality, we computed the
+ Pearson correlation between 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+logCPM
+\end_layout
+
+\end_inset
+
+ values for every pair of samples with and without 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ and plotted them against each other (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:gene-abundance-correlations"
@@ -16222,12 +19606,31 @@ noprefix "false"
 \end_inset
 
 ).
- The plot indicated that the GB libraries have higher sample-to-sample correlati
-ons than the non-GB libraries.
+ The plot indicated that the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ libraries have higher sample-to-sample correlations than the non-GB libraries.
  Parametric and nonparametric tests for differences between the correlations
- with and without GB both confirmed that this difference was highly significant
- (2-sided paired t-test: t = 37.2, df = 665, P ≪ 2.2e-16; 2-sided Wilcoxon
- sign-rank test: V = 2195, P ≪ 2.2e-16).
+ with and without 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ both confirmed that this difference was highly significant (2-sided paired
+ t-test: t = 37.2, df = 665, P ≪ 2.2e-16; 2-sided Wilcoxon sign-rank test:
+ V = 2195, P ≪ 2.2e-16).
  Performing the same tests on the Spearman correlations gave the same conclusion
  (t-test: t = 26.8, df = 665, P ≪ 2.2e-16; sign-rank test: V = 8781, P ≪ 2.2e-16).
  The 
@@ -16250,8 +19653,27 @@ BCV
 
 \end_inset
 
- for GB and non-GB libraries, and found that globin blocking resulted in
- a negligible increase in the 
+ for 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ and non-GB libraries, and found that 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ resulted in a negligible increase in the 
 \begin_inset Flex Glossary Term
 status open
 
@@ -16276,7 +19698,17 @@ BCV
  for both sets indicates that the higher correlations in the GB libraries
  are most likely a result of the increased yield of useful reads, which
  reduces the contribution of Poisson counting uncertainty to the overall
- variance of the logCPM values 
+ variance of the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+logCPM
+\end_layout
+
+\end_inset
+
+ values 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "McCarthy2012"
@@ -16743,13 +20175,32 @@ Comparison of significantly differentially expressed genes with and without
 
 \begin_layout Standard
 To compare performance on differential gene expression tests, we took subsets
- of both the GB and non-GB libraries with exactly one pre-transplant and
- one post-transplant sample for each animal that had paired samples available
- for analysis (N=7 animals, N=14 samples in each subset).
+ of both the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ and non-GB libraries with exactly one pre-transplant and one post-transplant
+ sample for each animal that had paired samples available for analysis (N=7
+ animals, N=14 samples in each subset).
  The same test for pre- vs.
  post-transplant differential gene expression was performed on the same
- 7 pairs of samples from GB libraries and non-GB libraries, in each case
- using an 
+ 7 pairs of samples from 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ libraries and non-GB libraries, in each case using an 
 \begin_inset Flex Glossary Term
 status open
 
@@ -16762,11 +20213,29 @@ FDR
  of 10% as the threshold of significance.
  Out of 12954 genes that passed the detection threshold in both subsets,
  358 were called significantly differentially expressed in the same direction
- in both sets; 1063 were differentially expressed in the GB set only; 296
- were differentially expressed in the non-GB set only; 2 genes were called
- significantly up in the GB set but significantly down in the non-GB set;
- and the remaining 11235 were not called differentially expressed in either
- set.
+ in both sets; 1063 were differentially expressed in the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ set only; 296 were differentially expressed in the non-GB set only; 2 genes
+ were called significantly up in the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ set but significantly down in the non-GB set; and the remaining 11235 were
+ not called differentially expressed in either set.
  These data are summarized in Table 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -16802,15 +20271,45 @@ edgeR
 \begin_inset Formula $\textrm{BCV}=0.302$
 \end_inset
 
- for GB and 0.297 for non-GB).
+ for 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ and 0.297 for non-GB).
 \end_layout
 
 \begin_layout Standard
-The key point is that the GB data results in substantially more differentially
- expressed calls than the non-GB data.
+The key point is that the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ data results in substantially more differentially expressed calls than
+ the non-GB data.
  Since there is no gold standard for this dataset, it is impossible to be
  certain whether this is due to under-calling of differential expression
- in the non-GB samples or over-calling in the GB samples.
+ in the non-GB samples or over-calling in the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ samples.
  However, given that both datasets are derived from the same biological
  samples and have nearly equal 
 \begin_inset ERT
@@ -16825,14 +20324,52 @@ glspl*{BCV}
 
 \end_inset
 
-, it is more likely that the larger number of DE calls in the GB samples
- are genuine detections that were enabled by the higher sequencing depth
- and measurement precision of the GB samples.
+, it is more likely that the larger number of DE calls in the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ samples are genuine detections that were enabled by the higher sequencing
+ depth and measurement precision of the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ samples.
  Note that the same set of genes was considered in both subsets, so the
- larger number of differentially expressed gene calls in the GB data set
- reflects a greater sensitivity to detect significant differential gene
- expression and not simply the larger total number of detected genes in
- GB samples described earlier.
+ larger number of differentially expressed gene calls in the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ data set reflects a greater sensitivity to detect significant differential
+ gene expression and not simply the larger total number of detected genes
+ in 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ samples described earlier.
 \end_layout
 
 \begin_layout Section
@@ -16873,9 +20410,18 @@ literal "false"
  However, in practice this has now been adopted generally primarily driven
  by concerns for cost control.
  The main objective of our work was to directly test the impact of globin
- gene transcripts and a new globin blocking protocol for application to
- the newest generation of differential gene expression profiling determined
- using next generation sequencing.
+ gene transcripts and a new 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ protocol for application to the newest generation of differential gene
+ expression profiling determined using next generation sequencing.
  
 \end_layout
 
@@ -16938,7 +20484,11 @@ literal "false"
  significantly reduces the complexity of the transcriptome.
  Therefore, we could not determine how DeepSAGE results would translate
  to the common strategy in the field for assaying the entire transcript
- population by whole-transcriptome 3’-end 
+ population by whole-transcriptome 
+\begin_inset Formula $3^{\prime}$
+\end_inset
+
+-end 
 \begin_inset Flex Glossary Term
 status open
 
@@ -16955,24 +20505,73 @@ RNA-seq
 \end_layout
 
 \begin_layout Standard
-As mentioned above, the addition of globin blocking oligos has a very small
- impact on measured expression levels of gene expression.
+As mentioned above, the addition of 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+glspl*{oligo}
+\end_layout
+
+\end_inset
+
+ has a very small impact on measured expression levels of gene expression.
  However, this is a non-issue for the purposes of differential expression
  testing, since a systematic change in a gene in all samples does not affect
  relative expression levels between samples.
  However, we must acknowledge that simple comparisons of gene expression
- data obtained by GB and non-GB protocols are not possible without additional
- normalization.
+ data obtained by 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ and non-GB protocols are not possible without additional normalization.
  
 \end_layout
 
 \begin_layout Standard
-More importantly, globin blocking not only nearly doubles the yield of usable
- reads, it also increases inter-sample correlation and sensitivity to detect
- differential gene expression relative to the same set of samples profiled
- without blocking.
- In addition, globin blocking does not add a significant amount of random
- noise to the data.
+More importantly, 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ not only nearly doubles the yield of usable reads, it also increases inter-samp
+le correlation and sensitivity to detect differential gene expression relative
+ to the same set of samples profiled without blocking.
+ In addition, 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ does not add a significant amount of random noise to the data.
  Globin blocking thus represents a cost-effective way to squeeze more data
  and statistical power out of the same blood samples and the same amount
  of sequencing.
@@ -16989,7 +20588,20 @@ RNA-seq
  reads mapping to the rest of the genome, with minimal perturbations in
  the relative levels of non-globin genes.
  Based on these results, globin transcript reduction using sequence-specific,
- complementary blocking oligonucleotides is recommended for all deep 
+ complementary blocking 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+glspl*{oligo}
+\end_layout
+
+\end_inset
+
+ is recommended for all deep 
 \begin_inset Flex Glossary Term
 status open
 
@@ -17007,8 +20619,18 @@ Future Directions
 \end_layout
 
 \begin_layout Standard
-One drawback of the globin blocking method presented in this analysis is
- a poor yield of genic reads, only around 50%.
+One drawback of the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ method presented in this analysis is a poor yield of genic reads, only
+ around 50%.
  In a separate experiment, the reagent mixture was modified so as to address
  this drawback, resulting in a method that produces an even better reduction
  in globin reads without reducing the overall fraction of genic reads.
@@ -17033,8 +20655,17 @@ RNA-seq
  experiment investigating the effects of mesenchymal stem cell infusion
  on blood gene expression in cynomologus transplant recipients in a time
  course after transplantation.
- With the globin blocking method in place, the way is now clear for this
- experiment to proceed.
+ With the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ method in place, the way is now clear for this experiment to proceed.
 \end_layout
 
 \begin_layout Chapter
