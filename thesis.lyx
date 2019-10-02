@@ -17548,19 +17548,6 @@ Normalization and Exploratory Data Analysis
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-This paragraph is throwing LaTeX errors.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 Libraries were normalized by computing scaling factors using the 
 \begin_inset Flex Code
 status open
@@ -17590,15 +17577,12 @@ literal "false"
 \end_inset
 
 .
- HELLO 
-\begin_inset ERT
+ 
+\begin_inset Flex Glossary Term (Capital)
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-gls*{logCPM}
+logCPM
 \end_layout
 
 \end_inset
@@ -17788,7 +17772,7 @@ GB
 
 \end_inset
 
- and SampleID.
+ and Sample ID.
  To test the effect of 
 \begin_inset Flex Glossary Term
 status open
@@ -18654,16 +18638,7 @@ literal "false"
 status open
 
 \begin_layout Plain Layout
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
 GB
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \end_inset
