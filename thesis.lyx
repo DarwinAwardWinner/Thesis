@@ -249,19 +249,6 @@ Check all figures to make sure they fit on the page with their legends.
 status open
 
 \begin_layout Plain Layout
-Search and replace: naive -> naïve
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
 Look into auto-generated nomenclature list: 
 \begin_inset CommandInset href
 LatexCommand href
@@ -704,13 +691,13 @@ One of the defining features of the adaptive immune system is immune memory:
  foreign antigen and respond more quickly and more strongly to that antigen
  in subsequent encounters.
  When the immune system first encounters a new antigen, the lymphocytes
- that respond are known as naive cells – T-cells and B-cells that have never
+ that respond are known as naïve cells – T-cells and B-cells that have never
  detected their target antigens before.
  Once activated by their specific antigen presented by an antigen-presenting
- cell in the proper co-stimulatory context, naive cells differentiate into
+ cell in the proper co-stimulatory context, naïve cells differentiate into
  effector cells that carry out their respective functions in targeting and
  destroying the source of the foreign antigen.
- The requirement for co-stimulation is an important feature of naive cells
+ The requirement for co-stimulation is an important feature of naïve cells
  that limits 
 \begin_inset Quotes eld
 \end_inset
@@ -724,11 +711,11 @@ false positive
  as the presence of common bacterial cell components or inflamed tissue.
  Most effector cells die after the foreign antigen is cleared, since they
  are no longer needed, but some remain and differentiate into memory cells.
- Like naive cells, memory cells respond to detection of their specific antigen
+ Like naïve cells, memory cells respond to detection of their specific antigen
  by differentiating into effector cells, ready to fight an infection.
- However, unlike naive cells, memory cells do not require the same degree
+ However, unlike naïve cells, memory cells do not require the same degree
  of co-stimulatory signaling for activation, and once activated, they proliferat
-e and differentiate into effector cells more quickly than naive cells do.
+e and differentiate into effector cells more quickly than naïve cells do.
 \end_layout
 
 \begin_layout Standard
@@ -739,18 +726,18 @@ In the context of a pathogenic infection, immune memory is a major advantage,
  are allowed to differentiate into memory cells, preventing rejection of
  the graft becomes much more difficult.
  Many immune suppression drugs work by interfering with the co-stimulation
- that naive cells require in order to mount an immune response [CITE?].
+ that naïve cells require in order to mount an immune response [CITE?].
  Since memory cells do not require this co-stimulation, these drugs are
  not effective at suppressing an immune response that is mediated by memory
  cells.
  Secondly, because memory cells are able to mount a stronger and faster
  response to an antigen, all else being equal they require stronger immune
- suppression than naive cells to prevent an immune response.
+ suppression than naïve cells to prevent an immune response.
  However, immune suppression affects the entire immune system, not just
  cells recognizing a specific antigen, so increasing the dosage of immune
  suppression drugs also increases the risk of complications from a compromised
  immune system, such as opportunistic infections.
- While the differences in cell surface markers between naive and memory
+ While the differences in cell surface markers between naïve and memory
  cells have been fairly well characterized, the internal regulatory mechanisms
  that allow memory cells to respond more quickly and without co-stimulation
  are still poorly understood.
@@ -1284,7 +1271,6 @@ In addition to other considerations, if called peaks are to be used as regions
  experimental conditions, or else the statistical significance calculations
  for differential abundance will overstate their confidence in the results.
  The
-
 \begin_inset Flex Code
 status open
 
@@ -1294,11 +1280,11 @@ csaw
 
 \end_inset
 
- package provides guidelines for calling peaks in this way: peaks
- are called based on a combination of all ChIP-seq reads from all experimental
- conditions, so that the identified peaks are based on the average abundance
- across all conditions, which is independent of any differential abundance
- between conditions 
+ package provides guidelines for calling peaks in this way: peaks are called
+ based on a combination of all ChIP-seq reads from all experimental conditions,
+ so that the identified peaks are based on the average abundance across
+ all conditions, which is independent of any differential abundance between
+ conditions 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Lun2015a"
@@ -1382,7 +1368,6 @@ literal "false"
 \begin_layout Standard
 In ChIP-seq data, normalization is not as straightforward.
  The
-
 \begin_inset Flex Code
 status open
 
@@ -1392,8 +1377,8 @@ csaw
 
 \end_inset
 
- package implements several different normalization strategies
- and provides guidance on when to use each one 
+ package implements several different normalization strategies and provides
+ guidance on when to use each one 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Lun2015a"
@@ -1615,7 +1600,7 @@ Proper analysis requires finding and exploiting systematic genome-wide trends
 
 \begin_layout Chapter
 Reproducible genome-wide epigenetic analysis of H3K4 and H3K27 methylation
- in naive and memory CD4 T-cell activation
+ in naïve and memory CD4 T-cell activation
 \end_layout
 
 \begin_layout Standard
@@ -1667,7 +1652,7 @@ CD4 T-cell
 \begin_inset Quotes eld
 \end_inset
 
-naive CD4 T-cells
+naïve CD4 T-cells
 \begin_inset Quotes erd
 \end_inset
 
@@ -1704,18 +1689,18 @@ Is it ok to just copy a bunch of citations from the intros to Sarah's papers?
 \begin_layout Standard
 CD4 T-cells are central to all adaptive immune responses, as well as immune
  memory [CITE?].
- After an infection is cleared, a subset of the naive CD4 T-cells that responded
+ After an infection is cleared, a subset of the naïve CD4 T-cells that responded
  to that infection differentiate into memory CD4 T-cells, which are responsible
  for responding to the same pathogen in the future.
  Memory CD4 T-cells are functionally distinct, able to respond to an infection
- more quickly and without the co-stimulation required by naive CD4 T-cells.
+ more quickly and without the co-stimulation required by naïve CD4 T-cells.
  However, the molecular mechanisms underlying this functional distinction
  are not well-understood.
  Epigenetic regulation via histone modification is thought to play an important
  role, but while many studies have looked at static snapshots of histone
  methylation in T-cells, few studies have looked at the dynamics of histone
  regulation after T-cell activation, nor the differences in histone methylation
- between naive and memory T-cells.
+ between naïve and memory T-cells.
  H3K4me2, H3K4me3 and H3K27me3 are three histone marks thought to be major
  epigenetic regulators of gene expression.
  The goal of the present study is to investigate the role of these histone
@@ -1747,15 +1732,15 @@ deactivating
 
 \begin_layout Standard
 In order to investigate the relationship between gene expression and these
- histone modifications in the context of naive and memory CD4 T-cell activation,
+ histone modifications in the context of naïve and memory CD4 T-cell activation,
  a previously published data set of combined RNA-seq and ChIP-seq data was
  re-analyzed using up-to-date methods designed to address the specific analysis
  challenges posed by this data set.
- The data set contains naive and memory CD4 T-cell samples in a time course
+ The data set contains naïve and memory CD4 T-cell samples in a time course
  before and after activation.
  Like the original analysis, this analysis looks at the dynamics of these
  marks histone marks and compare them to gene expression dynamics at the
- same time points during activation, as well as compare them between naive
+ same time points during activation, as well as compare them between naïve
  and memory cells, in hope of discovering evidence of new mechanistic details
  in the interplay between them.
  The original analysis of this data treated each gene promoter as a monolithic
@@ -1802,7 +1787,7 @@ literal "true"
 .
  Briefly, this data consists of RNA-seq and ChIP-seq from CD4 T-cells cultured
  from 4 donors.
- From each donor, naive and memory CD4 T-cells were isolated separately.
+ From each donor, naïve and memory CD4 T-cells were isolated separately.
  Then cultures of both cells were activated [how?], and samples were taken
  at 4 time points: Day 0 (pre-activation), Day 1 (early activation), Day
  5 (peak activation), and Day 14 (post-activation).
@@ -3078,7 +3063,6 @@ PCoA plots of ChIP-seq sliding window data, before and after subtracting
 \begin_layout Standard
 Reads in promoters, peaks, and sliding windows across the genome were counted
  and normalized using
-
 \begin_inset Flex Code
 status open
 
@@ -3561,7 +3545,7 @@ Est.
 \begin_inset Text
 
 \begin_layout Plain Layout
-Naive Day 0 vs Day 1
+Naïve Day 0 vs Day 1
 \end_layout
 
 \end_inset
@@ -3590,7 +3574,7 @@ Naive Day 0 vs Day 1
 \begin_inset Text
 
 \begin_layout Plain Layout
-Naive Day 0 vs Day 5
+Naïve Day 0 vs Day 5
 \end_layout
 
 \end_inset
@@ -3619,7 +3603,7 @@ Naive Day 0 vs Day 5
 \begin_inset Text
 
 \begin_layout Plain Layout
-Naive Day 0 vs Day 14
+Naïve Day 0 vs Day 14
 \end_layout
 
 \end_inset
@@ -3735,7 +3719,7 @@ Memory Day 0 vs Day 14
 \begin_inset Text
 
 \begin_layout Plain Layout
-Day 0 Naive vs Memory
+Day 0 Naïve vs Memory
 \end_layout
 
 \end_inset
@@ -3764,7 +3748,7 @@ Day 0 Naive vs Memory
 \begin_inset Text
 
 \begin_layout Plain Layout
-Day 1 Naive vs Memory
+Day 1 Naïve vs Memory
 \end_layout
 
 \end_inset
@@ -3793,7 +3777,7 @@ Day 1 Naive vs Memory
 \begin_inset Text
 
 \begin_layout Plain Layout
-Day 5 Naive vs Memory
+Day 5 Naïve vs Memory
 \end_layout
 
 \end_inset
@@ -3822,7 +3806,7 @@ Day 5 Naive vs Memory
 \begin_inset Text
 
 \begin_layout Plain Layout
-Day 14 Naive vs Memory
+Day 14 Naïve vs Memory
 \end_layout
 
 \end_inset
@@ -4049,7 +4033,7 @@ noprefix "false"
 
 \end_inset
 
-, there is a clear separation between naive and memory samples at Day 0,
+, there is a clear separation between naïve and memory samples at Day 0,
  despite the fact that only 2 genes were significantly differentially expressed
  for this comparison.
  Similarly, the small numbers of genes detected for the Day 0 vs Day 5 compariso
@@ -4887,7 +4871,7 @@ ly additive anyway.
 \end_layout
 
 \begin_layout Subsection
-Gene expression and promoter histone methylation patterns in naive and memory
+Gene expression and promoter histone methylation patterns in naïve and memory
  show convergence at day 14
 \end_layout
 
@@ -5342,7 +5326,7 @@ name "tab:Number-signif-promoters"
 
 \end_inset
 
-Number of differentially modified promoters between naive and memory cells
+Number of differentially modified promoters between naïve and memory cells
  at each time point after activation.
  
 \series default
@@ -5616,7 +5600,7 @@ Check up on figure refs in this paragraph
 \end_layout
 
 \begin_layout Standard
-We hypothesized that if naive cells had differentiated into memory cells
+We hypothesized that if naïve cells had differentiated into memory cells
  by Day 14, then their patterns of expression and histone modification should
  converge with those of memory cells at Day 14.
  Figure 
@@ -5631,7 +5615,7 @@ noprefix "false"
 
  shows the patterns of variation in all 3 histone marks in the promoter
  regions of the genome using principal coordinate analysis.
- All 3 marks show a noticeable convergence between the naive and memory
+ All 3 marks show a noticeable convergence between the naïve and memory
  samples at day 14, visible as an overlapping of the day 14 groups on each
  plot.
  This is consistent with the counts of significantly differentially modified
@@ -5647,7 +5631,7 @@ noprefix "false"
 \end_inset
 
 .
- For all histone marks, evidence of differential modification between naive
+ For all histone marks, evidence of differential modification between naïve
  and memory samples was detected at every time point except day 14.
  The day 14 convergence pattern is also present in the RNA-seq data (Figure
  
@@ -5663,7 +5647,7 @@ noprefix "false"
 ), albeit in the 2nd and 3rd principal coordinates, indicating that it is
  not the most dominant pattern driving gene expression.
  Taken together, the data show that promoter histone methylation for these
- 3 histone marks and RNA expression for naive and memory cells are most
+ 3 histone marks and RNA expression for naïve and memory cells are most
  similar at day 14, the furthest time point after activation.
  MOFA was also able to capture this day 14 convergence pattern in latent
  factor 5 (Figure 
@@ -5679,7 +5663,7 @@ noprefix "false"
 ), which accounts for shared variation across all 3 histone marks and the
  RNA-seq data, confirming that this convergence is a coordinated pattern
  across all 4 data sets.
- While this observation does not prove that the naive cells have differentiated
+ While this observation does not prove that the naïve cells have differentiated
  into memory cells at Day 14, it is consistent with that hypothesis.
 \end_layout
 
@@ -5908,7 +5892,7 @@ name "fig:H3K4me2-neighborhood"
 
 \end_inset
 
-K-means clustering of promoter H3K4me2 relative coverage depth in naive
+K-means clustering of promoter H3K4me2 relative coverage depth in naïve
  day 0 samples.
  
 \series default
@@ -5999,7 +5983,7 @@ landscape
 \begin_inset Quotes erd
 \end_inset
 
- of ChIP-seq read coverage in naive Day 0 samples within 5 kb of each gene's
+ of ChIP-seq read coverage in naïve Day 0 samples within 5 kb of each gene's
  TSS by binning reads into 500-bp windows tiled across each promoter LogCPM
  values were calculated for the bins in each promoter and then the average
  logCPM for each promoter's bins was normalized to zero, such that the values
@@ -6130,7 +6114,7 @@ Should have a table of p-values on difference of means between Cluster 5
 
 \begin_layout Standard
 To investigate the association between relative peak position and gene expressio
-n, we plotted the Naive Day 0 expression for the genes in each cluster (Figure
+n, we plotted the Naïve Day 0 expression for the genes in each cluster (Figure
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -6364,7 +6348,7 @@ name "fig:H3K4me3-neighborhood"
 
 \end_inset
 
-K-means clustering of promoter H3K4me3 relative coverage depth in naive
+K-means clustering of promoter H3K4me3 relative coverage depth in naïve
  day 0 samples.
  
 \series default
@@ -6672,7 +6656,7 @@ name "fig:H3K27me3-neighborhood"
 
 \end_inset
 
-K-means clustering of promoter H3K27me3 relative coverage depth in naive
+K-means clustering of promoter H3K27me3 relative coverage depth in naïve
  day 0 samples.
  
 \series default
@@ -7125,7 +7109,7 @@ Look up some more references for these histone marks being involved in memory
 
 \begin_layout Standard
 We have observed that all 3 histone marks and the gene expression data all
- exhibit evidence of convergence in abundance between naive and memory cells
+ exhibit evidence of convergence in abundance between naïve and memory cells
  by day 14 after activation (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -7161,13 +7145,13 @@ noprefix "false"
  Like all the latent factors in this plot, this factor explains a substantial
  portion of the variance in all 4 data sets, indicating a coordinated pattern
  of variation shared across all histone marks and gene expression.
- This, of course, is consistent with the expectation that any naive CD4
+ This, of course, is consistent with the expectation that any naïve CD4
  T-cells remaining at day 14 should have differentiated into memory cells
  by that time, and should therefore have a genomic state similar to memory
  cells.
  This convergence is evidence that these histone marks all play an important
- role in the naive-to-memory differentiation process.
- A histone mark that was not involved in naive-to-memory differentiation
+ role in the naïve-to-memory differentiation process.
+ A histone mark that was not involved in naïve-to-memory differentiation
  would not be expected to converge in this way after activation.
 \end_layout
 
@@ -7235,7 +7219,7 @@ Reproduced with permission.
 
 \begin_layout Standard
 In H3K4me2, H3K4me3, and RNA-seq, this convergence appears to be in progress
- already by Day 5, shown by the smaller distance between naive and memory
+ already by Day 5, shown by the smaller distance between naïve and memory
  cells at day 5 along the 
 \begin_inset Formula $y$
 \end_inset
@@ -7282,7 +7266,7 @@ noprefix "false"
 
 \end_inset
 
-, which shows the pattern of H3K4 methylation and expression for naive cells
+, which shows the pattern of H3K4 methylation and expression for naïve cells
  and memory cells converging at day 5.
  This model was developed without the benefit of the PCoA plots in Figure
  
@@ -7304,11 +7288,11 @@ noprefix "false"
 \end_layout
 
 \begin_layout Standard
-While the ideal comparison to demonstrate this convergence would be naive
+While the ideal comparison to demonstrate this convergence would be naïve
  cells at day 14 to memory cells at day 0, this is not feasible in this
- experimental system, since neither naive nor memory cells are able to fully
+ experimental system, since neither naïve nor memory cells are able to fully
  return to their pre-activation state, as shown by the lack of overlap between
- days 0 and 14 for either naive or memory cells in Figure 
+ days 0 and 14 for either naïve or memory cells in Figure
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:PCoA-promoters"
@@ -7833,14 +7817,14 @@ sphere of influence
 \end_layout
 
 \begin_layout Subsection
-Design experiments to focus on post-activation convergence of naive & memory
+Design experiments to focus on post-activation convergence of naïve & memory
  cells
 \end_layout
 
 \begin_layout Standard
-In this study, a convergence between naive and memory cells was observed
+In this study, a convergence between naïve and memory cells was observed
  in both the pattern of gene expression and in epigenetic state of the 3
- histone marks studied, consistent with the hypothesis that any naive cells
+ histone marks studied, consistent with the hypothesis that any naïve cells
  remaining 14 days after activation have differentiated into memory cells,
  and that both gene expression and these histone marks are involved in this
  differentiation.
@@ -7852,8 +7836,8 @@ In this study, a convergence between naive and memory cells was observed
  experiment, the cells are not guaranteed to return to their original pre-activa
 tion state, or perhaps this process takes substantially longer than 14 days.
  This is a challenge for the convergence hypothesis because the ideal comparison
- to prove that naive cells are converging to a resting memory state would
- be to compare the final naive time point to the Day 0 memory samples, but
+ to prove that naïve cells are converging to a resting memory state would
+ be to compare the final naïve time point to the Day 0 memory samples, but
  this comparison is only meaningful if memory cells generally return to
  the same 
 \begin_inset Quotes eld
@@ -7884,12 +7868,12 @@ resting
 
  state after each activation, even if this state is different from the initial
  resting state at Day 0.
- If so, it will be possible to compare the final states of both naive and
+ If so, it will be possible to compare the final states of both naïve and
  memory cells to show that they converge despite different initial conditions.
 \end_layout
 
 \begin_layout Standard
-In addition, if naive-to-memory convergence is a general pattern, it should
+In addition, if naïve-to-memory convergence is a general pattern, it should
  also be detectable in other epigenetic marks, including other histone marks
  and DNA methylation.
  An experiment should be designed studying a large number of epigenetic
