@@ -1984,7 +1984,7 @@ SCAN
 \begin_inset CommandInset nomenclature
 LatexCommand nomenclature
 symbol "SCAN"
-description "single-channel array normalization"
+description "Single-Channel Array Normalization"
 literal "false"
 
 \end_inset
@@ -10698,15 +10698,6 @@ status open
 \backslash
 glsdisp*{SCAN}{Single Channel Array Normalization (SCAN)}
 \end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "SCAN"
-description "Single-Channel Array Normalization"
-literal "false"
 
 \end_inset
 
