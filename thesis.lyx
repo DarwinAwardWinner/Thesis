@@ -1282,7 +1282,18 @@ In addition to other considerations, if called peaks are to be used as regions
  to call peaks in a way that is blind to differential abundance between
  experimental conditions, or else the statistical significance calculations
  for differential abundance will overstate their confidence in the results.
- The csaw package provides guidelines for calling peaks in this way: peaks
+ The
+
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+csaw
+\end_layout
+
+\end_inset
+
+ package provides guidelines for calling peaks in this way: peaks
  are called based on a combination of all ChIP-seq reads from all experimental
  conditions, so that the identified peaks are based on the average abundance
  across all conditions, which is independent of any differential abundance
@@ -1369,7 +1380,18 @@ literal "false"
 
 \begin_layout Standard
 In ChIP-seq data, normalization is not as straightforward.
- The csaw package implements several different normalization strategies
+ The
+
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+csaw
+\end_layout
+
+\end_inset
+
+ package implements several different normalization strategies
  and provides guidance on when to use each one 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -3054,7 +3076,18 @@ PCoA plots of ChIP-seq sliding window data, before and after subtracting
 
 \begin_layout Standard
 Reads in promoters, peaks, and sliding windows across the genome were counted
- and normalized using csaw and analyzed for differential modification using
+ and normalized using
+
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+csaw
+\end_layout
+
+\end_inset
+
+ and analyzed for differential modification using
 \begin_inset Flex Code
 status open
 
