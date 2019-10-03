@@ -5426,20 +5426,6 @@ Focus on what hypotheses were tested, then select figures that show how
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Maybe reorder these sections to do RNA-seq, then ChIP-seq, then combined
- analyses?
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Subsection
 Interpretation of RNA-seq analysis is limited by a major confounding factor
 \end_layout
@@ -5681,7 +5667,7 @@ H3K4 and H3K27 methylation occur in broad regions and are enriched near
 \begin_inset Float table
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -7836,20 +7822,6 @@ cloud
  distribution of promoter coverage landscapes.
  While the clusters are a useful abstraction that aids in visualization,
  they are ultimately not an accurate representation of the data.
- A better representation might be something like a polar coordinate system
- with the origin at the center of Cluster 5, where the radius represents
- the peak height above the background and the angle represents the peak's
- position upstream or downstream of the 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-TSS
-\end_layout
-
-\end_inset
-
-.
  The continuous nature of the distribution also explains why different values
  of 
 \begin_inset Formula $K$
@@ -10238,6 +10210,24 @@ Also find better normalizations: maybe borrow from MACS/SICER background
 For H3K4, define polar coordinates based on PC1 & 2: R = peak size, Theta
  = peak position.
  Then correlate with expression.
+\end_layout
+
+\begin_layout Standard
+A better representation might be something like a polar coordinate system
+ with the origin at the center of Cluster 5, where the radius represents
+ the peak height above the background and the angle represents the peak's
+ position upstream or downstream of the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+.
+ 
 \end_layout
 
 \begin_layout Itemize
