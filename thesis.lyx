@@ -395,28 +395,6 @@ Check all figures to make sure they fit on the page with their legends.
 status open
 
 \begin_layout Plain Layout
-Look into auto-generated nomenclature list: 
-\begin_inset CommandInset href
-LatexCommand href
-target "https://wiki.lyx.org/Tips/Nomenclature"
-
-\end_inset
-
-.
- Otherwise, do a manual pass for all abbreviations at the end.
- Do nomenclature/abbreviations independently for each chapter.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
 Make all descriptions consistent in terms of 
 \begin_inset Quotes eld
 \end_inset
@@ -615,21 +593,6 @@ status open
 
 \begin_layout Plain Layout
 Rethink the subsection organization after the intro is written.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Citations are needed all over the place.
- A lot of this is knowledge I've just absorbed from years of conversation
- in the Salomon lab, without ever having seen a citation for it.
 \end_layout
 
 \end_inset
@@ -6536,22 +6499,6 @@ literal "false"
  for H3K27me3.
 \end_layout
 
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-I also have some figures looking at interactions between marks (e.g.
- what if a promoter has both H3K4me3 and H3K27me3), but I don't know if
- that much detail is warranted here, since all the effects just seem approximate
-ly additive anyway.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Subsection
 Gene expression and promoter histone methylation patterns in naïve and memory
  show convergence at day 14
@@ -7269,19 +7216,6 @@ PCoA plots for promoter ChIP-seq and expression RNA-seq data
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Check up on figure refs in this paragraph
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 We hypothesized that if naïve cells had differentiated into memory cells
  by Day 14, then their patterns of expression and histone modification should
  converge with those of memory cells at Day 14.
@@ -7923,21 +7857,6 @@ TSS
 status open
 
 \begin_layout Plain Layout
-RNA-seq values in the plots use logCPM but should really use logFPKM or
- logTPM.
- Fix if time allows.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
 Should have a table of p-values on difference of means between Cluster 5
  and the others.
 \end_layout
@@ -8353,19 +8272,6 @@ end{landscape}
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Is there more to say here?
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 All observations described above for H3K4me2 
 \begin_inset Flex Glossary Term
 status open
@@ -8666,19 +8572,6 @@ end{landscape}
 \begin_layout Plain Layout
 
 }
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Should maybe re-explain what was done or refer back to the previous section.
 \end_layout
 
 \end_inset
@@ -9126,27 +9019,6 @@ TSS
 kb radius determined from TSS-to-peak distances is functionally significant.
  However, the two patterns of coverage associated with elevated expression
  levels both have interesting features within this radius.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-My instinct is to say 
-\begin_inset Quotes eld
-\end_inset
-
-further study is needed
-\begin_inset Quotes erd
-\end_inset
-
- here, but that goes in Chapter 5, right?
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Subsection
