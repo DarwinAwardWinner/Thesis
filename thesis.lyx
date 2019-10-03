@@ -889,8 +889,21 @@ In the context of a pathogenic infection, immune memory is a major advantage,
  are still poorly understood.
  In order to develop methods of immune suppression that either prevent the
  formation of memory cells or work more effectively against memory cells,
- the mechanisms of immune memory formation and regulation must be better
- understood.
+ we require a more complete understanding of the mechanisms of immune memory
+ formation and regulation.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Some kind of transition into bioinformatics would be good here
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -902,8 +915,7 @@ Overview of bioinformatic analysis methods
 status open
 
 \begin_layout Plain Layout
-Also cite: R, Bioconductor, snakemake, python, pandas, bedtools, bowtie2,
- hisat2, STAR, samtools, sra-toolkit, picard tools
+Also cite somewhere: R, Bioconductor
 \end_layout
 
 \end_inset
