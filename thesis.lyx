@@ -643,34 +643,22 @@ Rejection is the major long-term threat to organ and tissue allografts
 
 \begin_layout Standard
 Organ and tissue transplants are a life-saving treatment for people who
- have lost the function of an important organ [CITE?].
+ have lost the function of an important organ.
  In some cases, it is possible to transplant a patient's own tissue from
  one area of their body to another, referred to as an autograft.
  This is common for tissues that are distributed throughout many areas of
  the body, such as skin and bone.
  However, in cases of organ failure, there is no functional self tissue
  remaining, and a transplant from another person – a donor – is required.
- This is referred to as an allograft.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Possible citation for degree of generic variability: 
-\begin_inset CommandInset href
-LatexCommand href
-target "https://www.ncbi.nlm.nih.gov/pubmed/22424236?dopt=Abstract"
+ This is referred to as an allograft 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Valenzuela2017"
+literal "false"
 
 \end_inset
 
-
-\end_layout
-
-\end_inset
-
-
+.
 \end_layout
 
 \begin_layout Standard
@@ -688,23 +676,39 @@ How much mechanistic detail is needed here? My work doesn't really go into
 \end_layout
 
 \begin_layout Standard
-Because an allograft comes from a different person, it is genetically distinct
- from the rest of the recipient's body.
- Some genetic variants occur in protein coding regions and affect the polypeptid
-e sequences encoded by the affected genes, resulting in protein products
- that differ from the equivalent proteins produced by the graft recipient's
- own tissue.
+Because an allograft comes from a donor who is genetically distinct from
+ the recipient (with rare exceptions), genetic variants in protein-coding
+ regions affect the polypeptide sequences encoded by the affected genes,
+ resulting in protein products in the allograft that differ from the equivalent
+ proteins produced by the graft recipient's own tissue, particularly for
+ highly polymorphic genes like HLA .
  As a result, without intervention, the recipient's immune system will eventuall
 y identify the graft as foreign tissue and begin attacking it, eventually
  resulting in failure and death of the graft, a process referred to as transplan
-t rejection.
+t rejection .
  Rejection is the most significant challenge to the long-term health and
- survival of an allograft [CITE?].
+ survival of an allograft 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Valenzuela2017"
+literal "false"
+
+\end_inset
+
+.
  Like any adaptive immune response, graft rejection generally occurs via
  two broad mechanisms: cellular immunity, in which CD8+ T-cells recognizing
  graft-specific antigens induce apoptosis in the graft cells; and humoral
  immunity, in which B-cells produce antibodies that bind to graft proteins
- and direct an immune response against the graft [CITE?].
+ and direct an immune response against the graft 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Murphy2012"
+literal "false"
+
+\end_inset
+
+.
  In either case, rejection shows most of the typical hallmarks of an adaptive
  immune response, in particular mediation by CD4+ T-cells and formation
  of immune memory.
@@ -716,28 +720,52 @@ Diagnosis and treatment of allograft rejection is a major challenge
 
 \begin_layout Standard
 To prevent rejection, allograft recipients are treated with immune suppressive
- drugs [CITE?].
+ drugs 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Kowalski2003"
+literal "false"
+
+\end_inset
+
+.
  The goal is to achieve sufficient suppression of the immune system to prevent
  rejection of the graft without compromising the ability of the immune system
  to raise a normal response against infection.
  As such, a delicate balance must be struck: insufficient immune suppression
  may lead to rejection and ultimately loss of the graft; excessive suppression
  leaves the patient vulnerable to life-threatening opportunistic infections.
- Because every patient is different, immune suppression must be tailored
- for each patient.
- Furthermore, immune suppression must be tuned over time, as the immune
- system's activity is not static, nor is it held in a steady state [CITE?].
+ Because every patient's matabolism is different, achieving this delicate
+ balance requires drug dosage to be tailored for each patient.
+ Furthermore, dosage must be tuned over time, as the immune system's activity
+ varies over time and in response to external stimuli with no fixed pattern.
  In order to properly adjust the dosage of immune suppression drugs, it
  is necessary to monitor the health of the transplant and increase the dosage
- if evidence of rejection is observed.
+ if evidence of rejection or alloimmune activity is observed.
 \end_layout
 
 \begin_layout Standard
 However, diagnosis of rejection is a significant challenge.
  Early diagnosis is essential in order to step up immune suppression before
- the immune system damages the graft beyond recovery [CITE?].
+ the immune system damages the graft beyond recovery 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Israeli2007"
+literal "false"
+
+\end_inset
+
+.
  The current gold standard test for graft rejection is a tissue biopsy,
- examined for visible signs of rejection by a trained histologist [CITE?].
+ examined for visible signs of rejection by a trained histologist 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Kurian2014"
+literal "false"
+
+\end_inset
+
+.
  When a patient shows symptoms of possible rejection, a 
 \begin_inset Quotes eld
 \end_inset
@@ -757,7 +785,7 @@ sub-clinical
 \begin_inset Quotes erd
 \end_inset
 
- rejection [CITE?].
+ rejection.
  In light of this, is is now common to perform 
 \begin_inset Quotes eld
 \end_inset
@@ -778,7 +806,7 @@ for cause
  biopsies 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Wilkinson2006"
+key "Wilkinson2006,Salomon2002,Patel2018,Zachariah2018"
 literal "false"
 
 \end_inset
@@ -791,7 +819,15 @@ However, biopsies have a number of downsides that limit their effectiveness
  as a diagnostic tool.
  First, the need for manual inspection by a histologist means that diagnosis
  is subject to the biases of the particular histologist examining the biopsy
- [CITE?].
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Kurian2014"
+literal "false"
+
+\end_inset
+
+.
  In marginal cases, two different histologists may give two different diagnoses
  to the same biopsy.
  Second, a biopsy can only evaluate if rejection is occurring in the section
@@ -800,9 +836,17 @@ However, biopsies have a number of downsides that limit their effectiveness
  extracted from a different section, a false negative diagnosis may result.
  Most importantly, extraction of tissue from a graft is invasive and is
  treated as an injury by the body, which results in inflammation that in
- turn promotes increased immune system activity [CITE?].
+ turn promotes increased immune system activity.
  Hence, the invasiveness of biopsies severely limits the frequency with
- which they can safely be performed.
+ which they can safely be performed 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Patel2018"
+literal "false"
+
+\end_inset
+
+.
  Typically, protocol biopsies are not scheduled more than about once per
  month 
 \begin_inset CommandInset citation
