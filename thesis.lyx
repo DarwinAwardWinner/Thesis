@@ -680,12 +680,19 @@ Because an allograft comes from a donor who is genetically distinct from
  the recipient (with rare exceptions), genetic variants in protein-coding
  regions affect the polypeptide sequences encoded by the affected genes,
  resulting in protein products in the allograft that differ from the equivalent
- proteins produced by the graft recipient's own tissue, particularly for
- highly polymorphic genes like HLA .
+ proteins produced by the graft recipient's own tissue.
  As a result, without intervention, the recipient's immune system will eventuall
 y identify the graft as foreign tissue and begin attacking it, eventually
  resulting in failure and death of the graft, a process referred to as transplan
-t rejection .
+t rejection 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Murphy2012"
+literal "false"
+
+\end_inset
+
+.
  Rejection is the most significant challenge to the long-term health and
  survival of an allograft 
 \begin_inset CommandInset citation
@@ -723,7 +730,7 @@ To prevent rejection, allograft recipients are treated with immune suppressive
  drugs 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Kowalski2003"
+key "Kowalski2003,Murphy2012"
 literal "false"
 
 \end_inset
@@ -734,7 +741,16 @@ literal "false"
  to raise a normal response against infection.
  As such, a delicate balance must be struck: insufficient immune suppression
  may lead to rejection and ultimately loss of the graft; excessive suppression
- leaves the patient vulnerable to life-threatening opportunistic infections.
+ leaves the patient vulnerable to life-threatening opportunistic infections
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Murphy2012"
+literal "false"
+
+\end_inset
+
+.
  Because every patient's matabolism is different, achieving this delicate
  balance requires drug dosage to be tailored for each patient.
  Furthermore, dosage must be tuned over time, as the immune system's activity
@@ -879,7 +895,15 @@ Memory cells are resistant to immune suppression
 One of the defining features of the adaptive immune system is immune memory:
  the ability of the immune system to recognize a previously encountered
  foreign antigen and respond more quickly and more strongly to that antigen
- in subsequent encounters.
+ in subsequent encounters 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Murphy2012"
+literal "false"
+
+\end_inset
+
+.
  When the immune system first encounters a new antigen, the lymphocytes
  that respond are known as naïve cells – T-cells and B-cells that have never
  detected their target antigens before.
@@ -887,8 +911,8 @@ One of the defining features of the adaptive immune system is immune memory:
  cell in the proper co-stimulatory context, naïve cells differentiate into
  effector cells that carry out their respective functions in targeting and
  destroying the source of the foreign antigen.
- The requirement for co-stimulation is an important feature of naïve cells
- that limits 
+ The dependency of activation on co-stimulation is an important feature
+ of naïve lymphocytes that limits 
 \begin_inset Quotes eld
 \end_inset
 
@@ -899,8 +923,9 @@ false positive
  immune responses, because antigen-presenting cells usually only express
  the proper co-stimulation after detecting evidence of an infection, such
  as the presence of common bacterial cell components or inflamed tissue.
- Most effector cells die after the foreign antigen is cleared, since they
- are no longer needed, but some remain and differentiate into memory cells.
+ After the foreign antigen is cleared, most effector cells die since they
+ are no longer needed, but some differentiate into memory cells and remain
+ alive indefinitely.
  Like naïve cells, memory cells respond to detection of their specific antigen
  by differentiating into effector cells, ready to fight an infection.
  However, unlike naïve cells, memory cells do not require the same degree
@@ -911,30 +936,51 @@ e and differentiate into effector cells more quickly than naïve cells do.
 \begin_layout Standard
 In the context of a pathogenic infection, immune memory is a major advantage,
  allowing an organism to rapidly fight off a previously encountered pathogen
- much more quickly and effectively than the first time it was encountered.
+ much more quickly and effectively than the first time it was encountered
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Murphy2012"
+literal "false"
+
+\end_inset
+
+.
  However, if effector cells that recognize an antigen from an allograft
  are allowed to differentiate into memory cells, preventing rejection of
  the graft becomes much more difficult.
  Many immune suppression drugs work by interfering with the co-stimulation
- that naïve cells require in order to mount an immune response [CITE?].
- Since memory cells do not require this co-stimulation, these drugs are
- not effective at suppressing an immune response that is mediated by memory
- cells.
+ that naïve cells require in order to mount an immune response.
+ Since memory cells do not require the same degree of co-stimulation, these
+ drugs are not effective at suppressing an immune response that is mediated
+ by memory cells.
  Secondly, because memory cells are able to mount a stronger and faster
- response to an antigen, all else being equal they require stronger immune
- suppression than naïve cells to prevent an immune response.
- However, immune suppression affects the entire immune system, not just
- cells recognizing a specific antigen, so increasing the dosage of immune
- suppression drugs also increases the risk of complications from a compromised
- immune system, such as opportunistic infections.
+ response to an antigen, all else being equal stronger immune suppression
+ is required to prevent an immune response mediated by memory cells.
+ 
+\end_layout
+
+\begin_layout Standard
+However, immune suppression affects the entire immune system, not just cells
+ recognizing a specific antigen, so increasing the dosage of immune suppression
+ drugs also increases the risk of complications from a compromised immune
+ system, such as opportunistic infections 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Murphy2012"
+literal "false"
+
+\end_inset
+
+.
  While the differences in cell surface markers between naïve and memory
  cells have been fairly well characterized, the internal regulatory mechanisms
  that allow memory cells to respond more quickly and without co-stimulation
  are still poorly understood.
  In order to develop methods of immune suppression that either prevent the
  formation of memory cells or work more effectively against memory cells,
- we require a more complete understanding of the mechanisms of immune memory
- formation and regulation.
+ a more complete understanding of the mechanisms of immune memory formation
+ and regulation is required.
 \end_layout
 
 \begin_layout Standard
