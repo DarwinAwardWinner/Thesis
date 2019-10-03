@@ -157,6 +157,7 @@ End
 \paperfontsize 12
 \spacing double
 \use_hyperref true
+\pdf_author "Ryan C. Thompson"
 \pdf_bookmarks true
 \pdf_bookmarksnumbered false
 \pdf_bookmarksopen false
@@ -2544,16 +2545,12 @@ Reproducible genome-wide epigenetic analysis of H3K4 and H3K27 methylation
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
 
-\begin_layout Plain Layout
-Chapter author list: Me, Sarah, Dan
-\end_layout
-
-\end_inset
-
-
+\size large
+Ryan C.
+ Thompson, Sarah A.
+ Lamere, Daniel R.
+ Salomon
 \end_layout
 
 \begin_layout Standard
@@ -10356,16 +10353,12 @@ Improving array-based diagnostics for transplant rejection by optimizing
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
 
-\begin_layout Plain Layout
-Chapter author list: Me, Sunil, Tom, Padma, Dan
-\end_layout
-
-\end_inset
-
-
+\size large
+Ryan C.
+ Thompson, Sunil M.
+ Kurian, Thomas Whisnant, Padmaja Natarajan, Daniel R.
+ Salomon
 \end_layout
 
 \begin_layout Standard
@@ -16713,6 +16706,16 @@ Globin-blocking for more effective blood RNA-seq analysis in primate animal
 \end_layout
 
 \begin_layout Standard
+
+\size large
+Ryan C.
+ Thompson, Terri Gelbart, Steven R.
+ Head, Phillip Ordoukhanian, Courtney Mullen, Dongmei Han, Dora Berman,
+ Amelia Bartholomew, Norma Kenyon, Daniel R.
+ Salomon
+\end_layout
+
+\begin_layout Standard
 \begin_inset ERT
 status collapsed
 
@@ -16736,40 +16739,6 @@ status open
 Choose between above and the paper title: Optimizing yield of deep RNA sequencin
 g for gene expression profiling by globin reduction of peripheral blood
  samples from cynomolgus monkeys (Macaca fascicularis).
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Chapter author list: 
-\begin_inset CommandInset href
-LatexCommand href
-target "https://tex.stackexchange.com/questions/156862/displaying-author-for-each-chapter-in-book"
-
-\end_inset
-
- Every chapter gets an author list, which may or may not be part of a citation
- to a published/preprinted paper.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Fix primes and such using math-insert
 \end_layout
 
 \end_inset
