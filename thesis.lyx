@@ -2052,8 +2052,16 @@ frozen
 \end_inset
 
 , so that each array is effectively normalized against this frozen reference
- set rather than the other arrays in the data set under study [CITE].
- Other array normalization methods considered include dChip, 
+ set rather than the other arrays in the data set under study 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "McCall2010"
+literal "false"
+
+\end_inset
+
+.
+ Other available array normalization methods considered include dChip, 
 \begin_inset Flex Glossary Term
 status open
 
@@ -2649,22 +2657,16 @@ memory CD4 T-cells
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Is it ok to just copy a bunch of citations from the intros to Sarah's papers?
- That feels like cheating somehow.
-\end_layout
+CD4 T-cells are central to all adaptive immune responses, as well as immune
+ memory 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Murphy2012"
+literal "false"
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-CD4 T-cells are central to all adaptive immune responses, as well as immune
- memory [CITE?].
+.
  After an infection is cleared, a subset of the naïve CD4 T-cells that responded
  to that infection differentiate into memory CD4 T-cells, which are responsible
  for responding to the same pathogen in the future.
@@ -3210,8 +3212,16 @@ literal "false"
 \end_inset
 
 .
- Each quantification was tested with both Ensembl transcripts and UCSC known
- gene annotations [CITE? Also which versions of each?].
+ Each quantification was tested with both Ensembl transcripts and GENCODE
+ known gene annotations 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Zerbino2018,Harrow2012"
+literal "false"
+
+\end_inset
+
+.
  Comparisons of downstream results from each combination of quantification
  method and reference revealed that all quantifications gave broadly similar
  results for most genes, so shoal with the Ensembl annotation was chosen
@@ -5982,10 +5992,10 @@ noprefix "false"
 \end_inset
 
  gives a summary of the peak calling statistics for each histone mark.
- Consistent with previous observations [CITATION NEEDED], all 3 histone
- marks occur in broad regions spanning many consecutive nucleosomes, rather
- than in sharp peaks as would be expected for a transcription factor or
- other molecule that binds to specific sites.
+ Consistent with previous observations, all 3 histone marks occur in broad
+ regions spanning many consecutive nucleosomes, rather than in sharp peaks
+ as would be expected for a transcription factor or other molecule that
+ binds to specific sites.
  This conclusion is further supported by Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -6122,9 +6132,8 @@ This plot shows the distribution of distances from each annotated transcription
  start site in the genome to the nearest called peak.
  Each line represents one combination of histone mark, cell type, and time
  point.
- Distributions are smoothed using kernel density estimation [CITE? see ggplot2
- stat_density()].
- Transcription start sites that occur 
+ Distributions are smoothed using kernel density estimation.
+ TSSs that occur 
 \emph on
 within
 \emph default
@@ -6446,7 +6455,15 @@ Expression distributions of genes with and without promoter peaks.
 \begin_layout Standard
 H3K4me2 and H3K4me2 have previously been reported as activating marks whose
  presence in a gene's promoter is associated with higher gene expression,
- while H3K27me3 has been reported as inactivating [CITE].
+ while H3K27me3 has been reported as inactivating 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "LaMere2016,LaMere2017"
+literal "false"
+
+\end_inset
+
+.
  The data are consistent with this characterization: genes whose promoters
  (as defined by the radii for each histone mark listed in 
 \begin_inset CommandInset ref
@@ -10495,19 +10512,6 @@ Proper pre-processing is essential for array data
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-This section could probably use some citations
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 Microarrays, bead arrays, and similar assays produce raw data in the form
  of fluorescence intensity measurements, with the each intensity measurement
  proportional to the abundance of some fluorescently labelled target DNA
@@ -10520,7 +10524,15 @@ Microarrays, bead arrays, and similar assays produce raw data in the form
  out the effects of these technical factors and summarize the information
  from multiple probes to arrive at a single usable estimate of abundance
  or other relevant quantity, such as a ratio of two abundances, for each
- target.
+ target 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Gentleman2005"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -16509,7 +16521,15 @@ T2D
 \end_inset
 
  and the associated metabolic syndrome represent a broad dysregulation of
- the body's endocrine signaling related to metabolism [citation needed].
+ the body's endocrine signaling related to metabolism 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Volkmar2012,Hall2018,Yokoi2018"
+literal "false"
+
+\end_inset
+
+.
  This dysregulation could easily manifest as a greater degree of variation
  in the DNA methylation patterns of affected tissues.
  In contrast, 
