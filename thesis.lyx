@@ -2247,6 +2247,15 @@ logFC
 
 \end_inset
 
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "logFC"
+description "$\\log_2$ fold change"
+literal "true"
+
+\end_inset
+
  is zero across all abundance levels.
  Hence, the simpler scaling normalization based on background or signal
  regions are generally preferred whenever possible.
@@ -3499,7 +3508,7 @@ logCPM
 LatexCommand nomenclature
 symbol "logCPM"
 description "$\\log_2$ counts per million"
-literal "false"
+literal "true"
 
 \end_inset
 
