@@ -524,14 +524,8 @@ Beyond that, what I'm mainly interested in is feedback on the content.
  the results I'm trying to show? Do you feel that the claims in the results
  and discussion sections are well-supported? There's no need to suggest
  improvements; just note areas that you feel need improvement.
- Additionally, while I am well aware that Chapter 1 (the introduction) contains
- many un-cited claims, all the other chapters (2,3, and 4) 
-\emph on
-should
-\emph default
- be fully cited.
- So if you notice any un-cited claims in those chapters, please flag them
- for my attention.
+ Additionally, if you notice any un-cited claims in any chapter, please
+ flag them for my attention.
  Similarly, if you discover any factual errors, please note them as well.
 \end_layout
 
@@ -559,7 +553,7 @@ also
 
 \begin_layout Standard
 My thesis is due Thursday, October 10th, so in order to be useful to me,
- I'll need your feedback at least a few days before that, ideally by Monday,
+ I'll need your feedback at least several days before that, ideally by Monday,
  October 7th.
  If you have limited time and are unable to get through the whole thesis,
  please focus your efforts on Chapters 1 and 2, since those are the roughest
@@ -580,11 +574,30 @@ Thanks again for your help, and happy reading!
 Introduction
 \end_layout
 
-\begin_layout Section
-Background & Significance
+\begin_layout Section*
+Structure of the thesis
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+This section might even go before the Chapter 1 header
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Biological-motivation"
+
+\end_inset
+
 Biological motivation
 \end_layout
 
@@ -601,7 +614,7 @@ Rethink the subsection organization after the intro is written.
 
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Rejection is the major long-term threat to organ and tissue allografts
 \end_layout
 
@@ -947,6 +960,94 @@ literal "false"
  and regulation is required.
 \end_layout
 
+\begin_layout Subsubsection
+MSC infusion to improve transplant outcomes (prevent/delay rejection)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Do I still talk about this? It's the motivation for chapter 4, but I don't
+ actually present any work related to MSCs.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Demonstrated in mice, but not yet in primates
+\end_layout
+
+\begin_layout Itemize
+Mechanism currently unknown, but MSC are known to be immune modulatory
+\end_layout
+
+\begin_layout Itemize
+Characterize MSC response to interferon gamma
+\end_layout
+
+\begin_layout Itemize
+IFN-g is thought to stimulate their function
+\end_layout
+
+\begin_layout Itemize
+Test IFN-g treated MSC infusion as a therapy to delay graft rejection in
+ cynomolgus monkeys
+\end_layout
+
+\begin_layout Itemize
+Monitor animals post-transplant using blood 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ at serial time points
+\end_layout
+
+\begin_layout Subsubsection
+Investigate dynamics of histone marks in CD4 T-cell activation and memory
+\end_layout
+
+\begin_layout Itemize
+Previous studies have looked at single snapshots of histone marks
+\end_layout
+
+\begin_layout Itemize
+Instead, look at changes in histone marks across activation and memory
+\end_layout
+
+\begin_layout Subsubsection
+High-throughput sequencing and microarray technologies
+\end_layout
+
+\begin_layout Itemize
+Powerful methods for assaying gene expression and epigenetics across entire
+ genomes
+\end_layout
+
+\begin_layout Itemize
+Proper analysis requires finding and exploiting systematic genome-wide trends
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Overview-of-bioinformatic"
+
+\end_inset
+
+Overview of bioinformatic analysis methods
+\end_layout
+
 \begin_layout Standard
 \begin_inset Flex TODO Note (inline)
 status open
@@ -958,10 +1059,6 @@ Some kind of transition into bioinformatics would be good here
 \end_inset
 
 
-\end_layout
-
-\begin_layout Subsection
-Overview of bioinformatic analysis methods
 \end_layout
 
 \begin_layout Standard
@@ -987,7 +1084,7 @@ The studies presented in this work all involve the analysis of high-throughput
  they work.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 \begin_inset Flex Code
 status open
 
@@ -1266,7 +1363,7 @@ limma
  random effect correlation.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 \begin_inset Flex Code
 status open
 
@@ -1529,7 +1626,7 @@ literal "false"
 .
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 ChIP-seq Peak calling
 \end_layout
 
@@ -1916,7 +2013,7 @@ literal "false"
 .
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Normalization of high-throughput data is non-trivial and application-dependent
 \end_layout
 
@@ -2262,7 +2359,7 @@ literal "true"
  regions are generally preferred whenever possible.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 ComBat and SVA for correction of known and unknown batch effects
 \end_layout
 
@@ -2412,7 +2509,7 @@ s in the linear model in a similar fashion to known batch effects in order
  to subtract out their effects on each feature's abundance.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Factor analysis: PCA, MDS, MOFA
 \end_layout
 
@@ -2441,102 +2538,6 @@ PCA
 \end_inset
 
  is informative, but careful application is required to avoid bias
-\end_layout
-
-\begin_layout Section
-Innovation
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Is this entire section redundant with the Approach sections of each chapter?
- I'm not really sure what to write here.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-MSC infusion to improve transplant outcomes (prevent/delay rejection)
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Do I still talk about this? It's the motivation for chapter 4, but I don't
- actually present any work related to MSCs.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Demonstrated in mice, but not yet in primates
-\end_layout
-
-\begin_layout Itemize
-Mechanism currently unknown, but MSC are known to be immune modulatory
-\end_layout
-
-\begin_layout Itemize
-Characterize MSC response to interferon gamma
-\end_layout
-
-\begin_layout Itemize
-IFN-g is thought to stimulate their function
-\end_layout
-
-\begin_layout Itemize
-Test IFN-g treated MSC infusion as a therapy to delay graft rejection in
- cynomolgus monkeys
-\end_layout
-
-\begin_layout Itemize
-Monitor animals post-transplant using blood 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-RNA-seq
-\end_layout
-
-\end_inset
-
- at serial time points
-\end_layout
-
-\begin_layout Subsection
-Investigate dynamics of histone marks in CD4 T-cell activation and memory
-\end_layout
-
-\begin_layout Itemize
-Previous studies have looked at single snapshots of histone marks
-\end_layout
-
-\begin_layout Itemize
-Instead, look at changes in histone marks across activation and memory
-\end_layout
-
-\begin_layout Subsection
-High-throughput sequencing and microarray technologies
-\end_layout
-
-\begin_layout Itemize
-Powerful methods for assaying gene expression and epigenetics across entire
- genomes
-\end_layout
-
-\begin_layout Itemize
-Proper analysis requires finding and exploiting systematic genome-wide trends
 \end_layout
 
 \begin_layout Chapter
@@ -2774,20 +2775,6 @@ Methods
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Look up some more details from the papers (e.g.
- activation method).
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 A reproducible workflow was written to analyze the raw 
 \begin_inset Flex Glossary Term
 status open
@@ -2837,11 +2824,11 @@ ChIP-seq
 
 \end_inset
 
- from CD4 T-cells cultured from 4 donors.
+ from CD4 T-cells from 4 donors.
  From each donor, naïve and memory CD4 T-cells were isolated separately.
- Then cultures of both cells were activated [how?], and samples were taken
- at 4 time points: Day 0 (pre-activation), Day 1 (early activation), Day
- 5 (peak activation), and Day 14 (post-activation).
+ Then cultures of both cells were activated with CD3/CD28 beads, and samples
+ were taken at 4 time points: Day 0 (pre-activation), Day 1 (early activation),
+ Day 5 (peak activation), and Day 14 (post-activation).
  For each combination of cell type and time point, RNA was isolated and
  sequenced, and 
 \begin_inset Flex Glossary Term
