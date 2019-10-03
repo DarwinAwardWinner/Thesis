@@ -79,6 +79,24 @@ InsetLayout "Flex:Glossary Term (Capital)"
         CustomPars            false
 End
 
+InsetLayout "Flex:Glossary Term (pl)"
+        LyxType               custom
+        LabelString           glspl
+        LatexType             command
+        LatexName             glspl*
+        InToc                 true
+        CustomPars            false
+End
+
+InsetLayout "Flex:Glossary Term (Capital, pl)"
+        LyxType               custom
+        LabelString           Glspl
+        LatexType             command
+        LatexName             Glspl*
+        InToc                 true
+        CustomPars            false
+End
+
 InsetLayout "Flex:Glossary Term (glstext)"
         LyxType               custom
         LabelString           glstext
@@ -180,9 +198,10 @@ End
 \use_package stmaryrd 1
 \use_package undertilde 1
 \cite_engine biblatex
-\cite_engine_type authoryear
+\cite_engine_type numerical
 \biblio_style plain
-\biblatex_bibstyle authoryear
+\biblio_options sorting=none
+\biblatex_bibstyle numeric
 \biblatex_citestyle numeric
 \use_bibtopic false
 \use_indices false
@@ -267,6 +286,27 @@ in partial fulfillment of the requirements for the degree of
 
 \begin_layout Date
 October 2019
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+To remove TODOs and watermark: Add 
+\begin_inset Quotes eld
+\end_inset
+
+final
+\begin_inset Quotes erd
+\end_inset
+
+ to the document class custom options.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -583,7 +623,7 @@ Structure of the thesis
 status open
 
 \begin_layout Plain Layout
-This section might even go before the Chapter 1 header
+Put at end up intro
 \end_layout
 
 \end_inset
@@ -698,7 +738,7 @@ literal "false"
  of immune memory.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Diagnosis and treatment of allograft rejection is a major challenge
 \end_layout
 
@@ -799,7 +839,7 @@ for cause
  biopsies 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Wilkinson2006,Salomon2002,Patel2018,Zachariah2018"
+key "Salomon2002,Wilkinson2006,Patel2018,Zachariah2018"
 literal "false"
 
 \end_inset
@@ -864,7 +904,7 @@ literal "false"
  on the scale of days to weeks, rather than months.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Memory cells are resistant to immune suppression
 \end_layout
 
@@ -960,22 +1000,32 @@ literal "false"
  and regulation is required.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 MSC infusion to improve transplant outcomes (prevent/delay rejection)
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
+One promising experimental treatment for transplant rejection involves the
+ infusion of 
+\begin_inset Flex Glossary Term (pl)
 status open
 
 \begin_layout Plain Layout
-Do I still talk about this? It's the motivation for chapter 4, but I don't
- actually present any work related to MSCs.
+MSC
 \end_layout
 
 \end_inset
 
 
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "MSC"
+description "mesenchymal stem cell"
+literal "true"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Itemize
@@ -1013,8 +1063,21 @@ RNA-seq
  at serial time points
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Investigate dynamics of histone marks in CD4 T-cell activation and memory
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Put this at end of intro as part of a description to structure of thesis
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -1025,8 +1088,21 @@ Previous studies have looked at single snapshots of histone marks
 Instead, look at changes in histone marks across activation and memory
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 High-throughput sequencing and microarray technologies
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+This will serve as transition to bioinf
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -1046,19 +1122,6 @@ name "sec:Overview-of-bioinformatic"
 \end_inset
 
 Overview of bioinformatic analysis methods
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Some kind of transition into bioinformatics would be good here
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -4059,14 +4122,11 @@ TSS
 
 .
  For genes with multiple annotated 
-\begin_inset ERT
+\begin_inset Flex Glossary Term (pl)
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-glspl*{TSS}
+TSS
 \end_layout
 
 \end_inset
@@ -4082,14 +4142,11 @@ TSS
 \end_inset
 
  individually, and any promoters that overlapped (due to multiple 
-\begin_inset ERT
+\begin_inset Flex Glossary Term (pl)
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-glspl*{TSS}
+TSS
 \end_layout
 
 \end_inset
@@ -4813,14 +4870,11 @@ noprefix "false"
 
 .
  
-\begin_inset ERT
+\begin_inset Flex Glossary Term (Capital, pl)
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-Glspl*{LF}
+LF
 \end_layout
 
 \end_inset
@@ -6983,218 +7037,6 @@ end{landscape}
 \end_layout
 
 \begin_layout Standard
-\begin_inset Float figure
-placement p
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/ChIP-seq/H3K4me2-promoter-PCA-group-CROP.png
-	lyxscale 25
-	width 45col%
-	groupId pcoa-prom-subfig
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:PCoA-H3K4me2-prom"
-
-\end_inset
-
-PCoA plot of H3K4me2 promoters, after subtracting surrogate variables
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset space \hfill{}
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/ChIP-seq/H3K4me3-promoter-PCA-group-CROP.png
-	lyxscale 25
-	width 45col%
-	groupId pcoa-prom-subfig
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:PCoA-H3K4me3-prom"
-
-\end_inset
-
-PCoA plot of H3K4me3 promoters, after subtracting surrogate variables
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/ChIP-seq/H3K27me3-promoter-PCA-group-CROP.png
-	lyxscale 25
-	width 45col%
-	groupId pcoa-prom-subfig
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:PCoA-H3K27me3-prom"
-
-\end_inset
-
-PCoA plot of H3K27me3 promoters, after subtracting surrogate variables
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset space \hfill{}
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/RNA-seq/PCA-final-23-CROP.png
-	lyxscale 25
-	width 45col%
-	groupId pcoa-prom-subfig
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:RNA-PCA-group"
-
-\end_inset
-
-RNA-seq PCoA showing principal coordinates 2 and 3.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:PCoA-promoters"
-
-\end_inset
-
-PCoA plots for promoter ChIP-seq and expression RNA-seq data
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 We hypothesized that if naïve cells had differentiated into memory cells
  by Day 14, then their patterns of expression and histone modification should
  converge with those of memory cells at Day 14.
@@ -7317,6 +7159,218 @@ RNA-seq
  all 4 data sets.
  While this observation does not prove that the naïve cells have differentiated
  into memory cells at Day 14, it is consistent with that hypothesis.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement p
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/ChIP-seq/H3K4me2-promoter-PCA-group-CROP.png
+	lyxscale 25
+	width 45col%
+	groupId pcoa-prom-subfig
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PCoA-H3K4me2-prom"
+
+\end_inset
+
+PCoA plot of H3K4me2 promoters, after subtracting surrogate variables
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/ChIP-seq/H3K4me3-promoter-PCA-group-CROP.png
+	lyxscale 25
+	width 45col%
+	groupId pcoa-prom-subfig
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PCoA-H3K4me3-prom"
+
+\end_inset
+
+PCoA plot of H3K4me3 promoters, after subtracting surrogate variables
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/ChIP-seq/H3K27me3-promoter-PCA-group-CROP.png
+	lyxscale 25
+	width 45col%
+	groupId pcoa-prom-subfig
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PCoA-H3K27me3-prom"
+
+\end_inset
+
+PCoA plot of H3K27me3 promoters, after subtracting surrogate variables
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/RNA-seq/PCA-final-23-CROP.png
+	lyxscale 25
+	width 45col%
+	groupId pcoa-prom-subfig
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:RNA-PCA-group"
+
+\end_inset
+
+RNA-seq PCoA showing principal coordinates 2 and 3.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PCoA-promoters"
+
+\end_inset
+
+PCoA plots for promoter ChIP-seq and expression RNA-seq data
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -8637,14 +8691,11 @@ TSS
  (Cluster 6).
  Referring to these opposing pairs of clusters as axes of variation is justified
 , because they correspond precisely to the first 3 
-\begin_inset ERT
-status collapsed
+\begin_inset Flex Glossary Term (pl)
+status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-glspl*{PC}
+PC
 \end_layout
 
 \end_inset
@@ -9071,14 +9122,11 @@ LF
 
 5.
  Like all the 
-\begin_inset ERT
+\begin_inset Flex Glossary Term (pl)
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-glspl*{LF}
+LF
 \end_layout
 
 \end_inset
@@ -16802,14 +16850,11 @@ RNA-seq
 \end_inset
 
  in primate blood samples that uses complimentary 
-\begin_inset ERT
+\begin_inset Flex Glossary Term (pl)
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-glspl*{oligo}
+oligo
 \end_layout
 
 \end_inset
@@ -17035,14 +17080,11 @@ literal "false"
 .
  In the present report, we evaluated globin reduction using custom blocking
  
-\begin_inset ERT
+\begin_inset Flex Glossary Term (pl)
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-glspl*{oligo}
+oligo
 \end_layout
 
 \end_inset
@@ -17136,14 +17178,11 @@ Globin Blocking
 
 \begin_layout Standard
 Four 
-\begin_inset ERT
+\begin_inset Flex Glossary Term (pl)
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-glspl*{oligo}
+oligo
 \end_layout
 
 \end_inset
@@ -17156,14 +17195,11 @@ glspl*{oligo}
  two hybridization sites for HBB and 2 sites for HBA (the chosen sites were
  identical in both HBA genes).
  All 
-\begin_inset ERT
+\begin_inset Flex Glossary Term (pl)
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-glspl*{oligo}
+oligo
 \end_layout
 
 \end_inset
@@ -17263,14 +17299,11 @@ mRNA
  PolyA selected RNA was then combined with 8 pmol of HBA1/2 (site 1), 8
  pmol of HBA1/2 (site 2), 12 pmol of HBB (site 1) and 12 pmol of HBB (site
  2) 
-\begin_inset ERT
+\begin_inset Flex Glossary Term (pl)
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-glspl*{oligo}
+oligo
 \end_layout
 
 \end_inset
@@ -17288,14 +17321,11 @@ glspl*{oligo}
 sher).
  A second “unblocked” library was prepared in the same way for each sample
  but replacing the blocking 
-\begin_inset ERT
+\begin_inset Flex Glossary Term (pl)
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-glspl*{oligo}
+oligo
 \end_layout
 
 \end_inset
@@ -18524,14 +18554,11 @@ GB
 \end_inset
 
  
-\begin_inset ERT
+\begin_inset Flex Glossary Term (pl)
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-glspl*{oligo}
+oligo
 \end_layout
 
 \end_inset
@@ -19322,28 +19349,22 @@ noprefix "false"
 ).
  Other than the 3 designated alpha and beta globin genes, two other genes
  stand out as having especially large negative 
-\begin_inset ERT
+\begin_inset Flex Glossary Term (pl)
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-glspl*{logFC}
+logFC
 \end_layout
 
 \end_inset
 
 : HBD and LOC1021365.
  HBD, delta globin, is most likely targeted by the blocking 
-\begin_inset ERT
+\begin_inset Flex Glossary Term (pl)
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-glspl*{oligo}
+oligo
 \end_layout
 
 \end_inset
@@ -19395,14 +19416,11 @@ GB
 \end_inset
 
  
-\begin_inset ERT
+\begin_inset Flex Glossary Term (pl)
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-glspl*{oligo}
+oligo
 \end_layout
 
 \end_inset
@@ -20269,14 +20287,11 @@ GB
  samples.
  However, given that both datasets are derived from the same biological
  samples and have nearly equal 
-\begin_inset ERT
-status collapsed
+\begin_inset Flex Glossary Term (pl)
+status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-glspl*{BCV}
+BCV
 \end_layout
 
 \end_inset
@@ -20473,14 +20488,11 @@ GB
 \end_inset
 
  
-\begin_inset ERT
+\begin_inset Flex Glossary Term (pl)
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-glspl*{oligo}
+oligo
 \end_layout
 
 \end_inset
@@ -20546,14 +20558,11 @@ RNA-seq
  the relative levels of non-globin genes.
  Based on these results, globin transcript reduction using sequence-specific,
  complementary blocking 
-\begin_inset ERT
+\begin_inset Flex Glossary Term (pl)
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-glspl*{oligo}
+oligo
 \end_layout
 
 \end_inset
@@ -20648,6 +20657,7 @@ Closing remarks
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset ERT
 status collapsed
 
@@ -20675,7 +20685,7 @@ bibname}{References}
 LatexCommand bibtex
 btprint "btPrintCited"
 bibfiles "code-refs,refs-PROCESSED"
-options "bibtotoc,unsrt"
+options "bibtotoc"
 
 \end_inset
 
@@ -20687,21 +20697,9 @@ options "bibtotoc,unsrt"
 status open
 
 \begin_layout Plain Layout
-Check bib entry formatting & sort order
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Check in-text citation format.
- Probably don't just want [1], [2], etc.
+Reference URLs that span pages have clickable links that include the page
+ numbers and watermark.
+ Try to fix that.
 \end_layout
 
 \end_inset
