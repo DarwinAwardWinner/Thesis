@@ -17176,20 +17176,52 @@ glspl*{oligo}
  ends to prevent any polymerase mediated primer extension.
 \end_layout
 
-\begin_layout Quote
-HBA1/2 site 1: GCCCACUCAGACUUUAUUCAAAG-C3spacer
+\begin_layout Description
+HBA1/2
+\begin_inset space ~
+\end_inset
+
+site
+\begin_inset space ~
+\end_inset
+
+1: GCCCACUCAGACUUUAUUCAAAG-C3spacer
 \end_layout
 
-\begin_layout Quote
-HBA1/2 site 2: GGUGCAAGGAGGGGAGGAG-C3spacer
+\begin_layout Description
+HBA1/2
+\begin_inset space ~
+\end_inset
+
+site
+\begin_inset space ~
+\end_inset
+
+2: GGUGCAAGGAGGGGAGGAG-C3spacer
 \end_layout
 
-\begin_layout Quote
-HBB site 1: AAUGAAAAUAAAUGUUUUUUAUUAG-C3spacer
+\begin_layout Description
+HBB
+\begin_inset space ~
+\end_inset
+
+site
+\begin_inset space ~
+\end_inset
+
+1: AAUGAAAAUAAAUGUUUUUUAUUAG-C3spacer
 \end_layout
 
-\begin_layout Quote
-HBB site 2: CUCAAGGCCCUUCAUAAUAUCCC-C3spacer
+\begin_layout Description
+HBB
+\begin_inset space ~
+\end_inset
+
+site
+\begin_inset space ~
+\end_inset
+
+2: CUCAAGGCCCUUCAUAAUAUCCC-C3spacer
 \end_layout
 
 \begin_layout Subsection
