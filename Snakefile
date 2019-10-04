@@ -186,7 +186,7 @@ def tex_gfx_extensions(tex_format = 'xetex'):
 rsync_common_args = ['-rL', '--size-only', '--delete', '--exclude', '.DS_Store', '--delete-excluded',]
 
 rule build_all:
-    input: 'thesis.pdf'
+    input: 'thesis.pdf', 'thesis-final.pdf'
 
 # Currently assumes the lyx file always exists, because it is required
 # to get the gfx and bib dependencies
@@ -204,6 +204,18 @@ rule lyx_to_pdf:
         shell('''{LYX_PATH:q} --export-to pdf4 {output.pdf:q} {input.lyxfile:q}''')
         if PDFINFO_PATH:
             shell('''{PDFINFO_PATH} {output.pdf:q}''')
+
+rule lyx_enable_final:
+    '''Produce a copy of a LyX.lyx file with the final option enabled.'''
+    input: lyxfile='{basename}.lyx'
+    output: lyxfile='{basename,.*(?<!-final)}-final.lyx'
+    run:
+        with open(input.lyxfile, 'r') as infile, \
+             open(output.lyxfile, 'w') as outfile:
+            lyx_text = infile.read()
+            if not regex.search('\\\\options final', lyx_text):
+                lyx_text = regex.sub('\\\\use_default_options true', '\\\\options final\n\\\\use_default_options true', lyx_text)
+            outfile.write(lyx_text)
 
 rule process_bib:
     '''Preprocess bib file for LaTeX.
