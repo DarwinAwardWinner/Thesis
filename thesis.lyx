@@ -18659,14 +18659,15 @@ GB
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename graphics/Globin Paper/figure1 - globin-fractions.pdf
 	lyxscale 50
-	width 75col%
+	width 100col%
+	groupId colfullwidth
 
 \end_inset
 
@@ -19193,15 +19194,15 @@ oligo
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename graphics/Globin Paper/figure4 - maplot-colored.pdf
 	lyxscale 50
-	width 60col%
-	groupId colwidth
+	width 100col%
+	groupId colfullwidth
 
 \end_inset
 
@@ -19491,7 +19492,8 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/Globin Paper/figure5 - corrplot.pdf
 	lyxscale 50
-	width 70col%
+	width 100col%
+	groupId colfullwidth
 
 \end_inset
 
