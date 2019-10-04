@@ -41,6 +41,9 @@
 % (to avoid landscape figures breaking up text)
 \usepackage{afterpage}
 
+% Consider: force floats after placement in text
+% https://tex.stackexchange.com/questions/15706/force-floats-to-be-typeset-after-their-occurrence-in-the-source-text
+
 % This one breaks subfigs so it's disabled
 % https://tex.stackexchange.com/questions/65680/automatically-bold-first-sentence-of-a-floats-caption
 
@@ -3102,6 +3105,52 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
+Due to an error in sample preparation, the RNA from the samples for days
+ 0 and 5 were sequenced using a different kit than those for days 1 and
+ 14.
+ This induced a substantial batch effect in the data due to differences
+ in sequencing biases between the two kits, and this batch effect is unfortunate
+ly confounded with the time point variable (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:RNA-PCA-no-batchsub"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ To do the best possible analysis with this data, this batch effect was
+ subtracted out from the data using ComBat 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Johnson2007"
+literal "false"
+
+\end_inset
+
+, ignoring the time point variable due to the confounding with the batch
+ variable.
+ The result is a marked improvement, but the unavoidable confounding with
+ time point means that certain real patterns of gene expression will be
+ indistinguishable from the batch effect and subtracted out as a result.
+ Specifically, any 
+\begin_inset Quotes eld
+\end_inset
+
+zig-zag
+\begin_inset Quotes erd
+\end_inset
+
+ pattern, such as a gene whose expression goes up on day 1, down on day
+ 5, and back up again on day 14, will be attenuated or eliminated entirely.
+ In the context of a T-cell activation time course, it is unlikely that
+ many genes of interest will follow such an expression pattern, so this
+ loss was deemed an acceptable cost for correcting the batch effect.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -3233,49 +3282,43 @@ PCoA plots of RNA-seq data showing effect of batch correction.
 \end_layout
 
 \begin_layout Standard
-Due to an error in sample preparation, the RNA from the samples for days
- 0 and 5 were sequenced using a different kit than those for days 1 and
- 14.
- This induced a substantial batch effect in the data due to differences
- in sequencing biases between the two kits, and this batch effect is unfortunate
-ly confounded with the time point variable (Figure 
+However, removing the systematic component of the batch effect still leaves
+ the noise component.
+ The gene quantifications from the first batch are substantially noisier
+ than those in the second batch.
+ This analysis corrected for this by using 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+limma
+\end_layout
+
+\end_inset
+
+'s sample weighting method to assign lower weights to the noisy samples
+ of batch 1 (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:RNA-PCA-no-batchsub"
+reference "fig:RNA-seq-weights-vs-covars"
 plural "false"
 caps "false"
 noprefix "false"
 
 \end_inset
 
-).
- To do the best possible analysis with this data, this batch effect was
- subtracted out from the data using ComBat 
+) 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Johnson2007"
+key "Ritchie2006,Liu2015"
 literal "false"
 
 \end_inset
 
-, ignoring the time point variable due to the confounding with the batch
- variable.
- The result is a marked improvement, but the unavoidable confounding with
- time point means that certain real patterns of gene expression will be
- indistinguishable from the batch effect and subtracted out as a result.
- Specifically, any 
-\begin_inset Quotes eld
-\end_inset
-
-zig-zag
-\begin_inset Quotes erd
-\end_inset
-
- pattern, such as a gene whose expression goes up on day 1, down on day
- 5, and back up again on day 14, will be attenuated or eliminated entirely.
- In the context of a T-cell activation time course, it is unlikely that
- many genes of interest will follow such an expression pattern, so this
- loss was deemed an acceptable cost for correcting the batch effect.
+.
+ The resulting analysis gives an accurate assessment of statistical significance
+ for all comparisons, which unfortunately means a loss of statistical power
+ for comparisons involving samples in batch 1.
 \end_layout
 
 \begin_layout Standard
@@ -3330,36 +3373,6 @@ RNA-seq sample weights, grouped by experimental and technical covariates.
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-However, removing the systematic component of the batch effect still leaves
- the noise component.
- The gene quantifications from the first batch are substantially noisier
- than those in the second batch.
- This analysis corrected for this by using 
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-limma
-\end_layout
-
-\end_inset
-
-'s sample weighting method to assign lower weights to the noisy samples
- of batch 1 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Ritchie2006,Liu2015"
-literal "false"
-
-\end_inset
-
-.
- The resulting analysis gives an accurate assessment of statistical significance
- for all comparisons, which unfortunately means a loss of statistical power
- for comparisons involving samples in batch 1.
 \end_layout
 
 \begin_layout Standard
@@ -3487,216 +3500,6 @@ literal "false"
 
 \begin_layout Subsection
 ChIP-seq differential modification analysis
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/csaw/CCF-plots-noBL-PAGE2-CROP.pdf
-	lyxscale 50
-	height 40theight%
-	groupId ccf-subfig
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:CCF-without-blacklist"
-
-\end_inset
-
-Cross-correlation plots without removing blacklisted reads.
- 
-\series default
-Without blacklisting, many artifactual peaks are visible in the cross-correlatio
-ns of the ChIP-seq samples, and the peak at the true fragment size (147
-\begin_inset space ~
-\end_inset
-
-bp) is frequently overshadowed by the artifactual peak at the read length
- (100
-\begin_inset space ~
-\end_inset
-
-bp).
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/csaw/CCF-plots-PAGE2-CROP.pdf
-	lyxscale 50
-	height 40theight%
-	groupId ccf-subfig
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:CCF-with-blacklist"
-
-\end_inset
-
-Cross-correlation plots with blacklisted reads removed.
-
-\series default
- After blacklisting, most ChIP-seq samples have clean-looking periodic cross-cor
-relation plots, with the largest peak around 147
-\begin_inset space ~
-\end_inset
-
-bp, the expected size for a fragment of DNA from a single nucleosome, and
- little to no peak at the read length, 100
-\begin_inset space ~
-\end_inset
-
-bp.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset Argument 1
-status collapsed
-
-\begin_layout Plain Layout
-Strand cross-correlation plots for ChIP-seq data, before and after blacklisting.
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:CCF-master"
-
-\end_inset
-
-
-\series bold
-Strand cross-correlation plots for ChIP-seq data, before and after blacklisting.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/ChIP-seq/H3K4me2-sample-MAplot-bins-CROP.png
-	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:MA-plot-bigbins"
-
-\end_inset
-
-MA plot of H3K4me2 read counts in 10kb bins for two arbitrary samples.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -3911,6 +3714,216 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/csaw/CCF-plots-noBL-PAGE2-CROP.pdf
+	lyxscale 50
+	height 40theight%
+	groupId ccf-subfig
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:CCF-without-blacklist"
+
+\end_inset
+
+Cross-correlation plots without removing blacklisted reads.
+ 
+\series default
+Without blacklisting, many artifactual peaks are visible in the cross-correlatio
+ns of the ChIP-seq samples, and the peak at the true fragment size (147
+\begin_inset space ~
+\end_inset
+
+bp) is frequently overshadowed by the artifactual peak at the read length
+ (100
+\begin_inset space ~
+\end_inset
+
+bp).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/csaw/CCF-plots-PAGE2-CROP.pdf
+	lyxscale 50
+	height 40theight%
+	groupId ccf-subfig
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:CCF-with-blacklist"
+
+\end_inset
+
+Cross-correlation plots with blacklisted reads removed.
+
+\series default
+ After blacklisting, most ChIP-seq samples have clean-looking periodic cross-cor
+relation plots, with the largest peak around 147
+\begin_inset space ~
+\end_inset
+
+bp, the expected size for a fragment of DNA from a single nucleosome, and
+ little to no peak at the read length, 100
+\begin_inset space ~
+\end_inset
+
+bp.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Strand cross-correlation plots for ChIP-seq data, before and after blacklisting.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:CCF-master"
+
+\end_inset
+
+
+\series bold
+Strand cross-correlation plots for ChIP-seq data, before and after blacklisting.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/ChIP-seq/H3K4me2-sample-MAplot-bins-CROP.png
+	lyxscale 25
+	width 100col%
+	groupId colwidth-raster
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:MA-plot-bigbins"
+
+\end_inset
+
+MA plot of H3K4me2 read counts in 10kb bins for two arbitrary samples.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 Promoters were defined by computing the distance from each annotated 
 \begin_inset Flex Glossary Term
 status open
@@ -3997,6 +4010,81 @@ TSS
  being closer than 2 times the radius) were merged into one large promoter.
  Thus, some genes had multiple promoters defined, which were each analyzed
  separately for differential modification.
+\end_layout
+
+\begin_layout Standard
+Reads in promoters, peaks, and sliding windows across the genome were counted
+ and normalized using 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+csaw
+\end_layout
+
+\end_inset
+
+ and analyzed for differential modification using 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+edgeR
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Lun2014,Lun2015a,Lund2012,Phipson2016"
+literal "false"
+
+\end_inset
+
+.
+ Unobserved confounding factors in the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ data were corrected using 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+SVA
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Leek2007,Leek2014"
+literal "false"
+
+\end_inset
+
+.
+ Principal coordinate plots of the promoter count data for each histone
+ mark before and after subtracting surrogate variable effects are shown
+ in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PCoA-ChIP"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -4310,81 +4398,6 @@ PCoA plots of ChIP-seq sliding window data, before and after subtracting
 \end_layout
 
 \begin_layout Standard
-Reads in promoters, peaks, and sliding windows across the genome were counted
- and normalized using 
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-csaw
-\end_layout
-
-\end_inset
-
- and analyzed for differential modification using 
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-edgeR
-\end_layout
-
-\end_inset
-
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Lun2014,Lun2015a,Lund2012,Phipson2016"
-literal "false"
-
-\end_inset
-
-.
- Unobserved confounding factors in the 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-ChIP-seq
-\end_layout
-
-\end_inset
-
- data were corrected using 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-SVA
-\end_layout
-
-\end_inset
-
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Leek2007,Leek2014"
-literal "false"
-
-\end_inset
-
-.
- Principal coordinate plots of the promoter count data for each histone
- mark before and after subtracting surrogate variable effects are shown
- in Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:PCoA-ChIP"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
 To investigate whether the location of a peak within the promoter region
  was important, 
 \begin_inset Quotes eld
@@ -4480,6 +4493,149 @@ MOFA recovers biologically relevant variation from blind analysis by correlating
 \end_layout
 
 \begin_layout Standard
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+MOFA
+\end_layout
+
+\end_inset
+
+ was run on all the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ windows overlapping consensus peaks for each histone mark, as well as the
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ data, in order to identify patterns of coordinated variation across all
+ data sets 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Argelaguet2018"
+literal "false"
+
+\end_inset
+
+.
+ The results are summarized in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:MOFA-master"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ 
+\begin_inset Flex Glossary Term (Capital, pl)
+status open
+
+\begin_layout Plain Layout
+LF
+\end_layout
+
+\end_inset
+
+ 1, 4, and 5 were determined to explain the most variation consistently
+ across all data sets (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:mofa-varexplained"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+), and scatter plots of these factors show that they also correlate best
+ with the experimental factors (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:mofa-lf-scatter"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+LF
+\end_layout
+
+\end_inset
+
+2 captures the batch effect in the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ data.
+ Removing the effect of 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+LF
+\end_layout
+
+\end_inset
+
+2 using 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+MOFA
+\end_layout
+
+\end_inset
+
+ theoretically yields a batch correction that does not depend on knowing
+ the experimental factors.
+ When this was attempted, the resulting batch correction was comparable
+ to ComBat (see Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:RNA-PCA-ComBat-batchsub"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+), indicating that the ComBat-based batch correction has little room for
+ improvement given the problems with the data set.
+\end_layout
+
+\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -4506,7 +4662,7 @@ begin{landscape}
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Float figure
@@ -4673,149 +4829,6 @@ end{landscape}
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-MOFA
-\end_layout
-
-\end_inset
-
- was run on all the 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-ChIP-seq
-\end_layout
-
-\end_inset
-
- windows overlapping consensus peaks for each histone mark, as well as the
- 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-RNA-seq
-\end_layout
-
-\end_inset
-
- data, in order to identify patterns of coordinated variation across all
- data sets 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Argelaguet2018"
-literal "false"
-
-\end_inset
-
-.
- The results are summarized in Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:MOFA-master"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-.
- 
-\begin_inset Flex Glossary Term (Capital, pl)
-status open
-
-\begin_layout Plain Layout
-LF
-\end_layout
-
-\end_inset
-
- 1, 4, and 5 were determined to explain the most variation consistently
- across all data sets (Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:mofa-varexplained"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-), and scatter plots of these factors show that they also correlate best
- with the experimental factors (Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:mofa-lf-scatter"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-).
- 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-LF
-\end_layout
-
-\end_inset
-
-2 captures the batch effect in the 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-RNA-seq
-\end_layout
-
-\end_inset
-
- data.
- Removing the effect of 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-LF
-\end_layout
-
-\end_inset
-
-2 using 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-MOFA
-\end_layout
-
-\end_inset
-
- theoretically yields a batch correction that does not depend on knowing
- the experimental factors.
- When this was attempted, the resulting batch correction was comparable
- to ComBat (see Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:RNA-PCA-ComBat-batchsub"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-), indicating that the ComBat-based batch correction has little room for
- improvement given the problems with the data set.
-\end_layout
-
-\begin_layout Standard
 \begin_inset Note Note
 status collapsed
 
@@ -4866,6 +4879,118 @@ Result of RNA-seq batch-correction using MOFA latent factors
 \end_inset
 
 
+\end_layout
+
+\begin_layout Section
+Results
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Focus on what hypotheses were tested, then select figures that show how
+ those hypotheses were tested, even if the result is a negative.
+ Not every interesting result needs to be in here.
+ Chapter should tell a story.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Interpretation of RNA-seq analysis is limited by a major confounding factor
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Putting a float here causes an error.
+ No idea why.
+ See above for the floats that should be placed here.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Genes called as present in the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ data were tested for differential expression between all time points and
+ cell types.
+ The counts of differentially expressed genes are shown in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Estimated-and-detected-rnaseq"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Notably, all the results for Day 0 and Day 5 have substantially fewer genes
+ called differentially expressed than any of the results for other time
+ points.
+ This is an unfortunate result of the difference in sample quality between
+ the two batches of 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ data.
+ All the samples in Batch 1, which includes all the samples from Days 0
+ and 5, have substantially more variability than the samples in Batch 2,
+ which includes the other time points.
+ This is reflected in the substantially higher weights assigned to Batch
+ 2 (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:RNA-seq-weights-vs-covars"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ The batch effect has both a systematic component and a random noise component.
+ While the systematic component was subtracted out using ComBat (Figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:RNA-PCA"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+), no such correction is possible for the noise component: Batch 1 simply
+ has substantially more random noise in it, which reduces the statistical
+ power for any differential expression tests involving samples in that batch.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -5302,187 +5427,6 @@ literal "false"
 
 \end_layout
 
-\begin_layout Section
-Results
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Focus on what hypotheses were tested, then select figures that show how
- those hypotheses were tested, even if the result is a negative.
- Not every interesting result needs to be in here.
- Chapter should tell a story.
- 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-Interpretation of RNA-seq analysis is limited by a major confounding factor
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Putting a float here causes an error.
- No idea why.
- See above for the floats that should be placed here.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Genes called as present in the 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-RNA-seq
-\end_layout
-
-\end_inset
-
- data were tested for differential expression between all time points and
- cell types.
- The counts of differentially expressed genes are shown in Table 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "tab:Estimated-and-detected-rnaseq"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-.
- Notably, all the results for Day 0 and Day 5 have substantially fewer genes
- called differentially expressed than any of the results for other time
- points.
- This is an unfortunate result of the difference in sample quality between
- the two batches of 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-RNA-seq
-\end_layout
-
-\end_inset
-
- data.
- All the samples in Batch 1, which includes all the samples from Days 0
- and 5, have substantially more variability than the samples in Batch 2,
- which includes the other time points.
- This is reflected in the substantially higher weights assigned to Batch
- 2 (Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:RNA-seq-weights-vs-covars"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-).
- The batch effect has both a systematic component and a random noise component.
- While the systematic component was subtracted out using ComBat (Figure
- 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:RNA-PCA"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-), no such correction is possible for the noise component: Batch 1 simply
- has substantially more random noise in it, which reduces the statistical
- power for any differential expression tests involving samples in that batch.
- 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/RNA-seq/PCA-final-12-CROP.png
-	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset Argument 1
-status collapsed
-
-\begin_layout Plain Layout
-PCoA plot of RNA-seq samples after ComBat batch correction.
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:rna-pca-final"
-
-\end_inset
-
-
-\series bold
-PCoA plot of RNA-seq samples after ComBat batch correction.
- 
-\series default
-Each point represents an individual sample.
- Samples with the same combination of cell type and time point are encircled
- with a shaded region to aid in visual identification of the sample groups.
- Samples with of same cell type from the same donor are connected by lines
- to indicate the 
-\begin_inset Quotes eld
-\end_inset
-
-trajectory
-\begin_inset Quotes erd
-\end_inset
-
- of each donor's cells over time in PCoA space.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Standard
 Despite the difficulty in detecting specific differentially expressed genes,
  there is still evidence that differential expression is present for these
@@ -5563,6 +5507,75 @@ size
  Gene-set enrichment analyses are similarly impractical.
  However, analyses looking at genome-wide patterns of expression are still
  practical.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/RNA-seq/PCA-final-12-CROP.png
+	lyxscale 25
+	width 100col%
+	groupId colwidth-raster
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+PCoA plot of RNA-seq samples after ComBat batch correction.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:rna-pca-final"
+
+\end_inset
+
+
+\series bold
+PCoA plot of RNA-seq samples after ComBat batch correction.
+ 
+\series default
+Each point represents an individual sample.
+ Samples with the same combination of cell type and time point are encircled
+ with a shaded region to aid in visual identification of the sample groups.
+ Samples with of same cell type from the same donor are connected by lines
+ to indicate the 
+\begin_inset Quotes eld
+\end_inset
+
+trajectory
+\begin_inset Quotes erd
+\end_inset
+
+ of each donor's cells over time in PCoA space.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -5899,6 +5912,87 @@ noprefix "false"
 \end_layout
 
 \begin_layout Standard
+All 3 histone marks tend to occur more often near promoter regions, as shown
+ in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:near-promoter-peak-enrich"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ The majority of each density distribution is flat, representing the background
+ density of peaks genome-wide.
+ Each distribution has a peak near zero, representing an enrichment of peaks
+ close to 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+ positions relative to the remainder of the genome.
+ Interestingly, the 
+\begin_inset Quotes eld
+\end_inset
+
+radius
+\begin_inset Quotes erd
+\end_inset
+
+ within which this enrichment occurs is not the same for every histone mark
+ (Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:effective-promoter-radius"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ For H3K4me2 and H3K4me3, peaks are most enriched within 1
+\begin_inset space ~
+\end_inset
+
+kbp of 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+ positions, while for H3K27me3, enrichment is broader, extending to 2.5
+\begin_inset space ~
+\end_inset
+
+kbp.
+ These 
+\begin_inset Quotes eld
+\end_inset
+
+effective promoter radii
+\begin_inset Quotes erd
+\end_inset
+
+ remain approximately the same across all combinations of experimental condition
+ (cell type, time point, and donor), so they appear to be a property of
+ the histone mark itself.
+ Hence, these radii were used to define the promoter regions for each histone
+ mark in all further analyses.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -5909,63 +6003,7 @@ status open
 status open
 
 \begin_layout Plain Layout
-Ensure this figure uses the peak calls from the new analysis.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Need a control: shuffle all peaks and repeat, N times.
- Do real vs shuffled control both in a top/bottom arrangement.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Consider counting TSS inside peaks as negative number indicating how far
- 
-\emph on
-inside
-\emph default
- the peak the TSS is (i.e.
- distance to nearest non-peak area).
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-The H3K4 part of this figure is included in 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "LaMere2016"
-literal "false"
-
-\end_inset
-
- as Fig.
- S2.
- Do I need to do anything about that?
+Future direction idea: Need a control: shuffle all peaks and repeat, N times.
 \end_layout
 
 \end_inset
@@ -6178,94 +6216,9 @@ noprefix "false"
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-All 3 histone marks tend to occur more often near promoter regions, as shown
- in Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:near-promoter-peak-enrich"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-.
- The majority of each density distribution is flat, representing the background
- density of peaks genome-wide.
- Each distribution has a peak near zero, representing an enrichment of peaks
- close to 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-TSS
-\end_layout
-
-\end_inset
-
- positions relative to the remainder of the genome.
- Interestingly, the 
-\begin_inset Quotes eld
-\end_inset
-
-radius
-\begin_inset Quotes erd
-\end_inset
-
- within which this enrichment occurs is not the same for every histone mark
- (Table 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "tab:effective-promoter-radius"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-).
- For H3K4me2 and H3K4me3, peaks are most enriched within 1
-\begin_inset space ~
-\end_inset
-
-kbp of 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-TSS
-\end_layout
-
-\end_inset
-
- positions, while for H3K27me3, enrichment is broader, extending to 2.5
-\begin_inset space ~
-\end_inset
-
-kbp.
- These 
-\begin_inset Quotes eld
-\end_inset
-
-effective promoter radii
-\begin_inset Quotes erd
-\end_inset
-
- remain approximately the same across all combinations of experimental condition
- (cell type, time point, and donor), so they appear to be a property of
- the histone mark itself.
- Hence, these radii were used to define the promoter regions for each histone
- mark in all further analyses.
 \end_layout
 
 \begin_layout Standard
@@ -6285,73 +6238,6 @@ Consider also showing figure for distance to nearest peak center, and reference
 \begin_layout Subsection
 H3K4 and H3K27 promoter methylation has broadly the expected correlation
  with gene expression
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-This figure is generated from the old analysis.
- Either note that in some way or re-generate it from the new peak calls.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/FPKM by Peak Violin Plots-CROP.pdf
-	lyxscale 50
-	width 100col%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset Argument 1
-status collapsed
-
-\begin_layout Plain Layout
-Expression distributions of genes with and without promoter peaks.
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:fpkm-by-peak"
-
-\end_inset
-
-
-\series bold
-Expression distributions of genes with and without promoter peaks.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -6429,9 +6315,414 @@ FPKM
  for H3K27me3.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+This figure is generated from the old analysis.
+ Either note that in some way or re-generate it from the new peak calls.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/FPKM by Peak Violin Plots-CROP.pdf
+	lyxscale 50
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Expression distributions of genes with and without promoter peaks.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:fpkm-by-peak"
+
+\end_inset
+
+
+\series bold
+Expression distributions of genes with and without promoter peaks.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Gene expression and promoter histone methylation patterns in naïve and memory
  show convergence at day 14
+\end_layout
+
+\begin_layout Standard
+We hypothesized that if naïve cells had differentiated into memory cells
+ by Day 14, then their patterns of expression and histone modification should
+ converge with those of memory cells at Day 14.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PCoA-promoters"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows the patterns of variation in all 3 histone marks in the promoter
+ regions of the genome using 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+PCoA
+\end_layout
+
+\end_inset
+
+.
+ All 3 marks show a noticeable convergence between the naïve and memory
+ samples at day 14, visible as an overlapping of the day 14 groups on each
+ plot.
+ This is consistent with the counts of significantly differentially modified
+ promoters and estimates of the total numbers of differentially modified
+ promoters shown in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Number-signif-promoters"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ For all histone marks, evidence of differential modification between naïve
+ and memory samples was detected at every time point except day 14.
+ The day 14 convergence pattern is also present in the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ data (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:RNA-PCA-group"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+), albeit in the 2nd and 3rd principal coordinates, indicating that it is
+ not the most dominant pattern driving gene expression.
+ Taken together, the data show that promoter histone methylation for these
+ 3 histone marks and RNA expression for naïve and memory cells are most
+ similar at day 14, the furthest time point after activation.
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+MOFA
+\end_layout
+
+\end_inset
+
+ was also able to capture this day 14 convergence pattern in 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+LF
+\end_layout
+
+\end_inset
+
+5 (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:mofa-lf-scatter"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+), which accounts for shared variation across all 3 histone marks and the
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ data, confirming that this convergence is a coordinated pattern across
+ all 4 data sets.
+ While this observation does not prove that the naïve cells have differentiated
+ into memory cells at Day 14, it is consistent with that hypothesis.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement p
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/ChIP-seq/H3K4me2-promoter-PCA-group-CROP.png
+	lyxscale 25
+	width 45col%
+	groupId pcoa-prom-subfig
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PCoA-H3K4me2-prom"
+
+\end_inset
+
+PCoA plot of H3K4me2 promoters, after subtracting surrogate variables
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/ChIP-seq/H3K4me3-promoter-PCA-group-CROP.png
+	lyxscale 25
+	width 45col%
+	groupId pcoa-prom-subfig
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PCoA-H3K4me3-prom"
+
+\end_inset
+
+PCoA plot of H3K4me3 promoters, after subtracting surrogate variables
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/ChIP-seq/H3K27me3-promoter-PCA-group-CROP.png
+	lyxscale 25
+	width 45col%
+	groupId pcoa-prom-subfig
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PCoA-H3K27me3-prom"
+
+\end_inset
+
+PCoA plot of H3K27me3 promoters, after subtracting surrogate variables
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/RNA-seq/PCA-final-23-CROP.png
+	lyxscale 25
+	width 45col%
+	groupId pcoa-prom-subfig
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:RNA-PCA-group"
+
+\end_inset
+
+RNA-seq PCoA showing principal coordinates 2 and 3.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+PCoA plots for promoter ChIP-seq and expression RNA-seq data
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PCoA-promoters"
+
+\end_inset
+
+
+\series bold
+PCoA plots for promoter ChIP-seq and expression RNA-seq data
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -6461,7 +6752,7 @@ begin{landscape}
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -6944,344 +7235,6 @@ end{landscape}
 
 \end_layout
 
-\begin_layout Standard
-We hypothesized that if naïve cells had differentiated into memory cells
- by Day 14, then their patterns of expression and histone modification should
- converge with those of memory cells at Day 14.
- Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:PCoA-promoters"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- shows the patterns of variation in all 3 histone marks in the promoter
- regions of the genome using 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-PCoA
-\end_layout
-
-\end_inset
-
-.
- All 3 marks show a noticeable convergence between the naïve and memory
- samples at day 14, visible as an overlapping of the day 14 groups on each
- plot.
- This is consistent with the counts of significantly differentially modified
- promoters and estimates of the total numbers of differentially modified
- promoters shown in Table 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "tab:Number-signif-promoters"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-.
- For all histone marks, evidence of differential modification between naïve
- and memory samples was detected at every time point except day 14.
- The day 14 convergence pattern is also present in the 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-RNA-seq
-\end_layout
-
-\end_inset
-
- data (Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:RNA-PCA-group"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-), albeit in the 2nd and 3rd principal coordinates, indicating that it is
- not the most dominant pattern driving gene expression.
- Taken together, the data show that promoter histone methylation for these
- 3 histone marks and RNA expression for naïve and memory cells are most
- similar at day 14, the furthest time point after activation.
- 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-MOFA
-\end_layout
-
-\end_inset
-
- was also able to capture this day 14 convergence pattern in 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-LF
-\end_layout
-
-\end_inset
-
-5 (Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:mofa-lf-scatter"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-), which accounts for shared variation across all 3 histone marks and the
- 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-RNA-seq
-\end_layout
-
-\end_inset
-
- data, confirming that this convergence is a coordinated pattern across
- all 4 data sets.
- While this observation does not prove that the naïve cells have differentiated
- into memory cells at Day 14, it is consistent with that hypothesis.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement p
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/ChIP-seq/H3K4me2-promoter-PCA-group-CROP.png
-	lyxscale 25
-	width 45col%
-	groupId pcoa-prom-subfig
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:PCoA-H3K4me2-prom"
-
-\end_inset
-
-PCoA plot of H3K4me2 promoters, after subtracting surrogate variables
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset space \hfill{}
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/ChIP-seq/H3K4me3-promoter-PCA-group-CROP.png
-	lyxscale 25
-	width 45col%
-	groupId pcoa-prom-subfig
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:PCoA-H3K4me3-prom"
-
-\end_inset
-
-PCoA plot of H3K4me3 promoters, after subtracting surrogate variables
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/ChIP-seq/H3K27me3-promoter-PCA-group-CROP.png
-	lyxscale 25
-	width 45col%
-	groupId pcoa-prom-subfig
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:PCoA-H3K27me3-prom"
-
-\end_inset
-
-PCoA plot of H3K27me3 promoters, after subtracting surrogate variables
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset space \hfill{}
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/RNA-seq/PCA-final-23-CROP.png
-	lyxscale 25
-	width 45col%
-	groupId pcoa-prom-subfig
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:RNA-PCA-group"
-
-\end_inset
-
-RNA-seq PCoA showing principal coordinates 2 and 3.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset Argument 1
-status collapsed
-
-\begin_layout Plain Layout
-PCoA plots for promoter ChIP-seq and expression RNA-seq data
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:PCoA-promoters"
-
-\end_inset
-
-
-\series bold
-PCoA plots for promoter ChIP-seq and expression RNA-seq data
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Subsection
 Effect of H3K4me2 and H3K4me3 promoter coverage upstream vs downstream of
  TSS
@@ -7323,275 +7276,6 @@ For the figures in this section and the next, the group labels are arbitrary,
  way, e.g.
  most upstream to most downstream.
  If this is done, make sure to update the text with the correct group labels.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-afterpage{
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{landscape}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/ChIP-seq/H3K4me2-neighborhood-clusters-CROP.png
-	lyxscale 25
-	width 30col%
-	groupId covprof-subfig
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:H3K4me2-neighborhood-clusters"
-
-\end_inset
-
-Average relative coverage for each bin in each cluster
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset space \hfill{}
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/ChIP-seq/H3K4me2-neighborhood-PCA-CROP.png
-	lyxscale 25
-	width 30col%
-	groupId covprof-subfig
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:H3K4me2-neighborhood-pca"
-
-\end_inset
-
-PCA of relative coverage depth, colored by K-means cluster membership.
- 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset space \hfill{}
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/ChIP-seq/H3K4me2-neighborhood-expression-CROP.png
-	lyxscale 25
-	width 30col%
-	groupId covprof-subfig
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:H3K4me2-neighborhood-expression"
-
-\end_inset
-
-Gene expression grouped by promoter coverage clusters.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset Argument 1
-status collapsed
-
-\begin_layout Plain Layout
-K-means clustering of promoter H3K4me2 relative coverage depth in naïve
- day 0 samples.
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:H3K4me2-neighborhood"
-
-\end_inset
-
-
-\series bold
-K-means clustering of promoter H3K4me2 relative coverage depth in naïve
- day 0 samples.
- 
-\series default
-H3K4me2 ChIP-seq reads were binned into 500-bp windows tiled across each
- promoter from 5
-\begin_inset space ~
-\end_inset
-
-kbp upstream to 5
-\begin_inset space ~
-\end_inset
-
-kbp downstream, and the logCPM values were normalized within each promoter
- to an average of 0, yielding relative coverage depths.
- These were then grouped using K-means clustering with 
-\begin_inset Formula $K=6$
-\end_inset
-
-,
-\series bold
- 
-\series default
-and the average bin values were plotted for each cluster (a).
- The 
-\begin_inset Formula $x$
-\end_inset
-
--axis is the genomic coordinate of each bin relative to the the transcription
- start site, and the 
-\begin_inset Formula $y$
-\end_inset
-
--axis is the mean relative coverage depth of that bin across all promoters
- in the cluster.
- Each line represents the average 
-\begin_inset Quotes eld
-\end_inset
-
-shape
-\begin_inset Quotes erd
-\end_inset
-
- of the promoter coverage for promoters in that cluster.
- PCA was performed on the same data, and the first two PCs were plotted,
- coloring each point by its K-means cluster identity (b).
- For each cluster, the distribution of gene expression values was plotted
- (c).
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{landscape}
-\end_layout
-
-\begin_layout Plain Layout
-
-}
 \end_layout
 
 \end_inset
@@ -7783,6 +7467,274 @@ cloud
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+afterpage{
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{landscape}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/ChIP-seq/H3K4me2-neighborhood-clusters-CROP.png
+	lyxscale 25
+	width 30col%
+	groupId covprof-subfig
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:H3K4me2-neighborhood-clusters"
+
+\end_inset
+
+Average relative coverage for each bin in each cluster
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/ChIP-seq/H3K4me2-neighborhood-PCA-CROP.png
+	lyxscale 25
+	width 30col%
+	groupId covprof-subfig
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:H3K4me2-neighborhood-pca"
+
+\end_inset
+
+PCA of relative coverage depth, colored by K-means cluster membership.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/ChIP-seq/H3K4me2-neighborhood-expression-CROP.png
+	lyxscale 25
+	width 30col%
+	groupId covprof-subfig
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:H3K4me2-neighborhood-expression"
+
+\end_inset
+
+Gene expression grouped by promoter coverage clusters.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+K-means clustering of promoter H3K4me2 relative coverage depth in naïve
+ day 0 samples.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:H3K4me2-neighborhood"
+
+\end_inset
+
+
+\series bold
+K-means clustering of promoter H3K4me2 relative coverage depth in naïve
+ day 0 samples.
+ 
+\series default
+H3K4me2 ChIP-seq reads were binned into 500-bp windows tiled across each
+ promoter from 5
+\begin_inset space ~
+\end_inset
+
+kbp upstream to 5
+\begin_inset space ~
+\end_inset
+
+kbp downstream, and the logCPM values were normalized within each promoter
+ to an average of 0, yielding relative coverage depths.
+ These were then grouped using K-means clustering with 
+\begin_inset Formula $K=6$
+\end_inset
+
+,
+\series bold
+ 
+\series default
+and the average bin values were plotted for each cluster (a).
+ The 
+\begin_inset Formula $x$
+\end_inset
+
+-axis is the genomic coordinate of each bin relative to the the transcription
+ start site, and the 
+\begin_inset Formula $y$
+\end_inset
+
+-axis is the mean relative coverage depth of that bin across all promoters
+ in the cluster.
+ Each line represents the average 
+\begin_inset Quotes eld
+\end_inset
+
+shape
+\begin_inset Quotes erd
+\end_inset
+
+ of the promoter coverage for promoters in that cluster.
+ PCA was performed on the same data, and the first two PCs were plotted,
+ coloring each point by its K-means cluster identity (b).
+ For each cluster, the distribution of gene expression values was plotted
+ (c).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{landscape}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Flex TODO Note (inline)
 status open
 
@@ -7942,6 +7894,32 @@ TSS
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Standard
+All observations described above for H3K4me2 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ also appear to hold for H3K4me3 as well (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:H3K4me3-neighborhood"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ This is expected, since there is a high correlation between the positions
+ where both histone marks occur.
 \end_layout
 
 \begin_layout Standard
@@ -8212,21 +8190,18 @@ end{landscape}
 
 \end_layout
 
-\begin_layout Standard
-All observations described above for H3K4me2 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-ChIP-seq
+\begin_layout Subsection
+Promoter coverage H3K27me3
 \end_layout
 
-\end_inset
-
- also appear to hold for H3K4me3 as well (Figure 
+\begin_layout Standard
+Unlike both H3K4 marks, whose main patterns of variation appear directly
+ related to the size and position of a single peak within the promoter,
+ the patterns of H3K27me3 methylation in promoters are more complex (Figure
+ 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:H3K4me3-neighborhood"
+reference "fig:H3K27me3-neighborhood"
 plural "false"
 caps "false"
 noprefix "false"
@@ -8234,12 +8209,137 @@ noprefix "false"
 \end_inset
 
 ).
- This is expected, since there is a high correlation between the positions
- where both histone marks occur.
+ Once again looking at the relative coverage in a 500-bp wide bins in a
+ 5kb radius around each 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
 \end_layout
 
-\begin_layout Subsection
-Promoter coverage H3K27me3
+\end_inset
+
+, promoters were clustered based on the normalized relative coverage values
+ in each bin using 
+\begin_inset Formula $k$
+\end_inset
+
+-means clustering with 
+\begin_inset Formula $K=6$
+\end_inset
+
+ (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:H3K27me3-neighborhood-clusters"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ This time, 3 
+\begin_inset Quotes eld
+\end_inset
+
+axes
+\begin_inset Quotes erd
+\end_inset
+
+ of variation can be observed, each represented by 2 clusters with opposing
+ patterns.
+ The first axis is greater upstream coverage (Cluster 1) vs.
+ greater downstream coverage (Cluster 3); the second axis is the coverage
+ at the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+ itself: peak (Cluster 4) or trough (Cluster 2); lastly, the third axis
+ represents a trough upstream of the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+ (Cluster 5) vs.
+ downstream of the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
+\end_layout
+
+\end_inset
+
+ (Cluster 6).
+ Referring to these opposing pairs of clusters as axes of variation is justified
+, because they correspond precisely to the first 3 
+\begin_inset Flex Glossary Term (pl)
+status open
+
+\begin_layout Plain Layout
+PC
+\end_layout
+
+\end_inset
+
+ in the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+PCA
+\end_layout
+
+\end_inset
+
+ plot of the relative coverage values (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:H3K27me3-neighborhood-pca"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ The 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+PCA
+\end_layout
+
+\end_inset
+
+ plot reveals that as in the case of H3K4me2, all the 
+\begin_inset Quotes eld
+\end_inset
+
+clusters
+\begin_inset Quotes erd
+\end_inset
+
+ are really just sections of a single connected cloud rather than discrete
+ clusters.
+ The cloud is approximately ellipsoid-shaped, with each PC being an axis
+ of the ellipse, and each cluster consisting of a pyramidal section of the
+ ellipsoid.
 \end_layout
 
 \begin_layout Standard
@@ -8529,154 +8629,6 @@ end{landscape}
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-Unlike both H3K4 marks, whose main patterns of variation appear directly
- related to the size and position of a single peak within the promoter,
- the patterns of H3K27me3 methylation in promoters are more complex (Figure
- 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:H3K27me3-neighborhood"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-).
- Once again looking at the relative coverage in a 500-bp wide bins in a
- 5kb radius around each 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-TSS
-\end_layout
-
-\end_inset
-
-, promoters were clustered based on the normalized relative coverage values
- in each bin using 
-\begin_inset Formula $k$
-\end_inset
-
--means clustering with 
-\begin_inset Formula $K=6$
-\end_inset
-
- (Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:H3K27me3-neighborhood-clusters"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-).
- This time, 3 
-\begin_inset Quotes eld
-\end_inset
-
-axes
-\begin_inset Quotes erd
-\end_inset
-
- of variation can be observed, each represented by 2 clusters with opposing
- patterns.
- The first axis is greater upstream coverage (Cluster 1) vs.
- greater downstream coverage (Cluster 3); the second axis is the coverage
- at the 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-TSS
-\end_layout
-
-\end_inset
-
- itself: peak (Cluster 4) or trough (Cluster 2); lastly, the third axis
- represents a trough upstream of the 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-TSS
-\end_layout
-
-\end_inset
-
- (Cluster 5) vs.
- downstream of the 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-TSS
-\end_layout
-
-\end_inset
-
- (Cluster 6).
- Referring to these opposing pairs of clusters as axes of variation is justified
-, because they correspond precisely to the first 3 
-\begin_inset Flex Glossary Term (pl)
-status open
-
-\begin_layout Plain Layout
-PC
-\end_layout
-
-\end_inset
-
- in the 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-PCA
-\end_layout
-
-\end_inset
-
- plot of the relative coverage values (Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:H3K27me3-neighborhood-pca"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-).
- The 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-PCA
-\end_layout
-
-\end_inset
-
- plot reveals that as in the case of H3K4me2, all the 
-\begin_inset Quotes eld
-\end_inset
-
-clusters
-\begin_inset Quotes erd
-\end_inset
-
- are really just sections of a single connected cloud rather than discrete
- clusters.
- The cloud is approximately ellipsoid-shaped, with each PC being an axis
- of the ellipse, and each cluster consisting of a pyramidal section of the
- ellipsoid.
 \end_layout
 
 \begin_layout Standard
@@ -9078,83 +9030,6 @@ LF
 \end_layout
 
 \begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/LaMere2016_fig8.pdf
-	lyxscale 50
-	width 60col%
-	groupId colwidth
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset Argument 1
-status collapsed
-
-\begin_layout Plain Layout
-Lamere 2016 Figure 8 “Model for the role of H3K4 methylation during CD4
- T-cell activation.
-\begin_inset Quotes erd
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Lamere2016-Fig8"
-
-\end_inset
-
-
-\series bold
-Lamere 2016 Figure 8 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "LaMere2016"
-literal "false"
-
-\end_inset
-
-, 
-\begin_inset Quotes eld
-\end_inset
-
-Model for the role of H3K4 methylation during CD4 T-cell activation.
-\begin_inset Quotes erd
-\end_inset
-
- 
-\series default
-Reproduced with permission.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 In H3K4me2, H3K4me3, and 
 \begin_inset Flex Glossary Term
 status open
@@ -9260,6 +9135,83 @@ PCoA
 
  to reveal interesting behaviors in the data that were previously only detectabl
 e by a detailed manual analysis.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/LaMere2016_fig8.pdf
+	lyxscale 50
+	width 60col%
+	groupId colwidth
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Lamere 2016 Figure 8 “Model for the role of H3K4 methylation during CD4
+ T-cell activation.
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Lamere2016-Fig8"
+
+\end_inset
+
+
+\series bold
+Lamere 2016 Figure 8 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "LaMere2016"
+literal "false"
+
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+Model for the role of H3K4 methylation during CD4 T-cell activation.
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\series default
+Reproduced with permission.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -9465,104 +9417,6 @@ Workflow
 \end_layout
 
 \begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-afterpage{
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{landscape}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/rulegraphs/rulegraph-all.pdf
-	lyxscale 50
-	width 100col%
-	height 95theight%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset Argument 1
-status collapsed
-
-\begin_layout Plain Layout
-Dependency graph of steps in reproducible workflow.
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:rulegraph"
-
-\end_inset
-
-
-\series bold
-Dependency graph of steps in reproducible workflow.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{landscape}
-\end_layout
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 The analyses described in this chapter were organized into a reproducible
  workflow using the Snakemake workflow management system 
 \begin_inset CommandInset citation
@@ -9696,6 +9550,104 @@ noprefix "false"
 , which Snakemake uses to determine order in which to execute each step
  so that each step is executed only after all of the steps it depends on
  have completed, thereby automating the entire workflow from start to finish.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+afterpage{
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{landscape}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/rulegraphs/rulegraph-all.pdf
+	lyxscale 50
+	width 100col%
+	height 95theight%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Dependency graph of steps in reproducible workflow.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:rulegraph"
+
+\end_inset
+
+
+\series bold
+Dependency graph of steps in reproducible workflow.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{landscape}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -10679,6 +10631,49 @@ DNA methylation arrays are a relatively new kind of assay that uses microarrays
 \end_layout
 
 \begin_layout Standard
+After normalization, these two probe intensities are summarized in one of
+ two ways, each with advantages and disadvantages.
+ β
+\series bold
+ 
+\series default
+values, interpreted as fraction of DNA copies methylated, range from 0 to
+ 1.
+ β
+\series bold
+ 
+\series default
+values are conceptually easy to interpret, but the constrained range makes
+ them unsuitable for linear modeling, and their error distributions are
+ highly non-normal, which also frustrates linear modeling.
+ M-values, interpreted as the log ratio of methylated to unmethylated copies,
+ are computed by mapping the beta values from 
+\begin_inset Formula $[0,1]$
+\end_inset
+
+ onto 
+\begin_inset Formula $(-\infty,+\infty)$
+\end_inset
+
+ using a sigmoid curve (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Sigmoid-beta-m-mapping"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ This transformation results in values with better statistical properties:
+ the unconstrained range is suitable for linear modeling, and the error
+ distributions are more normal.
+ Hence, most linear modeling and other statistical testing on methylation
+ arrays is performed using M-values.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -10730,49 +10725,6 @@ Sigmoid shape of the mapping between β and M values.
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-After normalization, these two probe intensities are summarized in one of
- two ways, each with advantages and disadvantages.
- β
-\series bold
- 
-\series default
-values, interpreted as fraction of DNA copies methylated, range from 0 to
- 1.
- β
-\series bold
- 
-\series default
-values are conceptually easy to interpret, but the constrained range makes
- them unsuitable for linear modeling, and their error distributions are
- highly non-normal, which also frustrates linear modeling.
- M-values, interpreted as the log ratio of methylated to unmethylated copies,
- are computed by mapping the beta values from 
-\begin_inset Formula $[0,1]$
-\end_inset
-
- onto 
-\begin_inset Formula $(-\infty,+\infty)$
-\end_inset
-
- using a sigmoid curve (Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Sigmoid-beta-m-mapping"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-).
- This transformation results in values with better statistical properties:
- the unconstrained range is suitable for linear modeling, and the error
- distributions are more normal.
- Hence, most linear modeling and other statistical testing on methylation
- arrays is performed using M-values.
 \end_layout
 
 \begin_layout Standard
@@ -12029,74 +11981,6 @@ Separate normalization with RMA introduces unwanted biases in classification
 \end_layout
 
 \begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/PAM/predplot.pdf
-	lyxscale 50
-	width 60col%
-	groupId colwidth
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset Argument 1
-status collapsed
-
-\begin_layout Plain Layout
-Classifier probabilities on validation samples when normalized with RMA
- together vs.
- separately.
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Classifier-probabilities-RMA"
-
-\end_inset
-
-
-\series bold
-Classifier probabilities on validation samples when normalized with RMA
- together vs.
- separately.
- 
-\series default
-The PAM classifier algorithm was trained on the training set of arrays to
- distinguish AR from TX and then used to assign class probabilities to the
- validation set.
- The process was performed after normalizing all samples together and after
- normalizing the training and test sets separately, and the class probabilities
- assigned to each sample in the validation set were plotted against each
- other (PP(AR), posterior probability of being AR).
- The color of each point indicates the true classification of that sample.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 To demonstrate the problem with non-single-channel normalization methods,
  we considered the problem of training a classifier to distinguish 
 \begin_inset Flex Glossary Term
@@ -12163,16 +12047,273 @@ AR
  
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/PAM/predplot.pdf
+	lyxscale 50
+	width 60col%
+	groupId colwidth
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Classifier probabilities on validation samples when normalized with RMA
+ together vs.
+ separately.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Classifier-probabilities-RMA"
+
+\end_inset
+
+
+\series bold
+Classifier probabilities on validation samples when normalized with RMA
+ together vs.
+ separately.
+ 
+\series default
+The PAM classifier algorithm was trained on the training set of arrays to
+ distinguish AR from TX and then used to assign class probabilities to the
+ validation set.
+ The process was performed after normalizing all samples together and after
+ normalizing the training and test sets separately, and the class probabilities
+ assigned to each sample in the validation set were plotted against each
+ other (PP(AR), posterior probability of being AR).
+ The color of each point indicates the true classification of that sample.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 fRMA and SCAN maintain classification performance while eliminating dependence
  on normalization strategy
 \end_layout
 
 \begin_layout Standard
+For internal validation, the 6 methods' AUC values ranged from 0.816 to 0.891,
+ as shown in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:AUC-PAM"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Among the non-single-channel normalizations, dChip outperformed 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RMA
+\end_layout
+
+\end_inset
+
+, while 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GRSN
+\end_layout
+
+\end_inset
+
+ reduced the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+AUC
+\end_layout
+
+\end_inset
+
+ values for both dChip and 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RMA
+\end_layout
+
+\end_inset
+
+.
+ Both single-channel methods, 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+SCAN
+\end_layout
+
+\end_inset
+
+, slightly outperformed 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RMA
+\end_layout
+
+\end_inset
+
+, with 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ ahead of 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+SCAN
+\end_layout
+
+\end_inset
+
+.
+ However, the difference between 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RMA
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ is still quite small.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ROC-PAM-int"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows that the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ROC
+\end_layout
+
+\end_inset
+
+ curves for 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RMA
+\end_layout
+
+\end_inset
+
+, dChip, and 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ look very similar and relatively smooth, while both 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GRSN
+\end_layout
+
+\end_inset
+
+ curves and the curve for 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+SCAN
+\end_layout
+
+\end_inset
+
+ have a more jagged appearance.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -12307,7 +12448,7 @@ ROC curves were generated for PAM classification of AR vs TX after 6 different
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -12904,195 +13045,6 @@ noprefix "false"
 \end_layout
 
 \begin_layout Standard
-For internal validation, the 6 methods' AUC values ranged from 0.816 to 0.891,
- as shown in Table 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "tab:AUC-PAM"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-.
- Among the non-single-channel normalizations, dChip outperformed 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-RMA
-\end_layout
-
-\end_inset
-
-, while 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-GRSN
-\end_layout
-
-\end_inset
-
- reduced the 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-AUC
-\end_layout
-
-\end_inset
-
- values for both dChip and 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-RMA
-\end_layout
-
-\end_inset
-
-.
- Both single-channel methods, 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-fRMA
-\end_layout
-
-\end_inset
-
- and 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-SCAN
-\end_layout
-
-\end_inset
-
-, slightly outperformed 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-RMA
-\end_layout
-
-\end_inset
-
-, with 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-fRMA
-\end_layout
-
-\end_inset
-
- ahead of 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-SCAN
-\end_layout
-
-\end_inset
-
-.
- However, the difference between 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-RMA
-\end_layout
-
-\end_inset
-
- and 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-fRMA
-\end_layout
-
-\end_inset
-
- is still quite small.
- Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:ROC-PAM-int"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- shows that the 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-ROC
-\end_layout
-
-\end_inset
-
- curves for 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-RMA
-\end_layout
-
-\end_inset
-
-, dChip, and 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-fRMA
-\end_layout
-
-\end_inset
-
- look very similar and relatively smooth, while both 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-GRSN
-\end_layout
-
-\end_inset
-
- curves and the curve for 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-SCAN
-\end_layout
-
-\end_inset
-
- have a more jagged appearance.
-\end_layout
-
-\begin_layout Standard
 For external validation, as expected, all the 
 \begin_inset Flex Glossary Term
 status open
@@ -13250,10 +13202,85 @@ fRMA with custom-generated vectors enables single-channel normalization
 \end_layout
 
 \begin_layout Standard
+In order to enable use of 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ to normalize hthgu133pluspm, a custom set of 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ vectors was created.
+ First, an appropriate batch size was chosen by looking at the number of
+ batches and number of samples included as a function of batch size (Figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:frmatools-batch-size"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ For a given batch size, all batches with fewer samples that the chosen
+ size must be ignored during training, while larger batches must be randomly
+ downsampled to the chosen size.
+ Hence, the number of samples included for a given batch size equals the
+ batch size times the number of batches with at least that many samples.
+ From Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:batch-size-samples"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, it is apparent that that a batch size of 8 maximizes the number of samples
+ included in training.
+ Increasing the batch size beyond this causes too many smaller batches to
+ be excluded, reducing the total number of samples for both tissue types.
+ However, a batch size of 8 is not necessarily optimal.
+ The article introducing frmaTools concluded that it was highly advantageous
+ to use a smaller batch size in order to include more batches, even at the
+ expense of including fewer total samples in training 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "McCall2011"
+literal "false"
+
+\end_inset
+
+.
+ To strike an appropriate balance between more batches and more samples,
+ a batch size of 5 was chosen.
+ For both blood and biopsy samples, this increased the number of batches
+ included by 10, with only a modest reduction in the number of samples compared
+ to a batch size of 8.
+ With a batch size of 5, 26 batches of biopsy samples and 46 batches of
+ blood samples were available.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -13393,219 +13420,6 @@ For batch sizes ranging from 3 to 15, the number of batches (a) and samples
 \end_layout
 
 \begin_layout Standard
-In order to enable use of 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-fRMA
-\end_layout
-
-\end_inset
-
- to normalize hthgu133pluspm, a custom set of 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-fRMA
-\end_layout
-
-\end_inset
-
- vectors was created.
- First, an appropriate batch size was chosen by looking at the number of
- batches and number of samples included as a function of batch size (Figure
- 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:frmatools-batch-size"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-).
- For a given batch size, all batches with fewer samples that the chosen
- size must be ignored during training, while larger batches must be randomly
- downsampled to the chosen size.
- Hence, the number of samples included for a given batch size equals the
- batch size times the number of batches with at least that many samples.
- From Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:batch-size-samples"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-, it is apparent that that a batch size of 8 maximizes the number of samples
- included in training.
- Increasing the batch size beyond this causes too many smaller batches to
- be excluded, reducing the total number of samples for both tissue types.
- However, a batch size of 8 is not necessarily optimal.
- The article introducing frmaTools concluded that it was highly advantageous
- to use a smaller batch size in order to include more batches, even at the
- expense of including fewer total samples in training 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "McCall2011"
-literal "false"
-
-\end_inset
-
-.
- To strike an appropriate balance between more batches and more samples,
- a batch size of 5 was chosen.
- For both blood and biopsy samples, this increased the number of batches
- included by 10, with only a modest reduction in the number of samples compared
- to a batch size of 8.
- With a batch size of 5, 26 batches of biopsy samples and 46 batches of
- blood samples were available.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/frma-pax-bx/M-BX-violin.pdf
-	lyxscale 40
-	width 45col%
-	groupId m-violin
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:m-bx-violin"
-
-\end_inset
-
-
-\series bold
-Violin plot of inter-normalization log ratios for biopsy samples.
- 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset space \hfill{}
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/frma-pax-bx/M-PAX-violin.pdf
-	lyxscale 40
-	width 45col%
-	groupId m-violin
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:m-pax-violin"
-
-\end_inset
-
-
-\series bold
-Violin plot of inter-normalization log ratios for blood samples.
- 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset Argument 1
-status collapsed
-
-\begin_layout Plain Layout
-Violin plot of log ratios between normalizations for 20 biopsy samples.
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:frma-violin"
-
-\end_inset
-
-
-\series bold
-Violin plot of log ratios between normalizations for 20 biopsy samples.
- 
-\series default
-Each of 20 randomly selected samples was normalized with RMA and with 5
- different sets of fRMA vectors.
- The distribution of log ratios between normalized expression values, aggregated
- across all 20 arrays, was plotted for each pair of normalizations.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 Since 
 \begin_inset Flex Glossary Term
 status open
@@ -13700,22 +13514,21 @@ fRMA
 \begin_inset Float figure
 wide false
 sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
 status open
 
 \begin_layout Plain Layout
 \align center
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
 \begin_inset Graphics
-	filename graphics/frma-pax-bx/MA-BX-RMA.fRMA-RASTER.png
-	lyxscale 10
+	filename graphics/frma-pax-bx/M-BX-violin.pdf
+	lyxscale 40
 	width 45col%
-	groupId ma-frma
+	groupId m-violin
 
 \end_inset
 
@@ -13728,12 +13541,13 @@ status collapsed
 \begin_layout Plain Layout
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:ma-bx-rma-frma"
+name "fig:m-bx-violin"
 
 \end_inset
 
-RMA vs.
- fRMA for biopsy samples.
+
+\series bold
+Violin plot of inter-normalization log ratios for biopsy samples.
 \end_layout
 
 \end_inset
@@ -13756,10 +13570,10 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename graphics/frma-pax-bx/MA-BX-fRMA.fRMA-RASTER.png
-	lyxscale 10
+	filename graphics/frma-pax-bx/M-PAX-violin.pdf
+	lyxscale 40
 	width 45col%
-	groupId ma-frma
+	groupId m-violin
 
 \end_inset
 
@@ -13772,99 +13586,13 @@ status collapsed
 \begin_layout Plain Layout
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:ma-bx-frma-frma"
-
-\end_inset
-
-fRMA vs fRMA for biopsy samples.
- 
-\end_layout
+name "fig:m-pax-violin"
 
 \end_inset
 
 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/frma-pax-bx/MA-PAX-RMA.fRMA-RASTER.png
-	lyxscale 10
-	width 45col%
-	groupId ma-frma
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:MA-PAX-rma-frma"
-
-\end_inset
-
-RMA vs.
- fRMA for blood samples.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset space \hfill{}
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/frma-pax-bx/MA-PAX-fRMA.fRMA-RASTER.png
-	lyxscale 10
-	width 45col%
-	groupId ma-frma
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:MA-PAX-frma-frma"
-
-\end_inset
-
-fRMA vs fRMA for blood samples.
+\series bold
+Violin plot of inter-normalization log ratios for blood samples.
 \end_layout
 
 \end_inset
@@ -13885,7 +13613,7 @@ fRMA vs fRMA for blood samples.
 status collapsed
 
 \begin_layout Plain Layout
-Representative MA plots comparing RMA and custom fRMA normalizations.
+Violin plot of log ratios between normalizations for 20 biopsy samples.
 \end_layout
 
 \end_inset
@@ -13893,30 +13621,19 @@ Representative MA plots comparing RMA and custom fRMA normalizations.
 
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:Representative-MA-plots"
+name "fig:frma-violin"
 
 \end_inset
 
 
 \series bold
-Representative MA plots comparing RMA and custom fRMA normalizations.
+Violin plot of log ratios between normalizations for 20 biopsy samples.
  
 \series default
-For each plot, 20 samples were normalized using 2 different normalizations,
- and then averages (A) and log ratios (M) were plotted between the two different
- normalizations for every probe.
- For the 
-\begin_inset Quotes eld
-\end_inset
-
-fRMA vs fRMA
-\begin_inset Quotes erd
-\end_inset
-
- plots (b & d), two different fRMA normalizations using vectors from two
- independent batch samplings were compared.
- Density of points is represented by blue shading, and individual outlier
- points are plotted.
+Each of 20 randomly selected samples was normalized with RMA and with 5
+ different sets of fRMA vectors.
+ The distribution of log ratios between normalized expression values, aggregated
+ across all 20 arrays, was plotted for each pair of normalizations.
 \end_layout
 
 \end_inset
@@ -14069,8 +13786,283 @@ fRMA
  as well.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/frma-pax-bx/MA-BX-RMA.fRMA-RASTER.png
+	lyxscale 10
+	width 45col%
+	groupId ma-frma
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ma-bx-rma-frma"
+
+\end_inset
+
+RMA vs.
+ fRMA for biopsy samples.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/frma-pax-bx/MA-BX-fRMA.fRMA-RASTER.png
+	lyxscale 10
+	width 45col%
+	groupId ma-frma
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ma-bx-frma-frma"
+
+\end_inset
+
+fRMA vs fRMA for biopsy samples.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/frma-pax-bx/MA-PAX-RMA.fRMA-RASTER.png
+	lyxscale 10
+	width 45col%
+	groupId ma-frma
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:MA-PAX-rma-frma"
+
+\end_inset
+
+RMA vs.
+ fRMA for blood samples.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/frma-pax-bx/MA-PAX-fRMA.fRMA-RASTER.png
+	lyxscale 10
+	width 45col%
+	groupId ma-frma
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:MA-PAX-frma-frma"
+
+\end_inset
+
+fRMA vs fRMA for blood samples.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Representative MA plots comparing RMA and custom fRMA normalizations.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Representative-MA-plots"
+
+\end_inset
+
+
+\series bold
+Representative MA plots comparing RMA and custom fRMA normalizations.
+ 
+\series default
+For each plot, 20 samples were normalized using 2 different normalizations,
+ and then averages (A) and log ratios (M) were plotted between the two different
+ normalizations for every probe.
+ For the 
+\begin_inset Quotes eld
+\end_inset
+
+fRMA vs fRMA
+\begin_inset Quotes erd
+\end_inset
+
+ plots (b & d), two different fRMA normalizations using vectors from two
+ independent batch samplings were compared.
+ Density of points is represented by blue shading, and individual outlier
+ points are plotted.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 SVA, voom, and array weights improve model fit for methylation array data
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:meanvar-basic"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows the relationship between the mean M-value and the standard deviation
+ calculated for each probe in the methylation array data set.
+ A few features of the data are apparent.
+ First, the data are very strongly bimodal, with peaks in the density around
+ M-values of +4 and -4.
+ These modes correspond to methylation sites that are nearly 100% methylated
+ and nearly 100% unmethylated, respectively.
+ The strong bimodality indicates that a majority of probes interrogate sites
+ that fall into one of these two categories.
+ The points in between these modes represent sites that are either partially
+ methylated in many samples, or are fully methylated in some samples and
+ fully unmethylated in other samples, or some combination.
+ The next visible feature of the data is the W-shaped variance trend.
+ The upticks in the variance trend on either side are expected, based on
+ the sigmoid transformation exaggerating small differences at extreme M-values
+ (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Sigmoid-beta-m-mapping"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ However, the uptick in the center is interesting: it indicates that sites
+ that are not constitutively methylated or unmethylated have a higher variance.
+ This could be a genuine biological effect, or it could be spurious noise
+ that is only observable at sites with varying methylation.
 \end_layout
 
 \begin_layout Standard
@@ -14100,7 +14092,7 @@ begin{landscape}
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Flex TODO Note (inline)
@@ -14320,49 +14312,6 @@ end{landscape}
 \end_layout
 
 \begin_layout Standard
-Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:meanvar-basic"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- shows the relationship between the mean M-value and the standard deviation
- calculated for each probe in the methylation array data set.
- A few features of the data are apparent.
- First, the data are very strongly bimodal, with peaks in the density around
- M-values of +4 and -4.
- These modes correspond to methylation sites that are nearly 100% methylated
- and nearly 100% unmethylated, respectively.
- The strong bimodality indicates that a majority of probes interrogate sites
- that fall into one of these two categories.
- The points in between these modes represent sites that are either partially
- methylated in many samples, or are fully methylated in some samples and
- fully unmethylated in other samples, or some combination.
- The next visible feature of the data is the W-shaped variance trend.
- The upticks in the variance trend on either side are expected, based on
- the sigmoid transformation exaggerating small differences at extreme M-values
- (Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Sigmoid-beta-m-mapping"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-).
- However, the uptick in the center is interesting: it indicates that sites
- that are not constitutively methylated or unmethylated have a higher variance.
- This could be a genuine biological effect, or it could be spurious noise
- that is only observable at sites with varying methylation.
-\end_layout
-
-\begin_layout Standard
 In Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -14448,10 +14397,77 @@ noprefix "false"
 \end_layout
 
 \begin_layout Standard
+To determine whether any of the known experimental factors had an impact
+ on data quality, the sample quality weights estimated from the data were
+ tested for association with each of the experimental factors (Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:weight-covariate-tests"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ Diabetes diagnosis was found to have a potentially significant association
+ with the sample weights, with a t-test p-value of 
+\begin_inset Formula $1.06\times10^{-3}$
+\end_inset
+
+.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:diabetes-sample-weights"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows the distribution of sample weights grouped by diabetes diagnosis.
+ The samples from patients with 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+T2D
+\end_layout
+
+\end_inset
+
+ were assigned significantly lower weights than those from patients with
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+T1D
+\end_layout
+
+\end_inset
+
+.
+ This indicates that the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+T2D
+\end_layout
+
+\end_inset
+
+ samples had an overall higher variance on average across all probes.
+ 
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -14675,7 +14691,7 @@ t
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Flex TODO Note (inline)
@@ -14746,87 +14762,108 @@ literal "false"
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-To determine whether any of the known experimental factors had an impact
- on data quality, the sample quality weights estimated from the data were
- tested for association with each of the experimental factors (Table 
+Table 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "tab:weight-covariate-tests"
+reference "tab:methyl-num-signif"
 plural "false"
 caps "false"
 noprefix "false"
 
 \end_inset
 
-).
- Diabetes diagnosis was found to have a potentially significant association
- with the sample weights, with a t-test p-value of 
-\begin_inset Formula $1.06\times10^{-3}$
+ shows the number of significantly differentially methylated probes reported
+ by each analysis for each comparison of interest at an 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+FDR
+\end_layout
+
 \end_inset
 
-.
+ of 10%.
+ As expected, the more elaborate analyses, B and C, report more significant
+ probes than the more basic analysis A, consistent with the conclusions
+ above that the data contain hidden systematic variations that must be modeled.
+ Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:methyl-est-nonnull"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows the estimated number differentially methylated probes for each test
+ from each analysis.
+ This was computed by estimating the proportion of null hypotheses that
+ were true using the method of 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Phipson2013Thesis"
+literal "false"
+
+\end_inset
+
+ and subtracting that fraction from the total number of probes, yielding
+ an estimate of the number of null hypotheses that are false based on the
+ distribution of p-values across the entire dataset.
+ Note that this does not identify which null hypotheses should be rejected
+ (i.e.
+ which probes are significant); it only estimates the true number of such
+ probes.
+ Once again, analyses B and C result it much larger estimates for the number
+ of differentially methylated probes.
+ In this case, analysis C, the only analysis that includes voom, estimates
+ the largest number of differentially methylated probes for all 3 contrasts.
+ If the assumptions of all the methods employed hold, then this represents
+ a gain in statistical power over the simpler analysis A.
  Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:diabetes-sample-weights"
+reference "fig:meth-p-value-histograms"
 plural "false"
 caps "false"
 noprefix "false"
 
 \end_inset
 
- shows the distribution of sample weights grouped by diabetes diagnosis.
- The samples from patients with 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-T2D
-\end_layout
-
-\end_inset
-
- were assigned significantly lower weights than those from patients with
- 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-T1D
-\end_layout
+ shows the p-value distributions for each test, from which the numbers in
+ Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:methyl-est-nonnull"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
-.
- This indicates that the 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-T2D
-\end_layout
-
-\end_inset
-
- samples had an overall higher variance on average across all probes.
- 
+ were generated.
+ The distributions for analysis A all have a dip in density near zero, which
+ is a strong sign of a poor model fit.
+ The histograms for analyses B and C are more well-behaved, with a uniform
+ component stretching all the way from 0 to 1 representing the probes for
+ which the null hypotheses is true (no differential methylation), and a
+ zero-biased component representing the probes for which the null hypothesis
+ is false (differentially methylated).
+ These histograms do not indicate any major issues with the model fit.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -15411,10 +15448,6 @@ AR vs.
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
@@ -15805,98 +15838,6 @@ literal "false"
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-Table 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "tab:methyl-num-signif"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- shows the number of significantly differentially methylated probes reported
- by each analysis for each comparison of interest at an 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-FDR
-\end_layout
-
-\end_inset
-
- of 10%.
- As expected, the more elaborate analyses, B and C, report more significant
- probes than the more basic analysis A, consistent with the conclusions
- above that the data contain hidden systematic variations that must be modeled.
- Table 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "tab:methyl-est-nonnull"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- shows the estimated number differentially methylated probes for each test
- from each analysis.
- This was computed by estimating the proportion of null hypotheses that
- were true using the method of 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Phipson2013Thesis"
-literal "false"
-
-\end_inset
-
- and subtracting that fraction from the total number of probes, yielding
- an estimate of the number of null hypotheses that are false based on the
- distribution of p-values across the entire dataset.
- Note that this does not identify which null hypotheses should be rejected
- (i.e.
- which probes are significant); it only estimates the true number of such
- probes.
- Once again, analyses B and C result it much larger estimates for the number
- of differentially methylated probes.
- In this case, analysis C, the only analysis that includes voom, estimates
- the largest number of differentially methylated probes for all 3 contrasts.
- If the assumptions of all the methods employed hold, then this represents
- a gain in statistical power over the simpler analysis A.
- Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:meth-p-value-histograms"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- shows the p-value distributions for each test, from which the numbers in
- Table 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "tab:methyl-est-nonnull"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- were generated.
- The distributions for analysis A all have a dip in density near zero, which
- is a strong sign of a poor model fit.
- The histograms for analyses B and C are more well-behaved, with a uniform
- component stretching all the way from 0 to 1 representing the probes for
- which the null hypotheses is true (no differential methylation), and a
- zero-biased component representing the probes for which the null hypothesis
- is false (differentially methylated).
- These histograms do not indicate any major issues with the model fit.
 \end_layout
 
 \begin_layout Standard
@@ -17825,6 +17766,120 @@ Globin blocking yields a larger and more consistent fraction of useful reads
 \end_layout
 
 \begin_layout Standard
+The objective of the present study was to validate a new protocol for deep
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ of whole blood drawn into PaxGene tubes from cynomolgus monkeys undergoing
+ islet transplantation, with particular focus on minimizing the loss of
+ useful sequencing space to uninformative globin reads.
+ The details of the analysis with respect to transplant outcomes and the
+ impact of mesenchymal stem cell treatment will be reported in a separate
+ manuscript (in preparation).
+ To focus on the efficacy of our 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ protocol, 37 blood samples, 16 from pre-transplant and 21 from post-transplant
+ time points, were each prepped once with and once without 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Flex Glossary Term (pl)
+status open
+
+\begin_layout Plain Layout
+oligo
+\end_layout
+
+\end_inset
+
+, and were then sequenced on an Illumina NextSeq500 instrument.
+ The number of reads aligning to each gene in the cynomolgus genome was
+ counted.
+ Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Fractions-of-reads"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ summarizes the distribution of read fractions among the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ and non-GB libraries.
+ In the libraries with no 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+, globin reads made up an average of 44.6% of total input reads, while reads
+ assigned to all other genes made up an average of 26.3%.
+ The remaining reads either aligned to intergenic regions (that include
+ long non-coding RNAs) or did not align with any annotated transcripts in
+ the current build of the cynomolgus genome.
+ In the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ libraries, globin reads made up only 3.48% and reads assigned to all other
+ genes increased to 50.4%.
+ Thus, 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ resulted in a 92.2% reduction in globin reads and a 91.6% increase in yield
+ of useful non-globin reads.
+\end_layout
+
+\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -17852,7 +17907,7 @@ begin{landscape}
 placement p
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -18479,120 +18534,6 @@ end{landscape}
 \end_layout
 
 \begin_layout Standard
-The objective of the present study was to validate a new protocol for deep
- 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-RNA-seq
-\end_layout
-
-\end_inset
-
- of whole blood drawn into PaxGene tubes from cynomolgus monkeys undergoing
- islet transplantation, with particular focus on minimizing the loss of
- useful sequencing space to uninformative globin reads.
- The details of the analysis with respect to transplant outcomes and the
- impact of mesenchymal stem cell treatment will be reported in a separate
- manuscript (in preparation).
- To focus on the efficacy of our 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-GB
-\end_layout
-
-\end_inset
-
- protocol, 37 blood samples, 16 from pre-transplant and 21 from post-transplant
- time points, were each prepped once with and once without 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-GB
-\end_layout
-
-\end_inset
-
- 
-\begin_inset Flex Glossary Term (pl)
-status open
-
-\begin_layout Plain Layout
-oligo
-\end_layout
-
-\end_inset
-
-, and were then sequenced on an Illumina NextSeq500 instrument.
- The number of reads aligning to each gene in the cynomolgus genome was
- counted.
- Table 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "tab:Fractions-of-reads"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- summarizes the distribution of read fractions among the 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-GB
-\end_layout
-
-\end_inset
-
- and non-GB libraries.
- In the libraries with no 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-GB
-\end_layout
-
-\end_inset
-
-, globin reads made up an average of 44.6% of total input reads, while reads
- assigned to all other genes made up an average of 26.3%.
- The remaining reads either aligned to intergenic regions (that include
- long non-coding RNAs) or did not align with any annotated transcripts in
- the current build of the cynomolgus genome.
- In the 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-GB
-\end_layout
-
-\end_inset
-
- libraries, globin reads made up only 3.48% and reads assigned to all other
- genes increased to 50.4%.
- Thus, 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-GB
-\end_layout
-
-\end_inset
-
- resulted in a 92.2% reduction in globin reads and a 91.6% increase in yield
- of useful non-globin reads.
-\end_layout
-
-\begin_layout Standard
 This reduction is not quite as efficient as the previous analysis showed
  for human samples by DeepSAGE (<0.4% globin reads after globin reduction)
  
@@ -18653,74 +18594,6 @@ TMM
 
  normalization correctly identifies this 2-fold difference as biologically
  irrelevant and removes it.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/Globin Paper/figure1 - globin-fractions.pdf
-	lyxscale 50
-	width 75col%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset Argument 1
-status collapsed
-
-\begin_layout Plain Layout
-Fraction of genic reads in each sample aligned to non-globin genes, with
- and without GB.
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Fraction-of-genic-reads"
-
-\end_inset
-
-
-\series bold
-Fraction of genic reads in each sample aligned to non-globin genes, with
- and without GB.
-
-\series default
- All reads in each sequencing library were aligned to the cyno genome, and
- the number of reads uniquely aligning to each gene was counted.
- For each sample, counts were summed separately for all globin genes and
- for the remainder of the genes (non-globin genes), and the fraction of
- genic reads aligned to non-globin genes was computed.
- Each point represents an individual sample.
- Gray + signs indicate the means for globin-blocked libraries and unblocked
- libraries.
- The overall distribution for each group is represented as a notched box
- plots.
- Points are randomly spread vertically to avoid excessive overlapping.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -18809,24 +18682,6 @@ GB
  against the worst case of a high-globin fraction.
 \end_layout
 
-\begin_layout Subsection
-Globin blocking lowers the noise floor and allows detection of about 2000
- more low-expression genes
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Remove redundant titles from figures
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Standard
 \begin_inset Float figure
 wide false
@@ -18836,9 +18691,9 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename graphics/Globin Paper/figure2 - aveLogCPM-colored.pdf
+	filename graphics/Globin Paper/figure1 - globin-fractions.pdf
 	lyxscale 50
-	height 60theight%
+	width 75col%
 
 \end_inset
 
@@ -18853,8 +18708,8 @@ status collapsed
 status collapsed
 
 \begin_layout Plain Layout
-Distributions of average group gene abundances when normalized separately
- or together.
+Fraction of genic reads in each sample aligned to non-globin genes, with
+ and without GB.
 \end_layout
 
 \end_inset
@@ -18862,43 +18717,50 @@ Distributions of average group gene abundances when normalized separately
 
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:logcpm-dists"
+name "fig:Fraction-of-genic-reads"
 
 \end_inset
 
 
 \series bold
-Distributions of average group gene abundances when normalized separately
- or together.
+Fraction of genic reads in each sample aligned to non-globin genes, with
+ and without GB.
 
 \series default
  All reads in each sequencing library were aligned to the cyno genome, and
  the number of reads uniquely aligning to each gene was counted.
- Genes with zero counts in all libraries were discarded.
- Libraries were normalized using the TMM method.
- Libraries were split into GB and non-GB groups and the average logCPM was
- computed.
- The distribution of average gene logCPM values was plotted for both groups
- using a kernel density plot to approximate a continuous distribution.
- The GB logCPM distributions are marked in red, non-GB in blue.
- The black vertical line denotes the chosen detection threshold of 
-\begin_inset Formula $-1$
-\end_inset
-
-.
- Top panel: Libraries were split into GB and non-GB groups first and normalized
- separately.
- Bottom panel: Libraries were all normalized together first and then split
- into groups.
+ For each sample, counts were summed separately for all globin genes and
+ for the remainder of the genes (non-globin genes), and the fraction of
+ genic reads aligned to non-globin genes was computed.
+ Each point represents an individual sample.
+ Gray + signs indicate the means for globin-blocked libraries and unblocked
+ libraries.
+ The overall distribution for each group is represented as a notched box
+ plots.
+ Points are randomly spread vertically to avoid excessive overlapping.
 \end_layout
 
 \end_inset
 
 
 \end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Globin blocking lowers the noise floor and allows detection of about 2000
+ more low-expression genes
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
 
 \begin_layout Plain Layout
-
+Remove redundant titles from figures
 \end_layout
 
 \end_inset
@@ -18992,9 +18854,9 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename graphics/Globin Paper/figure3 - detection.pdf
+	filename graphics/Globin Paper/figure2 - aveLogCPM-colored.pdf
 	lyxscale 50
-	width 70col%
+	height 60theight%
 
 \end_inset
 
@@ -19009,7 +18871,8 @@ status collapsed
 status collapsed
 
 \begin_layout Plain Layout
-Gene detections as a function of abundance thresholds in GB and non-GB samples.
+Distributions of average group gene abundances when normalized separately
+ or together.
 \end_layout
 
 \end_inset
@@ -19017,42 +18880,38 @@ Gene detections as a function of abundance thresholds in GB and non-GB samples.
 
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:Gene-detections"
+name "fig:logcpm-dists"
 
 \end_inset
 
 
 \series bold
-Gene detections as a function of abundance thresholds in GB and non-GB samples.
+Distributions of average group gene abundances when normalized separately
+ or together.
 
 \series default
- Average logCPM was computed by separate group normalization as described
- in Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:logcpm-dists"
-plural "false"
-caps "false"
-noprefix "false"
-
+ All reads in each sequencing library were aligned to the cyno genome, and
+ the number of reads uniquely aligning to each gene was counted.
+ Genes with zero counts in all libraries were discarded.
+ Libraries were normalized using the TMM method.
+ Libraries were split into GB and non-GB groups and the average logCPM was
+ computed.
+ The distribution of average gene logCPM values was plotted for both groups
+ using a kernel density plot to approximate a continuous distribution.
+ The GB logCPM distributions are marked in red, non-GB in blue.
+ The black vertical line denotes the chosen detection threshold of 
+\begin_inset Formula $-1$
 \end_inset
 
- for both the GB and non-GB groups, as well as for all samples considered
- as one large group.
- For each every integer threshold from 
-\begin_inset Formula $-2$
-\end_inset
-
- to 3, the number of genes detected at or above that logCPM threshold was
- plotted for each group.
+.
+ Top panel: Libraries were split into GB and non-GB groups first and normalized
+ separately.
+ Bottom panel: Libraries were all normalized together first and then split
+ into groups.
 \end_layout
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -19141,6 +19000,80 @@ noprefix "false"
 ).
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/Globin Paper/figure3 - detection.pdf
+	lyxscale 50
+	width 70col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Gene detections as a function of abundance thresholds in GB and non-GB samples.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Gene-detections"
+
+\end_inset
+
+
+\series bold
+Gene detections as a function of abundance thresholds in GB and non-GB samples.
+
+\series default
+ Average logCPM was computed by separate group normalization as described
+ in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:logcpm-dists"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ for both the GB and non-GB groups, as well as for all samples considered
+ as one large group.
+ For each every integer threshold from 
+\begin_inset Formula $-2$
+\end_inset
+
+ to 3, the number of genes detected at or above that logCPM threshold was
+ plotted for each group.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Globin blocking does not add significant additional noise or decrease sample
  quality
@@ -19165,116 +19098,6 @@ GB
  In contrast, random perturbations would increase the noise and obscure
  the signal in the dataset, reducing the capacity to detect differential
  expression.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/Globin Paper/figure4 - maplot-colored.pdf
-	lyxscale 50
-	width 60col%
-	groupId colwidth
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset Argument 1
-status collapsed
-
-\begin_layout Plain Layout
-MA plot showing effects of GB on each gene's abundance.
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:MA-plot"
-
-\end_inset
-
-
-\series bold
-MA plot showing effects of GB on each gene's abundance.
- 
-\series default
-All libraries were normalized together as described in Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:logcpm-dists"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-, and genes with an average logCPM below 
-\begin_inset Formula $-1$
-\end_inset
-
- were filtered out.
- Each remaining gene was tested for differential abundance with respect
- to 
-\begin_inset Flex Glossary Term (glstext)
-status open
-
-\begin_layout Plain Layout
-GB
-\end_layout
-
-\end_inset
-
- using 
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-edgeR
-\end_layout
-
-\end_inset
-
-’s quasi-likelihood F-test, fitting a NB GLM to table of read counts in
- each library.
- For each gene, 
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-edgeR
-\end_layout
-
-\end_inset
-
- reported average logCPM, logFC, p-value, and BH-adjusted FDR.
- Each gene's logFC was plotted against its logCPM, colored by FDR.
- Red points are significant at ≤10% FDR, and blue are not significant at
- that threshold.
- The alpha and beta globin genes targeted for blocking are marked with large
- triangles, while all other genes are represented as small points.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -19402,9 +19225,10 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename graphics/Globin Paper/figure5 - corrplot.pdf
+	filename graphics/Globin Paper/figure4 - maplot-colored.pdf
 	lyxscale 50
-	width 70col%
+	width 60col%
+	groupId colwidth
 
 \end_inset
 
@@ -19419,8 +19243,7 @@ status collapsed
 status collapsed
 
 \begin_layout Plain Layout
-Comparison of inter-sample gene abundance correlations with and without
- GB.
+MA plot showing effects of GB on each gene's abundance.
 \end_layout
 
 \end_inset
@@ -19428,23 +19251,42 @@ Comparison of inter-sample gene abundance correlations with and without
 
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:gene-abundance-correlations"
+name "fig:MA-plot"
 
 \end_inset
 
 
 \series bold
-Comparison of inter-sample gene abundance correlations with and without
- GB.
-
+MA plot showing effects of GB on each gene's abundance.
+ 
 \series default
- All libraries were normalized together as described in Figure 2, and genes
- with an average logCPM less than 
+All libraries were normalized together as described in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:logcpm-dists"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, and genes with an average logCPM below 
 \begin_inset Formula $-1$
 \end_inset
 
  were filtered out.
- Each gene’s logCPM was computed in each library using 
+ Each remaining gene was tested for differential abundance with respect
+ to 
+\begin_inset Flex Glossary Term (glstext)
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ using 
 \begin_inset Flex Code
 status open
 
@@ -19454,33 +19296,28 @@ edgeR
 
 \end_inset
 
-'s 
+’s quasi-likelihood F-test, fitting a NB GLM to table of read counts in
+ each library.
+ For each gene, 
 \begin_inset Flex Code
 status open
 
 \begin_layout Plain Layout
-cpm
+edgeR
 \end_layout
 
 \end_inset
 
- function.
- For each pair of biological samples, the Pearson correlation between those
- samples' GB libraries was plotted against the correlation between the same
- samples’ non-GB libraries.
- Each point represents an unique pair of samples.
- The solid gray line shows a quantile-quantile plot of distribution of GB
- correlations vs.
- that of non-GB correlations.
- The thin dashed line is the identity line, provided for reference.
+ reported average logCPM, logFC, p-value, and BH-adjusted FDR.
+ Each gene's logFC was plotted against its logCPM, colored by FDR.
+ Red points are significant at ≤10% FDR, and blue are not significant at
+ that threshold.
+ The alpha and beta globin genes targeted for blocking are marked with large
+ triangles, while all other genes are represented as small points.
 \end_layout
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -19670,8 +19507,211 @@ BCV
 .
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/Globin Paper/figure5 - corrplot.pdf
+	lyxscale 50
+	width 70col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Comparison of inter-sample gene abundance correlations with and without
+ GB.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:gene-abundance-correlations"
+
+\end_inset
+
+
+\series bold
+Comparison of inter-sample gene abundance correlations with and without
+ GB.
+
+\series default
+ All libraries were normalized together as described in Figure 2, and genes
+ with an average logCPM less than 
+\begin_inset Formula $-1$
+\end_inset
+
+ were filtered out.
+ Each gene’s logCPM was computed in each library using 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+edgeR
+\end_layout
+
+\end_inset
+
+'s 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+cpm
+\end_layout
+
+\end_inset
+
+ function.
+ For each pair of biological samples, the Pearson correlation between those
+ samples' GB libraries was plotted against the correlation between the same
+ samples’ non-GB libraries.
+ Each point represents an unique pair of samples.
+ The solid gray line shows a quantile-quantile plot of distribution of GB
+ correlations vs.
+ that of non-GB correlations.
+ The thin dashed line is the identity line, provided for reference.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 More differentially expressed genes are detected with globin blocking
+\end_layout
+
+\begin_layout Standard
+To compare performance on differential gene expression tests, we took subsets
+ of both the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ and non-GB libraries with exactly one pre-transplant and one post-transplant
+ sample for each animal that had paired samples available for analysis (N=7
+ animals, N=14 samples in each subset).
+ The same test for pre- vs.
+ post-transplant differential gene expression was performed on the same
+ 7 pairs of samples from 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ libraries and non-GB libraries, in each case using an 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+FDR
+\end_layout
+
+\end_inset
+
+ of 10% as the threshold of significance.
+ Out of 12954 genes that passed the detection threshold in both subsets,
+ 358 were called significantly differentially expressed in the same direction
+ in both sets; 1063 were differentially expressed in the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ set only; 296 were differentially expressed in the non-GB set only; 2 genes
+ were called significantly up in the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ set but significantly down in the non-GB set; and the remaining 11235 were
+ not called differentially expressed in either set.
+ These data are summarized in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Comparison-of-significant"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ The differences in 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+BCV
+\end_layout
+
+\end_inset
+
+ calculated by 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+edgeR
+\end_layout
+
+\end_inset
+
+ for these subsets of samples were negligible (
+\begin_inset Formula $\textrm{BCV}=0.302$
+\end_inset
+
+ for 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ and 0.297 for non-GB).
 \end_layout
 
 \begin_layout Standard
@@ -20103,124 +20143,9 @@ Comparison of significantly differentially expressed genes with and without
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-To compare performance on differential gene expression tests, we took subsets
- of both the 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-GB
-\end_layout
-
-\end_inset
-
- and non-GB libraries with exactly one pre-transplant and one post-transplant
- sample for each animal that had paired samples available for analysis (N=7
- animals, N=14 samples in each subset).
- The same test for pre- vs.
- post-transplant differential gene expression was performed on the same
- 7 pairs of samples from 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-GB
-\end_layout
-
-\end_inset
-
- libraries and non-GB libraries, in each case using an 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-FDR
-\end_layout
-
-\end_inset
-
- of 10% as the threshold of significance.
- Out of 12954 genes that passed the detection threshold in both subsets,
- 358 were called significantly differentially expressed in the same direction
- in both sets; 1063 were differentially expressed in the 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-GB
-\end_layout
-
-\end_inset
-
- set only; 296 were differentially expressed in the non-GB set only; 2 genes
- were called significantly up in the 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-GB
-\end_layout
-
-\end_inset
-
- set but significantly down in the non-GB set; and the remaining 11235 were
- not called differentially expressed in either set.
- These data are summarized in Table 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "tab:Comparison-of-significant"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-.
- The differences in 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-BCV
-\end_layout
-
-\end_inset
-
- calculated by 
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-edgeR
-\end_layout
-
-\end_inset
-
- for these subsets of samples were negligible (
-\begin_inset Formula $\textrm{BCV}=0.302$
-\end_inset
-
- for 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-GB
-\end_layout
-
-\end_inset
-
- and 0.297 for non-GB).
 \end_layout
 
 \begin_layout Standard
@@ -20418,7 +20343,7 @@ literal "false"
  The DeepSAGE method involves two different restriction enzymes that purify
  and then tag small fragments of transcripts at specific locations and thus
  significantly reduces the complexity of the transcriptome.
- Therefore, we could not determine how DeepSAGE results would translate
+ Therefore, we could not assume that the DeepSAGE result would translate
  to the common strategy in the field for assaying the entire transcript
  population by whole-transcriptome 
 \begin_inset Formula $3^{\prime}$
