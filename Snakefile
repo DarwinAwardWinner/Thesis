@@ -132,12 +132,8 @@ def lyx_input_deps(lyxfile):
     '''Return an iterator over all tex files included by a Lyx file.'''
     with open(lyxfile) as f:
         lyx_text = f.read()
-    tex_names = regex.search('\\\\input{(.*?[.]tex)}', lyx_text).group(1).split(',')
-    # Unfortunately LyX doesn't indicate which bib names refer to
-    # files in the current directory and which don't. Currently that's
-    # not a problem for me since all my refs are in bib files in the
-    # current directory.
-    yield from tex_names
+    for m in regex.finditer('\\\\(?:input|loadglsentries){(.*?[.]tex)}', lyx_text):
+        yield m.group(1)
 
 def lyx_bib_deps(lyxfile):
     '''Return an iterator over all bib files referenced by a Lyx file.

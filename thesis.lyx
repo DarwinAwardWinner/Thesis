@@ -9,6 +9,9 @@
 % List all used files in log output
 \listfiles
 
+%% Add TOC, List of Figures, etc. to TOC
+\usepackage{tocbibind}
+
 % Add a DRAFT watermark
 \usepackage{draftwatermark}
 \usepackage{accsupp}
@@ -41,16 +44,9 @@
 % This one breaks subfigs so it's disabled
 % https://tex.stackexchange.com/questions/65680/automatically-bold-first-sentence-of-a-floats-caption
 
-% Bold all nomenclature entries
-\renewcommand{\nomlabel}[1]{\textsf{\textbf{#1}}}
-
-% https://tex.stackexchange.com/a/31083/5654
-%\let\nomenclOrig\nomenclature
-%\renewcommand*{\nomenclature}[3][]{#2\nomenclOrig[#1]{#2}{#3}}
-
-\usepackage[nohypertypes={abbreviation}]{glossaries-extra}
+\usepackage[automake,nonumberlist,nohypertypes={abbreviation}]{glossaries-extra}
 \setabbreviationstyle{long-short}
-\input{abbrevs.tex}
+\loadglsentries{abbrevs.tex}
 \makeglossaries
 \end_preamble
 \use_default_options true
@@ -310,7 +306,39 @@ final
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+addcontentsline{toc}{chapter}{Copyright notice}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 [Copyright notice]
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+addcontentsline{toc}{chapter}{Thesis acceptance form}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -318,7 +346,39 @@ final
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+addcontentsline{toc}{chapter}{Dedication}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 [Dedication]
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+addcontentsline{toc}{chapter}{Acknowledgements}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -355,7 +415,7 @@ LatexCommand tableofcontents
 status open
 
 \begin_layout Plain Layout
-To create a new nomenclature entry:
+To create a new abbreviation:
 \end_layout
 
 \begin_layout Enumerate
@@ -363,17 +423,9 @@ Add an entry to abbrevs.tex
 \end_layout
 
 \begin_layout Enumerate
-Find the first instance of the term, and wrap it in Insert -> Custom Insets
- -> Glossary Term (use Capital if starting a sentence)
-\end_layout
-
-\begin_layout Enumerate
-Add a nomenclature entry after the first instance
-\end_layout
-
-\begin_layout Enumerate
-Replace every relevant instance throughout the document with the Glossary
- Term wrapped version, using Edit -> Find & Replace (Advanced).
+Wrap every occurrence of the term in Insert -> Custom Insets -> Glossary
+ Term (use appropriate variants for caiptal, plural, etc.), using Edit ->
+ Find & Replace (Advanced).
  Skip section headers and floats.
 \end_layout
 
@@ -386,12 +438,9 @@ literal "false"
 \end_inset
 
 
-\end_layout
-
-\begin_layout Plain Layout
 \begin_inset CommandInset href
 LatexCommand href
-target "https://wiki.lyx.org/Tips/Nomenclature"
+target "https://ctan.org/pkg/glossaries-extra"
 literal "false"
 
 \end_inset
@@ -405,9 +454,25 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-\begin_inset CommandInset nomencl_print
-LatexCommand printnomenclature
-set_width "auto"
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand*{
+\backslash
+glossaryname}{List of Abbreviations}%
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+printglossaries
+\end_layout
 
 \end_inset
 
@@ -415,56 +480,6 @@ set_width "auto"
 \end_layout
 
 \begin_layout List of TODOs
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Check all figures to make sure they fit on the page with their legends.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Make all descriptions consistent in terms of 
-\begin_inset Quotes eld
-\end_inset
-
-we did X
-\begin_inset Quotes erd
-\end_inset
-
- vs 
-\begin_inset Quotes eld
-\end_inset
-
-I did X
-\begin_inset Quotes erd
-\end_inset
-
- vs 
-\begin_inset Quotes eld
-\end_inset
-
-X was done
-\begin_inset Quotes erd
-\end_inset
-
-.
-\end_layout
-
-\end_inset
-
 
 \end_layout
 
@@ -1016,15 +1031,6 @@ MSC
 
 \end_inset
 
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "MSC"
-description "mesenchymal stem cell"
-literal "true"
-
-\end_inset
-
 .
 \end_layout
 
@@ -1187,15 +1193,6 @@ status open
 \begin_layout Plain Layout
 RNA-seq
 \end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "RNA-seq"
-description "High-throughput RNA sequencing"
-literal "false"
 
 \end_inset
 
@@ -1480,15 +1477,6 @@ ChIP-seq
 
 \end_inset
 
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "ChIP-seq"
-description "Chromatin immunoprecipitation followed by high-throughput DNA sequencing"
-literal "false"
-
-\end_inset
-
 , which tend to be much smaller and therefore violate the assumption of
  a normal distribution more severely.
  For all count-based data, the 
@@ -1518,15 +1506,6 @@ status open
 \begin_layout Plain Layout
 GLM
 \end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "GLM"
-description "generalized linear model"
-literal "false"
 
 \end_inset
 
@@ -1570,15 +1549,6 @@ status open
 \begin_layout Plain Layout
 NB
 \end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "NB"
-description "negative binomial"
-literal "false"
 
 \end_inset
 
@@ -1797,15 +1767,6 @@ MACS
 
 \end_inset
 
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "MACS"
-description "Model-based Analysis of ChIP-seq"
-literal "false"
-
-\end_inset
-
  exploit this pattern to identify specific loci at which such 
 \begin_inset Quotes eld
 \end_inset
@@ -1870,15 +1831,6 @@ SICER
 
 \end_inset
 
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "SICER"
-description "Spatial Clustering for Identification of ChIP-Enriched Regions"
-literal "false"
-
-\end_inset
-
  assume that peaks are represented in the 
 \begin_inset Flex Glossary Term
 status open
@@ -1926,15 +1878,6 @@ ENCODE
 
 \end_inset
 
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "ENCODE"
-description "Encyclopedia Of DNA Elements"
-literal "false"
-
-\end_inset
-
  project has developed a method called 
 \begin_inset Flex Glossary Term
 status open
@@ -1942,15 +1885,6 @@ status open
 \begin_layout Plain Layout
 IDR
 \end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "IDR"
-description "irreproducible discovery rate"
-literal "false"
 
 \end_inset
 
@@ -2100,15 +2034,6 @@ RMA
 
 \end_inset
 
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "RMA"
-description "robust multichip average"
-literal "false"
-
-\end_inset
-
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -2195,15 +2120,6 @@ GRSN
 
 \end_inset
 
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "GRSN"
-description "global rank-invariant set normalization"
-literal "false"
-
-\end_inset
-
 , and 
 \begin_inset Flex Glossary Term
 status open
@@ -2211,15 +2127,6 @@ status open
 \begin_layout Plain Layout
 SCAN
 \end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "SCAN"
-description "Single-Channel Array Normalization"
-literal "false"
 
 \end_inset
 
@@ -2280,15 +2187,6 @@ status open
 \begin_layout Plain Layout
 CPM
 \end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "CPM"
-description "counts per million"
-literal "false"
 
 \end_inset
 
@@ -2408,15 +2306,6 @@ logFC
 
 \end_inset
 
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "logFC"
-description "$\\log_2$ fold change"
-literal "true"
-
-\end_inset
-
  is zero across all abundance levels.
  Hence, the simpler scaling normalization based on background or signal
  regions are generally preferred whenever possible.
@@ -2498,15 +2387,6 @@ SVD
 
 \end_inset
 
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "SVD"
-description "singular value decomposition"
-literal "false"
-
-\end_inset
-
  on the matrix of linear model residuals (which contain all the un-modeled
  variation in the data) and take the first few singular vectors as batch
  effects.
@@ -2519,15 +2399,6 @@ status open
 \begin_layout Plain Layout
 SVA
 \end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "SVA"
-description "surrogate variable analysis"
-literal "false"
 
 \end_inset
 
@@ -2818,15 +2689,6 @@ status open
 \begin_layout Plain Layout
 TSS
 \end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "TSS"
-description "transcription start site"
-literal "false"
 
 \end_inset
 
@@ -3193,15 +3055,6 @@ SRA
 
 \end_inset
 
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "SRA"
-description "Sequence Read Archive"
-literal "false"
-
-\end_inset
-
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -3350,6 +3203,16 @@ After batch correction with ComBat
 \begin_layout Plain Layout
 
 \series bold
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+PCoA plots of RNA-seq data showing effect of batch correction.
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:RNA-PCA"
@@ -3422,22 +3285,9 @@ sideways false
 status collapsed
 
 \begin_layout Plain Layout
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Just take the top row
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename graphics/CD4-csaw/RNA-seq/weights-vs-covars-CROP.png
+	filename graphics/CD4-csaw/RNA-seq/weights-vs-covars-nobcv-CROP.png
 	lyxscale 25
 	width 100col%
 	groupId colwidth-raster
@@ -3453,6 +3303,16 @@ Just take the top row
 \begin_layout Plain Layout
 
 \series bold
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+RNA-seq sample weights, grouped by experimental and technical covariates.
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:RNA-seq-weights-vs-covars"
@@ -3523,15 +3383,6 @@ TMM
 
 \end_inset
 
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "TMM"
-description "trimmed mean of M-values"
-literal "false"
-
-\end_inset
-
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -3547,15 +3398,6 @@ status open
 \begin_layout Plain Layout
 logCPM
 \end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "logCPM"
-description "$\\log_2$ counts per million"
-literal "true"
 
 \end_inset
 
@@ -3619,15 +3461,6 @@ status open
 \begin_layout Plain Layout
 BH
 \end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "BH"
-description "Benjamini-Hochberg"
-literal "false"
 
 \end_inset
 
@@ -3784,6 +3617,16 @@ bp.
 \begin_layout Plain Layout
 
 \series bold
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Strand cross-correlation plots for ChIP-seq data, before and after blacklisting.
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:CCF-master"
@@ -4435,6 +4278,17 @@ H3K27me3, SVs subtracted
 \begin_layout Plain Layout
 
 \series bold
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+PCoA plots of ChIP-seq sliding window data, before and after subtracting
+ surrogate variables (SVs).
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:PCoA-ChIP"
@@ -4768,13 +4622,23 @@ Scatter plots of specific pairs of MOFA latent factors.
 \begin_layout Plain Layout
 
 \series bold
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+MOFA latent factors identify shared patterns of variation.
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:MOFA-master"
 
 \end_inset
 
-MOFA latent factors separate technical confounders from 
+MOFA latent factors identify shared patterns of variation.
 \end_layout
 
 \end_inset
@@ -4815,15 +4679,6 @@ status open
 \begin_layout Plain Layout
 MOFA
 \end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "MOFA"
-description "Multi-Omics Factor Analysis"
-literal "false"
 
 \end_inset
 
@@ -4876,15 +4731,6 @@ status open
 \begin_layout Plain Layout
 LF
 \end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "LF"
-description "latent factor"
-literal "false"
 
 \end_inset
 
@@ -5583,6 +5429,16 @@ status collapsed
 \begin_layout Plain Layout
 
 \series bold
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+PCoA plot of RNA-seq samples after ComBat batch correction.
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:rna-pca-final"
@@ -6115,6 +5971,16 @@ literal "false"
 \begin_layout Plain Layout
 
 \series bold
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Enrichment of peaks in promoter neighborhoods.
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:near-promoter-peak-enrich"
@@ -6429,6 +6295,16 @@ This figure is generated from the old analysis.
 \begin_layout Plain Layout
 
 \series bold
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Expression distributions of genes with and without promoter peaks.
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:fpkm-by-peak"
@@ -6505,15 +6381,6 @@ status open
 \begin_layout Plain Layout
 FPKM
 \end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "FPKM"
-description "fragments per kilobase per million fragments"
-literal "false"
 
 \end_inset
 
@@ -7061,15 +6928,6 @@ PCoA
 
 \end_inset
 
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "PCoA"
-description "principal coordinate analysis"
-literal "false"
-
-\end_inset
-
 .
  All 3 marks show a noticeable convergence between the naïve and memory
  samples at day 14, visible as an overlapping of the day 14 groups on each
@@ -7354,6 +7212,16 @@ RNA-seq PCoA showing principal coordinates 2 and 3.
 \begin_layout Plain Layout
 
 \series bold
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+PCoA plots for promoter ChIP-seq and expression RNA-seq data
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:PCoA-promoters"
@@ -7592,6 +7460,17 @@ Gene expression grouped by promoter coverage clusters.
 \begin_layout Plain Layout
 
 \series bold
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+K-means clustering of promoter H3K4me2 relative coverage depth in naïve
+ day 0 samples.
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:H3K4me2-neighborhood"
@@ -7797,15 +7676,6 @@ status open
 \begin_layout Plain Layout
 PCA
 \end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "PCA"
-description "principal component analysis"
-literal "false"
 
 \end_inset
 
@@ -8203,6 +8073,17 @@ Gene expression grouped by promoter coverage clusters.
 \begin_layout Plain Layout
 
 \series bold
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+K-means clustering of promoter H3K4me3 relative coverage depth in naïve
+ day 0 samples.
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:H3K4me3-neighborhood"
@@ -8213,7 +8094,7 @@ K-means clustering of promoter H3K4me3 relative coverage depth in naïve
  day 0 samples.
  
 \series default
-H3K4me2 ChIP-seq reads were binned into 500-bp windows tiled across each
+H3K4me3 ChIP-seq reads were binned into 500-bp windows tiled across each
  promoter from 5
 \begin_inset space ~
 \end_inset
@@ -8507,6 +8388,17 @@ Repeated figure legends are kind of an issue here.
 \begin_layout Plain Layout
 
 \series bold
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+K-means clustering of promoter H3K27me3 relative coverage depth in naïve
+ day 0 samples.
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:H3K27me3-neighborhood"
@@ -9148,7 +9040,7 @@ LF
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -9169,6 +9061,21 @@ status collapsed
 \begin_layout Plain Layout
 
 \series bold
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Lamere 2016 Figure 8 “Model for the role of H3K4 methylation during CD4
+ T-cell activation.
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Lamere2016-Fig8"
@@ -9864,15 +9771,6 @@ CpGi
 
 \end_inset
 
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "CpGi"
-description "CpG island"
-literal "false"
-
-\end_inset
-
  in the promoter was correlated with increases or decreases in gene expression
  or any histone mark in any of the tested contrasts.
  Second, we searched for evidence that the relative 
@@ -10467,15 +10365,6 @@ glsdisp*{TX}{healthy transplants (TX)}
 
 \end_inset
 
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "TX"
-description "healthy transplant"
-literal "false"
-
-\end_inset
-
  from transplants undergoing 
 \begin_inset Flex Glossary Term
 status open
@@ -10486,15 +10375,6 @@ AR
 
 \end_inset
 
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "AR"
-description "acute rejection"
-literal "false"
-
-\end_inset
-
  or 
 \begin_inset Flex Glossary Term
 status open
@@ -10502,15 +10382,6 @@ status open
 \begin_layout Plain Layout
 ADNR
 \end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "ADNR"
-description "acute dysfunction with no rejection"
-literal "false"
 
 \end_inset
 
@@ -10628,15 +10499,6 @@ status collapsed
 \backslash
 glsdisp*{GEO}{the Gene Expression Omnibus (GEO)}
 \end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "GEO"
-description "Gene Expression Omnibus"
-literal "false"
 
 \end_inset
 
@@ -11009,15 +10871,6 @@ ROC
 
 \end_inset
 
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "ROC"
-description "receiver operating characteristic"
-literal "false"
-
-\end_inset
-
  curves and 
 \begin_inset Flex Glossary Term
 status open
@@ -11025,15 +10878,6 @@ status open
 \begin_layout Plain Layout
 AUC
 \end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "AUC"
-description "area under ROC curve"
-literal "false"
 
 \end_inset
 
@@ -11553,15 +11397,6 @@ CAN
 
 \end_inset
 
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "CAN"
-description "chronic allograft nephropathy"
-literal "false"
-
-\end_inset
-
 .
  The data consisted of 33 TX, 9 AR, 8 ADNR, and 28 CAN samples.
  The uneven group sizes are a result of taking the biopsy samples before
@@ -11578,15 +11413,6 @@ T1D
 
 \end_inset
 
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "T1D"
-description "Type 1 diabetes"
-literal "false"
-
-\end_inset
-
  or 
 \begin_inset Flex Glossary Term
 status open
@@ -11594,15 +11420,6 @@ status open
 \begin_layout Plain Layout
 T2D
 \end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "T2D"
-description "Type 2 diabetes"
-literal "false"
 
 \end_inset
 
@@ -11618,15 +11435,6 @@ status open
 \begin_layout Plain Layout
 SWAN
 \end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "SWAN"
-description "subset-quantile within array normalization"
-literal "false"
 
 \end_inset
 
@@ -12172,6 +11980,18 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Classifier probabilities on validation samples when normalized with RMA
+ together vs.
+ separately.
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Classifier-probabilities-RMA"
@@ -12377,6 +12197,16 @@ ROC curves for PAM on external validation data
 \begin_layout Plain Layout
 
 \series bold
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+ROC curves for PAM using different normalization strategies.
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:ROC-PAM-main"
@@ -13443,6 +13273,17 @@ Number of samples usable in fRMA probe weight learning as a function of
 \begin_layout Plain Layout
 
 \series bold
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Effect of batch size selection on number of batches and number of samples
+ included in fRMA probe weight learning.
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:frmatools-batch-size"
@@ -13645,6 +13486,16 @@ Violin plot of inter-normalization log ratios for blood samples.
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Violin plot of log ratios between normalizations for 20 biopsy samples.
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:frma-violin"
@@ -13950,6 +13801,16 @@ fRMA vs fRMA for blood samples.
 \begin_layout Plain Layout
 
 \series bold
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Representative MA plots comparing RMA and custom fRMA normalizations.
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Representative-MA-plots"
@@ -14314,7 +14175,16 @@ Mean-variance trend after voom modeling in analysis C.
 \begin_layout Plain Layout
 
 \series bold
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
 Mean-variance trend modeling in methylation array data.
+\end_layout
+
+\end_inset
+
+ Mean-variance trend modeling in methylation array data.
  
 \series default
 The estimated 
@@ -14737,6 +14607,16 @@ Redo the sample weight boxplot with notches, and remove fill colors
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Box-and-whiskers plot of sample quality weights grouped by diabetes diagnosis.
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:diabetes-sample-weights"
@@ -15760,6 +15640,16 @@ CAN vs.
 \begin_layout Plain Layout
 
 \series bold
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Probe p-value histograms for each contrast in each analysis.
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:meth-p-value-histograms"
@@ -16874,15 +16764,6 @@ GB
 
 \end_inset
 
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "GB"
-description "globin blocking"
-literal "false"
-
-\end_inset
-
  protocol approximately doubles the yield of informative (non-globin) reads
  by greatly reducing the fraction of globin reads, while also improving
  the consistency in sequencing depth between samples.
@@ -17025,15 +16906,6 @@ status open
 \begin_layout Plain Layout
 mRNA
 \end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "mRNA"
-description "messenger RNA"
-literal "false"
 
 \end_inset
 
@@ -17374,15 +17246,6 @@ PCR
 
 \end_inset
 
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "PCR"
-description "polymerase chain reaction"
-literal "false"
-
-\end_inset
-
  tube.
  The two Illumina protocol-specified 
 \begin_inset Flex Glossary Term
@@ -17515,15 +17378,6 @@ status open
 \begin_layout Plain Layout
 ncRNA
 \end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "ncRNA"
-description "non-coding RNA"
-literal "false"
 
 \end_inset
 
@@ -20634,17 +20488,26 @@ GB
  method in place, the way is now clear for this experiment to proceed.
 \end_layout
 
-\begin_layout Chapter
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Chapter*
 Future Directions
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset Flex TODO Note (inline)
 status open
 
 \begin_layout Plain Layout
 If there are any chapter-independent future directions, put them here.
  Otherwise, delete this section.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
