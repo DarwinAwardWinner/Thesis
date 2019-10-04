@@ -426,7 +426,7 @@ Add an entry to abbrevs.tex
 Wrap every occurrence of the term in Insert -> Custom Insets -> Glossary
  Term (use appropriate variants for caiptal, plural, etc.), using Edit ->
  Find & Replace (Advanced).
- Skip section headers and floats.
+ Skip section headers and float captions.
 \end_layout
 
 \begin_layout Plain Layout
@@ -3201,10 +3201,8 @@ After batch correction with ComBat
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset Argument 1
-status open
+status collapsed
 
 \begin_layout Plain Layout
 PCoA plots of RNA-seq data showing effect of batch correction.
@@ -3219,6 +3217,8 @@ name "fig:RNA-PCA"
 
 \end_inset
 
+
+\series bold
 PCoA plots of RNA-seq data showing effect of batch correction.
 \end_layout
 
@@ -3301,8 +3301,6 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset Argument 1
 status collapsed
 
@@ -3319,6 +3317,8 @@ name "fig:RNA-seq-weights-vs-covars"
 
 \end_inset
 
+
+\series bold
 RNA-seq sample weights, grouped by experimental and technical covariates.
 \end_layout
 
@@ -3615,8 +3615,6 @@ bp.
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset Argument 1
 status collapsed
 
@@ -3633,6 +3631,8 @@ name "fig:CCF-master"
 
 \end_inset
 
+
+\series bold
 Strand cross-correlation plots for ChIP-seq data, before and after blacklisting.
 \end_layout
 
@@ -4276,8 +4276,6 @@ H3K27me3, SVs subtracted
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset Argument 1
 status collapsed
 
@@ -4295,6 +4293,8 @@ name "fig:PCoA-ChIP"
 
 \end_inset
 
+
+\series bold
 PCoA plots of ChIP-seq sliding window data, before and after subtracting
  surrogate variables (SVs).
 \end_layout
@@ -4620,10 +4620,8 @@ Scatter plots of specific pairs of MOFA latent factors.
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset Argument 1
-status open
+status collapsed
 
 \begin_layout Plain Layout
 MOFA latent factors identify shared patterns of variation.
@@ -4638,6 +4636,8 @@ name "fig:MOFA-master"
 
 \end_inset
 
+
+\series bold
 MOFA latent factors identify shared patterns of variation.
 \end_layout
 
@@ -5229,14 +5229,24 @@ Day 14 Naïve vs Memory
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
 
-\series bold
+\begin_layout Plain Layout
+Estimated and detected differentially expressed genes.
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "tab:Estimated-and-detected-rnaseq"
 
 \end_inset
 
+
+\series bold
 Estimated and detected differentially expressed genes.
 
 \series default
@@ -5427,8 +5437,6 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset Argument 1
 status collapsed
 
@@ -5445,6 +5453,8 @@ name "fig:rna-pca-final"
 
 \end_inset
 
+
+\series bold
 PCoA plot of RNA-seq samples after ComBat batch correction.
  
 \series default
@@ -5806,15 +5816,25 @@ Get the IDR threshold
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
 
-\series bold
+\begin_layout Plain Layout
+Summary of peak-calling statistics.
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "tab:peak-calling-summary"
 
 \end_inset
 
-Peak-calling summary.
+
+\series bold
+Summary of peak-calling statistics.
  
 \series default
 For each histone mark, the number of peaks called using SICER at an IDR
@@ -5969,8 +5989,6 @@ literal "false"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset Argument 1
 status collapsed
 
@@ -5987,6 +6005,8 @@ name "fig:near-promoter-peak-enrich"
 
 \end_inset
 
+
+\series bold
 Enrichment of peaks in promoter neighborhoods.
  
 \series default
@@ -6117,14 +6137,24 @@ H3K27me3
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
 
-\series bold
+\begin_layout Plain Layout
+Effective promoter radius for each histone mark.
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "tab:effective-promoter-radius"
 
 \end_inset
 
+
+\series bold
 Effective promoter radius for each histone mark.
 
 \series default
@@ -6293,8 +6323,6 @@ This figure is generated from the old analysis.
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset Argument 1
 status collapsed
 
@@ -6311,6 +6339,8 @@ name "fig:fpkm-by-peak"
 
 \end_inset
 
+
+\series bold
 Expression distributions of genes with and without promoter peaks.
 \end_layout
 
@@ -6847,14 +6877,25 @@ Day 14
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
 
-\series bold
+\begin_layout Plain Layout
+Number of differentially modified promoters between naïve and memory cells
+ at each time point after activation.
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "tab:Number-signif-promoters"
 
 \end_inset
 
+
+\series bold
 Number of differentially modified promoters between naïve and memory cells
  at each time point after activation.
  
@@ -7210,8 +7251,6 @@ RNA-seq PCoA showing principal coordinates 2 and 3.
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset Argument 1
 status collapsed
 
@@ -7228,6 +7267,8 @@ name "fig:PCoA-promoters"
 
 \end_inset
 
+
+\series bold
 PCoA plots for promoter ChIP-seq and expression RNA-seq data
 \end_layout
 
@@ -7458,8 +7499,6 @@ Gene expression grouped by promoter coverage clusters.
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset Argument 1
 status collapsed
 
@@ -7477,6 +7516,8 @@ name "fig:H3K4me2-neighborhood"
 
 \end_inset
 
+
+\series bold
 K-means clustering of promoter H3K4me2 relative coverage depth in naïve
  day 0 samples.
  
@@ -8071,8 +8112,6 @@ Gene expression grouped by promoter coverage clusters.
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset Argument 1
 status collapsed
 
@@ -8090,6 +8129,8 @@ name "fig:H3K4me3-neighborhood"
 
 \end_inset
 
+
+\series bold
 K-means clustering of promoter H3K4me3 relative coverage depth in naïve
  day 0 samples.
  
@@ -8386,8 +8427,6 @@ Repeated figure legends are kind of an issue here.
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset Argument 1
 status collapsed
 
@@ -8405,6 +8444,8 @@ name "fig:H3K27me3-neighborhood"
 
 \end_inset
 
+
+\series bold
 K-means clustering of promoter H3K27me3 relative coverage depth in naïve
  day 0 samples.
  
@@ -9059,8 +9100,6 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset Argument 1
 status collapsed
 
@@ -9082,6 +9121,8 @@ name "fig:Lamere2016-Fig8"
 
 \end_inset
 
+
+\series bold
 Lamere 2016 Figure 8 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -9469,6 +9510,16 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Dependency graph of steps in reproducible workflow.
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:rulegraph"
@@ -10650,6 +10701,16 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Sigmoid shape of the mapping between β and M values.
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Sigmoid-beta-m-mapping"
@@ -10658,7 +10719,7 @@ name "fig:Sigmoid-beta-m-mapping"
 
 
 \series bold
-Sigmoid shape of the mapping between β and M values
+Sigmoid shape of the mapping between β and M values.
 \end_layout
 
 \end_inset
@@ -11713,14 +11774,24 @@ Yes
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
 
-\series bold
+\begin_layout Plain Layout
+Summary of analysis variants for methylation array data.
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "tab:Summary-of-meth-analysis"
 
 \end_inset
 
+
+\series bold
 Summary of analysis variants for methylation array data.
  
 \series default
@@ -12195,8 +12266,6 @@ ROC curves for PAM on external validation data
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset Argument 1
 status collapsed
 
@@ -12213,6 +12282,8 @@ name "fig:ROC-PAM-main"
 
 \end_inset
 
+
+\series bold
 ROC curves for PAM using different normalization strategies.
  
 \series default
@@ -12786,6 +12857,17 @@ Yes
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+ROC curve AUC values for internal and external validation with 6 different
+ normalization strategies.
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "tab:AUC-PAM"
@@ -13271,8 +13353,6 @@ Number of samples usable in fRMA probe weight learning as a function of
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset Argument 1
 status collapsed
 
@@ -13290,6 +13370,8 @@ name "fig:frmatools-batch-size"
 
 \end_inset
 
+
+\series bold
 Effect of batch size selection on number of batches and number of samples
  included in fRMA probe weight learning.
  
@@ -13799,8 +13881,6 @@ fRMA vs fRMA for blood samples.
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset Argument 1
 status collapsed
 
@@ -13817,6 +13897,8 @@ name "fig:Representative-MA-plots"
 
 \end_inset
 
+
+\series bold
 Representative MA plots comparing RMA and custom fRMA normalizations.
  
 \series default
@@ -14173,8 +14255,6 @@ Mean-variance trend after voom modeling in analysis C.
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset Argument 1
 status collapsed
 
@@ -14184,6 +14264,15 @@ Mean-variance trend modeling in methylation array data.
 
 \end_inset
 
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:-Meanvar-trend-methyl"
+
+\end_inset
+
+
+\series bold
  Mean-variance trend modeling in methylation array data.
  
 \series default
@@ -14536,14 +14625,25 @@ linear regression
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
 
-\series bold
+\begin_layout Plain Layout
+Association of sample weights with clinical covariates in methylation array
+ data.
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "tab:weight-covariate-tests"
 
 \end_inset
 
+
+\series bold
 Association of sample weights with clinical covariates in methylation array
  data.
  
@@ -15226,6 +15326,16 @@ literal "false"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Estimates of degree of differential methylation in for each contrast in
+ each analysis.
+\end_layout
+
+\end_inset
+
 
 \series bold
 Estimates of degree of differential methylation in for each contrast in
@@ -15638,8 +15748,6 @@ CAN vs.
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset Argument 1
 status collapsed
 
@@ -15656,6 +15764,8 @@ name "fig:meth-p-value-histograms"
 
 \end_inset
 
+
+\series bold
 Probe p-value histograms for each contrast in each analysis.
  
 \series default
@@ -18313,8 +18423,6 @@ No
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset Argument 1
 status collapsed
 
@@ -18331,6 +18439,8 @@ name "tab:Fractions-of-reads"
 
 \end_inset
 
+
+\series bold
 Fractions of reads mapping to genomic features in GB and non-GB samples.
  
 \series default
@@ -18567,8 +18677,6 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset Argument 1
 status collapsed
 
@@ -18586,6 +18694,8 @@ name "fig:Fraction-of-genic-reads"
 
 \end_inset
 
+
+\series bold
 Fraction of genic reads in each sample aligned to non-globin genes, with
  and without GB.
 
@@ -18739,8 +18849,6 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset Argument 1
 status collapsed
 
@@ -18758,6 +18866,8 @@ name "fig:logcpm-dists"
 
 \end_inset
 
+
+\series bold
 Distributions of average group gene abundances when normalized separately
  or together.
 
@@ -18895,8 +19005,6 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset Argument 1
 status collapsed
 
@@ -18913,6 +19021,8 @@ name "fig:Gene-detections"
 
 \end_inset
 
+
+\series bold
 Gene detections as a function of abundance thresholds in GB and non-GB samples.
 
 \series default
@@ -19305,8 +19415,6 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset Argument 1
 status collapsed
 
@@ -19324,6 +19432,8 @@ name "fig:gene-abundance-correlations"
 
 \end_inset
 
+
+\series bold
 Comparison of inter-sample gene abundance correlations with and without
  GB.
 
@@ -19959,10 +20069,8 @@ Down
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset Argument 1
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Comparison of significantly differentially expressed genes with and without
@@ -19978,6 +20086,8 @@ name "tab:Comparison-of-significant"
 
 \end_inset
 
+
+\series bold
 Comparison of significantly differentially expressed genes with and without
  globin blocking.
 
