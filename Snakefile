@@ -197,7 +197,7 @@ rule lyx_to_pdf:
            bib_deps = lambda wildcards: lyx_bib_deps(wildcards.basename + '.lyx'),
            tex_deps = lambda wildcards: lyx_input_deps(wildcards.basename + '.lyx'),
     # Need to exclude pdfs in graphics/
-    output: pdf='{basename,(?!graphics/).*}.pdf'
+    output: pdf='{basename,(?!graphics/).*(?<!-final)}.pdf'
     run:
         if not LYX_PATH or LYX_PATH == '/bin/false':
             raise Exception('PAth to LyX  executable could not be found.')
@@ -205,17 +205,27 @@ rule lyx_to_pdf:
         if PDFINFO_PATH:
             shell('''{PDFINFO_PATH} {output.pdf:q}''')
 
-rule lyx_enable_final:
-    '''Produce a copy of a LyX.lyx file with the final option enabled.'''
-    input: lyxfile='{basename}.lyx'
-    output: lyxfile='{basename,.*(?<!-final)}-final.lyx'
+rule lyx_to_pdf_final:
+    '''Produce PDF output for a LyX file with the final option enabled.'''
+    input: lyxfile = '{basename}.lyx',
+           gfx_deps = lambda wildcards: lyx_gfx_deps(wildcards.basename + '.lyx'),
+           bib_deps = lambda wildcards: lyx_bib_deps(wildcards.basename + '.lyx'),
+           tex_deps = lambda wildcards: lyx_input_deps(wildcards.basename + '.lyx'),
+    # Need to exclude pdfs in graphics/
+    output: pdf='{basename,(?!graphics/).*}-final.pdf',
+            lyxtemp='{basename,(?!graphics/).*}-final.lyx',
     run:
+        if not LYX_PATH or LYX_PATH == '/bin/false':
+            raise Exception('PAth to LyX  executable could not be found.')
         with open(input.lyxfile, 'r') as infile, \
-             open(output.lyxfile, 'w') as outfile:
+             open(output.lyxtemp, 'w') as outfile:
             lyx_text = infile.read()
             if not regex.search('\\\\options final', lyx_text):
                 lyx_text = regex.sub('\\\\use_default_options true', '\\\\options final\n\\\\use_default_options true', lyx_text)
             outfile.write(lyx_text)
+        shell('''{LYX_PATH:q} --export-to pdf4 {output.pdf:q} {output.lyxtemp:q}''')
+        if PDFINFO_PATH:
+            shell('''{PDFINFO_PATH} {output.pdf:q}''')
 
 rule process_bib:
     '''Preprocess bib file for LaTeX.
