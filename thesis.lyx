@@ -3731,7 +3731,7 @@ status open
 \begin_inset Graphics
 	filename graphics/CD4-csaw/csaw/CCF-plots-noBL-PAGE2-CROP.pdf
 	lyxscale 50
-	height 40theight%
+	height 35theight%
 	groupId ccf-subfig
 
 \end_inset
@@ -3789,7 +3789,7 @@ status open
 \begin_inset Graphics
 	filename graphics/CD4-csaw/csaw/CCF-plots-PAGE2-CROP.pdf
 	lyxscale 50
-	height 40theight%
+	height 35theight%
 	groupId ccf-subfig
 
 \end_inset
@@ -7193,7 +7193,8 @@ Number of differentially modified promoters between naïve and memory cells
 \series default
 This table shows both the number of differentially modified promoters detected
  at a 10% FDR threshold (left half), and the total number of differentially
- modified promoters as estimated using the method of 
+ modified promoters estimated using the method of averaging local FDR estimates
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Phipson2013"
