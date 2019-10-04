@@ -4907,21 +4907,6 @@ Interpretation of RNA-seq analysis is limited by a major confounding factor
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Putting a float here causes an error.
- No idea why.
- See above for the floats that should be placed here.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 Genes called as present in the 
 \begin_inset Flex Glossary Term
 status open
@@ -4991,19 +4976,6 @@ noprefix "false"
  has substantially more random noise in it, which reduces the statistical
  power for any differential expression tests involving samples in that batch.
  
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Placing these floats is a challenge
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
