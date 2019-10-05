@@ -739,10 +739,13 @@ literal "false"
 
 .
  Like any adaptive immune response, graft rejection generally occurs via
- two broad mechanisms: cellular immunity, in which CD8+ T-cells recognizing
- graft-specific antigens induce apoptosis in the graft cells; and humoral
- immunity, in which B-cells produce antibodies that bind to graft proteins
- and direct an immune response against the graft 
+ two broad mechanisms: cellular immunity, in which CD8
+\begin_inset Formula $^{+}$
+\end_inset
+
+  T-cells recognizing graft-specific antigens induce apoptosis in the graft
+ cells; and humoral immunity, in which B-cells produce antibodies that bind
+ to graft proteins and direct an immune response against the graft 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Murphy2012"
@@ -752,8 +755,11 @@ literal "false"
 
 .
  In either case, rejection shows most of the typical hallmarks of an adaptive
- immune response, in particular mediation by CD4+ T-cells and formation
- of immune memory.
+ immune response, in particular mediation by CD4
+\begin_inset Formula $^{+}$
+\end_inset
+
+ T-cells and formation of immune memory.
 \end_layout
 
 \begin_layout Subsection
@@ -1073,7 +1079,11 @@ RNA-seq
 \end_layout
 
 \begin_layout Subsection
-Investigate dynamics of histone marks in CD4 T-cell activation and memory
+Investigate dynamics of histone marks in CD4
+\begin_inset Formula $^{+}$
+\end_inset
+
+ T-cell activation and memory
 \end_layout
 
 \begin_layout Standard
@@ -2479,7 +2489,11 @@ PCA
 
 \begin_layout Chapter
 Reproducible genome-wide epigenetic analysis of H3K4 and H3K27 methylation
- in naïve and memory CD4 T-cell activation
+ in naïve and memory CD4
+\begin_inset Formula $^{+}$
+\end_inset
+
+ T-cell activation
 \end_layout
 
 \begin_layout Standard
@@ -2525,46 +2539,11 @@ Approach
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Check on the exact correct way to write 
-\begin_inset Quotes eld
+CD4
+\begin_inset Formula $^{+}$
 \end_inset
 
-CD4 T-cell
-\begin_inset Quotes erd
-\end_inset
-
-.
- I think there might be a plus sign somewhere in there now? Also, maybe
- figure out a reasonable way to abbreviate 
-\begin_inset Quotes eld
-\end_inset
-
-naïve CD4 T-cells
-\begin_inset Quotes erd
-\end_inset
-
- and 
-\begin_inset Quotes eld
-\end_inset
-
-memory CD4 T-cells
-\begin_inset Quotes erd
-\end_inset
-
-.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-CD4 T-cells are central to all adaptive immune responses, as well as immune
+ T-cells are central to all adaptive immune responses, as well as immune
  memory 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -2574,11 +2553,26 @@ literal "false"
 \end_inset
 
 .
- After an infection is cleared, a subset of the naïve CD4 T-cells that responded
- to that infection differentiate into memory CD4 T-cells, which are responsible
- for responding to the same pathogen in the future.
- Memory CD4 T-cells are functionally distinct, able to respond to an infection
- more quickly and without the co-stimulation required by naïve CD4 T-cells.
+ After an infection is cleared, a subset of the naïve CD4
+\begin_inset Formula $^{+}$
+\end_inset
+
+ T-cells that responded to that infection differentiate into memory CD4
+\begin_inset Formula $^{+}$
+\end_inset
+
+ T-cells, which are responsible for responding to the same pathogen in the
+ future.
+ Memory CD4
+\begin_inset Formula $^{+}$
+\end_inset
+
+ T-cells are functionally distinct, able to respond to an infection more
+ quickly and without the co-stimulation required by naïve CD4
+\begin_inset Formula $^{+}$
+\end_inset
+
+ T-cells.
  However, the molecular mechanisms underlying this functional distinction
  are not well-understood.
  Epigenetic regulation via histone modification is thought to play an important
@@ -2589,7 +2583,11 @@ literal "false"
  H3K4me2, H3K4me3 and H3K27me3 are three histone marks thought to be major
  epigenetic regulators of gene expression.
  The goal of the present study is to investigate the role of these histone
- marks in CD4 T-cell activation kinetics and memory differentiation.
+ marks in CD4
+\begin_inset Formula $^{+}$
+\end_inset
+
+ T-cell activation kinetics and memory differentiation.
  In static snapshots, H3K4me2 and H3K4me3 are often observed in the promoters
  of highly transcribed genes, while H3K27me3 is more often observed in promoters
  of inactive genes with little to no transcription occurring.
@@ -2617,8 +2615,11 @@ deactivating
 
 \begin_layout Standard
 In order to investigate the relationship between gene expression and these
- histone modifications in the context of naïve and memory CD4 T-cell activation,
- a previously published data set of 
+ histone modifications in the context of naïve and memory CD4
+\begin_inset Formula $^{+}$
+\end_inset
+
+ T-cell activation, a previously published data set of 
 \begin_inset Flex Glossary Term
 status open
 
@@ -2640,8 +2641,11 @@ ChIP-seq
 
  data was re-analyzed using up-to-date methods designed to address the specific
  analysis challenges posed by this data set.
- The data set contains naïve and memory CD4 T-cell samples in a time course
- before and after activation.
+ The data set contains naïve and memory CD4
+\begin_inset Formula $^{+}$
+\end_inset
+
+ T-cell samples in a time course before and after activation.
  Like the original analysis, this analysis looks at the dynamics of these
  marks histone marks and compare them to gene expression dynamics at the
  same time points during activation, as well as compare them between naïve
@@ -2752,8 +2756,16 @@ ChIP-seq
 
 \end_inset
 
- from CD4 T-cells from 4 donors.
- From each donor, naïve and memory CD4 T-cells were isolated separately.
+ from CD4
+\begin_inset Formula $^{+}$
+\end_inset
+
+ T-cells from 4 donors.
+ From each donor, naïve and memory CD4
+\begin_inset Formula $^{+}$
+\end_inset
+
+ T-cells were isolated separately.
  Then cultures of both cells were activated with CD3/CD28 beads, and samples
  were taken at 4 time points: Day 0 (pre-activation), Day 1 (early activation),
  Day 5 (peak activation), and Day 14 (post-activation).
@@ -8993,7 +9005,10 @@ LF
  in all 4 data sets, indicating a coordinated pattern of variation shared
  across all histone marks and gene expression.
  This, of course, is consistent with the expectation that any naïve CD4
- T-cells remaining at day 14 should have differentiated into memory cells
+\begin_inset Formula $^{+}$
+\end_inset
+
+  T-cells remaining at day 14 should have differentiated into memory cells
  by that time, and should therefore have a genomic state similar to memory
  cells.
  This convergence is evidence that these histone marks all play an important
@@ -9138,7 +9153,10 @@ status collapsed
 
 \begin_layout Plain Layout
 Lamere 2016 Figure 8 “Model for the role of H3K4 methylation during CD4
- T-cell activation.
+\begin_inset Formula $^{+}$
+\end_inset
+
+  T-cell activation.
 \begin_inset Quotes erd
 \end_inset
 
@@ -9168,7 +9186,15 @@ literal "false"
 \begin_inset Quotes eld
 \end_inset
 
-Model for the role of H3K4 methylation during CD4 T-cell activation.
+Model for the role of H3K4 methylation during 
+\series default
+CD4
+\begin_inset Formula $^{+}$
+\end_inset
+
+ 
+\series bold
+ T-cell activation.
 \begin_inset Quotes erd
 \end_inset
 
@@ -9726,7 +9752,11 @@ ChIP-seq
 
 \end_inset
 
- in CD4 T-cells in Chapter 2 is in many ways a preliminary study that suggests
+ in CD4
+\begin_inset Formula $^{+}$
+\end_inset
+
+  T-cells in Chapter 2 is in many ways a preliminary study that suggests
  a multitude of new avenues of investigation.
  Here we consider a selection of such avenues.
 \end_layout
@@ -10013,10 +10043,14 @@ In this study, a convergence between naïve and memory cells was observed
  However, the current study was not designed with this specific hypothesis
  in mind, and it therefore has some deficiencies with regard to testing
  it.
- The memory CD4 samples at day 14 do not resemble the memory samples at
- day 0, indicating that in the specific model of activation used for this
- experiment, the cells are not guaranteed to return to their original pre-activa
-tion state, or perhaps this process takes substantially longer than 14 days.
+ The memory CD4
+\begin_inset Formula $^{+}$
+\end_inset
+
+  samples at day 14 do not resemble the memory samples at day 0, indicating
+ that in the specific model of activation used for this experiment, the
+ cells are not guaranteed to return to their original pre-activation state,
+ or perhaps this process takes substantially longer than 14 days.
  This is a challenge for the convergence hypothesis because the ideal comparison
  to prove that naïve cells are converging to a resting memory state would
  be to compare the final naïve time point to the Day 0 memory samples, but
@@ -10086,9 +10120,33 @@ negative control
 not
 \emph default
  to be involved in T-cell activation or memory formation.
- Of course, CD4 T-cells are not the only adaptive immune cells with memory.
- A similar study could be designed for CD8 T-cells, B-cells, and even specific
- subsets of CD4 T-cells.
+ Of course, CD4
+\begin_inset Formula $^{+}$
+\end_inset
+
+  T-cells are not the only adaptive immune cells with memory.
+ A similar study could be designed for CD8
+\begin_inset Formula $^{+}$
+\end_inset
+
+  T-cells, B-cells, and even specific subsets of CD4
+\begin_inset Formula $^{+}$
+\end_inset
+
+  T-cells, such as ???.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Suggest some T-cell subsets
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
