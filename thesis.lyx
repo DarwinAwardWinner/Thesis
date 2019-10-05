@@ -767,6 +767,19 @@ Diagnosis and treatment of allograft rejection is a major challenge
 \end_layout
 
 \begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Maybe talk about HLA matching and why it's not an option most of the time.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 To prevent rejection, allograft recipients are treated with immune suppressive
  drugs 
 \begin_inset CommandInset citation
@@ -930,6 +943,20 @@ literal "false"
 
 \begin_layout Subsection
 Memory cells are resistant to immune suppression
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Expand on costimulation required by naive cells and how memory cells differ,
+ and mechanisms of immune suppression drugs 
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
