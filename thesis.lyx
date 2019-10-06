@@ -51,6 +51,11 @@
 \setabbreviationstyle{long-short}
 \loadglsentries{abbrevs.tex}
 \makeglossaries
+
+% arara: xelatex
+% arara: biber
+% arara: makeglossaries
+% arara: xelatex
 \end_preamble
 \use_default_options true
 \begin_modules
@@ -6268,7 +6273,7 @@ Future direction idea: Need a control: shuffle all peaks and repeat, N times.
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename graphics/CD4-csaw/Promoter Peak Distance Profile-PAGE1-CROP.pdf
+	filename graphics/CD4-csaw/Promoter-Peak-Distance-Profile-PAGE1-CROP.pdf
 	lyxscale 50
 	width 80col%
 
@@ -6592,7 +6597,7 @@ This figure is generated from the old analysis.
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename graphics/CD4-csaw/FPKM by Peak Violin Plots-CROP.pdf
+	filename graphics/CD4-csaw/FPKM-by-Peak-Violin-Plots-CROP.pdf
 	lyxscale 50
 	width 100col%
 
@@ -14109,7 +14114,7 @@ status collapsed
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -19054,7 +19059,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename graphics/Globin Paper/figure1 - globin-fractions.pdf
+	filename graphics/globin-paper/figure1-globin-fractions.pdf
 	lyxscale 50
 	width 100col%
 	groupId colfullwidth
@@ -19218,7 +19223,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename graphics/Globin Paper/figure2 - aveLogCPM-colored.pdf
+	filename graphics/globin-paper/figure2-aveLogCPM-colored.pdf
 	lyxscale 50
 	height 60theight%
 
@@ -19373,7 +19378,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename graphics/Globin Paper/figure3 - detection.pdf
+	filename graphics/globin-paper/figure3-detection.pdf
 	lyxscale 50
 	width 70col%
 
@@ -19589,7 +19594,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename graphics/Globin Paper/figure4 - maplot-colored.pdf
+	filename graphics/globin-paper/figure4-maplot-colored.pdf
 	lyxscale 50
 	width 100col%
 	groupId colfullwidth
@@ -19880,7 +19885,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename graphics/Globin Paper/figure5 - corrplot.pdf
+	filename graphics/globin-paper/figure5-corrplot.pdf
 	lyxscale 50
 	width 100col%
 	groupId colfullwidth
