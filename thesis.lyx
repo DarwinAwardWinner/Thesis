@@ -3326,31 +3326,18 @@ literal "false"
 .
  Comparisons of downstream results from each combination of quantification
  method and reference revealed that all quantifications gave broadly similar
- results for most genes, so 
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-shoal
-\end_layout
-
-\end_inset
-
- with the Ensembl annotation was chosen as the method theoretically most
- likely to partially mitigate some of the batch effect in the data.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Cite shoal
-\end_layout
+ results for most genes, with non being obviously superior.
+ Salmon quantification with regularization by shoal with the Ensembl annotation
+ was chosen as the method theoretically most likely to partially mitigate
+ some of the batch effect in the data 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "gh-shoal,Patro2017"
+literal "false"
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Standard
@@ -5668,7 +5655,7 @@ literal "false"
 
 
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 If float lost issues, reposition randomly until success.
@@ -10566,7 +10553,7 @@ ChIP-seq
  If the correlation between read counts for opposite loci is low, then this
  is consistent with allele-specific modification.
  Finally if the modifications do not separate by either cell or allele,
- the colocation of these two marks is most likely occurring at the level
+ the co-location of these two marks is most likely occurring at the level
  of individual histones, with the heterogeneously modified histone representing
  a distinct state.
  
@@ -10653,12 +10640,13 @@ Proper pre-processing is essential for array data
 
 \begin_layout Standard
 Microarrays, bead arrays, and similar assays produce raw data in the form
- of fluorescence intensity measurements, with the each intensity measurement
+ of fluorescence intensity measurements, with each intensity measurement
  proportional to the abundance of some fluorescently labelled target DNA
  or RNA sequence that base pairs to a specific probe sequence.
  However, these measurements for each probe are also affected my many technical
  confounding factors, such as the concentration of target material, strength
- of off-target binding, and the sensitivity of the imaging sensor.
+ of off-target binding, the sensitivity of the imaging sensor, and visual
+ artifacts in the image.
  Some array designs also use multiple probe sequences for each target.
  Hence, extensive pre-processing of array data is necessary to normalize
  out the effects of these technical factors and summarize the information
@@ -11574,7 +11562,7 @@ RMA
 
 , and the normalized data for each set were combined into a single set with
  no further attempts at normalizing between the two sets.
- The represents approximately how 
+ This represents approximately how 
 \begin_inset Flex Glossary Term
 status open
 
@@ -11634,7 +11622,7 @@ literal "false"
 .
  Separate vectors were created for two types of samples: kidney graft biopsy
  samples and blood samples from graft recipients.
- For training, a 341 kidney biopsy samples from 2 data sets and 965 blood
+ For training, 341 kidney biopsy samples from 2 data sets and 965 blood
  samples from 5 data sets were used as the reference set.
  Arrays were groups into batches based on unique combinations of sample
  type (blood or biopsy), diagnosis (TX, AR, etc.), data set, and scan date.
@@ -11689,8 +11677,8 @@ RMA
 \end_layout
 
 \begin_layout Subsection
-Modeling methylation array M-value heteroskedasticy in linear models with
- modified voom implementation
+Modeling methylation array M-value heteroskedasticity with a modified voom
+ implementation
 \end_layout
 
 \begin_layout Standard
@@ -13591,14 +13579,14 @@ noprefix "false"
 
 \end_inset
 
-, it is apparent that that a batch size of 8 maximizes the number of samples
+, it is apparent that a batch size of 8 maximizes the number of samples
  included in training.
  Increasing the batch size beyond this causes too many smaller batches to
  be excluded, reducing the total number of samples for both tissue types.
  However, a batch size of 8 is not necessarily optimal.
  The article introducing frmaTools concluded that it was highly advantageous
  to use a smaller batch size in order to include more batches, even at the
- expense of including fewer total samples in training 
+ cost of including fewer total samples in training 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "McCall2011"
@@ -13854,12 +13842,6 @@ fRMA
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset Float figure
-wide false
-sideways false
 status open
 
 \begin_layout Plain Layout
@@ -13867,78 +13849,8 @@ status open
 \begin_inset Graphics
 	filename graphics/frma-pax-bx/M-BX-violin.pdf
 	lyxscale 40
-	width 45col%
+	height 90theight%
 	groupId m-violin
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:m-bx-violin"
-
-\end_inset
-
-
-\series bold
-Violin plot of inter-normalization log ratios for biopsy samples.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset space \hfill{}
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/frma-pax-bx/M-PAX-violin.pdf
-	lyxscale 40
-	width 45col%
-	groupId m-violin
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:m-pax-violin"
-
-\end_inset
-
-
-\series bold
-Violin plot of inter-normalization log ratios for blood samples.
-\end_layout
-
-\end_inset
-
-
-\end_layout
 
 \end_inset
 
@@ -13961,13 +13873,73 @@ Violin plot of log ratios between normalizations for 20 biopsy samples.
 
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:frma-violin"
+name "fig:m-bx-violin"
 
 \end_inset
 
 
 \series bold
 Violin plot of log ratios between normalizations for 20 biopsy samples.
+ 
+\series default
+Each of 20 randomly selected samples was normalized with RMA and with 5
+ different sets of fRMA vectors.
+ The distribution of log ratios between normalized expression values, aggregated
+ across all 20 arrays, was plotted for each pair of normalizations.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/frma-pax-bx/M-PAX-violin.pdf
+	lyxscale 40
+	height 90theight%
+	groupId m-violin
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:m-pax-violin"
+
+\end_inset
+
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Violin plot of log ratios between normalizations for 20 blood samples.
+\end_layout
+
+\end_inset
+
+
+\series bold
+Violin plot of log ratios between normalizations for 20 blood samples.
  
 \series default
 Each of 20 randomly selected samples was normalized with RMA and with 5
@@ -14122,7 +14094,7 @@ fRMA
 
 \end_inset
 
- training process is robust to random batch downsampling for the blood samples
+ training process is robust to random batch sub-sampling for the blood samples
  as well.
 \end_layout
 
@@ -14432,7 +14404,7 @@ begin{landscape}
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Flex TODO Note (inline)
@@ -15749,7 +15721,7 @@ noprefix "false"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -16163,7 +16135,7 @@ literal "false"
 \end_inset
 
 .
- the blue line is only shown in each plot if the estimate of 
+ The blue line is only shown in each plot if the estimate of 
 \begin_inset Formula $\hat{\pi}_{0}$
 \end_inset
 
@@ -16219,7 +16191,7 @@ noprefix "false"
  In a controlled experimental context, it is always possible to correct
  this issue by normalizing all experimental samples together.
  However, because it is not feasible to normalize all samples together in
- a clinical context, a single-channel normalization is required is required.
+ a clinical context, a single-channel normalization is required.
  
 \end_layout
 
@@ -16279,7 +16251,7 @@ fRMA
 
 \end_inset
 
- has the greatest potential to diverge from RMA un undesirable ways.
+ has the greatest potential to diverge from RMA in undesirable ways.
 \end_layout
 
 \begin_layout Standard
@@ -16609,8 +16581,16 @@ CAN
 \end_inset
 
  samples are within the flat region of the mean-variance trend (between
- -3 and +3), voom is able to down-weight the contribution of the high-variance
- M-values from the 
+ 
+\begin_inset Formula $-3$
+\end_inset
+
+ and 
+\begin_inset Formula $+3$
+\end_inset
+
+), voom is able to down-weight the contribution of the high-variance M-values
+ from the 
 \begin_inset Flex Glossary Term
 status open
 
@@ -16880,8 +16860,8 @@ frmaTools
  remove this optimization and properly calculate the variances using the
  full formula.
  Once this modification is made, a new strategy would need to be developed
- for assessing the stability of parameter estimates, since the random subsamplin
-g step is eliminated, meaning that different subsamplings can no longer
+ for assessing the stability of parameter estimates, since the random sub-sampli
+ng step is eliminated, meaning that different sub-samplings can no longer
  be compared as in Figures 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -17436,7 +17416,7 @@ All research reported here was done under IACUC-approved protocols at the
 \end_layout
 
 \begin_layout Subsection
-Globin Blocking
+Globin blocking oligonucleotide design
 \end_layout
 
 \begin_layout Standard
@@ -17524,7 +17504,7 @@ site
 \end_layout
 
 \begin_layout Subsection
-RNA-seq Library Preparation 
+RNA-seq library preparation 
 \end_layout
 
 \begin_layout Standard
@@ -17693,6 +17673,33 @@ Read alignment and counting
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+emergencystretch 3em
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Need to relax the justification parameters just for this paragraph, or else
+ featureCounts can break out of the margin.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 Reads were aligned to the cynomolgus genome using STAR 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -17790,8 +17797,24 @@ RNA-seq
  
 \end_layout
 
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+emergencystretch 0em
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
-Normalization and Exploratory Data Analysis
+Normalization and exploratory data analysis
 \end_layout
 
 \begin_layout Standard
@@ -17954,7 +17977,7 @@ literal "false"
 \end_layout
 
 \begin_layout Subsection
-Differential Expression Analysis
+Differential expression analysis
 \end_layout
 
 \begin_layout Standard
@@ -19077,7 +19100,7 @@ Fraction of genic reads in each sample aligned to non-globin genes, with
  Gray + signs indicate the means for globin-blocked libraries and unblocked
  libraries.
  The overall distribution for each group is represented as a notched box
- plots.
+ plot.
  Points are randomly spread vertically to avoid excessive overlapping.
 \end_layout
 
@@ -19190,7 +19213,7 @@ GB
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -19345,7 +19368,7 @@ noprefix "false"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -19852,7 +19875,7 @@ BCV
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -19983,7 +20006,7 @@ FDR
 \end_inset
 
  of 10% as the threshold of significance.
- Out of 12954 genes that passed the detection threshold in both subsets,
+ Out of 12,954 genes that passed the detection threshold in both subsets,
  358 were called significantly differentially expressed in the same direction
  in both sets; 1063 were differentially expressed in the 
 \begin_inset Flex Glossary Term
@@ -20006,8 +20029,8 @@ GB
 
 \end_inset
 
- set but significantly down in the non-GB set; and the remaining 11235 were
- not called differentially expressed in either set.
+ set but significantly down in the non-GB set; and the remaining 11,235
+ were not called differentially expressed in either set.
  These data are summarized in Table 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -20608,7 +20631,7 @@ literal "false"
 
 .
  However, we are not aware of any publications using these currently available
- protocols the with latest generation of microarrays that actually compare
+ protocols with the latest generation of microarrays that actually compare
  the detection sensitivity with and without globin reduction.
  However, in practice this has now been adopted generally primarily driven
  by concerns for cost control.
