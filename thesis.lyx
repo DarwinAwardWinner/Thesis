@@ -5195,19 +5195,60 @@ Interpretation of RNA-seq analysis is limited by a major confounding factor
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
+Genes called as present in the 
+\begin_inset Flex Glossary Term
 status open
 
 \begin_layout Plain Layout
-Float lost issues
+RNA-seq
 \end_layout
 
 \end_inset
 
+ data were tested for differential expression between all time points and
+ cell types.
+ The counts of differentially expressed genes are shown in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Estimated-and-detected-rnaseq"
+plural "false"
+caps "false"
+noprefix "false"
 
+\end_inset
+
+.
+ Notably, all the results for Day 0 and Day 5 have substantially fewer genes
+ called differentially expressed than any of the results for other time
+ points.
+ This is an unfortunate result of the difference in sample quality between
+ the two batches of 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
 \end_layout
 
-\begin_layout Standard
+\end_inset
+
+ data.
+ All the samples in Batch 1, which includes all the samples from Days 0
+ and 5, have substantially more variability than the samples in Batch 2,
+ which includes the other time points.
+ This is reflected in the substantially higher weights assigned to Batch
+ 2 (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:RNA-seq-weights-vs-covars"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ 
 \begin_inset Float table
 wide false
 sideways false
@@ -5626,62 +5667,15 @@ literal "false"
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-Genes called as present in the 
-\begin_inset Flex Glossary Term
+\begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
-RNA-seq
+If float lost issues, reposition randomly until success.
 \end_layout
 
 \end_inset
 
- data were tested for differential expression between all time points and
- cell types.
- The counts of differentially expressed genes are shown in Table 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "tab:Estimated-and-detected-rnaseq"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-.
- Notably, all the results for Day 0 and Day 5 have substantially fewer genes
- called differentially expressed than any of the results for other time
- points.
- This is an unfortunate result of the difference in sample quality between
- the two batches of 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-RNA-seq
-\end_layout
-
-\end_inset
-
- data.
- All the samples in Batch 1, which includes all the samples from Days 0
- and 5, have substantially more variability than the samples in Batch 2,
- which includes the other time points.
- This is reflected in the substantially higher weights assigned to Batch
- 2 (Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:RNA-seq-weights-vs-covars"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-).
  The batch effect has both a systematic component and a random noise component.
  While the systematic component was subtracted out using ComBat (Figure
  
