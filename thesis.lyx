@@ -5195,75 +5195,16 @@ Interpretation of RNA-seq analysis is limited by a major confounding factor
 \end_layout
 
 \begin_layout Standard
-Genes called as present in the 
-\begin_inset Flex Glossary Term
+\begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
-RNA-seq
+Float lost issues
 \end_layout
 
 \end_inset
 
- data were tested for differential expression between all time points and
- cell types.
- The counts of differentially expressed genes are shown in Table 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "tab:Estimated-and-detected-rnaseq"
-plural "false"
-caps "false"
-noprefix "false"
 
-\end_inset
-
-.
- Notably, all the results for Day 0 and Day 5 have substantially fewer genes
- called differentially expressed than any of the results for other time
- points.
- This is an unfortunate result of the difference in sample quality between
- the two batches of 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-RNA-seq
-\end_layout
-
-\end_inset
-
- data.
- All the samples in Batch 1, which includes all the samples from Days 0
- and 5, have substantially more variability than the samples in Batch 2,
- which includes the other time points.
- This is reflected in the substantially higher weights assigned to Batch
- 2 (Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:RNA-seq-weights-vs-covars"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-).
- The batch effect has both a systematic component and a random noise component.
- While the systematic component was subtracted out using ComBat (Figure
- 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:RNA-PCA"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-), no such correction is possible for the noise component: Batch 1 simply
- has substantially more random noise in it, which reduces the statistical
- power for any differential expression tests involving samples in that batch.
- 
 \end_layout
 
 \begin_layout Standard
@@ -5685,6 +5626,78 @@ literal "false"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Genes called as present in the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ data were tested for differential expression between all time points and
+ cell types.
+ The counts of differentially expressed genes are shown in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Estimated-and-detected-rnaseq"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Notably, all the results for Day 0 and Day 5 have substantially fewer genes
+ called differentially expressed than any of the results for other time
+ points.
+ This is an unfortunate result of the difference in sample quality between
+ the two batches of 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ data.
+ All the samples in Batch 1, which includes all the samples from Days 0
+ and 5, have substantially more variability than the samples in Batch 2,
+ which includes the other time points.
+ This is reflected in the substantially higher weights assigned to Batch
+ 2 (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:RNA-seq-weights-vs-covars"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ The batch effect has both a systematic component and a random noise component.
+ While the systematic component was subtracted out using ComBat (Figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:RNA-PCA"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+), no such correction is possible for the noise component: Batch 1 simply
+ has substantially more random noise in it, which reduces the statistical
+ power for any differential expression tests involving samples in that batch.
+ 
 \end_layout
 
 \begin_layout Standard
