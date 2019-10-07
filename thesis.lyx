@@ -2064,6 +2064,23 @@ ChIP-seq
 \end_layout
 
 \begin_layout Standard
+The challenge in peak calling is that the immunoprecipitation step is not
+ 100% selective, so some fraction of reads are 
+\emph on
+not 
+\emph default
+derived from DNA fragments that were bound by the immunoprecipitated protein.
+ These are referred to as background reads.
+ Biases in amplification and sequencing, as well as the aforementioned Poisson
+ randomness of the sequencing itself, can cause fluctuations in the background
+ level of reads the resemble peaks, and the true peaks must be distinguished
+ from these.
+ It is common to sequence the input to the ChIP-seq reaction as well as
+ the immunoprecipitated sample in order to aid in estimating the fluctuations
+ in background level across the genome.
+\end_layout
+
+\begin_layout Standard
 There are generally two kinds of peaks that can be identified: narrow peaks
  and broadly enriched regions.
  Proteins like transcription factors that bind specific sites in the genome
@@ -2176,18 +2193,6 @@ literal "false"
 \end_inset
 
 .
- In all cases, better results are obtained if the local background coverage
- level can be estimated from 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-ChIP-seq
-\end_layout
-
-\end_inset
-
- input samples, since various biases can result in uneven background coverage.
 \end_layout
 
 \begin_layout Standard
@@ -2951,10 +2956,101 @@ Benjamini-Hochberg + pval dist
 \end_layout
 
 \begin_layout Standard
+When testing thousands of genes for differential expression or performing
+ thousands of statistical tests for other kinds of genomic data, the result
+ is thousands of p-values.
+ By construction, p-values have a 
+\begin_inset Formula $\mathrm{Uniform}(0,1)$
+\end_inset
+
+ distribution under the null hypothesis.
+ This means that if all null hypotheses are true in a large number 
+\begin_inset Formula $N$
+\end_inset
+
+ of tests, then for any significance threshold 
+\begin_inset Formula $T$
+\end_inset
+
+, approximately 
+\begin_inset Formula $N*T$
+\end_inset
+
+ p-values will be 
+\begin_inset Quotes eld
+\end_inset
+
+significant
+\begin_inset Quotes erd
+\end_inset
+
+ at that threshold even though the null hypotheses are all true.
+ These are called false discoveries.
+\end_layout
+
+\begin_layout Standard
+When only a fraction of null hypotheses are true, the p-value distribution
+ will be a mixture of a uniform component representing the null hypotheses
+ that are true and a non-uniform component representing the null hypotheses
+ that are not true.
+ The fraction belonging to the uniform component is referred to as 
+\begin_inset Formula $\pi_{0}$
+\end_inset
+
+, which ranges from 1 (all null hypotheses true) to 0 (all null hypotheses
+ false).
+ Furthermore, the non-uniform component must be biased toward zero, since
+ any evidence against the null hypothesis must push the p-value for a test
+ toward zero.
+ We can exploit this fact to estimate the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+FDR
+\end_layout
+
+\end_inset
+
+ for any significance threshold by estimating the degree to which the density
+ of p-values left of that threshold exceeds what would be expected for a
+ uniform distribution.
+ In genomics, the most commonly used FDR estimation method, and the one
+ used in this work, is that of 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+glsdisp{BH}{Benjamini and Hochberg}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Benjamini1995"
+literal "false"
+
+\end_inset
+
+.
+ This is a conservative method that effectively assumes 
+\begin_inset Formula $\pi_{0}=1$
+\end_inset
+
+ unconditionally.
+ Hence it gives an upper bound for the FDR at any significance threshold.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -2982,6 +3078,27 @@ name "fig:Example-pval-hist"
 
 \series bold
 Example p-value histogram.
+ 
+\series default
+The distribution of p-values from a large number of independent tests (such
+ as differential expression tests for each gene in the genome) is a mixture
+ of a uniform component representing the null hypotheses that are true (blue
+ shading) and a zero-biased component representing the null hypotheses that
+ are false (red shading).
+ The FDR for any column in the histogram is the fraction of that column
+ that is blue.
+ The line 
+\begin_inset Formula $y=\pi_{0}$
+\end_inset
+
+ represents the theoretical uniform component of this p-value distribution,
+ while the line 
+\begin_inset Formula $y=1$
+\end_inset
+
+ represents the uniform component when all null hypotheses are true.
+ Note that in real data, the true status of each hypothesis is unknown,
+ so only the overall shape of the distribution is known.
 \end_layout
 
 \end_inset
