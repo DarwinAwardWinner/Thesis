@@ -3112,7 +3112,7 @@ The distribution of p-values from a large number of independent tests (such
 \end_layout
 
 \begin_layout Subsection
-Factor analysis: PCA, MDS, MOFA
+Factor analysis: PCA, PCoA, MOFA
 \end_layout
 
 \begin_layout Standard
@@ -4252,8 +4252,17 @@ ChIP-seq
 
 \end_inset
 
- (and input) reads were aligned to GRCh38 genome assembly using Bowtie 2
- 
+ (and input) reads were aligned to the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GRCh38
+\end_layout
+
+\end_inset
+
+ genome assembly using Bowtie 2 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Langmead2012,Schneider2017,gh-hg38-ref"
@@ -4293,7 +4302,7 @@ ENCODE
  blacklists 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "greylistchip,Amemiya2019,Dunham2012,gh-cd4-csaw"
+key "greylistchip,Dunham2012,Amemiya2019,gh-cd4-csaw"
 literal "false"
 
 \end_inset
@@ -11096,7 +11105,7 @@ As the cost of performing microarray assays falls, there is increasing interest
  in using genomic assays for diagnostic purposes, such as distinguishing
  
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -11307,7 +11316,7 @@ literal "false"
 \begin_layout Standard
 One other option is the aptly-named 
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -11385,8 +11394,21 @@ values, interpreted as fraction of DNA copies methylated, range from 0 to
 values are conceptually easy to interpret, but the constrained range makes
  them unsuitable for linear modeling, and their error distributions are
  highly non-normal, which also frustrates linear modeling.
- M-values, interpreted as the log ratio of methylated to unmethylated copies,
- are computed by mapping the beta values from 
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+glsdisp*{M-value}{M-values}
+\end_layout
+
+\end_inset
+
+, interpreted as the log ratios of methylated to unmethylated copies for
+ each probe region, are computed by mapping the beta values from 
 \begin_inset Formula $[0,1]$
 \end_inset
 
@@ -11409,14 +11431,24 @@ noprefix "false"
  the unconstrained range is suitable for linear modeling, and the error
  distributions are more normal.
  Hence, most linear modeling and other statistical testing on methylation
- arrays is performed using M-values.
+ arrays is performed using 
+\begin_inset Flex Glossary Term (pl)
+status open
+
+\begin_layout Plain Layout
+M-value
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -11474,12 +11506,50 @@ However, the steep slope of the sigmoid transformation near 0 and 1 tends
  near the middle.
  This mean-variance dependency must be accounted for when fitting the linear
  model for differential methylation, or else the variance will be systematically
- overestimated for probes with moderate M-values and underestimated for
- probes with extreme M-values.
+ overestimated for probes with moderate 
+\begin_inset Flex Glossary Term (pl)
+status open
+
+\begin_layout Plain Layout
+M-value
+\end_layout
+
+\end_inset
+
+ and underestimated for probes with extreme 
+\begin_inset Flex Glossary Term (pl)
+status open
+
+\begin_layout Plain Layout
+M-value
+\end_layout
+
+\end_inset
+
+.
  This is particularly undesirable for methylation data because the intermediate
- M-values are the ones of most interest, since they are more likely to represent
- areas of varying methylation, whereas extreme M-values typically represent
- complete methylation or complete lack of methylation.
+ 
+\begin_inset Flex Glossary Term (pl)
+status open
+
+\begin_layout Plain Layout
+M-value
+\end_layout
+
+\end_inset
+
+ are the ones of most interest, since they are more likely to represent
+ areas of varying methylation, whereas extreme 
+\begin_inset Flex Glossary Term (pl)
+status open
+
+\begin_layout Plain Layout
+M-value
+\end_layout
+
+\end_inset
+
+ typically represent complete methylation or complete lack of methylation.
 \end_layout
 
 \begin_layout Standard
@@ -11522,7 +11592,17 @@ RNA-seq
 ip in methylation array data.
  However, the standard implementation of voom assumes that the input is
  given in raw read counts, and it must be adapted to run on methylation
- M-values.
+ 
+\begin_inset Flex Glossary Term (pl)
+status open
+
+\begin_layout Plain Layout
+M-value
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Section
@@ -11609,8 +11689,27 @@ Find appropriate GEO identifiers if possible.
 To evaluate the effect of each normalization on classifier performance,
  the same classifier training and validation procedure was used after each
  normalization method.
- The PAM package was used to train a nearest shrunken centroid classifier
- on the training set and select the appropriate threshold for centroid shrinking.
+ The 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+PAM
+\end_layout
+
+\end_inset
+
+ algorithm was used to train a nearest shrunken centroid classifier on the
+ training set and select the appropriate threshold for centroid shrinking
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Tibshirani2002"
+literal "false"
+
+\end_inset
+
+.
  Then the trained classifier was used to predict the class probabilities
  of each validation sample.
  From these class probabilities, 
@@ -12219,14 +12318,24 @@ literal "false"
  Any probes binding to loci that overlapped annotated SNPs were dropped,
  and the annotated sex of each sample was verified against the sex inferred
  from the ratio of median probe intensities for the X and Y chromosomes.
- Then, the ratios were transformed to M-values.
+ Then, the ratios were transformed to 
+\begin_inset Flex Glossary Term (pl)
+status open
+
+\begin_layout Plain Layout
+M-value
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -12556,9 +12665,18 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-From the M-values, a series of parallel analyses was performed, each adding
- additional steps into the model fit to accommodate a feature of the data
- (see Table 
+From the 
+\begin_inset Flex Glossary Term (pl)
+status open
+
+\begin_layout Plain Layout
+M-value
+\end_layout
+
+\end_inset
+
+, a series of parallel analyses was performed, each adding additional steps
+ into the model fit to accommodate a feature of the data (see Table 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:Summary-of-meth-analysis"
@@ -12849,7 +12967,9 @@ The PAM classifier algorithm was trained on the training set of arrays to
  The process was performed after normalizing all samples together and after
  normalizing the training and test sets separately, and the class probabilities
  assigned to each sample in the validation set were plotted against each
- other (PP(AR), posterior probability of being AR).
+ other.
+ Each axis indicates the posterior probability of AR assigned to a sample
+ by the classifier in the specified analysis.
  The color of each point indicates the true classification of that sample.
 \end_layout
 
@@ -14262,7 +14382,7 @@ fRMA
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -14322,7 +14442,7 @@ Each of 20 randomly selected samples was normalized with RMA and with 5
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -14402,8 +14522,27 @@ noprefix "false"
 \end_inset
 
 .
- This MA plot shows that not only is there a wide distribution of M-values,
- but the trend of M-values is dependent on the average normalized intensity.
+ This MA plot shows that not only is there a wide distribution of 
+\begin_inset Flex Glossary Term (pl)
+status open
+
+\begin_layout Plain Layout
+M-value
+\end_layout
+
+\end_inset
+
+, but the trend of 
+\begin_inset Flex Glossary Term (pl)
+status open
+
+\begin_layout Plain Layout
+M-value
+\end_layout
+
+\end_inset
+
+ is dependent on the average normalized intensity.
  This is expected, since the overall trend represents the differences in
  the quantile normalization step.
  When running 
@@ -14765,11 +14904,31 @@ noprefix "false"
 
 \end_inset
 
- shows the relationship between the mean M-value and the standard deviation
- calculated for each probe in the methylation array data set.
+ shows the relationship between the mean 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+M-value
+\end_layout
+
+\end_inset
+
+ and the standard deviation calculated for each probe in the methylation
+ array data set.
  A few features of the data are apparent.
  First, the data are very strongly bimodal, with peaks in the density around
- M-values of +4 and -4.
+ 
+\begin_inset Flex Glossary Term (pl)
+status open
+
+\begin_layout Plain Layout
+M-value
+\end_layout
+
+\end_inset
+
+ of +4 and -4.
  These modes correspond to methylation sites that are nearly 100% methylated
  and nearly 100% unmethylated, respectively.
  The strong bimodality indicates that a majority of probes interrogate sites
@@ -14779,7 +14938,16 @@ noprefix "false"
  fully unmethylated in other samples, or some combination.
  The next visible feature of the data is the W-shaped variance trend.
  The upticks in the variance trend on either side are expected, based on
- the sigmoid transformation exaggerating small differences at extreme M-values
+ the sigmoid transformation exaggerating small differences at extreme 
+\begin_inset Flex Glossary Term (pl)
+status open
+
+\begin_layout Plain Layout
+M-value
+\end_layout
+
+\end_inset
+
  (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -15059,14 +15227,52 @@ noprefix "false"
  the data and included in the model.
  As expected, the overall average variance is smaller, since the surrogate
  variables account for some of the variance.
- In addition, the uptick in variance in the middle of the M-value range
- has disappeared, turning the W shape into a wide U shape.
+ In addition, the uptick in variance in the middle of the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+M-value
+\end_layout
+
+\end_inset
+
+ range has disappeared, turning the W shape into a wide U shape.
  This indicates that the excess variance in the probes with intermediate
- M-values was explained by systematic variations not correlated with known
- covariates, and these variations were modeled by the surrogate variables.
+ 
+\begin_inset Flex Glossary Term (pl)
+status open
+
+\begin_layout Plain Layout
+M-value
+\end_layout
+
+\end_inset
+
+ was explained by systematic variations not correlated with known covariates,
+ and these variations were modeled by the surrogate variables.
  The result is a nearly flat variance trend for the entire intermediate
- M-value range from about -3 to +3.
- Note that this corresponds closely to the range within which the M-value
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+M-value
+\end_layout
+
+\end_inset
+
+ range from about -3 to +3.
+ Note that this corresponds closely to the range within which the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+M-value
+\end_layout
+
+\end_inset
+
  transformation shown in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -15088,8 +15294,17 @@ absorbed
 \end_inset
 
  by the surrogate variables and remains in the plot, indicating that this
- variation has no systematic component: probes with extreme M-values are
- uniformly more variable across all samples, as expected.
+ variation has no systematic component: probes with extreme 
+\begin_inset Flex Glossary Term (pl)
+status open
+
+\begin_layout Plain Layout
+M-value
+\end_layout
+
+\end_inset
+
+ are uniformly more variable across all samples, as expected.
  
 \end_layout
 
@@ -15120,9 +15335,28 @@ noprefix "false"
  As expected, the weights exactly counteract the trend in the data, resulting
  in a nearly flat trend centered vertically at 1 (i.e.
  0 on the log scale).
- This shows that the observations with extreme M-values have been appropriately
- down-weighted to account for the fact that the noise in those observations
- has been amplified by the non-linear M-value transformation.
+ This shows that the observations with extreme 
+\begin_inset Flex Glossary Term (pl)
+status open
+
+\begin_layout Plain Layout
+M-value
+\end_layout
+
+\end_inset
+
+ have been appropriately down-weighted to account for the fact that the
+ noise in those observations has been amplified by the non-linear 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+M-value
+\end_layout
+
+\end_inset
+
+ transformation.
  In turn, this gives relatively more weight to observations in the middle
  region, which are more likely to correspond to probes measuring interesting
  biology (not constitutively methylated or unmethylated).
@@ -16875,7 +17109,17 @@ Methylation array data can be successfully analyzed using existing techniques,
 \begin_layout Standard
 Both analysis strategies B and C both yield a reasonable analysis, with
  a mean-variance trend that matches the expected behavior for the non-linear
- M-value transformation (Figure 
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+M-value
+\end_layout
+
+\end_inset
+
+ transformation (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:meanvar-sva-aw"
@@ -16937,7 +17181,16 @@ noprefix "false"
  In analysis C, the trend is still estimated at the probe level, but instead
  of estimating a single variance value shared across all observations for
  a given probe, the voom method computes an initial estimate of the variance
- for each observation individually based on where its model-fitted M-value
+ for each observation individually based on where its model-fitted 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+M-value
+\end_layout
+
+\end_inset
+
  falls on the trend line and then assigns inverse-variance weights to model
  the difference in variance between observations.
  An overall variance is still estimated for each probe using the same empirical
@@ -16968,8 +17221,27 @@ The difference between the standard empirical Bayes trended variance modeling
  Allowing voom to model the variance using observation weights in this manner
  allows the linear model fit to concentrate statistical power where it will
  do the most good.
- For example, if a particular probe's M-values are always at the extreme
- of the M-value range (e.g.
+ For example, if a particular probe's 
+\begin_inset Flex Glossary Term (pl)
+status open
+
+\begin_layout Plain Layout
+M-value
+\end_layout
+
+\end_inset
+
+ are always at the extreme of the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+M-value
+\end_layout
+
+\end_inset
+
+ range (e.g.
  less than -4) for 
 \begin_inset Flex Glossary Term
 status open
@@ -16980,7 +17252,26 @@ ADNR
 
 \end_inset
 
- samples, but the M-values for that probe in 
+ samples, but the 
+\begin_inset Flex Glossary Term (pl)
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+M-value
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ for that probe in 
 \begin_inset Flex Glossary Term
 status open
 
@@ -17009,7 +17300,16 @@ CAN
 \begin_inset Formula $+3$
 \end_inset
 
-), voom is able to down-weight the contribution of the high-variance M-values
+), voom is able to down-weight the contribution of the high-variance 
+\begin_inset Flex Glossary Term (pl)
+status open
+
+\begin_layout Plain Layout
+M-value
+\end_layout
+
+\end_inset
+
  from the 
 \begin_inset Flex Glossary Term
 status open
@@ -21348,7 +21648,8 @@ BCV
 
 \end_inset
 
-, it is more likely that the larger number of DE calls in the 
+, it is more likely that the larger number of differential expression calls
+ in the 
 \begin_inset Flex Glossary Term
 status open
 
