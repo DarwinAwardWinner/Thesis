@@ -1413,7 +1413,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename graphics/Intro/eBayes.pdf
+	filename graphics/Intro/eBayes-CROP.pdf
 	lyxscale 50
 	width 100col%
 	groupId colfullwidth
@@ -16939,13 +16939,13 @@ ADNR
  samples and lower-variance samples from other conditions and estimate an
  intermediate variance for this probe.
  In practice, analysis B shows that this approach is adequate, but the voom
- approach in analysis C is at least as good on all model fit criteria and
- yields a larger estimate for the number of differentially methylated genes,
- 
+ approach in analysis C performs at least as well on all model fit criteria
+ and yields a larger estimate for the number of differentially methylated
+ genes, 
 \emph on
 and
 \emph default
- it matches up better with the theoretical 
+ it matches up slightly better with the theoretical properties of the data.
 \end_layout
 
 \begin_layout Standard
@@ -17574,8 +17574,8 @@ RNA-seq
 
 \end_inset
 
- in preference to expression microarrays for analysis of gene expression
- 
+ in preference to expression microarrays for analysis of whole transcriptome
+ gene expression 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Mutz2012"
@@ -17585,8 +17585,11 @@ literal "false"
 
 .
  The advantages are even greater for study of model organisms with no well-estab
-lished array platforms available, such as the cynomolgus monkey (Macaca
- fascicularis).
+lished array platforms available, such as the cynomolgus monkey (
+\emph on
+Macaca fascicularis
+\emph default
+).
  High fractions of globin 
 \begin_inset Flex Glossary Term
 status open
@@ -17618,7 +17621,7 @@ literal "false"
 \end_inset
 
 .
- The importance of globin reduction for 
+ Globin reduction is also necessary for 
 \begin_inset Flex Glossary Term
 status open
 
@@ -17628,18 +17631,32 @@ RNA-seq
 
 \end_inset
 
- of blood has only been evaluated for a deepSAGE protocol on human samples
- 
+ of blood samples, though for unrelated reasons: without globin reduction,
+ many 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ reads will be derived from the globin genes, leaving fewer for the remainder
+ of the genes in the transcriptome.
+ However, existing strategies for globin reduction require an additional
+ step during sample preparation to deplete the population of globin transcripts
+ from the sample prior to reverse transcription 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Mastrokolias2012"
+key "Mastrokolias2012,Choi2014,Shin2014"
 literal "false"
 
 \end_inset
 
 .
- In the present report, we evaluated globin reduction using custom blocking
- 
+ In the present report, we evaluated globin reduction by blocking reverse
+ transcription of globin transcripts using custom blocking 
 \begin_inset Flex Glossary Term (pl)
 status open
 
@@ -17649,20 +17666,18 @@ oligo
 
 \end_inset
 
- for deep 
+.
+ We demonstrate that 
 \begin_inset Flex Glossary Term
 status open
 
 \begin_layout Plain Layout
-RNA-seq
+GB
 \end_layout
 
 \end_inset
 
- of peripheral blood samples from a nonhuman primate, cynomolgus monkey,
- using the Illumina technology platform.
- We demonstrate that globin reduction significantly improves the cost-effectiven
-ess of 
+ significantly improves the cost-effectiveness of 
 \begin_inset Flex Glossary Term
 status open
 
@@ -18462,8 +18477,18 @@ logCPM
 \end_layout
 
 \begin_layout Standard
-In order to assess the effect of blocking on reproducibility, Pearson and
- Spearman correlation coefficients were computed between the 
+In order to assess the effect of 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ on reproducibility, Pearson and Spearman correlation coefficients were
+ computed between the 
 \begin_inset Flex Glossary Term
 status open
 
@@ -21345,32 +21370,25 @@ RNA-seq
 \end_inset
 
  or how much improvement in efficiency or sensitivity to detect differential
- gene expression would be achieved for the added cost and work.
+ gene expression would be achieved for the added cost and effort.
  
 \end_layout
 
 \begin_layout Standard
-We only found one report that demonstrated that globin reduction significantly
- improved the effective read yields for sequencing of human peripheral blood
- cell RNA using a DeepSAGE protocol 
+Existing strategies for globin reduction involve degradation or physical
+ removal of globin transcripts in a separate step prior to reverse transcription
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Mastrokolias2012"
+key "Mastrokolias2012,Choi2014,Shin2014"
 literal "false"
 
 \end_inset
 
 .
- The DeepSAGE method involves two different restriction enzymes that purify
- and then tag small fragments of transcripts at specific locations and thus
- significantly reduces the complexity of the transcriptome.
- Therefore, we could not assume that the DeepSAGE result would translate
- to the common strategy in the field for assaying the entire transcript
- population by whole-transcriptome 
-\begin_inset Formula $3^{\prime}$
-\end_inset
-
--end 
+ This additional step adds significant time, complexity, and cost to sample
+ preparation.
+ Faced with the need to perform 
 \begin_inset Flex Glossary Term
 status open
 
@@ -21380,10 +21398,12 @@ RNA-seq
 
 \end_inset
 
-.
- Furthermore, if globin reduction is necessary, we also needed a globin
- reduction method specific to cynomolgus globin sequences that would work
- an organism for which no kit is available off the shelf.
+ on large numbers of blood samples we sought a solution to globin reduction
+ that could be achieved purely by adding additional reagents during the
+ reverse transcription reaction.
+ Furthermore, we needed a globin reduction method specific to cynomolgus
+ globin sequences that would work an organism for which no kit is available
+ off the shelf.
 \end_layout
 
 \begin_layout Standard
@@ -21439,7 +21459,17 @@ GB
 
  not only nearly doubles the yield of usable reads, it also increases inter-samp
 le correlation and sensitivity to detect differential gene expression relative
- to the same set of samples profiled without blocking.
+ to the same set of samples profiled without 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+.
  In addition, 
 \begin_inset Flex Glossary Term
 status open
@@ -21451,10 +21481,30 @@ GB
 \end_inset
 
  does not add a significant amount of random noise to the data.
- Globin blocking thus represents a cost-effective way to squeeze more data
+ 
+\begin_inset Flex Glossary Term (Capital)
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ thus represents a cost-effective and low-effort way to squeeze more data
  and statistical power out of the same blood samples and the same amount
  of sequencing.
- In conclusion, globin reduction greatly increases the yield of useful 
+ In conclusion, 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ greatly increases the yield of useful 
 \begin_inset Flex Glossary Term
 status open
 
