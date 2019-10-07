@@ -47,7 +47,7 @@
 % This one breaks subfigs so it's disabled
 % https://tex.stackexchange.com/questions/65680/automatically-bold-first-sentence-of-a-floats-caption
 
-\usepackage[automake,nonumberlist,nohypertypes={abbreviation}]{glossaries-extra}
+\usepackage[automake=immediate,nonumberlist,nohypertypes={abbreviation}]{glossaries-extra}
 \setabbreviationstyle{long-short}
 \loadglsentries{abbrevs.tex}
 \makeglossaries
@@ -635,6 +635,32 @@ Thanks again for your help, and happy reading!
 
 \begin_layout Chapter
 Introduction
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+glsresetall
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Reintroduce all abbreviations
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -1234,21 +1260,38 @@ RNA-seq
 
 \end_inset
 
- reads for each annotated gene.
- In abstract terms, each dependent variable being measured is referred to
- as a feature.
- The simplest approach to analyzing such data would be to fit the same model
+ reads for each annotated gene, and there are tens of thousands of genes
+ in the human genome.
+ Since many assays measure other things than gene expression, the abstract
+ term 
+\begin_inset Quotes eld
+\end_inset
+
+feature
+\begin_inset Quotes erd
+\end_inset
+
+ is used to refer to each dependent variable being measured, which may include
+ any genomic element, such as genes, promoters, peaks, enhancers, exons,
+ etc.
+ 
+\end_layout
+
+\begin_layout Standard
+The simplest approach to analyzing such data would be to fit the same model
  independently to each feature.
  However, this is undesirable for most genomics data sets.
  Genomics assays like high-throughput sequencing are expensive, and often
  the process of generating the samples is also quite expensive and time-consumin
 g.
  This expense limits the sample sizes typically employed in genomics experiments
-, and as a result the statistical power of the linear model for each individual
- feature is likewise limited.
- However, because thousands of features from the same samples are analyzed
- together, there is an opportunity to improve the statistical power of the
- analysis by exploiting shared patterns of variation across features.
+, so a typical genomic data set has far more features being measured than
+ observations (samples) per feature.
+ As a result, the statistical power of the linear model for each individual
+ feature is likewise limited by the small number of samples.
+ However, because thousands of features from the same set of samples are
+ analyzed together, there is an opportunity to improve the statistical power
+ of the analysis by exploiting shared patterns of variation across features.
  This is the core feature of 
 \begin_inset Flex Code
 status open
@@ -1286,19 +1329,6 @@ RNA-seq
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Include an eBayes example figure
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 The central challenge when fitting a linear model is to estimate the variance
  of the data accurately.
  Out of all parameters required to evaluate statistical significance of
@@ -1330,7 +1360,17 @@ squeeze
 \end_inset
 
  the distribution of estimated variances toward a single common value that
- represents the variance of an average feature in the data 
+ represents the variance of an average feature in the data (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ebayes-example"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+) 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Smyth2004"
@@ -1359,9 +1399,80 @@ limma
 
  assumes that extreme variances are less common than variances close to
  the common value.
- The variance estimates from this empirical Bayes procedure are shown empiricall
-y to yield greater statistical power than either the individual feature
- variances or the single common value.
+ The squeezed variance estimates from this empirical Bayes procedure are
+ shown empirically to yield greater statistical power than either the individual
+ feature variances or the single common value.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/Intro/eBayes.pdf
+	lyxscale 50
+	width 100col%
+	groupId colfullwidth
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Example of empirical Bayes squeezing of per-gene variances.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ebayes-example"
+
+\end_inset
+
+
+\series bold
+Example of empirical Bayes squeezing of per-gene variances.
+
+\series default
+ A smooth trend line (red) is fitted to the individual gene variances (light
+ blue) as a function of average gene abundance (logCPM).
+ Then the individual gene variances are 
+\begin_inset Quotes eld
+\end_inset
+
+squeezed
+\begin_inset Quotes erd
+\end_inset
+
+ toward the trend (dark blue).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1614,7 +1725,6 @@ literal "false"
 \end_inset
 
 .
- 
 \end_layout
 
 \begin_layout Standard
@@ -1703,8 +1813,8 @@ RNA-seq
 \begin_inset Formula $n$
 \end_inset
 
- is held constant, then the resulting distribution is a gamma-distributed
- mixture of Poisson distributions, which is equivalent to the 
+ is held constant, then the result is a gamma-distributed mixture of Poisson
+ distributions, which is equivalent to the 
 \begin_inset Flex Glossary Term
 status open
 
@@ -1715,7 +1825,7 @@ NB
 \end_inset
 
  distribution.
- The choice of a gamma distribution for the mixing weights is arbitrary,
+ The assumption of a gamma distribution for the mixing weights is arbitrary,
  motivated by the convenience of the numerically tractable 
 \begin_inset Flex Glossary Term
 status open
@@ -1726,6 +1836,10 @@ NB
 
 \end_inset
 
+ distribution and the need to select 
+\emph on
+some
+\emph default
  distribution, since the true shape of the distribution of biological variance
  is unknown.
 \end_layout
@@ -2125,8 +2239,8 @@ not
 \emph default
  also be identified in a second replicate.
  Where the more familiar false discovery rate measures the degree of corresponde
-nce between a data-derived ranked list and the true list of significant
- features, 
+nce between a data-derived ranked list and the (unknown) true list of significan
+t features, 
 \begin_inset Flex Glossary Term
 status open
 
@@ -2178,7 +2292,89 @@ crossover point
 \end_inset
 
  between the signal and the noise by determining how far down the list the
- correspondence between feature ranks breaks down.
+ rank consistency breaks down into randomness (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Example-IDR"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/IDR/D4659vsD5053_epic-PAGE1-CROP.pdf
+	lyxscale 50
+	width 100col%
+	groupId colfullwidth
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Example IDR consistency plot.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Example-IDR"
+
+\end_inset
+
+
+\series bold
+Example IDR consistency plot.
+
+\series default
+ Peak calls in two replicates are ranked from highest score (top and right)
+ to lowest score (bottom and left).
+ IDR identifies reproducible peaks, which rank highly in both replicates
+ (light blue), separating them from 
+\begin_inset Quotes eld
+\end_inset
+
+noise
+\begin_inset Quotes erd
+\end_inset
+
+ peak calls whose ranking is not reproducible between replicates (dark blue).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -2428,6 +2624,32 @@ literal "false"
 \end_inset
 
 .
+ The effect of such normalizations is to center the distribution of 
+\begin_inset Flex Glossary Term (pl)
+status open
+
+\begin_layout Plain Layout
+logFC
+\end_layout
+
+\end_inset
+
+ at zero.
+ Note that if a true global difference in gene expression is present in
+ the data, this difference will be normalized out as well, since it is indisting
+uishable from composition bias.
+ In other words, 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ cannot measure absolute gene expression, only gene expression as a fraction
+ of total reads.
 \end_layout
 
 \begin_layout Standard
@@ -2475,8 +2697,18 @@ ChIP-seq
  sample has a bimodal distribution of read counts: a low-abundance mode
  representing background regions and a high-abundance mode representing
  signal regions.
- This offers two potential normalization targets: equalizing background
- coverage or equalizing signal coverage.
+ This offers two mutually incompatible normalization strategies: equalizing
+ background coverage or equalizing signal coverage (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:chipseq-norm-example"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
  If the experiment is well controlled and ChIP efficiency is known to be
  consistent across all samples, then normalizing the background coverage
  to be equal across all samples is a reasonable strategy.
@@ -2520,6 +2752,65 @@ logFC
  is zero across all abundance levels.
  Hence, the simpler scaling normalization based on background or signal
  regions are generally preferred whenever possible.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/ChIP-seq/H3K4me2-sample-MAplot-bins-CROP.png
+	lyxscale 25
+	width 100col%
+	groupId colwidth-raster
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:chipseq-norm-example"
+
+\end_inset
+
+
+\series bold
+Example MA plot of ChIP-seq read counts in 10kb bins for two arbitrary samples.
+ 
+\series default
+The distribution of bins is bimodal along the x axis (average abundance),
+ with the left mode representing 
+\begin_inset Quotes eld
+\end_inset
+
+background
+\begin_inset Quotes erd
+\end_inset
+
+ regions with no protein binding and the right mode representing bound regions.
+ The modes are also separated on the y axis (logFC), motivating two conflicting
+ normalization strategies: background normalization (red) and signal normalizati
+on (blue and green, two similar signal normalizations).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -2660,11 +2951,42 @@ Benjamini-Hochberg + pval dist
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
+\begin_inset Float figure
+wide false
+sideways false
 status open
 
 \begin_layout Plain Layout
-Include figure showing uniform and non-uniform components of p-value dist
+\align center
+\begin_inset Graphics
+	filename graphics/Intro/med-pval-hist-colored-CROP.pdf
+	lyxscale 50
+	width 100col%
+	groupId colfullwidth
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Example-pval-hist"
+
+\end_inset
+
+
+\series bold
+Example p-value histogram.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2734,6 +3056,16 @@ status collapsed
 
 \backslash
 glsresetall
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Reintroduce all abbreviations
 \end_layout
 
 \end_inset
@@ -4112,59 +4444,6 @@ name "fig:CCF-master"
 
 \series bold
 Strand cross-correlation plots for ChIP-seq data, before and after blacklisting.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/ChIP-seq/H3K4me2-sample-MAplot-bins-CROP.png
-	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:MA-plot-bigbins"
-
-\end_inset
-
-MA plot of H3K4me2 read counts in 10kb bins for two arbitrary samples.
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \end_inset
@@ -10633,6 +10912,16 @@ glsresetall
 \end_inset
 
 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Reintroduce all abbreviations
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -17029,6 +17318,16 @@ glsresetall
 \end_inset
 
 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Reintroduce all abbreviations
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -17038,7 +17337,11 @@ status open
 \begin_layout Plain Layout
 Choose between above and the paper title: Optimizing yield of deep RNA sequencin
 g for gene expression profiling by globin reduction of peripheral blood
- samples from cynomolgus monkeys (Macaca fascicularis).
+ samples from cynomolgus monkeys (
+\emph on
+Macaca fascicularis
+\emph default
+).
 \end_layout
 
 \end_inset
@@ -19273,52 +19576,11 @@ noprefix "false"
 
 \end_inset
 
-).
- This means that for applications where it is critical that each sample
- achieve a specified minimum coverage in order to provide useful information,
- it would be necessary to budget up to 10 times the sequencing depth per
- sample without 
-\begin_inset Flex Glossary Term
-status open
 
-\begin_layout Plain Layout
-GB
-\end_layout
-
-\end_inset
-
-, even though the average yield improvement for 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-GB
-\end_layout
-
-\end_inset
-
- is only 2-fold, because every sample has a chance of being 90% globin and
- 10% useful reads.
- Hence, the more consistent behavior of 
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
-GB
-\end_layout
-
-\end_inset
-
- samples makes planning an experiment easier and more efficient because
- it eliminates the need to over-sequence every sample in order to guard
- against the worst case of a high-globin fraction.
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -19381,6 +19643,54 @@ Fraction of genic reads in each sample aligned to non-globin genes, with
 \end_inset
 
 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Float lost issues
+\end_layout
+
+\end_inset
+
+).
+ This means that for applications where it is critical that each sample
+ achieve a specified minimum coverage in order to provide useful information,
+ it would be necessary to budget up to 10 times the sequencing depth per
+ sample without 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+, even though the average yield improvement for 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ is only 2-fold, because every sample has a chance of being 90% globin and
+ 10% useful reads.
+ Hence, the more consistent behavior of 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ samples makes planning an experiment easier and more efficient because
+ it eliminates the need to over-sequence every sample in order to guard
+ against the worst case of a high-globin fraction.
 \end_layout
 
 \begin_layout Subsection
@@ -21243,6 +21553,32 @@ Future Directions
 \end_layout
 
 \begin_layout Plain Layout
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+glsresetall
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Reintroduce all abbreviations
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Flex TODO Note (inline)
 status open
 
@@ -21263,6 +21599,32 @@ If there are any chapter-independent future directions, put them here.
 
 \begin_layout Chapter
 Closing remarks
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+glsresetall
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Reintroduce all abbreviations
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
