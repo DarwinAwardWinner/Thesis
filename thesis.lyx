@@ -11747,9 +11747,18 @@ CAN
  The data consisted of 33 TX, 9 AR, 8 ADNR, and 28 CAN samples.
  The uneven group sizes are a result of taking the biopsy samples before
  the eventual fate of the transplant was known.
- Each sample was additionally annotated with a donor ID (anonymized), sex,
- age, ethnicity, creatinine level, and diabetes diagnosis (all samples in
- this data set came from patients with either 
+ Each sample was additionally annotated with a donor 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ID
+\end_layout
+
+\end_inset
+
+ (anonymized), sex, age, ethnicity, creatinine level, and diabetes diagnosis
+ (all samples in this data set came from patients with either 
 \begin_inset Flex Glossary Term
 status open
 
@@ -17410,18 +17419,54 @@ Sample collection
 All research reported here was done under IACUC-approved protocols at the
  University of Miami and complied with all applicable federal and state
  regulations and ethical principles for nonhuman primate research.
- Blood draws occurred between 16 April 2012 and 18 June 2015.
+ Blood draws occurred between 16
+\begin_inset space ~
+\end_inset
+
+April
+\begin_inset space ~
+\end_inset
+
+2012 and 18
+\begin_inset space ~
+\end_inset
+
+June
+\begin_inset space ~
+\end_inset
+
+2015.
  The experimental system involved intrahepatic pancreatic islet transplantation
  into Cynomolgus monkeys with induced diabetes mellitus with or without
  concomitant infusion of mesenchymal stem cells.
  Blood was collected at serial time points before and after transplantation
  into PAXgene Blood RNA tubes (PreAnalytiX/Qiagen, Valencia, CA) at the
- precise volume:volume ratio of 2.5 ml whole blood into 6.9 ml of PAX gene
- additive.
+ precise volume:volume ratio of 2.5
+\begin_inset space ~
+\end_inset
+
+ml whole blood into 6.9
+\begin_inset space ~
+\end_inset
+
+ml of PAX gene additive.
 \end_layout
 
 \begin_layout Subsection
 Globin blocking oligonucleotide design
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+HBA1 and HBA2 is wrong for cyno?
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -17513,19 +17558,6 @@ RNA-seq library preparation
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Add protected spaces where appropriate to prevent unwanted line breaks.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 Sequencing libraries were prepared with 200
 \begin_inset space ~
 \end_inset
@@ -17541,12 +17573,62 @@ mRNA
 
 \end_inset
 
- was selected from 200 ng aliquots of cynomolgus blood-derived total RNA
- using Ambion Dynabeads Oligo(dT)25 beads (Invitrogen) following manufacturer’s
- recommended protocol.
- PolyA selected RNA was then combined with 8 pmol of HBA1/2 (site 1), 8
- pmol of HBA1/2 (site 2), 12 pmol of HBB (site 1) and 12 pmol of HBB (site
- 2) 
+ was selected from 200
+\begin_inset space ~
+\end_inset
+
+ng aliquots of cynomolgus blood-derived total RNA using Ambion Dynabeads
+ Oligo(dT)25 beads (Invitrogen) following the manufacturer’s recommended
+ protocol.
+ PolyA selected RNA was then combined with 8
+\begin_inset space ~
+\end_inset
+
+pmol of HBA1/2
+\begin_inset space ~
+\end_inset
+
+(site
+\begin_inset space ~
+\end_inset
+
+1), 8
+\begin_inset space ~
+\end_inset
+
+pmol of HBA1/2
+\begin_inset space ~
+\end_inset
+
+(site
+\begin_inset space ~
+\end_inset
+
+2), 12
+\begin_inset space ~
+\end_inset
+
+pmol of HBB
+\begin_inset space ~
+\end_inset
+
+(site
+\begin_inset space ~
+\end_inset
+
+1) and 12
+\begin_inset space ~
+\end_inset
+
+pmol of HBB
+\begin_inset space ~
+\end_inset
+
+(site
+\begin_inset space ~
+\end_inset
+
+2) 
 \begin_inset Flex Glossary Term (pl)
 status open
 
@@ -17557,16 +17639,83 @@ oligo
 \end_inset
 
 .
- In addition, 20 pmol of RT primer containing a portion of the Illumina
- adapter sequence (B-oligo-dTV: GAGTTCCTTGGCACCCGAGAATTCCATTTTTTTTTTTTTTTTTTTV)
- and 4 µL of 5X First Strand buffer (250 mM Tris-HCl pH 8.3, 375 mM KCl,
- 15mM MgCl2) were added in a total volume of 15 µL.
+ In addition, 20
+\begin_inset space ~
+\end_inset
+
+pmol of RT primer containing a portion of the Illumina adapter sequence
+ (B-oligo-dTV: GAGTTCCTTGGCACCCGAGAATTCCATTTTTTTTTTTTTTTTTTTV) and 4
+\begin_inset space ~
+\end_inset
+
+
+\emph on
+μ
+\emph default
+L of 5X First Strand buffer (250
+\begin_inset space ~
+\end_inset
+
+mM Tris-HCl pH
+\begin_inset space ~
+\end_inset
+
+8.3, 375
+\begin_inset space ~
+\end_inset
+
+mM KCl, 15
+\begin_inset space ~
+\end_inset
+
+mM 
+\begin_inset Formula $\textrm{MgCl}_{2}$
+\end_inset
+
+) were added in a total volume of 15
+\begin_inset space ~
+\end_inset
+
+µL.
  The RNA was fragmented by heating this cocktail for 3 minutes at 95°C and
  then placed on ice.
- This was followed by the addition of 2 µL 0.1 M DTT, 1 µL RNaseOUT, 1 µL
- 10mM dNTPs 10% biotin-16 aminoallyl-2’- dUTP and 10% biotin-16 aminoallyl-2’-
- dCTP (TriLink Biotech, San Diego, CA), 1 µL Superscript II (200U/ µL, Thermo-Fi
-sher).
+ This was followed by the addition of 2
+\begin_inset space ~
+\end_inset
+
+µL 0.1
+\begin_inset space ~
+\end_inset
+
+M DTT, 1
+\begin_inset space ~
+\end_inset
+
+µL RNaseOUT, 1
+\begin_inset space ~
+\end_inset
+
+µL 10
+\begin_inset space ~
+\end_inset
+
+mM dNTPs 10% biotin-16 aminoallyl-
+\begin_inset Formula $2^{\prime}$
+\end_inset
+
+- dUTP and 10% biotin-16 aminoallyl-
+\begin_inset Formula $2^{\prime}$
+\end_inset
+
+-dCTP (TriLink Biotech, San Diego, CA), 1
+\begin_inset space ~
+\end_inset
+
+µL Superscript II (200
+\begin_inset space ~
+\end_inset
+
+U/µL, Thermo-Fisher).
  A second “unblocked” library was prepared in the same way for each sample
  but replacing the blocking 
 \begin_inset Flex Glossary Term (pl)
@@ -17587,12 +17736,37 @@ oligo
 \begin_layout Standard
 The cDNA/RNA hybrid molecules were purified using 1.8X Ampure XP beads (Agencourt
 ) following supplier’s recommended protocol.
- The cDNA/RNA hybrid was eluted in 25 µL of 10 mM Tris-HCl pH 8.0, and then
- bound to 25 µL of M280 Magnetic Streptavidin beads washed per recommended
- protocol (Thermo-Fisher).
- After 30 minutes of binding, beads were washed one time in 100 µL 0.1N NaOH
- to denature and remove the bound RNA, followed by two 100 µL washes with
- 1X TE buffer.
+ The cDNA/RNA hybrid was eluted in 25
+\begin_inset space ~
+\end_inset
+
+µL of 10
+\begin_inset space ~
+\end_inset
+
+mM Tris-HCl pH
+\begin_inset space ~
+\end_inset
+
+8.0, and then bound to 25
+\begin_inset space ~
+\end_inset
+
+µL of M280 Magnetic Streptavidin beads washed per recommended protocol (Thermo-F
+isher).
+ After 30 minutes of binding, beads were washed one time in 100
+\begin_inset space ~
+\end_inset
+
+µL 0.1
+\begin_inset space ~
+\end_inset
+
+N NaOH to denature and remove the bound RNA, followed by two 100
+\begin_inset space ~
+\end_inset
+
+µL washes with 1X TE buffer.
 \end_layout
 
 \begin_layout Standard
@@ -17602,17 +17776,65 @@ Subsequent attachment of the
 
  Illumina A adapter was performed by on-bead random primer extension of
  the following sequence (A-N8 primer: TTCAGAGTTCTACAGTCCGACGATCNNNNNNNN).
- Briefly, beads were resuspended in a 20 µL reaction containing 5 µM A-N8
- primer, 40mM Tris-HCl pH 7.5, 20mM MgCl2, 50mM NaCl, 0.325U/µL Sequenase
- 2.0 (Affymetrix, Santa Clara, CA), 0.0025U/µL inorganic pyrophosphatase (Affymetr
-ix) and 300 µM each dNTP.
+ Briefly, beads were resuspended in a 20
+\begin_inset space ~
+\end_inset
+
+µL reaction containing 5
+\begin_inset space ~
+\end_inset
+
+µM A-N8 primer, 40
+\begin_inset space ~
+\end_inset
+
+mM Tris-HCl pH
+\begin_inset space ~
+\end_inset
+
+7.5, 20
+\begin_inset space ~
+\end_inset
+
+mM 
+\begin_inset Formula $\textrm{MgCl}_{2}$
+\end_inset
+
+, 50
+\begin_inset space ~
+\end_inset
+
+mM NaCl, 0.325
+\begin_inset space ~
+\end_inset
+
+U/µL Sequenase
+\begin_inset space ~
+\end_inset
+
+2.0 (Affymetrix, Santa Clara, CA), 0.0025
+\begin_inset space ~
+\end_inset
+
+U/µL inorganic pyrophosphatase (Affymetrix) and 300
+\begin_inset space ~
+\end_inset
+
+µM each dNTP.
  Reaction was incubated at 22°C for 30 minutes, then beads were washed 2
- times with 1X TE buffer (200µL).
+ times with 1X TE buffer (200
+\begin_inset space ~
+\end_inset
+
+µL).
 \end_layout
 
 \begin_layout Standard
-The magnetic streptavidin beads were resuspended in 34 µL nuclease-free
- water and added directly to a 
+The magnetic streptavidin beads were resuspended in 34
+\begin_inset space ~
+\end_inset
+
+µL nuclease-free water and added directly to a 
 \begin_inset Flex Glossary Term
 status open
 
@@ -17633,8 +17855,11 @@ PCR
 
 \end_inset
 
- primers were added at 0.53 µM (Illumina TruSeq Universal Primer 1 and Illumina
- TruSeq barcoded 
+ primers were added at 0.53
+\begin_inset space ~
+\end_inset
+
+µM (Illumina TruSeq Universal Primer 1 and Illumina TruSeq barcoded 
 \begin_inset Flex Glossary Term
 status open
 
@@ -17644,9 +17869,13 @@ PCR
 
 \end_inset
 
- primer 2), along with 40 µL 2X KAPA HiFi Hotstart ReadyMix (KAPA, Willmington
- MA) and thermocycled as follows: starting with 98°C (2 min-hold); 15 cycles
- of 98°C, 20sec; 60°C, 30sec; 72°C, 30sec; and finished with a 72°C (2 min-hold).
+ primer 2), along with 40
+\begin_inset space ~
+\end_inset
+
+µL 2X KAPA HiFi Hotstart ReadyMix (KAPA, Willmington MA) and thermocycled
+ as follows: starting with 98°C (2 min-hold); 15 cycles of 98°C, 20sec;
+ 60°C, 30sec; 72°C, 30sec; and finished with a 72°C (2 min-hold).
 \end_layout
 
 \begin_layout Standard
@@ -17666,10 +17895,21 @@ d protocol.
  Samples were pooled in equimolar batches of 16 samples.
  Pooled libraries were size selected on 2% agarose gels (E-Gel EX Agarose
  Gels; Thermo-Fisher).
- Products were cut between 250 and 350 bp (corresponding to insert sizes
- of 130 to 230 bps).
+ Products were cut between 250 and 350
+\begin_inset space ~
+\end_inset
+
+bp (corresponding to insert sizes of 130 to 230
+\begin_inset space ~
+\end_inset
+
+bp).
  Finished library pools were then sequenced on the Illumina NextSeq500 instrumen
-t with 75 base read lengths.
+t with 75
+\begin_inset space ~
+\end_inset
+
+bp read lengths.
  
 \end_layout
 
@@ -18047,7 +18287,17 @@ GB
 
 \end_inset
 
- and Sample ID.
+ and Sample 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ID
+\end_layout
+
+\end_inset
+
+.
  To test the effect of 
 \begin_inset Flex Glossary Term
 status open
@@ -18072,11 +18322,25 @@ GB
  for each animal with both a pre-transplant and a post-transplant time point
  in the data set, the pre-transplant sample and the earliest post-transplant
  sample were selected, and all others were excluded, yielding a pre-/post-transp
-lant pair of samples for each animal (N=7 animals with paired samples).
+lant pair of samples for each animal (
+\begin_inset Formula $N=7$
+\end_inset
+
+ animals with paired samples).
  These samples were analyzed for pre-transplant vs.
  post-transplant differential gene expression while controlling for inter-animal
  variation using an additive model with coefficients for transplant and
- animal ID.
+ animal 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ID
+\end_layout
+
+\end_inset
+
+.
  In all analyses, p-values were adjusted using the 
 \begin_inset Flex Glossary Term
 status open
@@ -19679,8 +19943,11 @@ edgeR
 
  reported average logCPM, logFC, p-value, and BH-adjusted FDR.
  Each gene's logFC was plotted against its logCPM, colored by FDR.
- Red points are significant at ≤10% FDR, and blue are not significant at
- that threshold.
+ Red points are significant at 
+\begin_inset Formula $≤10\%$
+\end_inset
+
+ FDR, and blue are not significant at that threshold.
  The alpha and beta globin genes targeted for blocking are marked with large
  triangles, while all other genes are represented as small points.
 \end_layout
@@ -19774,10 +20041,49 @@ GB
 \end_inset
 
  both confirmed that this difference was highly significant (2-sided paired
- t-test: t = 37.2, df = 665, P ≪ 2.2e-16; 2-sided Wilcoxon sign-rank test:
- V = 2195, P ≪ 2.2e-16).
+ t-test: 
+\begin_inset Formula $t=37.2$
+\end_inset
+
+, 
+\begin_inset Formula $d.f.=665$
+\end_inset
+
+, 
+\begin_inset Formula $P\ll2.2\times10^{-16}$
+\end_inset
+
+; 2-sided Wilcoxon sign-rank test: 
+\begin_inset Formula $V=2195$
+\end_inset
+
+, 
+\begin_inset Formula $P\ll2.2\times10^{-16}$
+\end_inset
+
+).
  Performing the same tests on the Spearman correlations gave the same conclusion
- (t-test: t = 26.8, df = 665, P ≪ 2.2e-16; sign-rank test: V = 8781, P ≪ 2.2e-16).
+ (t-test: 
+\begin_inset Formula $t=26.8$
+\end_inset
+
+, 
+\begin_inset Formula $d.f.=665$
+\end_inset
+
+, 
+\begin_inset Formula $P\ll2.2\times10^{-16}$
+\end_inset
+
+; sign-rank test: 
+\begin_inset Formula $V=8781$
+\end_inset
+
+, 
+\begin_inset Formula $P\ll2.2\times10^{-16}$
+\end_inset
+
+).
  The 
 \begin_inset Flex Code
 status open
@@ -19828,7 +20134,17 @@ BCV
 
 \end_inset
 
- (0.417 with GB vs.
+ (0.417 with 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ vs.
  0.400 without).
  The near equality of the 
 \begin_inset Flex Glossary Term
@@ -19840,9 +20156,18 @@ BCV
 
 \end_inset
 
- for both sets indicates that the higher correlations in the GB libraries
- are most likely a result of the increased yield of useful reads, which
- reduces the contribution of Poisson counting uncertainty to the overall
+ for both sets indicates that the higher correlations in the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ libraries are most likely a result of the increased yield of useful reads,
+ which reduces the contribution of Poisson counting uncertainty to the overall
  variance of the 
 \begin_inset Flex Glossary Term
 status open
@@ -19922,8 +20247,17 @@ Comparison of inter-sample gene abundance correlations with and without
  GB.
 
 \series default
- All libraries were normalized together as described in Figure 2, and genes
- with an average logCPM less than 
+ All libraries were normalized together as described in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:logcpm-dists"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, and genes with an average logCPM less than 
 \begin_inset Formula $-1$
 \end_inset
 
@@ -19986,8 +20320,15 @@ GB
 \end_inset
 
  and non-GB libraries with exactly one pre-transplant and one post-transplant
- sample for each animal that had paired samples available for analysis (N=7
- animals, N=14 samples in each subset).
+ sample for each animal that had paired samples available for analysis (
+\begin_inset Formula $N=7$
+\end_inset
+
+ animals, 
+\begin_inset Formula $N=14$
+\end_inset
+
+ samples in each subset).
  The same test for pre- vs.
  post-transplant differential gene expression was performed on the same
  7 pairs of samples from 
