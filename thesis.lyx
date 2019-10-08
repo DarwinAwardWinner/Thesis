@@ -3416,7 +3416,26 @@ RNA-seq
 
 \end_inset
 
- data from previous studies 
+ data from previous studies (
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GEO
+\end_layout
+
+\end_inset
+
+ accession number 
+\begin_inset CommandInset href
+LatexCommand href
+name "GSE73214"
+target "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE73214"
+literal "false"
+
+\end_inset
+
+) 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "gh-cd4-csaw,LaMere2016,LaMere2017"
@@ -3806,7 +3825,7 @@ literal "false"
  some of the batch effect in the data 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "gh-shoal,Patro2017"
+key "Patro2017,gh-shoal"
 literal "false"
 
 \end_inset
@@ -7100,7 +7119,7 @@ noprefix "false"
 t
 \emph default
 -test, all 
-\begin_inset Formula $p\mathrm{-values}\ll2.2\times10^{-16}$
+\begin_inset Formula $p\textrm{-values}\ll2.2\times10^{-16}$
 \end_inset
 
 ).
@@ -8137,8 +8156,8 @@ end{landscape}
 \end_layout
 
 \begin_layout Subsection
-Effect of H3K4me2 and H3K4me3 promoter coverage upstream vs downstream of
- TSS
+Effect of resting H3K4me2 and H3K4me3 promoter coverage landscapes on gene
+ expression
 \end_layout
 
 \begin_layout Standard
@@ -9095,7 +9114,7 @@ end{landscape}
 \end_layout
 
 \begin_layout Subsection
-Promoter coverage H3K27me3
+Effect of resting H3K27me3 promoter coverage landscapes on gene expression
 \end_layout
 
 \begin_layout Standard
@@ -9574,6 +9593,10 @@ TSS
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 \begin_inset Flex TODO Note (inline)
 status open
 
@@ -9591,7 +9614,7 @@ Show the figures where the negative result ended this line of inquiry.
 Defined pattern analysis
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset Flex TODO Note (inline)
 status open
 
@@ -9612,13 +9635,18 @@ This was where I defined interesting expression patterns and then looked
 Promoter CpG islands?
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset Flex TODO Note (inline)
-status collapsed
+status open
 
 \begin_layout Plain Layout
 I forgot until recently about the work I did on this.
  Worth including? Remember to also write methods.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -9819,7 +9847,7 @@ kb radius determined from TSS-to-peak distances is functionally significant.
 \end_layout
 
 \begin_layout Subsection
-Convergence
+Day 14 convergence is consistent with naïve-to-memory differentiation
 \end_layout
 
 \begin_layout Standard
@@ -10136,7 +10164,7 @@ Model for the role of H3K4 methylation during CD4
 \end_layout
 
 \begin_layout Subsection
-Positional
+The location of histone modifications within the promoter is important
 \end_layout
 
 \begin_layout Standard
@@ -10316,7 +10344,7 @@ TSS
 \end_layout
 
 \begin_layout Subsection
-Workflow
+A reproducible workflow aids in analysis
 \end_layout
 
 \begin_layout Standard
@@ -10670,7 +10698,7 @@ ChIP-seq
 \end_layout
 
 \begin_layout Subsection
-Negative results
+Previous negative results
 \end_layout
 
 \begin_layout Standard
