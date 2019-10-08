@@ -2782,6 +2782,16 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Example MA plot of ChIP-seq read counts in 10kb bins for two arbitrary samples.
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:chipseq-norm-example"
@@ -3069,6 +3079,16 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Example p-value histogram.
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Example-pval-hist"
@@ -3870,8 +3890,6 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:RNA-PCA-no-batchsub"
@@ -3915,8 +3933,6 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:RNA-PCA-ComBat-batchsub"
@@ -3959,6 +3975,14 @@ name "fig:RNA-PCA"
 
 \series bold
 PCoA plots of RNA-seq data showing effect of batch correction.
+ 
+\series default
+The uncorrected data (a) shows a clear separation between samples from the
+ two batches (red and blue) dominating the first principal coordinate.
+ After correction with ComBat (b), the two batches now have approximately
+ the same center, and the first two principal coordinates both show separation
+ between experimental conditions rather than batches.
+ (Note that time points are shown in hours rather than days in these plots.)
 \end_layout
 
 \end_inset
@@ -4009,60 +4033,6 @@ literal "false"
  The resulting analysis gives an accurate assessment of statistical significance
  for all comparisons, which unfortunately means a loss of statistical power
  for comparisons involving samples in batch 1.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/RNA-seq/weights-vs-covars-nobcv-CROP.png
-	lyxscale 25
-	width 100col%
-	groupId colwidth-raster
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset Argument 1
-status collapsed
-
-\begin_layout Plain Layout
-RNA-seq sample weights, grouped by experimental and technical covariates.
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:RNA-seq-weights-vs-covars"
-
-\end_inset
-
-
-\series bold
-RNA-seq sample weights, grouped by experimental and technical covariates.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -4188,8 +4158,97 @@ literal "false"
 .
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/RNA-seq/weights-vs-covars-nobcv-CROP.png
+	lyxscale 25
+	width 100col%
+	groupId colwidth-raster
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+RNA-seq sample weights, grouped by experimental and technical covariates.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:RNA-seq-weights-vs-covars"
+
+\end_inset
+
+
+\series bold
+RNA-seq sample weights, grouped by experimental and technical covariates.
+ 
+\series default
+Inverse variance weights were estimated for each sample using 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+limma
+\end_layout
+
+\end_inset
+
+'s 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+arrayWeights
+\end_layout
+
+\end_inset
+
+ function (part of 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+voomWithQualityWeights
+\end_layout
+
+\end_inset
+
+).
+ The samples were grouped by each known covariate and the distribution of
+ weights was plotted for each group.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
-ChIP-seq differential modification analysis
+ChIP-seq analysis
 \end_layout
 
 \begin_layout Standard
@@ -4331,7 +4390,15 @@ ChIP-seq
 
 \end_inset
 
- data.
+ data 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Kharchenko2008,Lun2015a"
+literal "false"
+
+\end_inset
+
+.
  Peaks were called using 
 \begin_inset Flex Code
 status open
@@ -4416,7 +4483,7 @@ literal "false"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -4429,7 +4496,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename graphics/CD4-csaw/csaw/CCF-plots-noBL-PAGE2-CROP.pdf
-	lyxscale 50
+	lyxscale 75
 	height 35theight%
 	groupId ccf-subfig
 
@@ -4487,7 +4554,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename graphics/CD4-csaw/csaw/CCF-plots-PAGE2-CROP.pdf
-	lyxscale 50
+	lyxscale 75
 	height 35theight%
 	groupId ccf-subfig
 
@@ -4570,6 +4637,19 @@ name "fig:CCF-master"
 
 \series bold
 Strand cross-correlation plots for ChIP-seq data, before and after blacklisting.
+ 
+\series default
+The number of reads starting at each position in the genome was counted
+ separately for the plus and minus strands, and then the correlation coefficient
+ between the read start counts for both strands (cross-correlation) was
+ computed after shifting the plus strand counts forward by a specified interval
+ (the delay).
+ This was repeated for every delay value from 0 to 1000, and the cross-correlati
+on values were plotted as a function of the delay.
+ In good quality samples, cross-correlation is maximized when the delay
+ equals the fragment size; in poor quality samples, cross-correlation is
+ often maximized when the delay equals the read length, an artifactual peak
+ whose cause is not fully understood.
 \end_layout
 
 \end_inset
@@ -4606,7 +4686,26 @@ TSS
 \end_inset
 
 .
- For H3K4me2 and H3K4me3, this distance was about 1
+ (Note: this analysis was performed using the original peak calls and expression
+ values from 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GEO
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "LaMere2016"
+literal "false"
+
+\end_inset
+
+.) For H3K4me2 and H3K4me3, this distance was about 1
 \begin_inset space ~
 \end_inset
 
@@ -4750,7 +4849,7 @@ noprefix "false"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Float figure
@@ -5021,7 +5120,7 @@ H3K27me3, SVs subtracted
 
 \begin_layout Plain Layout
 \begin_inset Flex TODO Note (inline)
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Figure font too small
@@ -5041,7 +5140,7 @@ status collapsed
 
 \begin_layout Plain Layout
 PCoA plots of ChIP-seq sliding window data, before and after subtracting
- surrogate variables (SVs).
+ surrogate variables.
 \end_layout
 
 \end_inset
@@ -5057,6 +5156,23 @@ name "fig:PCoA-ChIP"
 \series bold
 PCoA plots of ChIP-seq sliding window data, before and after subtracting
  surrogate variables (SVs).
+ 
+\series default
+For each histone mark, a PCoA plot of the first 2 principal coordinates
+ was created before and after subtraction of SV effects.
+ Time points are shown by color and cell type by shape, and samples from
+ the same time point and cell type are enclosed in a shaded area to aid
+ in visial recognition (this shaded area has no meaning on the plot).
+ Samples of the same cell type from the same donor are connected with a
+ line in time point order, showing the 
+\begin_inset Quotes eld
+\end_inset
+
+trajectory
+\begin_inset Quotes erd
+\end_inset
+
+ of each donor's samples over time.
 \end_layout
 
 \end_inset
@@ -5160,8 +5276,7 @@ relative coverage profile
 \end_layout
 
 \begin_layout Subsection
-MOFA recovers biologically relevant variation from blind analysis by correlating
- across datasets
+MOFA analysis of cross-dataset variation patterns
 \end_layout
 
 \begin_layout Standard
@@ -5340,7 +5455,7 @@ status open
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -5399,12 +5514,12 @@ view
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename graphics/CD4-csaw/MOFA-LF-scatter-CROP.png
+	filename graphics/CD4-csaw/MOFA-LF-scatter-small.png
 	lyxscale 25
 	width 45col%
 	groupId mofa-subfig
@@ -5430,8 +5545,9 @@ Scatter plots of specific pairs of MOFA latent factors.
 
 \series default
  LFs 1, 4, and 5 explain substantial variation in all data sets, so they
- are plotted against each other in order to reveal patterns of variation
+ were plotted against each other in order to reveal patterns of variation
  that are shared across all data sets.
+ These plots can be interpreted similarly to PCA and PCoA plots.
 \end_layout
 
 \end_inset
@@ -5480,6 +5596,11 @@ name "fig:MOFA-master"
 
 \series bold
 MOFA latent factors identify shared patterns of variation.
+ 
+\series default
+MOFA was used to estimate latent factors (LFs) that explain substantial
+ variation in the RNA-seq data and the ChIP-seq data (a).
+ Then specific LFs of interest were selected and plotted (b).
 \end_layout
 
 \end_inset
@@ -6220,7 +6341,7 @@ PCoA plot of RNA-seq samples after ComBat batch correction.
 Each point represents an individual sample.
  Samples with the same combination of cell type and time point are encircled
  with a shaded region to aid in visual identification of the sample groups.
- Samples with of same cell type from the same donor are connected by lines
+ Samples of the same cell type from the same donor are connected by lines
  to indicate the 
 \begin_inset Quotes eld
 \end_inset
@@ -6342,7 +6463,7 @@ H3K4me2
 \begin_inset Text
 
 \begin_layout Plain Layout
-14965
+14,965
 \end_layout
 
 \end_inset
@@ -6351,7 +6472,7 @@ H3K4me2
 \begin_inset Text
 
 \begin_layout Plain Layout
-3970
+3,970
 \end_layout
 
 \end_inset
@@ -6389,7 +6510,7 @@ H3K4me3
 \begin_inset Text
 
 \begin_layout Plain Layout
-6163
+6,163
 \end_layout
 
 \end_inset
@@ -6398,7 +6519,7 @@ H3K4me3
 \begin_inset Text
 
 \begin_layout Plain Layout
-2946
+2,946
 \end_layout
 
 \end_inset
@@ -6436,7 +6557,7 @@ H3K27me3
 \begin_inset Text
 
 \begin_layout Plain Layout
-18139
+18,139
 \end_layout
 
 \end_inset
@@ -6445,7 +6566,7 @@ H3K27me3
 \begin_inset Text
 
 \begin_layout Plain Layout
-18967
+18,967
 \end_layout
 
 \end_inset
@@ -6576,6 +6697,19 @@ noprefix "false"
 \end_layout
 
 \begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 All 3 histone marks tend to occur more often near promoter regions, as shown
  in Figure 
 \begin_inset CommandInset ref
@@ -6663,12 +6797,11 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Future direction idea: Need a control: shuffle all peaks and repeat, N times.
-\end_layout
+\align center
+\begin_inset Graphics
+	filename graphics/CD4-csaw/Promoter-Peak-Distance-Profile-PAGE1-CROP.pdf
+	lyxscale 50
+	width 80col%
 
 \end_inset
 
@@ -6676,11 +6809,12 @@ Future direction idea: Need a control: shuffle all peaks and repeat, N times.
 \end_layout
 
 \begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename graphics/CD4-csaw/Promoter-Peak-Distance-Profile-PAGE1-CROP.pdf
-	lyxscale 50
-	width 80col%
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Future direction idea: Need a control: shuffle all peaks and repeat, N times.
+\end_layout
 
 \end_inset
 
@@ -6723,6 +6857,26 @@ within
 \emph default
  peaks were excluded from this plot to avoid a large spike at zero that
  would overshadow the rest of the distribution.
+ (Note: this figure was generated using the original peak calls and expression
+ values from 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GEO
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "LaMere2016"
+literal "false"
+
+\end_inset
+
+.)
 \end_layout
 
 \end_inset
@@ -6980,18 +7134,21 @@ FPKM
 \end_layout
 
 \begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset Flex TODO Note (inline)
+\begin_inset ERT
 status open
 
 \begin_layout Plain Layout
-This figure is generated from the old analysis.
- Either note that in some way or re-generate it from the new peak calls.
+
+
+\backslash
+afterpage{
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{landscape}
 \end_layout
 
 \end_inset
@@ -6999,12 +7156,18 @@ This figure is generated from the old analysis.
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename graphics/CD4-csaw/FPKM-by-Peak-Violin-Plots-CROP.pdf
 	lyxscale 50
-	width 100col%
+	height 80theight%
 
 \end_inset
 
@@ -7034,11 +7197,63 @@ name "fig:fpkm-by-peak"
 
 \series bold
 Expression distributions of genes with and without promoter peaks.
+ 
+\series default
+For each histone mark in each experimental condition, the average RNA-seq
+ abundance (
+\begin_inset Formula $\log_{2}$
+\end_inset
+
+ FPKM) of each gene across all 4 donors was calculated.
+ Genes were grouped based on whether or not a peak was called in their promoters
+ in that condition, and the distribution of abundance values was plotted
+ for the no-peak and peak groups.
+ (Note: this figure was generated using the original peak calls and expression
+ values from 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GEO
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "LaMere2016"
+literal "false"
+
+\end_inset
+
+.)
 \end_layout
 
 \end_inset
 
 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{landscape}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
 \end_layout
 
 \end_inset
@@ -7179,7 +7394,7 @@ status open
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -7198,15 +7413,13 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:PCoA-H3K4me2-prom"
 
 \end_inset
 
-PCoA plot of H3K4me2 promoters, after subtracting surrogate variables
+PCoA plot of H3K4me2 promoters, after subtracting surrogate variables.
 \end_layout
 
 \end_inset
@@ -7224,7 +7437,7 @@ PCoA plot of H3K4me2 promoters, after subtracting surrogate variables
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -7243,15 +7456,13 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:PCoA-H3K4me3-prom"
 
 \end_inset
 
-PCoA plot of H3K4me3 promoters, after subtracting surrogate variables
+PCoA plot of H3K4me3 promoters, after subtracting surrogate variables.
 \end_layout
 
 \end_inset
@@ -7269,7 +7480,7 @@ PCoA plot of H3K4me3 promoters, after subtracting surrogate variables
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -7288,15 +7499,13 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:PCoA-H3K27me3-prom"
 
 \end_inset
 
-PCoA plot of H3K27me3 promoters, after subtracting surrogate variables
+PCoA plot of H3K27me3 promoters, after subtracting surrogate variables.
 \end_layout
 
 \end_inset
@@ -7314,7 +7523,7 @@ PCoA plot of H3K27me3 promoters, after subtracting surrogate variables
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -7333,15 +7542,14 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:RNA-PCA-group"
 
 \end_inset
 
-RNA-seq PCoA showing principal coordinates 2 and 3.
+RNA-seq PCoA, after ComBat batch correction, showing principal coordinates
+ 2 and 3.
 \end_layout
 
 \end_inset
@@ -7389,7 +7597,22 @@ name "fig:PCoA-promoters"
 
 
 \series bold
-PCoA plots for promoter ChIP-seq and expression RNA-seq data
+PCoA plots for promoter ChIP-seq and expression RNA-seq data.
+ 
+\series default
+Each point represents an individual sample.
+ Samples with the same combination of cell type and time point are encircled
+ with a shaded region to aid in visual identification of the sample groups.
+ Samples of the same cell type from the same donor are connected by lines
+ to indicate the 
+\begin_inset Quotes eld
+\end_inset
+
+trajectory
+\begin_inset Quotes erd
+\end_inset
+
+ of each donor's cells over time in PCoA space.
 \end_layout
 
 \end_inset
@@ -8205,7 +8428,7 @@ name "fig:H3K4me2-neighborhood-clusters"
 
 \end_inset
 
-Average relative coverage for each bin in each cluster
+Average relative coverage for each bin in each cluster.
 \end_layout
 
 \end_inset
@@ -8242,8 +8465,6 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:H3K4me2-neighborhood-pca"
@@ -8287,8 +8508,6 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:H3K4me2-neighborhood-expression"
@@ -8666,15 +8885,13 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:H3K4me3-neighborhood-clusters"
 
 \end_inset
 
-Average relative coverage for each bin in each cluster
+Average relative coverage for each bin in each cluster.
 \end_layout
 
 \end_inset
@@ -8711,8 +8928,6 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:H3K4me3-neighborhood-pca"
@@ -8756,8 +8971,6 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:H3K4me3-neighborhood-expression"
@@ -9086,15 +9299,13 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:H3K27me3-neighborhood-clusters"
 
 \end_inset
 
-Average relative coverage for each bin in each cluster
+Average relative coverage for each bin in each cluster.
 \end_layout
 
 \end_inset
@@ -9131,8 +9342,6 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:H3K27me3-neighborhood-pca"
@@ -9140,9 +9349,7 @@ name "fig:H3K27me3-neighborhood-pca"
 \end_inset
 
 PCA of relative coverage depth, colored by K-means cluster membership.
- 
-\series default
-Note that Cluster 6 is hidden behind all the other clusters.
+ (Note: Cluster 6 is hidden behind all the other clusters.)
 \end_layout
 
 \end_inset
@@ -9179,8 +9386,6 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:H3K27me3-neighborhood-expression"
@@ -9633,9 +9838,9 @@ Look up some more references for these histone marks being involved in memory
 \end_layout
 
 \begin_layout Standard
-We have observed that all 3 histone marks and the gene expression data all
- exhibit evidence of convergence in abundance between naïve and memory cells
- by day 14 after activation (Figure 
+We observed that all 3 histone marks and the gene expression data all exhibit
+ evidence of convergence in abundance between naïve and memory cells by
+ day 14 after activation (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:PCoA-promoters"
@@ -9710,13 +9915,13 @@ LF
  in this plot, this factor explains a substantial portion of the variance
  in all 4 data sets, indicating a coordinated pattern of variation shared
  across all histone marks and gene expression.
- This, of course, is consistent with the expectation that any naïve CD4
+ This is consistent with the expectation that any naïve CD4
 \begin_inset Formula $^{+}$
 \end_inset
 
-  T-cells remaining at day 14 should have differentiated into memory cells
- by that time, and should therefore have a genomic state similar to memory
- cells.
+ T-cells remaining at day 14 should have differentiated into memory cells
+ by that time, and should therefore have a genomic and epigenomic state
+ similar to memory cells.
  This convergence is evidence that these histone marks all play an important
  role in the naïve-to-memory differentiation process.
  A histone mark that was not involved in naïve-to-memory differentiation
@@ -9829,13 +10034,28 @@ PCoA
 
  to reveal interesting behaviors in the data that were previously only detectabl
 e by a detailed manual analysis.
+ While the ideal comparison to demonstrate this convergence would be naïve
+ cells at day 14 to memory cells at day 0, this is not feasible in this
+ experimental system, since neither naïve nor memory cells are able to fully
+ return to their pre-activation state, as shown by the lack of overlap between
+ days 0 and 14 for either naïve or memory cells in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PCoA-promoters"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -9862,7 +10082,7 @@ Lamere 2016 Figure 8 “Model for the role of H3K4 methylation during CD4
 \begin_inset Formula $^{+}$
 \end_inset
 
-  T-cell activation.
+ T-cell activation.
 \begin_inset Quotes erd
 \end_inset
 
@@ -9892,21 +10112,17 @@ literal "false"
 \begin_inset Quotes eld
 \end_inset
 
-Model for the role of H3K4 methylation during 
-\series default
-CD4
-\begin_inset Formula $^{+}$
+Model for the role of H3K4 methylation during CD4
+\begin_inset Formula $\mathbf{^{+}}$
 \end_inset
 
- 
-\series bold
  T-cell activation.
 \begin_inset Quotes erd
 \end_inset
 
  
 \series default
-Reproduced with permission.
+(Reproduced with permission.)
 \end_layout
 
 \end_inset
@@ -9917,24 +10133,6 @@ Reproduced with permission.
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-While the ideal comparison to demonstrate this convergence would be naïve
- cells at day 14 to memory cells at day 0, this is not feasible in this
- experimental system, since neither naïve nor memory cells are able to fully
- return to their pre-activation state, as shown by the lack of overlap between
- days 0 and 14 for either naïve or memory cells in Figure
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:PCoA-promoters"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-.
 \end_layout
 
 \begin_layout Subsection
@@ -10284,7 +10482,7 @@ begin{landscape}
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -10322,6 +10520,10 @@ name "fig:rulegraph"
 
 \series bold
 Dependency graph of steps in reproducible workflow.
+ 
+\series default
+The analysis flows from left to right.
+ Arrows indicate which analysis steps depend on the output of other steps.
 \end_layout
 
 \end_inset
@@ -11486,6 +11688,15 @@ name "fig:Sigmoid-beta-m-mapping"
 
 \series bold
 Sigmoid shape of the mapping between β and M values.
+ 
+\series default
+This mapping is monotonic and non-linear, but it is approximately linear
+ in the neighborhood of 
+\begin_inset Formula $(\beta=0.5,M=0)$
+\end_inset
+
+.
+ 
 \end_layout
 
 \end_inset
@@ -16789,11 +17000,11 @@ literal "false"
 \end_inset
 
 .
- The blue line is only shown in each plot if the estimate of 
+ A blue line is only shown in each plot if the estimate of 
 \begin_inset Formula $\hat{\pi}_{0}$
 \end_inset
 
- for that p-value distribution is different from 1.
+ for that p-value distribution is smaller than 1.
 \end_layout
 
 \end_inset
@@ -17257,16 +17468,7 @@ ADNR
 status open
 
 \begin_layout Plain Layout
-\begin_inset Flex Glossary Term
-status open
-
-\begin_layout Plain Layout
 M-value
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \end_inset
@@ -21756,7 +21958,7 @@ The challenge of doing global gene expression profiling in cynomolgus monkeys
  cover this genome and have not been updated since the first assemblies
  of the cynomolgus genome were published.
  Therefore, we determined that the best strategy for peripheral blood profiling
- was to do deep 
+ was to perform deep 
 \begin_inset Flex Glossary Term
 status open
 
