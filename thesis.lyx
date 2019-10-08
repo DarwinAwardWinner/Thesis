@@ -725,15 +725,16 @@ How much mechanistic detail is needed here? My work doesn't really go into
 \end_layout
 
 \begin_layout Standard
-Because an allograft comes from a donor who is genetically distinct from
- the recipient (with rare exceptions), genetic variants in protein-coding
- regions affect the polypeptide sequences encoded by the affected genes,
- resulting in protein products in the allograft that differ from the equivalent
- proteins produced by the graft recipient's own tissue.
+Because an allograft comes from a donor of the same species who is genetically
+ distinct from the recipient (with rare exceptions), genetic variants in
+ protein-coding regions affect the polypeptide sequences encoded by the
+ affected genes, resulting in protein products in the allograft that differ
+ from the equivalent proteins produced by the graft recipient's own tissue.
  As a result, without intervention, the recipient's immune system will eventuall
-y identify the graft as foreign tissue and begin attacking it, eventually
- resulting in failure and death of the graft, a process referred to as transplan
-t rejection 
+y identify the graft as foreign tissue and begin attacking it.
+ This is called an alloimmune response, and if left unchecked, it eventually
+ results in failure and death of the graft, a process referred to as transplant
+ rejection 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Murphy2012"
@@ -742,8 +743,8 @@ literal "false"
 \end_inset
 
 .
- Rejection is the most significant challenge to the long-term health and
- survival of an allograft 
+ Rejection is the primary obstacle to long-term health and survival of an
+ allograft 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Valenzuela2017"
@@ -752,8 +753,8 @@ literal "false"
 \end_inset
 
 .
- Like any adaptive immune response, graft rejection generally occurs via
- two broad mechanisms: cellular immunity, in which CD8
+ Like any adaptive immune response, an alloimmune response generally occurs
+ via two broad mechanisms: cellular immunity, in which CD8
 \begin_inset Formula $^{+}$
 \end_inset
 
@@ -768,12 +769,13 @@ literal "false"
 \end_inset
 
 .
- In either case, rejection shows most of the typical hallmarks of an adaptive
- immune response, in particular mediation by CD4
+ In either case, alloimmunity and rejection show most of the typical hallmarks
+ of an adaptive immune response, in particular mediation by CD4
 \begin_inset Formula $^{+}$
 \end_inset
 
  T-cells and formation of immune memory.
+ 
 \end_layout
 
 \begin_layout Subsection
@@ -1066,12 +1068,12 @@ literal "false"
 \end_layout
 
 \begin_layout Subsection
-MSC infusion to improve transplant outcomes (prevent/delay rejection)
+Infusion of allogenic mesenchymal stem cells modulates the alloimmune response
 \end_layout
 
 \begin_layout Standard
 One promising experimental treatment for transplant rejection involves the
- infusion of 
+ infusion of allogenic 
 \begin_inset Flex Glossary Term (pl)
 status open
 
@@ -1082,70 +1084,134 @@ MSC
 \end_inset
 
 .
+ 
+\begin_inset Flex Glossary Term (pl)
+status open
+
+\begin_layout Plain Layout
+MSC
 \end_layout
 
-\begin_layout Itemize
-Demonstrated in mice, but not yet in primates
+\end_inset
+
+ have been shown to have immune modulatory effects, both in general and
+ specifically in the case of immune responses against allografts 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "LeBlanc2003,Aggarwal2005,Bartholomew2009,Berman2010"
+literal "false"
+
+\end_inset
+
+.
+ Furthermore, allogenic 
+\begin_inset Flex Glossary Term (pl)
+status open
+
+\begin_layout Plain Layout
+MSC
 \end_layout
 
-\begin_layout Itemize
-Mechanism currently unknown, but MSC are known to be immune modulatory
+\end_inset
+
+ themselves are immune-evasive and are rejected by the recipient's immune
+ system more slowly than most allogenic tissues 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Ankrum2014,Berglund2017"
+literal "false"
+
+\end_inset
+
+.
+ In addition, treating 
+\begin_inset Flex Glossary Term (pl)
+status open
+
+\begin_layout Plain Layout
+MSC
 \end_layout
 
-\begin_layout Itemize
-Characterize MSC response to interferon gamma
-\end_layout
+\end_inset
 
-\begin_layout Itemize
-IFN-g is thought to stimulate their function
-\end_layout
-
-\begin_layout Itemize
-Test IFN-g treated MSC infusion as a therapy to delay graft rejection in
- cynomolgus monkeys
-\end_layout
-
-\begin_layout Itemize
-Monitor animals post-transplant using blood 
+ in culture with 
 \begin_inset Flex Glossary Term
 status open
 
 \begin_layout Plain Layout
-RNA-seq
+IFNg
 \end_layout
 
 \end_inset
 
- at serial time points
-\end_layout
+ is shown to enhance their immunosuppressive properties and homogenize their
+ cellulat phenotype, making them more amenable to development into a well-contro
+lled treatment 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Majumdar2003,Ryan2007"
+literal "false"
 
-\begin_layout Subsection
-Investigate dynamics of histone marks in CD4
-\begin_inset Formula $^{+}$
 \end_inset
 
- T-cell activation and memory
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
+.
+ The mechanisms by which 
+\begin_inset Flex Glossary Term (pl)
 status open
 
 \begin_layout Plain Layout
-Put this at end of intro as part of a description to structure of thesis
+MSC
 \end_layout
 
 \end_inset
 
+ modulate the immune system are still poorly understood.
+ Despite this, there is signifcant interest in using 
+\begin_inset Flex Glossary Term
+status open
 
+\begin_layout Plain Layout
+IFNg
 \end_layout
 
-\begin_layout Itemize
-Previous studies have looked at single snapshots of histone marks
+\end_inset
+
+-activated 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+MSC
 \end_layout
 
-\begin_layout Itemize
-Instead, look at changes in histone marks across activation and memory
+\end_inset
+
+ infusion as a supplementary immune suppressive treatment for allograft
+ transplantation.
+ 
+\end_layout
+
+\begin_layout Standard
+Note that despite the name, none of the above properties of 
+\begin_inset Flex Glossary Term (pl)
+status open
+
+\begin_layout Plain Layout
+MSC
+\end_layout
+
+\end_inset
+
+ are believed to involve their stem cell functionality, but rather their
+ ability to 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Ankrum2014"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsection
@@ -1157,7 +1223,8 @@ High-throughput sequencing and microarray technologies
 status open
 
 \begin_layout Plain Layout
-This will serve as transition to bioinf
+This will serve as transition to bioinf.
+ Merge with below.
 \end_layout
 
 \end_inset
@@ -2986,7 +3053,7 @@ When testing thousands of genes for differential expression or performing
 \begin_inset Formula $N*T$
 \end_inset
 
- p-values will be 
+ p-values would be called 
 \begin_inset Quotes eld
 \end_inset
 
@@ -3025,8 +3092,17 @@ FDR
  for any significance threshold by estimating the degree to which the density
  of p-values left of that threshold exceeds what would be expected for a
  uniform distribution.
- In genomics, the most commonly used FDR estimation method, and the one
- used in this work, is that of 
+ In genomics, the most commonly used 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+FDR
+\end_layout
+
+\end_inset
+
+ estimation method, and the one used in this work, is that of 
 \begin_inset ERT
 status open
 
@@ -3053,7 +3129,17 @@ literal "false"
 \end_inset
 
  unconditionally.
- Hence it gives an upper bound for the FDR at any significance threshold.
+ Hence it gives an estimated upper bound for the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+FDR
+\end_layout
+
+\end_inset
+
+ at any significance threshold, rather than a point estimate.
 \end_layout
 
 \begin_layout Standard
@@ -3131,11 +3217,27 @@ The distribution of p-values from a large number of independent tests (such
 
 \end_layout
 
+\begin_layout Standard
+Conversely, a p-value distribution that is neither uniform nor zero-biased
+ is evidence of a modeling failure.
+ Such a distribution would imply that there is less than zero evidence against
+ the null hypothesis, which is not possible (in a frequentist setting).
+ The usual cause is a model assumption that is violated by the data, such
+ as assuming equal variance between groups (homoskedasticity) when the variance
+ of each group is not equal (heteroskedasticity).
+ Hence, observing such a p-value distribution should prompt a search for
+ violated model assumptions.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
 \begin_layout Subsection
 Factor analysis: PCA, PCoA, MOFA
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset Flex TODO Note (inline)
 status open
 
@@ -3162,8 +3264,37 @@ PCA
  is informative, but careful application is required to avoid bias
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Structure of the thesis
+\end_layout
+
+\begin_layout Subsection
+Investigate dynamics of histone marks in CD4
+\begin_inset Formula $^{+}$
+\end_inset
+
+ T-cell activation and memory
+\end_layout
+
+\begin_layout Itemize
+Previous studies have looked at single snapshots of histone marks
+\end_layout
+
+\begin_layout Itemize
+Instead, look at changes in histone marks across activation and memory
+\end_layout
+
+\begin_layout Subsection
+Ch3
+\end_layout
+
+\begin_layout Subsection
+Ch4
 \end_layout
 
 \begin_layout Chapter
