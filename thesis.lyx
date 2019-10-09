@@ -11597,14 +11597,11 @@ literal "false"
 
 , so the signalling environments in which the cells are cultured are different
  at day 0 and day 14.
-\end_layout
-
-\begin_layout Standard
-This is a challenge for the convergence hypothesis because the ideal comparison
- to prove that naïve cells are converging to a resting memory state would
- be to compare the final naïve time point to the Day 0 memory samples, but
- this comparison is much more conclusive if memory cells generally return
- to the same 
+ This is a challenge for testing the convergence hypothesis because the
+ ideal comparison to prove that naïve cells are converging to a resting
+ memory state would be to compare the final naïve time point to the Day
+ 0 memory samples, but this comparison is only meaningful if memory cells
+ generally return to the same 
 \begin_inset Quotes eld
 \end_inset
 
@@ -11616,33 +11613,8 @@ resting
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Sarah: Resting cells isolated straight from a person are probably never
- going to look exactly the same as resting cells sitting in culture with
- IL-2 to keep them alive.
- I think there are valid biological reasons the two would look different.
- A control one could consider would be to put resting memory cells into
- culture for a few days without activation and then compare them to those
- that have returned to rest.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-To better study the convergence hypothesis, a new experiment should be designed
- using a model system for T-cell activation that is known to allow cells
- to return as closely as possible to their pre-activation state.
- Alternatively, if it is not possible to find or design such a model system,
- the same cell cultures could be activated serially multiple times, and
- sequenced after each activation cycle right before the next activation.
- It is likely that several activations in the same model system will settle
- into a cyclical pattern, converging to a consistent 
+Because pre-culture and post-culture cells will probably never behave identicall
+y even if they both nominally have a 
 \begin_inset Quotes eld
 \end_inset
 
@@ -11650,10 +11622,12 @@ resting
 \begin_inset Quotes erd
 \end_inset
 
- state after each activation, even if this state is different from the initial
- resting state at Day 0.
- If so, it will be possible to compare the final states of both naïve and
- memory cells to show that they converge despite different initial conditions.
+ phenotype, a different experiment should be designed in which post-activation
+ naive cells are compared to memory cells that were cultured for the same
+ amount of time but never activated, in addition to post-activation memory
+ cells.
+ If the convergence hypothesis is correct, both post-activation cultures
+ should converge on the culture of never-activated memory cells.
 \end_layout
 
 \begin_layout Standard
@@ -11809,21 +11783,59 @@ same
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
+The hypothesis of allele-specific histone modification can easily be tested
+ with existing data by locating all heterozygous loci occurring within both
+ H3K4me3 and H3K4me2 peaks and checking for opposite allelic imbalance between
+ H3K4me3 and H3K4me2 read at each locus.
+ If the allele fractions in the reads from the two histone marks for each
+ locus are plotted against each other, there should be a negative correlation.
+ If no such negative correlation is found, then allele-specific histone
+ modification is unlikely to be the reason for the high correlation between
+ these histone marks.
+\end_layout
+
+\begin_layout Standard
+To test the hypothesis that H3K4me2 and H3K4me3 marks are occurring on the
+ same histones.
+ A double 
+\begin_inset Flex Glossary Term
 status open
 
 \begin_layout Plain Layout
-Sarah: We don't currently have the technology to do this well, especially
- not with two modifications in the same cell.
+ChIP
 \end_layout
 
 \end_inset
 
+ experiment can be performed 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Jin2007"
+literal "false"
 
+\end_inset
+
+.
+ In this assay, the input DNA goes through two sequential immunoprecipitations
+ with different antibodies: first the anti-H3K4me2 antibody, then the anti-H3K4m
+e3 antibody.
+ Only bearing both histone marks, and the DNA associated with them, should
+ be isolated.
+ This can be followed by 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+HTS
 \end_layout
 
-\begin_layout Standard
-These three hypotheses could be disentangled by single-cell 
+\end_inset
+
+ to form a 
+\begin_inset Quotes eld
+\end_inset
+
+double 
 \begin_inset Flex Glossary Term
 status open
 
@@ -11833,60 +11845,33 @@ ChIP-seq
 
 \end_inset
 
-.
- If the correlation between these two histone marks persists even within
- the reads for each individual cell, then cell population heterogeneity
- cannot explain the correlation.
- Allele-specific modification can be tested for by looking at the correlation
- between read coverage of the two histone marks at heterozygous loci.
- If the correlation between read counts for opposite loci is low, then this
- is consistent with allele-specific modification.
- Finally if the modifications do not separate by either cell or allele,
- the co-location of these two marks is most likely occurring at the level
- of individual histones, with the heterogeneously modified histone representing
- a distinct state.
- 
-\end_layout
 
-\begin_layout Standard
-However, another experiment would be required to show direct evidence of
- such a heterogeneously modified state.
- Specifically a 
-\begin_inset Quotes eld
-\end_inset
-
-double ChIP
 \begin_inset Quotes erd
 \end_inset
 
- experiment would need to be performed, where the input DNA is first subjected
- to an immunoprecipitation pulldown from the anti-H3K4me2 antibody, and
- then the enriched material is collected, with proteins still bound, and
- immunoprecipitated 
-\emph on
-again
-\emph default
- using the anti-H3K4me3 antibody.
- If this yields significant numbers of non-artifactual reads in the same
- regions as the individual pulldowns of the two marks, this is strong evidence
- that the two marks are occurring on opposite H3 subunits of the same histones.
-\end_layout
+ assay that can be used to identify DNA regions bound by the isolated histones
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Jin2009"
+literal "false"
 
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
+\end_inset
+
+.
+ If peaks called from this double 
+\begin_inset Flex Glossary Term
 status open
 
 \begin_layout Plain Layout
-Try to see if double ChIP-seq is actually feasible, and if not, come up
- with some other idea for directly detecting the mixed mod state.
- Oh! Actually ChIP-seq isn't required, only double ChIP followed by quantificati
-on.
- That's one possible angle.
+ChIP-seq
 \end_layout
 
 \end_inset
 
-
+ assay are highly correlated with both H3K4me2 and H3K4me3 peaks, then this
+ is strong evidence that the correlation between the two marks is actually
+ caused by physical co-location on the same histone.
 \end_layout
 
 \begin_layout Chapter
@@ -11937,6 +11922,19 @@ Reintroduce all abbreviations
 
 \begin_layout Section
 Introduction
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Fill this out
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
