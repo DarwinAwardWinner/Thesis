@@ -11653,7 +11653,7 @@ MOFA
 \begin_inset Formula $^{+}$
 \end_inset
 
-  T-cells are not the only adaptive immune cells that exhibit memory formation.
+ T-cells are not the only adaptive immune cells that exhibit memory formation.
  A similar study could be designed for CD8
 \begin_inset Formula $^{+}$
 \end_inset
@@ -11672,8 +11672,12 @@ Follow up on hints of interesting patterns in promoter relative coverage
 \end_layout
 
 \begin_layout Standard
-The analysis of promoter coverage landscapes in resting naive CD4 T-cells
- and their correlations with gene expression raises many interesting questions.
+The analysis of promoter coverage landscapes in resting naive CD4
+\begin_inset Formula $^{+}$
+\end_inset
+
+ T-cells and their correlations with gene expression raises many interesting
+ questions.
  The chosen analysis strategy used a clustering approach, but this approach
  was subsequently shown to be a poor fit for the data.
  In light of this, a better means of dimension reduction for promoter landscape
@@ -11694,13 +11698,17 @@ state variables
 \begin_inset Formula $N$
 \end_inset
 
- principal components for larger 
+ principal components for 
 \begin_inset Formula $N$
 \end_inset
 
- than 3.
- For H3K4me2 and H3K4me3, a better representation might be something like
- a polar coordinate system with the origin at the center of the 
+ larger than 3.
+ For H3K4me2 and H3K4me3, a better representation might be obtained by transform
+ing the first 2 principal coordinates into a polar coordinate system 
+\begin_inset Formula $(r,\theta)$
+\end_inset
+
+ with the origin at the center of the 
 \begin_inset Quotes eld
 \end_inset
 
@@ -11708,9 +11716,15 @@ no peak
 \begin_inset Quotes erd
 \end_inset
 
- cluster, where the radius represents the peak height above the background
- and the angle represents the peak's position upstream or downstream of
- the 
+ cluster, where the radius 
+\begin_inset Formula $r$
+\end_inset
+
+ represents the peak height above the background and the angle 
+\begin_inset Formula $\theta$
+\end_inset
+
+ represents the peak's position upstream or downstream of the 
 \begin_inset Flex Glossary Term
 status open
 
@@ -11728,27 +11742,139 @@ TSS
 Another weakness in the current analysis is the normalization of the average
  abundance of each promoter to an average of zero.
  This allows the abundance value in each window to represent the relative
- abundance 
+ abundance of that window compared to all the other windows in the interrogated
+ area.
+ However, while using the remainder of the windows to set the 
+\begin_inset Quotes eld
+\end_inset
+
+background
+\begin_inset Quotes erd
+\end_inset
+
+ level against which each window is normalized is convenient, it is far
+ from optimal.
+ As shown in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:peak-calling-summary"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, many enriched regions are larger than the 5
+\begin_inset space ~
+\end_inset
+
+kbp radius., which means there may not be any 
+\begin_inset Quotes eld
+\end_inset
+
+background
+\begin_inset Quotes erd
+\end_inset
+
+ regions within 5
+\begin_inset space ~
+\end_inset
+
+kbp of the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
 \end_layout
 
-\begin_layout Itemize
-Also find better normalizations: maybe borrow from MACS/SICER background
- correction methods?
+\end_inset
+
+ to normalize against.
+ For example, this normalization strategy fails to distinguish between a
+ trough in coverage at the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
 \end_layout
 
-\begin_layout Itemize
-For H3K4, define polar coordinates based on PC1 & 2: R = peak size, Theta
- = peak position.
- Then correlate with expression.
+\end_inset
+
+ and a pair of wide peaks upstream and downstream of the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
 \end_layout
 
-\begin_layout Itemize
-Current analysis only at Day 0.
- Need to study across time points.
+\end_inset
+
+.
+ Both cases would present as lower coverage in the windows immediately adjacent
+ to the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TSS
 \end_layout
 
-\begin_layout Itemize
-Integrating data across so many dimensions is a significant analysis challenge
+\end_inset
+
+ and higher coverage in windows further away, but the functional implications
+ of these two cases might be completely different.
+ To improve the normalization, the background estimation method used by
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+SICER
+\end_layout
+
+\end_inset
+
+, which is specifically designed for finding broad regions of enrichment,
+ should be adapted to estimate the background sequencing depth in each window
+ from the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ input samples, and each window's read count should be normalized against
+ the background and reported as a 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+logFC
+\end_layout
+
+\end_inset
+
+ relative to that background.
+\end_layout
+
+\begin_layout Standard
+Lastly, the analysis of promoter coverage landscapes presented in this work
+ only looked at promoter coverage of resting naive CD4
+\begin_inset Formula $^{+}$
+\end_inset
+
+ T-cells, with the goal of determining whether this initial promoter state
+ was predictive of post-activation changes in gene expression.
+ Changes in the promoter coverage landscape over time have not yet been
+ considered.
+ This represents a significant analysis challenge, by adding yet another
+ dimension (genomic coordinate) in to the data.
 \end_layout
 
 \begin_layout Subsection
