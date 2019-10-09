@@ -1578,7 +1578,7 @@ limma
  expression 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Law2013"
+key "Law2014"
 literal "false"
 
 \end_inset
@@ -4305,7 +4305,7 @@ voomWithQualityWeights
  
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Law2013,Liu2015"
+key "Law2014,Liu2015"
 literal "false"
 
 \end_inset
@@ -4339,7 +4339,7 @@ limma
 -test 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Smyth2005,Law2013,Phipson2013"
+key "Smyth2005,Law2014,Phipson2016"
 literal "false"
 
 \end_inset
@@ -8315,7 +8315,7 @@ This table shows both the number of differentially modified promoters detected
  
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Phipson2013"
+key "Phipson2016"
 literal "false"
 
 \end_inset
@@ -12060,7 +12060,7 @@ RNA-seq
  weights to each observation 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Law2013"
+key "Law2014"
 literal "false"
 
 \end_inset
@@ -13137,7 +13137,7 @@ literal "false"
 ; voom: Use mean-variance trend to assign individual sample weights 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Law2013"
+key "Law2014"
 literal "false"
 
 \end_inset
@@ -13284,7 +13284,7 @@ literal "false"
  observation weights 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Law2013"
+key "Law2014"
 literal "false"
 
 \end_inset

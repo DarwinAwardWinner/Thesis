@@ -5,12 +5,14 @@ import os.path
 import regex
 import urllib.parse
 import os.path
+import bibtexparser
 
 from collections.abc import Iterable, Mapping
 from distutils.spawn import find_executable
 from fnmatch import fnmatch
 from subprocess import check_output, check_call
 from tempfile import NamedTemporaryFile
+from bibtexparser.bibdatabase import BibDatabase
 
 try:
     from os import scandir, walk
@@ -231,15 +233,33 @@ rule lyx_to_pdf_final:
 rule process_bib:
     '''Preprocess bib file for LaTeX.
 
-Currently, this just filters out additional URLs. from the url field,
-since the BibTeX setup in LyX can't handle them.'''
+For entries with a DOI, all URLs are stripped, since the DOI already
+provides a clickable link. For entries with no DOI, all but one URL is
+discarded, since LyX can't handle entries with multiple URLs. The
+shortest URL is kept.'''
     input: '{basename}.bib'
     output: '{basename,.*(?<!-PROCESSED)}-PROCESSED.bib'
     run:
-        with open(input[0]) as infile, open(output[0], 'w') as outfile:
-            for line in infile:
-                line = regex.sub('url = {(.*?) .*},', 'url = {\\1},', line)
-                outfile.write(line)
+        with open(input[0]) as infile:
+            bib_db = bibtexparser.load(infile)
+        entries = bib_db.entries
+        for entry in entries:
+            if 'doi' in entry:
+                try:
+                    del entry['url']
+                except KeyError:
+                    pass
+            else:
+                try:
+                    entry_urls = regex.split('\\s+', entry['url'])
+                    shortest_url = min(entry_urls, key=len)
+                    entry['url'] = shortest_url
+                except KeyError:
+                    pass
+        new_db = BibDatabase()
+        new_db.entries = entries
+        with open(output[0], 'w') as outfile:
+            bibtexparser.dump(new_db, outfile)
 
 rule pdf_extract_page:
     '''Extract a single page from a multi-page PDF.'''
