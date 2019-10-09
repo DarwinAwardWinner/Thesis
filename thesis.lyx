@@ -3038,7 +3038,7 @@ s in the linear model in a similar fashion to known batch effects in order
 \end_layout
 
 \begin_layout Subsection
-Benjamini-Hochberg + pval dist
+Interpreting p-value distributions and estimating false discovery rates
 \end_layout
 
 \begin_layout Standard
@@ -3078,7 +3078,17 @@ significant
 When only a fraction of null hypotheses are true, the p-value distribution
  will be a mixture of a uniform component representing the null hypotheses
  that are true and a non-uniform component representing the null hypotheses
- that are not true.
+ that are not true (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Example-pval-hist"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
  The fraction belonging to the uniform component is referred to as 
 \begin_inset Formula $\pi_{0}$
 \end_inset
@@ -3086,7 +3096,7 @@ When only a fraction of null hypotheses are true, the p-value distribution
 , which ranges from 1 (all null hypotheses true) to 0 (all null hypotheses
  false).
  Furthermore, the non-uniform component must be biased toward zero, since
- any evidence against the null hypothesis must push the p-value for a test
+ any evidence against the null hypothesis pushes the p-value for a test
  toward zero.
  We can exploit this fact to estimate the 
 \begin_inset Flex Glossary Term
@@ -3137,7 +3147,7 @@ literal "false"
 \begin_inset Formula $\pi_{0}=1$
 \end_inset
 
- unconditionally.
+.
  Hence it gives an estimated upper bound for the 
 \begin_inset Flex Glossary Term
 status open
@@ -3149,6 +3159,7 @@ FDR
 \end_inset
 
  at any significance threshold, rather than a point estimate.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -3227,13 +3238,80 @@ The distribution of p-values from a large number of independent tests (such
 \end_layout
 
 \begin_layout Standard
+We can also estimate 
+\begin_inset Formula $\pi_{0}$
+\end_inset
+
+ for the entire distribution of p-values, which can give an idea of the
+ overall signal size in the data without setting any significance threshold
+ or making any decisions about which specific null hypotheses to reject.
+ As 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+FDR
+\end_layout
+
+\end_inset
+
+ estimation, there are many methods proposed for estimating 
+\begin_inset Formula $\pi_{0}$
+\end_inset
+
+.
+ The one used in this work is the Phipson method of averaging local 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+FDR
+\end_layout
+
+\end_inset
+
+ values 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Phipson2013Thesis"
+literal "false"
+
+\end_inset
+
+.
+ Once 
+\begin_inset Formula $\pi_{0}$
+\end_inset
+
+ is estimated, the number of null hypotheses that are false can be estimated
+ as 
+\begin_inset Formula $(1-\pi_{0})*N$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
 Conversely, a p-value distribution that is neither uniform nor zero-biased
  is evidence of a modeling failure.
  Such a distribution would imply that there is less than zero evidence against
  the null hypothesis, which is not possible (in a frequentist setting).
- The usual cause is a model assumption that is violated by the data, such
- as assuming equal variance between groups (homoskedasticity) when the variance
- of each group is not equal (heteroskedasticity).
+ Attempting to estimate 
+\begin_inset Formula $\pi_{0}$
+\end_inset
+
+ from such a distribution would yield an estimate greater than 1, a nonsensical
+ result.
+ The usual cause of a poorly-behaving p-value distribution is a model assumption
+ that is violated by the data, such as assuming equal variance between groups
+ (homoskedasticity) when the variance of each group is not equal (heteroskedasti
+city) or failing to model a strong confounding batch effect.
+ In particular, such a p-value distribution is 
+\emph on
+not 
+\emph default
+consistent with a simple lack of signal in the data, as this should result
+ in a uniform distribution.
  Hence, observing such a p-value distribution should prompt a search for
  violated model assumptions.
 \end_layout
