@@ -1484,7 +1484,7 @@ limma
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1672,7 +1672,7 @@ limma
 
 \end_inset
 
--like analysis features for count data
+-like analysis features for read count data
 \end_layout
 
 \begin_layout Standard
@@ -2061,7 +2061,7 @@ literal "false"
 \end_layout
 
 \begin_layout Subsection
-ChIP-seq Peak calling
+Calling consensus peaks from ChIP-seq data
 \end_layout
 
 \begin_layout Standard
@@ -7350,8 +7350,8 @@ Consider also showing figure for distance to nearest peak center, and reference
 \end_layout
 
 \begin_layout Subsection
-H3K4 and H3K27 promoter methylation has broadly the expected correlation
- with gene expression
+Correlations between gene expression and promoter methylation follow expected
+ genome-wide trends
 \end_layout
 
 \begin_layout Standard
@@ -7683,7 +7683,7 @@ RNA-seq
 placement p
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -8433,8 +8433,8 @@ end{landscape}
 \end_layout
 
 \begin_layout Subsection
-Effect of resting H3K4me2 and H3K4me3 promoter coverage landscapes on gene
- expression
+Association between resting H3K4me2 and H3K4me3 promoter coverage landscapes
+ and gene expression
 \end_layout
 
 \begin_layout Standard
@@ -9391,7 +9391,8 @@ end{landscape}
 \end_layout
 
 \begin_layout Subsection
-Effect of resting H3K27me3 promoter coverage landscapes on gene expression
+Association between resting H3K27me3 promoter coverage landscapes and gene
+ expression
 \end_layout
 
 \begin_layout Standard
@@ -10050,6 +10051,22 @@ radius
 \end_inset
 
  should be selected for each direction.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Sarah: I would have to search the literature, but I believe this has been
+ observed before.
+ The position relative to the TSS likely has to do with recruitment of the
+ transcriptional machinery and the space required for that.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -10922,16 +10939,25 @@ MACS
 y.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
 \begin_layout Subsection
 Data quality issues limit conclusions
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset Flex TODO Note (inline)
 status open
 
 \begin_layout Plain Layout
 Is this needed?
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -11279,6 +11305,25 @@ resting
 \end_layout
 
 \begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Sarah: Resting cells isolated straight from a person are probably never
+ going to look exactly the same as resting cells sitting in culture with
+ IL-2 to keep them alive.
+ I think there are valid biological reasons the two would look different.
+ A control one could consider would be to put resting memory cells into
+ culture for a few days without activation and then compare them to those
+ that have returned to rest.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 To better study the convergence hypothesis, a new experiment should be designed
  using a model system for T-cell activation that is known to allow cells
  to return as closely as possible to their pre-activation state.
@@ -11345,7 +11390,7 @@ not
 \begin_inset Formula $^{+}$
 \end_inset
 
-  T-cells, such as ???.
+  T-cells, such as Th1, Th2, Treg, and Th17 cells.
 \end_layout
 
 \begin_layout Standard
@@ -11353,7 +11398,9 @@ not
 status open
 
 \begin_layout Plain Layout
-Suggest some T-cell subsets
+Sarah: I'm not sure such negative controls exist.
+ Even marks that haven't been linked to T cell differentiation are probably
+ just understudied.
 \end_layout
 
 \end_inset
@@ -11475,6 +11522,20 @@ same
  represents a distinct epigenetic state with a different function than either
  double H3K4me2 or double H3K4me3.
  
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Sarah: We don't currently have the technology to do this well, especially
+ not with two modifications in the same cell.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
