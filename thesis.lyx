@@ -242,6 +242,22 @@ End
 
 \begin_body
 
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+pdfbookmark{Title page}{title}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Title
 Bioinformatic analysis of complex, high-throughput genomic and epigenomic
  data in the context of immunology and transplant rejection
@@ -293,32 +309,6 @@ October 2019
 \end_layout
 
 \begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-frontmatter
-\end_layout
-
-\end_inset
-
-
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Use roman numeral page numbers
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 \begin_inset Note Note
 status open
 
@@ -347,6 +337,47 @@ status open
 
 
 \backslash
+frontmatter
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Use roman numeral page numbers
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+phantomsection
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
 addcontentsline{toc}{chapter}{Copyright notice}
 \end_layout
 
@@ -356,12 +387,72 @@ addcontentsline{toc}{chapter}{Copyright notice}
 \end_layout
 
 \begin_layout Standard
-[Copyright notice]
+\align center
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace*{
+\backslash
+stretch{1}}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
+\align center
+© 2019 by Ryan C.
+ Thompson
+\end_layout
+
+\begin_layout Standard
+\align center
+All rights reserved.
+\end_layout
+
+\begin_layout Standard
+\align center
 \begin_inset ERT
-status open
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace*{
+\backslash
+stretch{2}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+phantomsection
+\end_layout
 
 \begin_layout Plain Layout
 
@@ -376,12 +467,28 @@ addcontentsline{toc}{chapter}{Thesis acceptance form}
 \end_layout
 
 \begin_layout Standard
+\align center
 [Thesis acceptance form]
 \end_layout
 
 \begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
 \begin_inset ERT
-status open
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+phantomsection
+\end_layout
 
 \begin_layout Plain Layout
 
@@ -396,12 +503,66 @@ addcontentsline{toc}{chapter}{Dedication}
 \end_layout
 
 \begin_layout Standard
+\align center
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace*{
+\backslash
+stretch{1}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
 [Dedication]
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset ERT
-status open
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace*{
+\backslash
+stretch{2}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+phantomsection
+\end_layout
 
 \begin_layout Plain Layout
 
@@ -415,8 +576,48 @@ addcontentsline{toc}{chapter}{Acknowledgements}
 
 \end_layout
 
+\begin_layout Section*
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace*{
+\backslash
+stretch{1}}
+\end_layout
+
+\end_inset
+
+Acknowledgements
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+hspace*{
+\backslash
+stretch{1}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 [Acknowledgements]
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
