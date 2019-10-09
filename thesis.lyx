@@ -1469,8 +1469,9 @@ MSC
 
 \end_inset
 
- are believed to involve their stem cell functionality, but rather their
- ability to 
+ are believed to involve their ability as stem cells to differentiate into
+ multiple different mature cell types, but rather the intercellular signals
+ they produce 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Ankrum2014"
@@ -1479,19 +1480,6 @@ literal "false"
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Should I just mention the PO1 grant to give context?
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Section
@@ -18872,10 +18860,9 @@ RNA-seq
 
 \end_inset
 
- has not been previously studied.
+ is less well-studied.
  Moreover, no off-the-shelf kits are available for globin reduction in nonhuman
  primates.
- 
 \end_layout
 
 \begin_layout Paragraph
@@ -18989,65 +18976,24 @@ Introduction
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
+As part of a multi-lab PO1 grant to study 
+\begin_inset Flex Glossary Term
 status open
 
 \begin_layout Plain Layout
-Blood profiling in MSC-treated graft recipienets as motivation for GB
+MSC
 \end_layout
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Section
-Approach
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Consider putting some of this in the Intro chapter
-\end_layout
-
-\begin_layout Itemize
-Cynomolgus monkeys as a model organism
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-Highly related to humans
-\end_layout
-
-\begin_layout Itemize
-Small size and short life cycle - good research animal
-\end_layout
-
-\begin_layout Itemize
-Genomics resources still in development
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-Inadequacy of existing blood RNA-seq protocols
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-Existing protocols use a separate globin pulldown step, slowing down processing
-\end_layout
-
-\end_deeper
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Increasingly, researchers are turning to 
+ infusion as a treatment for graft rejection in cynomolgus monkeys (
+\emph on
+Macaca fascicularis
+\emph default
+), a large number of serial blood draws from cynomolgus monkeys were planned
+ in order to monitor the progress of graft healing and eventual rejection
+ after transplantation.
+ In order to streamline the process of performing 
 \begin_inset Flex Glossary Term
 status open
 
@@ -19057,22 +19003,9 @@ RNA-seq
 
 \end_inset
 
- in preference to expression microarrays for analysis of whole transcriptome
- gene expression 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Mutz2012"
-literal "false"
-
-\end_inset
-
-.
- The advantages are even greater for study of model organisms with no well-estab
-lished array platforms available, such as the cynomolgus monkey (
-\emph on
-Macaca fascicularis
-\emph default
-).
+ on these blood samples, we developed a custom sequencing protocol.
+ In the developement of this protocol, we required a solution for the problem
+ of excess globin reads.
  High fractions of globin 
 \begin_inset Flex Glossary Term
 status open
@@ -19138,8 +19071,82 @@ literal "false"
 \end_inset
 
 .
- In the present report, we evaluated globin reduction by blocking reverse
- transcription of globin transcripts using custom blocking 
+ Furthermore, off-the-shelf globin reduction kits are generally targeted
+ at human or mouse globin, not cynomolgus monkey, and sequence identity
+ between human and cyno globin genes cannot be automatically assumed.
+ Hence, we sought to incorporate a custom globin reduction method into our
+ 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ protocol purely by adding additional reagents to an existing step in the
+ sample preparation.
+\end_layout
+
+\begin_layout Section
+Approach
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Consider putting some of this in the Intro chapter
+\end_layout
+
+\begin_layout Itemize
+Cynomolgus monkeys as a model organism
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Highly related to humans
+\end_layout
+
+\begin_layout Itemize
+Small size and short life cycle - good research animal
+\end_layout
+
+\begin_layout Itemize
+Genomics resources still in development
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Inadequacy of existing blood RNA-seq protocols
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Existing protocols use a separate globin pulldown step, slowing down processing
+\end_layout
+
+\end_deeper
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We evaluated globin reduction for 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ by blocking reverse transcription of globin transcripts using custom blocking
+ 
 \begin_inset Flex Glossary Term (pl)
 status open
 
