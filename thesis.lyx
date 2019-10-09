@@ -293,6 +293,32 @@ October 2019
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+frontmatter
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Use roman numeral page numbers
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Note Note
 status open
 
@@ -631,6 +657,32 @@ My thesis is due Thursday, October 10th, so in order to be useful to me,
 
 \begin_layout Standard
 Thanks again for your help, and happy reading!
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+mainmatter
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Switch from roman numerals to arabic for page numbers.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Chapter
