@@ -3686,6 +3686,19 @@ RNA-seq
  of unwanted globin transcripts.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Add a sentence about Ch5 once written
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Chapter
 \begin_inset CommandInset label
 LatexCommand label
@@ -3725,10 +3738,10 @@ glsresetall
 
 
 \begin_inset Note Note
-status collapsed
+status open
 
 \begin_layout Plain Layout
-Reintroduce all abbreviations
+This causes all abbreviations to be reintroduced.
 \end_layout
 
 \end_inset
@@ -3738,23 +3751,6 @@ Reintroduce all abbreviations
 
 \begin_layout Section
 Introduction
-\end_layout
-
-\begin_layout Section
-Approach
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Split Introduction out from Approach for each chapter
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -3830,6 +3826,10 @@ deactivating
  Despite these characterizations, the actual causal relationship between
  these histone modifications and gene transcription is complex and likely
  involves positive and negative feedback loops between the two.
+\end_layout
+
+\begin_layout Section
+Approach
 \end_layout
 
 \begin_layout Standard
@@ -11582,15 +11582,29 @@ In this study, a convergence between naïve and memory cells was observed
 \begin_inset Formula $^{+}$
 \end_inset
 
-  samples at day 14 do not resemble the memory samples at day 0, indicating
+ samples at day 14 do not resemble the memory samples at day 0, indicating
  that in the specific model of activation used for this experiment, the
  cells are not guaranteed to return to their original pre-activation state,
  or perhaps this process takes substantially longer than 14 days.
- This is a challenge for the convergence hypothesis because the ideal comparison
+ This difference is expected, as the cell cultures in this experiment were
+ treated with IL2 from day 5 onward 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "LaMere2016"
+literal "false"
+
+\end_inset
+
+, so the signalling environments in which the cells are cultured are different
+ at day 0 and day 14.
+\end_layout
+
+\begin_layout Standard
+This is a challenge for the convergence hypothesis because the ideal comparison
  to prove that naïve cells are converging to a resting memory state would
  be to compare the final naïve time point to the Day 0 memory samples, but
- this comparison is only meaningful if memory cells generally return to
- the same 
+ this comparison is much more conclusive if memory cells generally return
+ to the same 
 \begin_inset Quotes eld
 \end_inset
 
@@ -11661,48 +11675,21 @@ MOFA
 
  can then be used to identify coordinated patterns of regulation shared
  across many epigenetic marks.
- If possible, some 
-\begin_inset Quotes eld
-\end_inset
-
-negative control
-\begin_inset Quotes erd
-\end_inset
-
- marks should be included that are known 
-\emph on
-not
-\emph default
- to be involved in T-cell activation or memory formation.
  Of course, CD4
 \begin_inset Formula $^{+}$
 \end_inset
 
-  T-cells are not the only adaptive immune cells with memory.
+  T-cells are not the only adaptive immune cells that exhibit memory formation.
  A similar study could be designed for CD8
 \begin_inset Formula $^{+}$
 \end_inset
 
-  T-cells, B-cells, and even specific subsets of CD4
+ T-cells, B-cells, and even specific subsets of CD4
 \begin_inset Formula $^{+}$
 \end_inset
 
-  T-cells, such as Th1, Th2, Treg, and Th17 cells.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Sarah: I'm not sure such negative controls exist.
- Even marks that haven't been linked to T cell differentiation are probably
- just understudied.
-\end_layout
-
-\end_inset
-
-
+ T-cells, such as Th1, Th2, Treg, and Th17 cells, to determine whether these
+ also show convergence.
 \end_layout
 
 \begin_layout Subsection
@@ -11956,6 +11943,10 @@ Introduction
 Arrays for diagnostics
 \end_layout
 
+\begin_layout Standard
+Arrays are an attractive platform for diagnostics
+\end_layout
+
 \begin_layout Subsection
 Proper pre-processing is essential for array data
 \end_layout
@@ -11965,10 +11956,10 @@ Microarrays, bead arrays, and similar assays produce raw data in the form
  of fluorescence intensity measurements, with each intensity measurement
  proportional to the abundance of some fluorescently labelled target DNA
  or RNA sequence that base pairs to a specific probe sequence.
- However, these measurements for each probe are also affected my many technical
- confounding factors, such as the concentration of target material, strength
- of off-target binding, the sensitivity of the imaging sensor, and visual
- artifacts in the image.
+ However, the fluorescence measurements for each probe are also affected
+ my many technical confounding factors, such as the concentration of target
+ material, strength of off-target binding, the sensitivity of the imaging
+ sensor, and visual artifacts in the image.
  Some array designs also use multiple probe sequences for each target.
  Hence, extensive pre-processing of array data is necessary to normalize
  out the effects of these technical factors and summarize the information
@@ -11985,23 +11976,6 @@ literal "false"
 .
 \end_layout
 
-\begin_layout Section
-Approach
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Some of this probably goes in intro
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Standard
 The choice of pre-processing algorithms used in the analysis of an array
  data set can have a large effect on the results of that analysis.
@@ -12012,6 +11986,10 @@ The choice of pre-processing algorithms used in the analysis of an array
  power, model goodness-of-fit, or other relevant performance measures, by
  checking the assumptions made by each preprocessing step and choosing specific
  normalization methods tailored to the specific goals of the current analysis.
+\end_layout
+
+\begin_layout Section
+Approach
 \end_layout
 
 \begin_layout Subsection
@@ -12367,7 +12345,7 @@ M-value
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -12518,9 +12496,9 @@ RNA-seq
  be modeled as a smooth curve.
  Hence, the method is sufficiently general to model the mean-variance relationsh
 ip in methylation array data.
- However, the standard implementation of voom assumes that the input is
- given in raw read counts, and it must be adapted to run on methylation
- 
+ However, while the method does not require count data as input, the standard
+ implementation of voom assumes that the input is given in raw read counts,
+ and it must be adapted to run on methylation 
 \begin_inset Flex Glossary Term (pl)
 status open
 
@@ -23010,6 +22988,23 @@ If there are any chapter-independent future directions, put them here.
 
 \begin_layout Chapter
 Closing remarks
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+addcontentsline{toc}{chapter}{Test}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
