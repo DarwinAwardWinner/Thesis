@@ -5330,11 +5330,11 @@ literal "false"
 \begin_inset space ~
 \end_inset
 
-kb, while for H3K27me3 it was 2.5
+kbp, while for H3K27me3 it was 2.5
 \begin_inset space ~
 \end_inset
 
-kb.
+kbp.
  These distances were used as an 
 \begin_inset Quotes eld
 \end_inset
@@ -7557,7 +7557,7 @@ H3K4me2
 \begin_inset Text
 
 \begin_layout Plain Layout
-1 kb
+1 kbp
 \end_layout
 
 \end_inset
@@ -7577,7 +7577,7 @@ H3K4me3
 \begin_inset Text
 
 \begin_layout Plain Layout
-1 kb
+1 kbp
 \end_layout
 
 \end_inset
@@ -7597,7 +7597,7 @@ H3K27me3
 \begin_inset Text
 
 \begin_layout Plain Layout
-2.5 kb
+2.5 kbp
 \end_layout
 
 \end_inset
@@ -8834,7 +8834,7 @@ ChIP-seq
 
 \end_inset
 
- read coverage in naïve Day 0 samples within 5 kb of each gene's 
+ read coverage in naïve Day 0 samples within 5 kbp of each gene's 
 \begin_inset Flex Glossary Term
 status open
 
@@ -9346,8 +9346,8 @@ TSS
 \end_inset
 
 , consistent with the previously determined promoter radius.
- In contrast, cluster 6, which represents peaks several kb upstream of the
- 
+ In contrast, cluster 6, which represents peaks several kbp upstream of
+ the 
 \begin_inset Flex Glossary Term
 status open
 
@@ -9358,10 +9358,10 @@ TSS
 \end_inset
 
 , shows a slightly higher average expression than baseline, while Cluster
- 2, which represents peaks several kb downstream, doesn't appear to show
+ 2, which represents peaks several kbp downstream, doesn't appear to show
  any appreciable difference.
  Interestingly, the cluster with the highest average expression is Cluster
- 1, which represents peaks about 1 kb downstream of the 
+ 1, which represents peaks about 1 kbp downstream of the 
 \begin_inset Flex Glossary Term
 status open
 
@@ -10302,14 +10302,14 @@ noprefix "false"
  Interestingly, the radius within this enrichment occurs is not the same
  for each histone mark.
  H3K4me2 and H3K4me3 are enriched within a 1
-\begin_inset space \thinspace{}
+\begin_inset space ~
 \end_inset
 
-kb radius, while H3K27me3 is enriched within 2.5
-\begin_inset space \thinspace{}
+kbp radius, while H3K27me3 is enriched within 2.5
+\begin_inset space ~
 \end_inset
 
-kb.
+kbp.
  Notably, the determined promoter radius was consistent across all experimental
  conditions, varying only between different histone marks.
  This suggests that the conventional 
@@ -10427,7 +10427,7 @@ noprefix "false"
 \begin_inset space ~
 \end_inset
 
-kb is approximately consistent with the distance from the 
+kbp is approximately consistent with the distance from the 
 \begin_inset Flex Glossary Term
 status open
 
@@ -10467,7 +10467,7 @@ TSS
 \begin_inset space ~
 \end_inset
 
-kb radius determined from TSS-to-peak distances is functionally significant.
+kbp radius determined from TSS-to-peak distances is functionally significant.
  However, the two patterns of coverage associated with elevated expression
  levels both have interesting features within this radius.
 \end_layout
@@ -10807,7 +10807,7 @@ TSS
 
  of each gene, several interesting patterns were apparent.
  For H3K4me2 and H3K4me3, the pattern was straightforward: the consistent
- pattern across all promoters was a single peak a few kb wide, with the
+ pattern across all promoters was a single peak a few kbp wide, with the
  main axis of variation being the position of this peak relative to the
  
 \begin_inset Flex Glossary Term
