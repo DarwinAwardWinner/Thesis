@@ -1528,7 +1528,7 @@ Proper analysis requires finding and exploiting systematic genome-wide trends
 
 \begin_layout Standard
 The studies presented in this work all involve the analysis of high-throughput
- genomic and epigenomic data.
+ genomic and epigenomic assay data.
  These data present many unique analysis challenges, and a wide array of
  software tools are available to analyze them.
  This section presents an overview of the most important methods and tools
@@ -1610,9 +1610,18 @@ feature
 The simplest approach to analyzing such data would be to fit the same model
  independently to each feature.
  However, this is undesirable for most genomics data sets.
- Genomics assays like high-throughput sequencing are expensive, and often
- the process of generating the samples is also quite expensive and time-consumin
-g.
+ Genomics assays like 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+HTS
+\end_layout
+
+\end_inset
+
+ are expensive, and often the process of generating the samples is also
+ quite expensive and time-consuming.
  This expense limits the sample sizes typically employed in genomics experiments
 , so a typical genomic data set has far more features being measured than
  observations (samples) per feature.
@@ -2883,8 +2892,17 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-In contrast, high-throughput sequencing data present very different normalizatio
-n challenges.
+In contrast, 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+HTS
+\end_layout
+
+\end_inset
+
+ data present very different normalization challenges.
  The simplest case is 
 \begin_inset Flex Glossary Term
 status open
@@ -3043,9 +3061,19 @@ noprefix "false"
 \end_inset
 
 ).
- If the experiment is well controlled and ChIP efficiency is known to be
- consistent across all samples, then normalizing the background coverage
- to be equal across all samples is a reasonable strategy.
+ If the experiment is well controlled and 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP
+\end_layout
+
+\end_inset
+
+ efficiency is known to be consistent across all samples, then normalizing
+ the background coverage to be equal across all samples is a reasonable
+ strategy.
  If this is not a safe assumption, then the preferred strategy is to normalize
  the signal regions in a way similar to 
 \begin_inset Flex Glossary Term
