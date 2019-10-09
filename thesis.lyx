@@ -4825,7 +4825,7 @@ voomWithQualityWeights
 \end_layout
 
 \begin_layout Subsection
-ChIP-seq analysis
+ChIP-seq analyses
 \end_layout
 
 \begin_layout Standard
@@ -10274,7 +10274,15 @@ Write better section headers
 \end_layout
 
 \begin_layout Subsection
-Effective promoter radius
+Each histone mark's 
+\begin_inset Quotes eld
+\end_inset
+
+effective promoter extent
+\begin_inset Quotes erd
+\end_inset
+
+ must be determined empirically
 \end_layout
 
 \begin_layout Standard
