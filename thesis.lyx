@@ -181,11 +181,11 @@ End
 \use_hyperref true
 \pdf_author "Ryan C. Thompson"
 \pdf_bookmarks true
-\pdf_bookmarksnumbered false
-\pdf_bookmarksopen false
+\pdf_bookmarksnumbered true
+\pdf_bookmarksopen true
 \pdf_bookmarksopenlevel 1
-\pdf_breaklinks false
-\pdf_pdfborder false
+\pdf_breaklinks true
+\pdf_pdfborder true
 \pdf_colorlinks false
 \pdf_backref false
 \pdf_pdfusetitle true
@@ -678,6 +678,21 @@ Biological motivation
 status open
 
 \begin_layout Plain Layout
+Find some figures to include even if permission is not obtained.
+ Try to obtain permission, and if it cannot be obtained, remove/replace
+ them later.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
 Rethink the subsection organization after the intro is written.
 \end_layout
 
@@ -1041,7 +1056,6 @@ literal "false"
  Secondly, because memory cells are able to mount a stronger and faster
  response to an antigen, all else being equal stronger immune suppression
  is required to prevent an immune response mediated by memory cells.
- 
 \end_layout
 
 \begin_layout Standard
@@ -1214,31 +1228,17 @@ literal "false"
 .
 \end_layout
 
-\begin_layout Subsection
-High-throughput sequencing and microarray technologies
-\end_layout
-
 \begin_layout Standard
 \begin_inset Flex TODO Note (inline)
 status open
 
 \begin_layout Plain Layout
-This will serve as transition to bioinf.
- Merge with below.
+Should I just mention the PO1 grant to give context?
 \end_layout
 
 \end_inset
 
 
-\end_layout
-
-\begin_layout Itemize
-Powerful methods for assaying gene expression and epigenetics across entire
- genomes
-\end_layout
-
-\begin_layout Itemize
-Proper analysis requires finding and exploiting systematic genome-wide trends
 \end_layout
 
 \begin_layout Section
@@ -1264,14 +1264,23 @@ Also cite somewhere: R, Bioconductor
 
 \end_layout
 
+\begin_layout Itemize
+Powerful methods for assaying gene expression and epigenetics across entire
+ genomes
+\end_layout
+
+\begin_layout Itemize
+Proper analysis requires finding and exploiting systematic genome-wide trends
+\end_layout
+
 \begin_layout Standard
 The studies presented in this work all involve the analysis of high-throughput
  genomic and epigenomic data.
  These data present many unique analysis challenges, and a wide array of
  software tools are available to analyze them.
- This section presents an overview of the most important methods used throughout
- the following analyses, including what problems they solve, what assumptions
- they make, and a basic description of how they work.
+ This section presents an overview of the most important methods and tools
+ used throughout the following analyses, including what problems they solve,
+ what assumptions they make, and a basic description of how they work.
 \end_layout
 
 \begin_layout Subsection
@@ -2140,18 +2149,18 @@ derived from DNA fragments that were bound by the immunoprecipitated protein.
  These are referred to as background reads.
  Biases in amplification and sequencing, as well as the aforementioned Poisson
  randomness of the sequencing itself, can cause fluctuations in the background
- level of reads the resemble peaks, and the true peaks must be distinguished
+ level of reads that resemble peaks, and the true peaks must be distinguished
  from these.
- It is common to sequence the input to the ChIP-seq reaction as well as
- the immunoprecipitated sample in order to aid in estimating the fluctuations
+ It is common to sequence the input DNA to the ChIP-seq reaction alongside
+ the immunoprecipitated product in order to aid in estimating the fluctuations
  in background level across the genome.
 \end_layout
 
 \begin_layout Standard
 There are generally two kinds of peaks that can be identified: narrow peaks
  and broadly enriched regions.
- Proteins like transcription factors that bind specific sites in the genome
- typically show most of their 
+ Proteins that bind specific sites in the genome (such as many transcription
+ factors) typically show most of their 
 \begin_inset Flex Glossary Term
 status open
 
@@ -3273,31 +3282,86 @@ PCA
 Structure of the thesis
 \end_layout
 
-\begin_layout Subsection
-Investigate dynamics of histone marks in CD4
-\begin_inset Formula $^{+}$
+\begin_layout Standard
+This thesis presents 3 instances of using high-throughput genomic and epigenomic
+ assays to investigate hypotheses or solve problems relating to the study
+ of transplant rejection.
+ In Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:CD4-ChIP-seq"
+plural "false"
+caps "false"
+noprefix "false"
+
 \end_inset
 
- T-cell activation and memory
+, 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
 \end_layout
 
-\begin_layout Itemize
-Previous studies have looked at single snapshots of histone marks
+\end_inset
+
+ and 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
 \end_layout
 
-\begin_layout Itemize
-Instead, look at changes in histone marks across activation and memory
+\end_inset
+
+ are used to investigate the dynamics of promoter histone methylation as
+ it relates to gene expression in T-cell activation and memory.
+ Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Improving-array-based-diagnostic"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ looks at several array-based assays with the potential to diagnose transplant
+ rejection and shows that analyses of this array data are greatly improved
+ by paying careful attention to normalization and preprocessing.
+ Finally Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Globin-blocking-cyno"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ presents a custom method for improving 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
 \end_layout
 
-\begin_layout Subsection
-Ch3
-\end_layout
+\end_inset
 
-\begin_layout Subsection
-Ch4
+ of non-human primate blood samples by preventing reverse transcription
+ of unwanted globin transcripts.
 \end_layout
 
 \begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:CD4-ChIP-seq"
+
+\end_inset
+
 Reproducible genome-wide epigenetic analysis of H3K4 and H3K27 methylation
  in naïve and memory CD4
 \begin_inset Formula $^{+}$
@@ -3341,21 +3405,25 @@ Reintroduce all abbreviations
 
 \end_layout
 
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Section
+Approach
+\end_layout
+
 \begin_layout Standard
 \begin_inset Flex TODO Note (inline)
 status open
 
 \begin_layout Plain Layout
-Need better section titles throughout the entire chapter
+Split Introduction out from Approach for each chapter
 \end_layout
 
 \end_inset
 
 
-\end_layout
-
-\begin_layout Section
-Approach
 \end_layout
 
 \begin_layout Standard
@@ -9009,7 +9077,7 @@ begin{landscape}
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -9423,7 +9491,7 @@ begin{landscape}
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -9499,7 +9567,6 @@ name "fig:H3K27me3-neighborhood-pca"
 \end_inset
 
 PCA of relative coverage depth, colored by K-means cluster membership.
- (Note: Cluster 6 is hidden behind all the other clusters.)
 \end_layout
 
 \end_inset
@@ -9642,8 +9709,8 @@ shape
  of the promoter coverage for promoters in that cluster.
  PCA was performed on the same data, and the first two PCs were plotted,
  coloring each point by its K-means cluster identity (b).
- For each cluster, the distribution of gene expression values was plotted
- (c).
+ (Note: In (b), Cluster 6 is hidden behind all the other clusters.) For each
+ cluster, the distribution of gene expression values was plotted (c).
 \end_layout
 
 \end_inset
@@ -11222,35 +11289,45 @@ Follow up on hints of interesting patterns in promoter relative coverage
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-I think I might need to write up the negative results for the Promoter CpG
- and defined pattern analysis before writing this section.
-\end_layout
-
+The analysis of promoter coverage landscapes in resting naive CD4 T-cells
+ and their correlations with gene expression raises many interesting questions.
+ The chosen analysis strategy used a clustering approach, but this approach
+ was subsequently shown to be a poor fit for the data.
+ In light of this, a better means of dimension reduction for promoter landscape
+ data is required.
+ In the case of H3K4me2 and H3K4me3, one option is to define the first 3
+ principal componets as orthogonal promoter 
+\begin_inset Quotes eld
 \end_inset
 
+state variables
+\begin_inset Quotes erd
+\end_inset
 
-\end_layout
+: upstream vs downstream coverage, TSS-centered peak vs trough, and proximal
+ upstream trough vs proximal downstream trough.
+ Gene expression could then be modeled as a function of these three variables,
+ or possibly as a function of the first 
+\begin_inset Formula $N$
+\end_inset
 
-\begin_layout Itemize
-Also find better normalizations: maybe borrow from MACS/SICER background
- correction methods?
-\end_layout
+ principal components for larger 
+\begin_inset Formula $N$
+\end_inset
 
-\begin_layout Itemize
-For H3K4, define polar coordinates based on PC1 & 2: R = peak size, Theta
- = peak position.
- Then correlate with expression.
-\end_layout
+ than 3.
+ For H3K4me2 and H3K4me3, a better representation might be something like
+ a polar coordinate system with the origin at the center of the 
+\begin_inset Quotes eld
+\end_inset
 
-\begin_layout Standard
-A better representation might be something like a polar coordinate system
- with the origin at the center of Cluster 5, where the radius represents
- the peak height above the background and the angle represents the peak's
- position upstream or downstream of the 
+no peak
+\begin_inset Quotes erd
+\end_inset
+
+ cluster, where the radius represents the peak height above the background
+ and the angle represents the peak's position upstream or downstream of
+ the 
 \begin_inset Flex Glossary Term
 status open
 
@@ -11262,6 +11339,24 @@ TSS
 
 .
  
+\end_layout
+
+\begin_layout Standard
+Another weakness in the current analysis is the normalization of the average
+ abundance of each promoter to an average of zero.
+ This allows the abundance value in each window to represent the relative
+ abundance 
+\end_layout
+
+\begin_layout Itemize
+Also find better normalizations: maybe borrow from MACS/SICER background
+ correction methods?
+\end_layout
+
+\begin_layout Itemize
+For H3K4, define polar coordinates based on PC1 & 2: R = peak size, Theta
+ = peak position.
+ Then correlate with expression.
 \end_layout
 
 \begin_layout Itemize
@@ -11372,6 +11467,12 @@ on.
 \end_layout
 
 \begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Improving-array-based-diagnostic"
+
+\end_inset
+
 Improving array-based diagnostics for transplant rejection by optimizing
  data preprocessing
 \end_layout
@@ -11412,7 +11513,11 @@ Reintroduce all abbreviations
 \end_layout
 
 \begin_layout Section
-Approach
+Introduction
+\end_layout
+
+\begin_layout Subsection
+Arrays for diagnostics
 \end_layout
 
 \begin_layout Subsection
@@ -11442,6 +11547,23 @@ literal "false"
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Section
+Approach
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Some of this probably goes in intro
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -18068,6 +18190,12 @@ SVA
 \end_layout
 
 \begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Globin-blocking-cyno"
+
+\end_inset
+
 Globin-blocking for more effective blood RNA-seq analysis in primate animal
  model
 \end_layout
@@ -18129,20 +18257,6 @@ Macaca fascicularis
 
 \begin_layout Section*
 Abstract
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-If the other chapters don't get abstracts, this one probably shouldn't either.
- But parts of it can be copied into the final abstract.
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Paragraph
@@ -18289,6 +18403,23 @@ status collapsed
 
 \backslash
 glsresetall
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Blood profiling in MSC-treated graft recipienets as motivation for GB
 \end_layout
 
 \end_inset
@@ -18593,8 +18724,11 @@ oligo
 
 \end_inset
 
- were purchased from Sigma and were entirely composed of 2’O-Me bases with
- a C3 spacer positioned at the 
+ were purchased from Sigma and were entirely composed of 2
+\begin_inset Formula $^{\prime}$
+\end_inset
+
+O-Me bases with a C3 spacer positioned at the 
 \begin_inset Formula $3^{\prime}$
 \end_inset
 
@@ -18610,7 +18744,9 @@ site
 \begin_inset space ~
 \end_inset
 
-1: GCCCACUCAGACUUUAUUCAAAG-C3spacer
+1: 
+\family typewriter
+GCCCACUCAGACUUUAUUCAAAG-C3spacer
 \end_layout
 
 \begin_layout Description
@@ -18622,7 +18758,9 @@ site
 \begin_inset space ~
 \end_inset
 
-2: GGUGCAAGGAGGGGAGGAG-C3spacer
+2: 
+\family typewriter
+GGUGCAAGGAGGGGAGGAG-C3spacer
 \end_layout
 
 \begin_layout Description
@@ -18634,7 +18772,9 @@ site
 \begin_inset space ~
 \end_inset
 
-1: AAUGAAAAUAAAUGUUUUUUAUUAG-C3spacer
+1: 
+\family typewriter
+AAUGAAAAUAAAUGUUUUUUAUUAG-C3spacer
 \end_layout
 
 \begin_layout Description
@@ -18646,7 +18786,9 @@ site
 \begin_inset space ~
 \end_inset
 
-2: CUCAAGGCCCUUCAUAAUAUCCC-C3spacer
+2: 
+\family typewriter
+CUCAAGGCCCUUCAUAAUAUCCC-C3spacer
 \end_layout
 
 \begin_layout Subsection
@@ -18871,7 +19013,11 @@ Subsequent attachment of the
 \end_inset
 
  Illumina A adapter was performed by on-bead random primer extension of
- the following sequence (A-N8 primer: TTCAGAGTTCTACAGTCCGACGATCNNNNNNNN).
+ the following sequence (A-N8 primer: 
+\family typewriter
+TTCAGAGTTCTACAGTCCGACGATCNNNNNNNN
+\family default
+).
  Briefly, beads were resuspended in a 20
 \begin_inset space ~
 \end_inset
@@ -19044,7 +19190,7 @@ Need to relax the justification parameters just for this paragraph, or else
 Reads were aligned to the cynomolgus genome using STAR 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Dobin2013,Wilson2013"
+key "Wilson2013,Dobin2012"
 literal "false"
 
 \end_inset
@@ -19100,10 +19246,10 @@ literal "false"
  as protein-coding.
  Our globin reduction protocol was designed to include blocking of these
  two genes.
- Indeed, these two genes have almost the same read counts in each library
- as the properly-annotated HBB gene and much larger counts than any other
- gene in the unblocked libraries, giving confidence that reads derived from
- the real alpha globin are mapping to both genes.
+ Indeed, these two genes together have almost the same read counts in each
+ library as the properly-annotated HBB gene and much larger counts than
+ any other gene in the unblocked libraries, giving confidence that reads
+ derived from the real alpha globin are mapping to both genes.
  Thus, reads from both of these loci were counted as alpha globin reads
  in all further analyses.
  The second artifact is a small, uncharacterized non-coding RNA gene (LOC1021365

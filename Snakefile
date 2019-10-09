@@ -201,7 +201,7 @@ rule lyx_to_pdf:
     run:
         if not LYX_PATH or LYX_PATH == '/bin/false':
             raise Exception('PAth to LyX  executable could not be found.')
-        shell('''{LYX_PATH:q} --export-to pdf4 {output.pdf:q} {input.lyxfile:q}''')
+        shell('''{LYX_PATH:q} -batch --verbose --export-to pdf4 {output.pdf:q} {input.lyxfile:q}''')
         if PDFINFO_PATH:
             shell('''{PDFINFO_PATH} {output.pdf:q}''')
 
@@ -223,10 +223,11 @@ rule lyx_to_pdf_final:
             if not regex.search('\\\\options final', lyx_text):
                 lyx_text = regex.sub('\\\\use_default_options true', '\\\\options final\n\\\\use_default_options true', lyx_text)
             outfile.write(lyx_text)
-        shell('''{LYX_PATH:q} --export-to pdf4 {output.pdf:q} {output.lyxtemp:q}''')
+        shell('''{LYX_PATH:q} -batch --verbose --export-to pdf4 {output.pdf:q} {output.lyxtemp:q}''')
         if PDFINFO_PATH:
             shell('''{PDFINFO_PATH} {output.pdf:q}''')
 
+# TODO: Remove all URLs from entries with a DOI
 rule process_bib:
     '''Preprocess bib file for LaTeX.
 
