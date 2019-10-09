@@ -4828,10 +4828,33 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+afterpage{
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{landscape}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -4845,7 +4868,7 @@ status open
 \begin_inset Graphics
 	filename graphics/CD4-csaw/csaw/CCF-plots-noBL-PAGE2-CROP.pdf
 	lyxscale 75
-	height 35theight%
+	width 47col%
 	groupId ccf-subfig
 
 \end_inset
@@ -4889,21 +4912,21 @@ bp).
 \end_inset
 
 
-\end_layout
+\begin_inset space \hfill{}
+\end_inset
 
-\begin_layout Plain Layout
-\align center
+
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename graphics/CD4-csaw/csaw/CCF-plots-PAGE2-CROP.pdf
 	lyxscale 75
-	height 35theight%
+	width 47col%
 	groupId ccf-subfig
 
 \end_inset
@@ -5003,6 +5026,27 @@ on values were plotted as a function of the delay.
 \end_inset
 
 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{landscape}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
 \end_layout
 
 \end_inset
