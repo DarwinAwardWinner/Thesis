@@ -1489,10 +1489,10 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename graphics/Intro/eBayes-CROP.pdf
-	lyxscale 50
+	filename graphics/Intro/eBayes-CROP-RASTER.png
+	lyxscale 25
 	width 100col%
-	groupId colfullwidth
+	groupId colwidth-raster
 
 \end_inset
 
@@ -2395,10 +2395,10 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename graphics/CD4-csaw/IDR/D4659vsD5053_epic-PAGE1-CROP.pdf
-	lyxscale 50
+	filename graphics/CD4-csaw/IDR/D4659vsD5053_epic-PAGE1-CROP-RASTER.png
+	lyxscale 25
 	width 100col%
-	groupId colfullwidth
+	groupId colwidth-raster
 
 \end_inset
 
