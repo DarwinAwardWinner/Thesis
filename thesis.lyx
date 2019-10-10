@@ -1587,32 +1587,24 @@ Overview of bioinformatic analysis methods
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
+The studies presented in this work all involve the analysis of high-throughput
+ genomic and epigenomic assay data.
+ Assays like microarrays and 
+\begin_inset Flex Glossary Term
 status open
 
 \begin_layout Plain Layout
-Also cite somewhere: R, Bioconductor
+HTS
 \end_layout
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Itemize
-Powerful methods for assaying gene expression and epigenetics across entire
- genomes
-\end_layout
-
-\begin_layout Itemize
-Proper analysis requires finding and exploiting systematic genome-wide trends
-\end_layout
-
-\begin_layout Standard
-The studies presented in this work all involve the analysis of high-throughput
- genomic and epigenomic assay data.
- These data present many unique analysis challenges, and a wide array of
- software tools are available to analyze them.
+ are powerful methods for interrogating gene expression and empigenetic
+ state across the entire genome.
+ However, these data present many unique analysis challenges, and proper
+ analysis requires identifying and exploiting genome-wide trends in the
+ data to make up for the small sample sizes.
+ A wide array of software tools is available to analyze these data.
  This section presents an overview of the most important methods and tools
  used throughout the following analyses, including what problems they solve,
  what assumptions they make, and a basic description of how they work.
