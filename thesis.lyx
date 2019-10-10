@@ -1586,6 +1586,20 @@ literal "false"
 .
 \end_layout
 
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+An overview of high-throughput assays would have been nice to have, but
+ it's a bit late now.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 \begin_inset CommandInset label
 LatexCommand label
