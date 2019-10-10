@@ -436,13 +436,18 @@ stretch{2}}
 \end_layout
 
 \begin_layout Standard
+\align center
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 \begin_inset Newpage newpage
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \align center
 \begin_inset ERT
 status collapsed
@@ -466,9 +471,14 @@ addcontentsline{toc}{chapter}{Thesis acceptance form}
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \align center
 [Thesis acceptance form]
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -4070,7 +4080,7 @@ literal "false"
 ) 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "gh-cd4-csaw,LaMere2016,LaMere2017"
+key "gh-cd4-csaw,LaMere2015,LaMere2016,LaMere2017"
 literal "true"
 
 \end_inset
@@ -23186,15 +23196,11 @@ GB
  method in place, the way is now clear for this experiment to proceed.
 \end_layout
 
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Chapter*
-Future Directions
+\begin_layout Chapter
+Conclusions
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 \begin_inset ERT
 status collapsed
 
@@ -23220,48 +23226,366 @@ Reintroduce all abbreviations
 
 \end_layout
 
+\begin_layout Standard
+In this work, I have presented a wide range of applications for high-thoughput
+ genomic and epigenomic assays based on sequencing and arrays in the context
+ of immunology and transplant rejection.
+ Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:CD4-ChIP-seq"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ described the use of 
+\begin_inset Flex Glossary Term
+status open
+
 \begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ to investigate the interplay between promoter histone marks and gene expression
+ during activation of naive and memory CD4
+\begin_inset Formula $^{+}$
+\end_inset
+
+ T-cells.
+ Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Improving-array-based-diagnostic"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ explored the use of expression microarrays and methylation arrays for diagnosin
+g transplant rejection.
+ Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Globin-blocking-cyno"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ introduced a new 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ protocol for sequencing blood samples from cynomolgus monkeys designed
+ to expedite gene expression profiling in serial blood samples from monkeys
+ who received an experimental treatment for transplant rejection based on
+ 
+\begin_inset Flex Glossary Term (pl)
+status open
+
+\begin_layout Plain Layout
+MSC
+\end_layout
+
+\end_inset
+
+.
+ These applications range from basic science to translational medicine,
+ but in all cases, high-thoughput genomic assays were central to the results.
+ 
+\end_layout
+
+\begin_layout Section
+Every high-throughput analysis presents unique analysis challenges
+\end_layout
+
+\begin_layout Standard
+In addition, each of these applications of high-throughput genomic assays
+ presented unique analysis challenges that could not be solved simply by
+ stringing together standard off-the-shelf methods into a straightforward
+ analysis pipeline.
+ In every case, a bespoke analysis workflow tailored to the data was required,
+ and in no case was it possible to determine every step in the workflow
+ fully prior to seeing the data.
+ For example, exploratory data analysis of the CD4
+\begin_inset Formula $^{+}$
+\end_inset
+
+ T-cell 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ data uncovered the batch effect, and the analysis was adjusted to compensate
+ for it.
+ Similarly, analysis of the 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+ data required choosing a 
+\begin_inset Quotes eld
+\end_inset
+
+effective promoter radius
+\begin_inset Quotes erd
+\end_inset
+
+ based on the data itself, and several different peak callers were tested
+ before the correct choice became clear.
+ In the development of custom 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ vectors, an appropriate batch size had to be chosen based on the properties
+ of the training data.
+ In the analysis of methylation array data, the appropriate analysis strategy
+ was not obvious and was determined by trying several plausible strategies
+ and inspecting the model paramters afterward to determine which strategy
+ appeared to best capture the observed properties of the data and which
+ strategies appeared to have systematic errors as a result of failing to
+ capture those properties.
+ The 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+GB
+\end_layout
+
+\end_inset
+
+ protocol went through several rounds of testing before satisfactory performance
+ was achieved, and as mentioned, optimization of protocol has continued
+ past the version described here.
+ These are only a few examples out of many instances of analysis decisions
+ motivated by the properties of the data.
+\end_layout
+
+\begin_layout Section
+Successful data analysis requires a toolbox, not a pipeline
+\end_layout
+
+\begin_layout Standard
+Multiple times throughout this work, I have attempted to construct standard,
+ reusable, pipelines for analysis of specific kinds of data, such as 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+ or 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+ChIP-seq
+\end_layout
+
+\end_inset
+
+.
+ Each time, the very next data set containing this data broke one or more
+ of the assumptions I had built into the pipeline, such as an RNA-seq dataset
+ where some samples aligned to the sense strand while others aligned to
+ the antisense strand, or the discovery that the effective promoter radius
+ varies by histone mark.
+ Each violation of an assumption required a significant rewrite of the pipeline'
+s code in order to accommodate the new aspect of the data.
+ The prospect of reusability turned out to be a pipe(line) dream.
+ After several attempts to extend my pipelines to be general enough to handle
+ an ever-increasing variety of data idiosyncracies, I realized that it was
+ actually 
+\emph on
+less
+\emph default
+ work to reimplement an analysis workflow from scratch each time rather
+ than try to adapt an existing workflow that was originally designed for
+ a different data set.
+\end_layout
+
+\begin_layout Standard
+Once I embraced the idea of writing a bespoke analysis workflow for every
+ data set instead of a one-size-fits-all pipeline, I stopped thinking of
+ the pipeline as the atomic unit of analysis.
+ Instead, I focused on developing an understanding of the component parts
+ of each pipeline, which problems each part solves, and what assumptions
+ it makes, so that when I was presented with a new data set, I could quickly
+ select the appropriate analysis methods for that data set and compose them
+ into a new workflow to answer the demands of a new data set.
+ In cases where no off-the-shelf method existed to address a specific aspect
+ of the data, knowing about a wide range of analysis methods allowed me
+ to select the one that was closest to what I needed and adapt it accordingly,
+ even if it was not originally designed to handle the kind of data I was
+ analyzing.
+ For example, when analyzing heteroskedastic methylation array data, I adapted
+ the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+voom
+\end_layout
+
+\end_inset
+
+ method from 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+limma
+\end_layout
+
+\end_inset
+
+, which was originally designed to model heteroskedasticity in 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+RNA-seq
+\end_layout
+
+\end_inset
+
+data 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Law2014"
+literal "false"
+
+\end_inset
+
+.
+ While 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+voom
+\end_layout
+
+\end_inset
+
+ was designed to accept read counts, I determined that this was not a fundamenta
+l assumption of the method but rather a limitation of the specific implementatio
+n, and I was able to craft a modified implementation that accepted 
+\begin_inset Flex Glossary Term (pl)
+status open
+
+\begin_layout Plain Layout
+M-value
+\end_layout
+
+\end_inset
+
+ from methylation arrays.
+ In contrast, adapting something like 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+edgeR
+\end_layout
+
+\end_inset
+
+ for methylation arrays would not be possible, since many steps of the 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+edgeR
+\end_layout
+
+\end_inset
+
+ workflow, from normalization to dispersion estimation to model fitting,
+ assume that the input is given on the scale of raw counts and take full
+ advantage of this assumption 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Robinson2010,Robinson2010a,McCarthy2012,Chen2014"
+literal "false"
+
+\end_inset
+
+.
+ In short, I collected a 
+\begin_inset Quotes eld
+\end_inset
+
+toolbox
+\begin_inset Quotes erd
+\end_inset
+
+ full of useful modular analysis methods and developed the knowledge of
+ when and where each could be applied, as well as how to compose them on
+ demand into pipelines for specific data sets.
+ This prepared me to handle the idiosyncracies of any new data set, even
+ when the new data has problems that I have not previously encountered in
+ any other data set.
+\end_layout
+
+\begin_layout Itemize
+Pipelines are for established processes, not research
+\end_layout
+
+\begin_layout Itemize
+Research data analysis must be exploratory and flexible.
+ Learn the properties of the data and design the analysis to handle them.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Flex TODO Note (inline)
 status open
 
 \begin_layout Plain Layout
-If there are any chapter-independent future directions, put them here.
- Otherwise, delete this section.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Chapter
-Closing remarks
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-glsresetall
-\end_layout
-
-\end_inset
-
-
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-Reintroduce all abbreviations
+This isn't done, but my hands are done for the day.
+ 
 \end_layout
 
 \end_inset
@@ -23299,21 +23623,6 @@ LatexCommand bibtex
 btprint "btPrintCited"
 bibfiles "code-refs,refs-PROCESSED"
 options "bibtotoc"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Reference URLs that span pages have clickable links that include the page
- numbers and watermark.
- Try to fix that.
-\end_layout
 
 \end_inset
 
