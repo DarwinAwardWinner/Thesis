@@ -792,7 +792,7 @@ Transplant rejection mediated by adaptive immune response is the major challenge
  is essential for effective treatment.
  Memory lymphocytes are known to resist immune suppression, but the precise
  regulatory mechanisms underlying immune memory are still poorly understood.
- High-throughput genomic assays like microarrays, RNA-seq, and ChIP-seq
+ High-throughput genomic assays such as microarrays, RNA-seq, and ChIP-seq
  are heavily used in the study of immunology and transplant rejection.
  Here we present 3 analyses of such assays in this context.
  First, we re-analyze a large data set consisting of H3K4me2, H3K4me3, and
