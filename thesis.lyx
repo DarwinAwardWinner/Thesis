@@ -260,7 +260,11 @@ pdfbookmark{Title page}{title}
 
 \begin_layout Title
 Bioinformatic analysis of complex, high-throughput genomic and epigenomic
- data in the context of immunology and transplant rejection
+ data in the context of CD4
+\begin_inset Formula $^{+}$
+\end_inset
+
+ T-cell differentiation and diagnosis and treatment of transplant rejection
 \end_layout
 
 \begin_layout Author
