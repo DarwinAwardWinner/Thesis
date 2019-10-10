@@ -23492,29 +23492,56 @@ toolbox
  This prepared me to handle the idiosyncracies of any new data set, even
  when the new data has problems that I have not previously encountered in
  any other data set.
-\end_layout
-
-\begin_layout Itemize
-Pipelines are for established processes, not research
-\end_layout
-
-\begin_layout Itemize
-Research data analysis must be exploratory and flexible.
- Learn the properties of the data and design the analysis to handle them.
+ 
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
+Reusable pipelines have their place, but that place is in automating established
+ processes, not researching new science.
+ For example, the custom 
+\begin_inset Flex Glossary Term
 status open
 
 \begin_layout Plain Layout
-This isn't done, but my hands are done for the day.
- 
+fRMA
 \end_layout
 
 \end_inset
 
+ vectors developed in Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Improving-array-based-diagnostic"
+plural "false"
+caps "false"
+noprefix "false"
 
+\end_inset
+
+, are being incorporated into an automated pipeline for diagnosing transplant
+ rejection using biopsy and blood samples from transplant recipients.
+ Once ready, this diagnostic method will consist of normalization using
+ the pre-trained 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+fRMA
+\end_layout
+
+\end_inset
+
+ vectors, followed by classification of the sample by a pre-trained classifier,
+ which outputs a posterior probability of acute rejection.
+ This is a perfect use case for a proper pipeline: repeating the exact same
+ sequence of analysis steps many times.
+ The input to the pipeline is sufficienrtly well-controlled that we can
+ guarantee it will satisfy the assumptions of the pipeline.
+ But research data is not so well-controlled, so when analyzing data in
+ a research context, the analysis must conform to the data, rather than
+ trying to force the data to conform to a preferred analysis strategy.
+ That means having a toolbox of composable methods ready to respond to the
+ observed properties of the data.
 \end_layout
 
 \begin_layout Standard
