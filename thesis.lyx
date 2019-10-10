@@ -1059,19 +1059,6 @@ Diagnosis and treatment of allograft rejection is a major challenge
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Maybe talk about HLA matching and why it's not an option most of the time.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 To prevent rejection, allograft recipients are treated with immune suppressive
  drugs 
 \begin_inset CommandInset citation
@@ -1238,20 +1225,6 @@ Memory cells are resistant to immune suppression
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Expand on costimulation required by naive cells and how memory cells differ,
- and mechanisms of immune suppression drugs 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 One of the defining features of the adaptive immune system is immune memory:
  the ability of the immune system to recognize a previously encountered
  foreign antigen and respond more quickly and more strongly to that antigen
@@ -1264,13 +1237,61 @@ literal "false"
 \end_inset
 
 .
- When the immune system first encounters a new antigen, the lymphocytes
- that respond are known as naïve cells – T-cells and B-cells that have never
- detected their target antigens before.
+ When the immune system first encounters a new antigen, the T-cells that
+ respond are known as naïve cells – T-cells that have never detected their
+ target antigens before.
  Once activated by their specific antigen presented by an antigen-presenting
  cell in the proper co-stimulatory context, naïve cells differentiate into
  effector cells that carry out their respective functions in targeting and
  destroying the source of the foreign antigen.
+ The 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+TCR
+\end_layout
+
+\end_inset
+
+ is cell-surface protein complex produced by T-cells that is responsible
+ for recognizing the T-cell's specific antigen, presented on a 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+MHC
+\end_layout
+
+\end_inset
+
+, the cell-surface protein complex used by an 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+APC
+\end_layout
+
+\end_inset
+
+ to present antigens to the T-cell.
+ However, a naïve T-cell that recognizes its antigen also requires a co-stimulat
+ory signal, delivered through other interactions between 
+\begin_inset Flex Glossary Term
+status open
+
+\begin_layout Plain Layout
+APC
+\end_layout
+
+\end_inset
+
+ surface proteins and T-cell surface proteins such as CD28.
+ Without proper co-stimulation, a T-cell that recognizes its antigen either
+ dies or enters an unresponsive state known as anergy, in which the T-cell
+ becomes much more resistant to subsequent activation even with proper co-stimul
+ation.
  The dependency of activation on co-stimulation is an important feature
  of naïve lymphocytes that limits 
 \begin_inset Quotes eld
@@ -1280,17 +1301,82 @@ false positive
 \begin_inset Quotes erd
 \end_inset
 
- immune responses, because antigen-presenting cells usually only express
- the proper co-stimulation after detecting evidence of an infection, such
- as the presence of common bacterial cell components or inflamed tissue.
- After the foreign antigen is cleared, most effector cells die since they
+ immune responses against self antigens, because 
+\begin_inset Flex Glossary Term (pl)
+status open
+
+\begin_layout Plain Layout
+APC
+\end_layout
+
+\end_inset
+
+ usually only express the proper co-stimulation after the innate immune
+ system detects signs of an active infection, such as the presence of common
+ bacterial cell components or inflamed tissue.
+ 
+\end_layout
+
+\begin_layout Standard
+After the foreign antigen is cleared, most effector cells die since they
  are no longer needed, but some differentiate into memory cells and remain
  alive indefinitely.
  Like naïve cells, memory cells respond to detection of their specific antigen
- by differentiating into effector cells, ready to fight an infection.
- However, unlike naïve cells, memory cells do not require the same degree
- of co-stimulatory signaling for activation, and once activated, they proliferat
-e and differentiate into effector cells more quickly than naïve cells do.
+ by differentiating into effector cells, ready to fight an infection 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Murphy2012"
+literal "false"
+
+\end_inset
+
+.
+ However, the memory response to antigen is qualitatively different: memory
+ cells are more sensitive to detection of their antigen, and a lower concentrati
+on of antigen is suffiicient to activate them 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Rogers2000,London2000,Berard2002"
+literal "false"
+
+\end_inset
+
+.
+ In addition, memory cells are much less dependent on co-stimulation for
+ activation: they can activate without certain co-stimulatory signals that
+ are required by naïve cells, and the signals they do require are only required
+ at lower levels in order to cause activation 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "London2000"
+literal "false"
+
+\end_inset
+
+.
+ Furthermore, mechanisms that induce tolerance (non-response to antigen)
+ in naïve cells are much less effective on memory cells 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "London2000"
+literal "false"
+
+\end_inset
+
+.
+ Lastly, once activated, memory cells proliferate and differentiate into
+ effector cells more quickly than naïve cells do 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Berard2002"
+literal "false"
+
+\end_inset
+
+.
+ In combination, these changes in lymphocyte behavior upon differentiation
+ into memory cells account for the much quicker and stronger response of
+ the immune system to subsequent exposure to a previously-encountered antigen.
 \end_layout
 
 \begin_layout Standard
