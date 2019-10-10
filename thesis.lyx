@@ -689,9 +689,8 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-\align center
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -772,11 +771,15 @@ Obviously the abstract gets written last.
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
 \begin_layout Chapter*
 Notes to draft readers
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 Thank you so much for agreeing to read my thesis and give me feedback on
  it.
  What you are currently reading is a rough draft, in need of many revisions.
@@ -794,7 +797,7 @@ literal "false"
  Don't worry about keeping up with the updates.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 As for what feedback I'm looking for, first of all, don't waste your time
  marking spelling mistakes and such.
  I haven't run a spell checker on it yet, so let me worry about that.
@@ -806,7 +809,7 @@ As for what feedback I'm looking for, first of all, don't waste your time
  that as well.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 Beyond that, what I'm mainly interested in is feedback on the content.
  For example: does the introduction flow logically, and does it provide
  enough background to understand the other chapters? Does each chapter make
@@ -819,7 +822,7 @@ Beyond that, what I'm mainly interested in is feedback on the content.
  Similarly, if you discover any factual errors, please note them as well.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 You can provide your feedback in whatever way is most convenient to you.
  You could mark up this PDF with highlights and notes, then send it back
  to me.
@@ -841,7 +844,7 @@ also
  of it, and there's no need to comment on it.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 My thesis is due Thursday, October 10th, so in order to be useful to me,
  I'll need your feedback at least several days before that, ideally by Monday,
  October 7th.
@@ -856,8 +859,13 @@ My thesis is due Thursday, October 10th, so in order to be useful to me,
  Just let me know.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 Thanks again for your help, and happy reading!
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
