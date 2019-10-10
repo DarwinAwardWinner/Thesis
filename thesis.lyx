@@ -7317,19 +7317,6 @@ H3K27me3
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Get the IDR threshold
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
@@ -7355,7 +7342,7 @@ Summary of peak-calling statistics.
  
 \series default
 For each histone mark, the number of peaks called using SICER at an IDR
- threshold of ???, the mean width of those peaks, the fraction of the genome
+ threshold of 0.05, the mean width of those peaks, the fraction of the genome
  covered by peaks, and the fraction of reads in peaks (FRiP).
 \end_layout
 
@@ -8856,21 +8843,8 @@ end{landscape}
 \end_layout
 
 \begin_layout Subsection
-Association between resting H3K4me2 and H3K4me3 promoter coverage landscapes
- and gene expression
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Need a better section title, for this and the next one.
-\end_layout
-
-\end_inset
-
-
+Location of H3K4me2 and H3K4me3 promoter coverage associates with gene expressio
+n
 \end_layout
 
 \begin_layout Standard
@@ -9814,8 +9788,7 @@ end{landscape}
 \end_layout
 
 \begin_layout Subsection
-Association between resting H3K27me3 promoter coverage landscapes and gene
- expression
+Patterns of H3K27me3 promoter coverage associate with gene expression
 \end_layout
 
 \begin_layout Standard
@@ -18157,27 +18130,6 @@ Robust fRMA vectors can be generated for new array platforms
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Look up the exact numbers, do a find & replace for 
-\begin_inset Quotes eld
-\end_inset
-
-850
-\begin_inset Quotes erd
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 The published 
 \begin_inset Flex Glossary Term
 status open
@@ -18189,9 +18141,9 @@ fRMA
 \end_inset
 
  normalization vectors for the hgu133plus2 platform were generated from
- a set of about 850 samples chosen from a wide range of tissues, which the
- authors determined was sufficient to generate a robust set of normalization
- vectors that could be applied across all tissues 
+ a set of 850 samples chosen from a wide range of tissues, which the authors
+ determined was sufficient to generate a robust set of normalization vectors
+ that could be applied across all tissues 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "McCall2010"
@@ -18233,36 +18185,8 @@ fRMA
  They are purpose-built for normalizing a specific type of sample on a specific
  platform.
  This is a mostly acceptable limitation in the context of developing a machine
- learning classifier for diagnosing a disease based on samples of a specific
+ learning classifier for diagnosing a disease from samples of a specific
  tissue.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Talk about how these vectors can be used for any data from these tissues
- on this platform even though they were custom made for this data set.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-How to bring up that these custom vectors were used in another project by
- someone else that was never published?
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Subsection
@@ -19375,19 +19299,6 @@ Globin blocking oligonucleotide design
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-HBA1 and HBA2 is wrong for cyno?
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 Four 
 \begin_inset Flex Glossary Term (pl)
 status open
@@ -19402,9 +19313,8 @@ oligo
 \begin_inset Formula $3^{\prime}$
 \end_inset
 
- end of the transcripts for the Cynomolgus HBA1, HBA2 and HBB genes, with
- two hybridization sites for HBB and 2 sites for HBA (the chosen sites were
- identical in both HBA genes).
+ end of the transcripts for the Cynomolgus alpha and beta globin, with two
+ hybridization sites for each gene.
  All 
 \begin_inset Flex Glossary Term (pl)
 status open
