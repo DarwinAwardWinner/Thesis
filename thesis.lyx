@@ -657,7 +657,7 @@ LatexCommand tableofcontents
 
 \begin_layout Standard
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 To create a new abbreviation:
@@ -746,7 +746,7 @@ addcontentsline{toc}{chapter}{Abstract}
 
 \begin_layout Standard
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 It is included as an integral part of the thesis and should immediately
@@ -792,9 +792,12 @@ Transplant rejection mediated by adaptive immune response is the major challenge
  are heavily used in the study of immunology and transplant rejection.
  Here we present 3 analyses of such assays in this context.
  First, we re-analyze a large data set consisting of H3K4me2, H3K4me3, and
- H3K27me3 ChIP-seq data and RNA-seq data in naïve and memory CD4 T-cells
- using modern bioinformatics methods designed to address deficiencies in
- the data and extend the analysis in several new directions.
+ H3K27me3 ChIP-seq data and RNA-seq data in naïve and memory CD4
+\begin_inset Formula $^{+}$
+\end_inset
+
+ T-cells using modern bioinformatics methods designed to address deficiencies
+ in the data and extend the analysis in several new directions.
  All 3 histone marks are found to occur in broad regions and are enriched
  near promoters, but the radius of promoter enrichment is found to be larger
  for H3K27me3.
@@ -805,7 +808,7 @@ Transplant rejection mediated by adaptive immune response is the major challenge
  to be important, with asymmetric associations with gene expression for
  peaks located the same distance up- or downstream of the TSS.
  Second, we demonstrate the effectiveness of fRMA as a single-channel normalizat
-ion for using expression arrays to diagnost transplant rejection in a clinical
+ion for using expression arrays to diagnose transplant rejection in a clinical
  diagnostic setting, and we develop a custom fRMA normalization for a previously
  unsupported array platform.
  For methylation arrays, we adapt methods designed for RNA-seq to improve
@@ -1647,8 +1650,8 @@ HTS
 
 \end_inset
 
- are powerful methods for interrogating gene expression and empigenetic
- state across the entire genome.
+ are powerful methods for interrogating gene expression and epigenetic state
+ across the entire genome.
  However, these data present many unique analysis challenges, and proper
  analysis requires identifying and exploiting genome-wide trends in the
  data to make up for the small sample sizes.
@@ -23181,6 +23184,19 @@ Reintroduce all abbreviations
 \end_layout
 
 \begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Present or past tense for talking about previous chapters?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 In this work, I have presented a wide range of applications for high-thoughput
  genomic and epigenomic assays based on sequencing and arrays in the context
  of immunology and transplant rejection.
@@ -23309,7 +23325,7 @@ ChIP-seq
 
 \end_inset
 
- data required choosing a 
+ data required choosing an 
 \begin_inset Quotes eld
 \end_inset
 
