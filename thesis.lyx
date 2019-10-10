@@ -23208,19 +23208,6 @@ Reintroduce all abbreviations
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Present or past tense for talking about previous chapters?
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 In this work, I have presented a wide range of applications for high-thoughput
  genomic and epigenomic assays based on sequencing and arrays in the context
  of immunology and transplant rejection.
@@ -23255,7 +23242,7 @@ ChIP-seq
 \end_inset
 
  to investigate the interplay between promoter histone marks and gene expression
- during activation of naive and memory CD4
+ during activation of naïve and memory CD4
 \begin_inset Formula $^{+}$
 \end_inset
 
