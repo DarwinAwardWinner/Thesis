@@ -729,6 +729,19 @@ printglossaries
 
 \begin_layout Chapter*
 Abstract
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+addcontentsline{toc}{chapter}{Abstract}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -769,16 +782,41 @@ Do not include graphs, charts, tables, or illustrations in your abstract.
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Obviously the abstract gets written last.
-\end_layout
-
-\end_inset
-
-
+Transplant rejection mediated by adaptive immune response is the major challenge
+ to long-term graft survival.
+ Rejection is treated with immune suppressive drugs, but early diagnosis
+ is essential for effective treatment.
+ Memory lymphocytes are known to resist immune suppression, but the precise
+ regulatory mechanisms underlying immune memory are still poorly understood.
+ High-throughput genomic assays like microarrays, RNA-seq, and ChIP-seq
+ are heavily used in the study of immunology and transplant rejection.
+ Here we present 3 analyses of such assays in this context.
+ First, we re-analyze a large data set consisting of H3K4me2, H3K4me3, and
+ H3K27me3 ChIP-seq data and RNA-seq data in naïve and memory CD4 T-cells
+ using modern bioinformatics methods designed to address deficiencies in
+ the data and extend the analysis in several new directions.
+ All 3 histone marks are found to occur in broad regions and are enriched
+ near promoters, but the radius of promoter enrichment is found to be larger
+ for H3K27me3.
+ We observe that both gene expression and promoter histone methylation in
+ naïve and memory cells converges on a common signature 14 days after activation
+, consistent with differentiation of naïve cells into memory cells.
+ The location of histone modifications within the promoter is also found
+ to be important, with asymmetric associations with gene expression for
+ peaks located the same distance up- or downstream of the TSS.
+ Second, we demonstrate the effectiveness of fRMA as a single-channel normalizat
+ion for using expression arrays to diagnost transplant rejection in a clinical
+ diagnostic setting, and we develop a custom fRMA normalization for a previously
+ unsupported array platform.
+ For methylation arrays, we adapt methods designed for RNA-seq to improve
+ the sensitivity of differential methylation analysis by modeling the heterosked
+asticity inherent in the data.
+ Finally, we present and validate a novel method for RNA-seq of cynomolgus
+ monkey blood samples using complementary oligonucleotides to prevent wasteful
+ over-sequencing of globin genes.
+ These results all demonstrate the usefulness of a toolbox full of flexible
+ and modular analysis methods in analyzing complex high-throughput assays
+ in contexts ranging from basic science to translational medicine.
 \end_layout
 
 \begin_layout Standard
