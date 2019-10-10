@@ -23375,7 +23375,7 @@ GB
 \end_inset
 
  protocol went through several rounds of testing before satisfactory performance
- was achieved, and as mentioned, optimization of protocol has continued
+ was achieved, and as mentioned, optimization of the protocol has continued
  past the version described here.
  These are only a few examples out of many instances of analysis decisions
  motivated by the properties of the data.
@@ -23504,7 +23504,7 @@ M-value
 \end_inset
 
  from methylation arrays.
- In contrast, adapting something like 
+ In contrast, adapting another method such as 
 \begin_inset Flex Code
 status open
 
