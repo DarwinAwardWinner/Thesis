@@ -997,20 +997,6 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-How much mechanistic detail is needed here? My work doesn't really go into
- specific rejection mechanisms, so I think it's best to keep it basic.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 Because an allograft comes from a donor of the same species who is genetically
  distinct from the recipient (with rare exceptions), genetic variants in
  protein-coding regions affect the polypeptide sequences encoded by the
@@ -3788,7 +3774,7 @@ noprefix "false"
  looks at several array-based assays with the potential to diagnose transplant
  rejection and shows that analyses of this array data are greatly improved
  by paying careful attention to normalization and preprocessing.
- Finally Chapter 
+ Chapter 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "chap:Globin-blocking-cyno"
@@ -3810,19 +3796,19 @@ RNA-seq
 
  of non-human primate blood samples by preventing reverse transcription
  of unwanted globin transcripts.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Add a sentence about Ch5 once written
-\end_layout
+ Finally, Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Conclusions"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
-
+ summarizes the overarching lessons and strategies learned through these
+ analyses that can be applied to all future analyses of high-throughput
+ genomic assays.
 \end_layout
 
 \begin_layout Chapter
@@ -23121,6 +23107,12 @@ GB
 \end_layout
 
 \begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Conclusions"
+
+\end_inset
+
 Conclusions
 \end_layout
 
@@ -23360,7 +23352,7 @@ ChIP-seq
 s code in order to accommodate the new aspect of the data.
  The prospect of reusability turned out to be a pipe(line) dream.
  After several attempts to extend my pipelines to be general enough to handle
- an ever-increasing variety of data idiosyncracies, I realized that it was
+ an ever-increasing variety of data idiosyncrasies, I realized that it was
  actually 
 \emph on
 less
@@ -23489,7 +23481,7 @@ toolbox
  full of useful modular analysis methods and developed the knowledge of
  when and where each could be applied, as well as how to compose them on
  demand into pipelines for specific data sets.
- This prepared me to handle the idiosyncracies of any new data set, even
+ This prepared me to handle the idiosyncrasies of any new data set, even
  when the new data has problems that I have not previously encountered in
  any other data set.
  
@@ -23535,13 +23527,13 @@ fRMA
  which outputs a posterior probability of acute rejection.
  This is a perfect use case for a proper pipeline: repeating the exact same
  sequence of analysis steps many times.
- The input to the pipeline is sufficienrtly well-controlled that we can
- guarantee it will satisfy the assumptions of the pipeline.
+ The input to the pipeline is sufficiently well-controlled that we can guarantee
+ it will satisfy the assumptions of the pipeline.
  But research data is not so well-controlled, so when analyzing data in
  a research context, the analysis must conform to the data, rather than
  trying to force the data to conform to a preferred analysis strategy.
- That means having a toolbox of composable methods ready to respond to the
- observed properties of the data.
+ That means having a toolbox full of composable methods ready to respond
+ to the observed properties of the data.
 \end_layout
 
 \begin_layout Standard
