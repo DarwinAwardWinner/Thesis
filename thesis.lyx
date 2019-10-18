@@ -5960,6 +5960,20 @@ trajectory
 \end_layout
 
 \begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Which promoters were considered? Only ones with peaks? Only expressed genes?
+ I don't recall exactly the filtering criteria.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 To investigate whether the location of a peak within the promoter region
  was important, 
 \begin_inset Quotes eld
