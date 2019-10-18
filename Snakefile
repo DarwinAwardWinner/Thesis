@@ -6,6 +6,7 @@ import regex
 import urllib.parse
 import os.path
 import bibtexparser
+import mistune
 
 from collections.abc import Iterable, Mapping
 from distutils.spawn import find_executable
@@ -13,6 +14,10 @@ from fnmatch import fnmatch
 from subprocess import check_output, check_call
 from tempfile import NamedTemporaryFile
 from bibtexparser.bibdatabase import BibDatabase
+from lxml import html
+from snakemake.utils import min_version
+
+min_version('3.7.1')
 
 try:
     from os import scandir, walk
@@ -91,7 +96,8 @@ def find_lyx():
         except Exception:
             pass
     else:
-        # Fallback which will just trigger an error when run
+        # Fallback which will just trigger an error when run (we don't
+        # want to trigger an error now, while building the rules)
         return '/bin/false'
 
 LYX_PATH = find_lyx()
@@ -201,22 +207,27 @@ def tex_gfx_extensions(tex_format = 'xetex'):
     except FileNotFoundError:
         return ()
 
+def get_mkdn_included_images(fname):
+    '''Return list of all images references in a markdown file.'''
+    with open(fname) as f:
+        tree = html.fromstring(mistune.markdown(f.read()))
+    return list(map(str, tree.xpath("//img/@src")))
+
 rsync_common_args = ['-rL', '--size-only', '--delete', '--exclude', '.DS_Store', '--delete-excluded',]
 
 rule build_all:
-    input: 'thesis.pdf', 'thesis-final.pdf'
+    input: 'thesis.pdf', 'thesis-final.pdf', 'presentation.pdf'
 
 # Note: Any rule that generates an input LyX file for this rule must
 # be marked as a checkpoint. See
 # https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#data-dependent-conditional-execution
-rule lyx_to_pdf:
+rule thesis_lyx_to_pdf:
     '''Produce PDF output for a LyX file.'''
     input: lyxfile = '{basename}.lyx',
            gfx_deps = lambda wildcards: lyx_gfx_deps(wildcards.basename + '.lyx'),
            bib_deps = lambda wildcards: lyx_bib_deps(wildcards.basename + '.lyx'),
            tex_deps = lambda wildcards: lyx_input_deps(wildcards.basename + '.lyx'),
-    # This rule doesn't produce the PDFs in graphics/
-    output: pdf='{basename,(?!graphics/).*}.pdf'
+    output: pdf='{basename,thesis.*}.pdf'
     run:
         if not LYX_PATH or LYX_PATH == '/bin/false':
             raise Exception('Path to LyX  executable could not be found.')
@@ -313,3 +324,22 @@ rule R_to_html:
     input: '{dirname}/{basename}.R'
     output: '{dirname}/{basename,[^/]+}.R.html'
     shell: 'pygmentize -f html -O full -l R -o {output:q} {input:q}'
+
+rule build_presentation:
+    input:
+        extra_preamble='extra-preamble.latex',
+        mkdn_file='{basename}.mkdn',
+        images=lambda wildcards: get_mkdn_included_images('{basename}.mkdn'.format(**wildcards)),
+    output:
+        pdf='{basename,presentation.*}.pdf'
+    params:
+        theme='Warsaw'
+    shell: '''
+    pandoc \
+      -f markdown -t beamer \
+      --pdf-engine=xelatex \
+      -o {output.pdf:q} \
+      -H {input.extra_preamble:q} \
+      -V theme:{params.theme:q} \
+      {input.mkdn_file:q}
+    '''
