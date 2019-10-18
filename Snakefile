@@ -253,6 +253,8 @@ shortest URL is kept.'''
                 try:
                     entry_urls = regex.split('\\s+', entry['url'])
                     shortest_url = min(entry_urls, key=len)
+                    # Need to fix e.g. 'http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=55329{\\&}tool=pmcentrez{\\&}rendertype=abstract'
+                    shortest_url = re.sub('\\{\\\\(.)\\}', '\\1', shortest_url)
                     entry['url'] = shortest_url
                 except KeyError:
                     pass
