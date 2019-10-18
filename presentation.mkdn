@@ -1,4 +1,4 @@
-% Title: na&#239;ve and memory CD4 T-cell activation
+% Bioinformatic analysis of complex, high-throughput genomic and epigenomic data in the context of $\mathsf{CD4}^{+}$ T-cell differentiation and diagnosis and treatment of transplant rejection
 % Ryan C. Thompson \
   Su Lab \
   The Scripps Research Institute
@@ -57,6 +57,50 @@
 ![Kidney allograft survival rates in children by transplant year[^3]](graphics/presentation/kidney-graft-survival.png){ height=65% }
 
 [^3]: Kim & Marks. "Long-term outcomes of children after solid organ transplantation". In: Clinics (2014)
+
+## Rejection is treated with immune suppressive drugs
+
+* To prevent rejection, a graft recipient must take immune suppressive
+  drugs for the rest of their life
+
+* The graft is periodically checked for signs of rejection, and immune
+  suppression dosage is adjusted accordingly
+
+* Immune suppression is a delicate balance: too much leads to immune
+  compromise; too little leads to rejection.
+
+. . .
+
+* Both diagnosis and treatment present significant challenges
+
+* Immune memory is a major confounder
+
+## My thesis topics
+
+### Chapter 2
+Genome-wide epigenetic analysis of H3K4 and H3K27 methylation in naïve
+and memory $\mathsf{CD4}^{+}$ T-cell activation
+
+### Chapter 3
+Improving array-based diagnostics for transplant rejection by
+optimizing data preprocessing
+
+### Chapter 4
+Globin-blocking for more effective blood RNA-seq analysis in primate
+animal model for experimental graft rejection treatment
+
+## Today's focus
+
+### Chapter 2
+
+\Large
+
+Genome-wide epigenetic analysis of H3K4 and H3K27 methylation in naïve
+and memory $\mathsf{CD4}^{+}$ T-cell activation
+
+## Memory cells: faster, stronger, and more independent
+
+![Memory T-cells proliferate and respond more quickly](graphics/presentation/T-cells-SVG.pdf)
 
 ## Immune memory is a significant contributor to rejection
 

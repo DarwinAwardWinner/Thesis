@@ -36,7 +36,6 @@
 \setbeamertemplate{headline}{}
 
 %% Shorten footer title
-%% TODO: CHANGE THIS
 \makeatletter
 \setbeamertemplate{footline}
 {
@@ -46,7 +45,7 @@
     \usebeamerfont{author in head/foot}Ryan C. Thompson\hspace*{1em}
   \end{beamercolorbox}%
   \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,left]{title in head/foot}%
-    \usebeamerfont{title in head/foot}\hspace*{1em}Analyzing ChIP-seq Promoter Coverage Landscapes
+    \usebeamerfont{title in head/foot}\hspace*{1em}Genomic and epigenomic analysis of $\mathsf{CD4}^{+}$ memory
   \end{beamercolorbox}}%
   \vskip0pt%
 }
