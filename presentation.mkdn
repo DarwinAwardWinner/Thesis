@@ -6,11 +6,205 @@
 
 # Intro
 
-## A slide
+# Biological motivation: Transplant rejection
 
-This is a slide.
+## Organ transplants are a life-saving treatment for many
 
-## Another slide
+\Large
 
-This is another slide.
+* 36,528 transplants performed in the USA in 2018[^1]
 
+. . .
+
+* 100 transplants every day!
+
+. . .
+
+* Over 113,000 people on the national transplant waiting list as of
+  July 2019
+
+[^1]: Source: https://www.organdonor.gov/statistics-stories/statistics.html
+
+## Organ transplants are a life-saving treatment for many
+
+![Organ donation statistics for the USA in 2018[^2]](graphics/presentation/transplants-organ-CROP.pdf){ height=70% }
+
+[^2]: Source: https://www.organdonor.gov/statistics-stories/statistics.html
+
+## Rejection is an adaptive immune response against a graft
+
+* The host's adaptive immune system identifies and attacks cells
+  bearing non-self antigens
+
+. . .
+
+* An allograft contains differnet genetic variants from the host,
+  resulting in protein-coding differences
+
+. . .
+
+* Left unchecked, the host immune system eventually notices these
+  alloantigens and begins attacking (rejecting) the graft
+
+. . .
+
+\Large
+
+* Rejection is the major long-term threat to organ allografts
+
+## Allograft rejection remains a major long-term problem
+
+![Kidney allograft survival rates in children by transplant year[^3]](graphics/presentation/kidney-graft-survival.png){ height=65% }
+
+[^3]: Kim & Marks. "Long-term outcomes of children after solid organ transplantation". In: Clinics (2014)
+
+## Immune memory is a significant contributor to rejection
+
+![Memory T-cells proliferate and respond more quickly](graphics/presentation/T-cells-SVG.pdf)
+
+# Figure Storage
+
+## Slides
+<!-- ## Slide -->
+
+<!-- ![Figure](graphics/Intro/eBayes-CROP-RASTER.png) -->
+
+<!-- ## Slide -->
+
+<!-- ![Figure](graphics/CD4-csaw/IDR/D4659vsD5053_epic-PAGE1-CROP-RASTER.png) -->
+
+<!-- ## Slide -->
+
+<!-- ![Figure](graphics/CD4-csaw/ChIP-seq/H3K4me2-sample-MAplot-bins-CROP.png) -->
+
+<!-- ## Slide -->
+
+<!-- ![Figure](graphics/Intro/med-pval-hist-colored-CROP.pdf) -->
+
+<!-- ## Slide -->
+
+<!-- ![Figure](graphics/CD4-csaw/RNA-seq/PCA-no-batchsub-CROP.png) -->
+
+<!-- ## Slide -->
+
+<!-- ![Figure](graphics/CD4-csaw/RNA-seq/PCA-combat-batchsub-CROP.png) -->
+
+<!-- ## Slide -->
+
+<!-- ![Figure](graphics/CD4-csaw/RNA-seq/weights-vs-covars-nobcv-CROP.png) -->
+
+<!-- ## Slide -->
+
+<!-- ![Figure](graphics/CD4-csaw/csaw/CCF-plots-noBL-PAGE2-CROP.pdf) -->
+
+<!-- ## Slide -->
+
+<!-- ![Figure](graphics/CD4-csaw/csaw/CCF-plots-PAGE2-CROP.pdf) -->
+
+<!-- ## Slide -->
+
+<!-- ![Figure](graphics/CD4-csaw/ChIP-seq/H3K4me2-PCA-raw-CROP.png) -->
+
+<!-- ## Slide -->
+
+<!-- ![Figure](graphics/CD4-csaw/ChIP-seq/H3K4me2-PCA-SVsub-CROP.png) -->
+
+<!-- ## Slide -->
+
+<!-- ![Figure](graphics/CD4-csaw/ChIP-seq/H3K4me3-PCA-raw-CROP.png) -->
+
+<!-- ## Slide -->
+
+<!-- ![Figure](graphics/CD4-csaw/ChIP-seq/H3K4me3-PCA-SVsub-CROP.png) -->
+
+<!-- ## Slide -->
+
+<!-- ![Figure](graphics/CD4-csaw/ChIP-seq/H3K27me3-PCA-raw-CROP.png) -->
+
+<!-- ## Slide -->
+
+<!-- ![Figure](graphics/CD4-csaw/ChIP-seq/H3K27me3-PCA-SVsub-CROP.png) -->
+
+<!-- ## Slide -->
+
+<!-- ![Figure](graphics/CD4-csaw/MOFA-varExplaiend-matrix-CROP.png) -->
+
+<!-- ## Slide -->
+
+<!-- ![Figure](graphics/CD4-csaw/MOFA-LF-scatter-small.png) -->
+
+<!-- ## Slide -->
+
+<!-- ![Figure](graphics/CD4-csaw/MOFA-batch-correct-CROP.png) -->
+
+<!-- ## Slide -->
+
+<!-- ![Figure](graphics/CD4-csaw/RNA-seq/PCA-final-12-CROP.png) -->
+
+<!-- ## Slide -->
+
+<!-- ![Figure](graphics/CD4-csaw/Promoter-Peak-Distance-Profile-PAGE1-CROP.pdf) -->
+
+<!-- ## Slide -->
+
+<!-- ![Figure](graphics/CD4-csaw/FPKM-by-Peak-Violin-Plots-CROP.pdf) -->
+
+<!-- ## Slide -->
+
+<!-- ![Figure](graphics/CD4-csaw/ChIP-seq/H3K4me2-promoter-PCA-group-CROP.png) -->
+
+<!-- ## Slide -->
+
+<!-- ![Figure](graphics/CD4-csaw/ChIP-seq/H3K4me3-promoter-PCA-group-CROP.png) -->
+
+<!-- ## Slide -->
+
+<!-- ![Figure](graphics/CD4-csaw/ChIP-seq/H3K27me3-promoter-PCA-group-CROP.png) -->
+
+<!-- ## Slide -->
+
+<!-- ![Figure](graphics/CD4-csaw/RNA-seq/PCA-final-23-CROP.png) -->
+
+<!-- ## Slide -->
+
+<!-- ![Figure](graphics/CD4-csaw/ChIP-seq/H3K4me2-neighborhood-clusters-CROP.png) -->
+
+<!-- ## Slide -->
+
+<!-- ![Figure](graphics/CD4-csaw/ChIP-seq/H3K4me2-neighborhood-PCA-CROP.png) -->
+
+<!-- ## Slide -->
+
+<!-- ![Figure](graphics/CD4-csaw/ChIP-seq/H3K4me2-neighborhood-expression-CROP.png) -->
+
+<!-- ## Slide -->
+
+<!-- ![Figure](graphics/CD4-csaw/ChIP-seq/H3K4me3-neighborhood-clusters-CROP.png) -->
+
+<!-- ## Slide -->
+
+<!-- ![Figure](graphics/CD4-csaw/ChIP-seq/H3K4me3-neighborhood-PCA-CROP.png) -->
+
+<!-- ## Slide -->
+
+<!-- ![Figure](graphics/CD4-csaw/ChIP-seq/H3K4me3-neighborhood-expression-CROP.png) -->
+
+<!-- ## Slide -->
+
+<!-- ![Figure](graphics/CD4-csaw/ChIP-seq/H3K27me3-neighborhood-clusters-CROP.png) -->
+
+<!-- ## Slide -->
+
+<!-- ![Figure](graphics/CD4-csaw/ChIP-seq/H3K27me3-neighborhood-PCA-CROP.png) -->
+
+<!-- ## Slide -->
+
+<!-- ![Figure](graphics/CD4-csaw/ChIP-seq/H3K27me3-neighborhood-expression-CROP.png) -->
+
+<!-- ## Slide -->
+
+<!-- ![Figure](graphics/CD4-csaw/LaMere2016_fig8.pdf) -->
+
+<!-- ## Slide -->
+
+<!-- ![Figure](graphics/CD4-csaw/rulegraphs/rulegraph-all.pdf) -->

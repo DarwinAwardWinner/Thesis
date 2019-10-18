@@ -6,7 +6,7 @@ import regex
 import urllib.parse
 import os.path
 import bibtexparser
-import mistune
+import pypandoc
 
 from collections.abc import Iterable, Mapping
 from distutils.spawn import find_executable
@@ -210,8 +210,14 @@ def tex_gfx_extensions(tex_format = 'xetex'):
 def get_mkdn_included_images(fname):
     '''Return list of all images references in a markdown file.'''
     with open(fname) as f:
-        tree = html.fromstring(mistune.markdown(f.read()))
+        tree = html.fromstring(pypandoc.convert_text(f.read(), 'html', format='md'))
     return list(map(str, tree.xpath("//img/@src")))
+
+def get_mkdn_included_pdfs(fname):
+    '''Return list of all images references in a markdown file.'''
+    with open(fname) as f:
+        tree = html.fromstring(pypandoc.convert_text(f.read(), 'html', format='md'))
+    return list(map(str, tree.xpath("//embed/@src")))
 
 rsync_common_args = ['-rL', '--size-only', '--delete', '--exclude', '.DS_Store', '--delete-excluded',]
 
@@ -314,10 +320,19 @@ rule png_crop:
     output: pdf = 'graphics/{basename,.*(?<!-CROP)}-CROP.png'
     shell: 'convert {input:q} -trim {output:q}'
 
+rule jpg_crop:
+    '''Crop away empty margins from a JPG.'''
+    input: pdf = 'graphics/{basename}.jpg'
+    output: pdf = 'graphics/{basename,.*(?<!-CROP)}-CROP.jpg'
+    shell: 'convert {input:q} -trim {output:q}'
+
 rule svg_to_pdf:
     input: 'graphics/{filename}.svg'
     output: 'graphics/{filename}-SVG.pdf'
-    shell: '''inkscape {input:q} --export-pdf={output:q} --export-dpi=300'''
+    run:
+        infile = os.path.join(os.path.abspath("."), input[0])
+        outfile = os.path.join(os.path.abspath("."), output[0])
+        shell('''inkscape {infile:q} --export-pdf={outfile:q} --export-dpi=300''')
 
 rule R_to_html:
     '''Render an R script as syntax-hilighted HTML.'''
@@ -330,6 +345,7 @@ rule build_presentation:
         extra_preamble='extra-preamble.latex',
         mkdn_file='{basename}.mkdn',
         images=lambda wildcards: get_mkdn_included_images('{basename}.mkdn'.format(**wildcards)),
+        pdfs=lambda wildcards: get_mkdn_included_pdfs('{basename}.mkdn'.format(**wildcards)),
     output:
         pdf='{basename,presentation.*}.pdf'
     params:
@@ -342,4 +358,15 @@ rule build_presentation:
       -H {input.extra_preamble:q} \
       -V theme:{params.theme:q} \
       {input.mkdn_file:q}
+    '''
+
+rule make_transplant_organs_graph:
+    input:
+        Rscript='graphics/presentation/transplants-organ.R',
+        data='graphics/presentation/transplants-organ.xlsx',
+    output:
+        pdf='graphics/presentation/transplants-organ.pdf'
+
+    shell: '''
+    Rscript 'graphics/presentation/transplants-organ.R'
     '''
