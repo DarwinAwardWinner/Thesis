@@ -132,10 +132,13 @@ account.
 
 def lyx_input_deps(lyxfile):
     '''Return an iterator over all tex files included by a Lyx file.'''
-    with open(lyxfile) as f:
-        lyx_text = f.read()
-    for m in regex.finditer('\\\\(?:input|loadglsentries){(.*?[.]tex)}', lyx_text):
-        yield m.group(1)
+    try:
+        with open(lyxfile) as f:
+            lyx_text = f.read()
+        for m in regex.finditer('\\\\(?:input|loadglsentries){(.*?[.]tex)}', lyx_text):
+            yield m.group(1)
+    except FileNotFoundError:
+        pass
 
 def lyx_bib_deps(lyxfile):
     '''Return an iterator over all bib files referenced by a Lyx file.
@@ -144,35 +147,45 @@ def lyx_bib_deps(lyxfile):
     unreliable in the case of an auto-generated bib file.
 
     '''
-    with open(lyxfile) as f:
-        lyx_text = f.read()
-    bib_names = regex.search('bibfiles "(.*?)"', lyx_text).group(1).split(',')
-    # Unfortunately LyX doesn't indicate which bib names refer to
-    # files in the current directory and which don't. Currently that's
-    # not a problem for me since all my refs are in bib files in the
-    # current directory.
-    for bn in bib_names:
-        bib_path = bn + '.bib'
-        yield bib_path
+    try:
+        with open(lyxfile) as f:
+            lyx_text = f.read()
+        bib_names = regex.search('bibfiles "(.*?)"', lyx_text).group(1).split(',')
+        # Unfortunately LyX doesn't indicate which bib names refer to
+        # files in the current directory and which don't. Currently that's
+        # not a problem for me since all my refs are in bib files in the
+        # current directory.
+        for bn in bib_names:
+            bib_path = bn + '.bib'
+            yield bib_path
+    except FileNotFoundError:
+        pass
+
 
 def lyx_gfx_deps(lyxfile):
     '''Return an iterator over all graphics files included by a LyX file.'''
-    with open(lyxfile) as f:
-        lyx_text = f.read()
-    for m in regex.finditer('\\\\begin_inset Graphics\\s+filename (.*?)$', lyx_text, regex.MULTILINE):
-        yield m.group(1)
+    try:
+        with open(lyxfile) as f:
+            lyx_text = f.read()
+        for m in regex.finditer('\\\\begin_inset Graphics\\s+filename (.*?)$', lyx_text, regex.MULTILINE):
+            yield m.group(1)
+    except FileNotFoundError:
+        pass
 
 def lyx_hrefs(lyxfile):
     '''Return an iterator over hrefs in a LyX file.'''
-    pattern = '''
-    (?xsm)
-    ^ LatexCommand \\s+ href \\s* \\n
-    (?: name \\b [^\\n]+ \\n )?
-    target \\s+ "(.*?)" $
-    '''
-    with open(lyxfile) as f:
-        return (urllib.parse.unquote(m.group(1)) for m in
-                re.finditer(pattern, f.read()))
+    try:
+        pattern = '''
+        (?xsm)
+        ^ LatexCommand \\s+ href \\s* \\n
+        (?: name \\b [^\\n]+ \\n )?
+        target \\s+ "(.*?)" $
+        '''
+        with open(lyxfile) as f:
+            return (urllib.parse.unquote(m.group(1)) for m in
+                    re.finditer(pattern, f.read()))
+    except FileNotFoundError:
+        pass
 
 def tex_gfx_extensions(tex_format = 'xetex'):
     '''Return the ordered list of graphics extensions.
@@ -181,53 +194,48 @@ def tex_gfx_extensions(tex_format = 'xetex'):
     \\includegraphics path.
 
     '''
-    cmdout = check_output_decode(['texdef', '-t', tex_format, '-p', 'graphicx', 'Gin@extensions'])
-    m = regex.search('^macro:->(.*?)$', cmdout, regex.MULTILINE)
-    return m.group(1).split(',')
+    try:
+        cmdout = check_output_decode(['texdef', '-t', tex_format, '-p', 'graphicx', 'Gin@extensions'])
+        m = regex.search('^macro:->(.*?)$', cmdout, regex.MULTILINE)
+        return m.group(1).split(',')
+    except FileNotFoundError:
+        return ()
 
 rsync_common_args = ['-rL', '--size-only', '--delete', '--exclude', '.DS_Store', '--delete-excluded',]
 
 rule build_all:
     input: 'thesis.pdf', 'thesis-final.pdf'
 
-# Currently assumes the lyx file always exists, because it is required
-# to get the gfx and bib dependencies
+# Note: Any rule that generates an input LyX file for this rule must
+# be marked as a checkpoint. See
+# https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#data-dependent-conditional-execution
 rule lyx_to_pdf:
     '''Produce PDF output for a LyX file.'''
     input: lyxfile = '{basename}.lyx',
            gfx_deps = lambda wildcards: lyx_gfx_deps(wildcards.basename + '.lyx'),
            bib_deps = lambda wildcards: lyx_bib_deps(wildcards.basename + '.lyx'),
            tex_deps = lambda wildcards: lyx_input_deps(wildcards.basename + '.lyx'),
-    # Need to exclude pdfs in graphics/
-    output: pdf='{basename,(?!graphics/).*(?<!-final)}.pdf'
+    # This rule doesn't produce the PDFs in graphics/
+    output: pdf='{basename,(?!graphics/).*}.pdf'
     run:
         if not LYX_PATH or LYX_PATH == '/bin/false':
-            raise Exception('PAth to LyX  executable could not be found.')
+            raise Exception('Path to LyX  executable could not be found.')
         shell('''{LYX_PATH:q} -batch --verbose --export-to pdf4 {output.pdf:q} {input.lyxfile:q}''')
         if PDFINFO_PATH:
             shell('''{PDFINFO_PATH} {output.pdf:q}''')
 
-rule lyx_to_pdf_final:
-    '''Produce PDF output for a LyX file with the final option enabled.'''
-    input: lyxfile = '{basename}.lyx',
-           gfx_deps = lambda wildcards: lyx_gfx_deps(wildcards.basename + '.lyx'),
-           bib_deps = lambda wildcards: lyx_bib_deps(wildcards.basename + '.lyx'),
-           tex_deps = lambda wildcards: lyx_input_deps(wildcards.basename + '.lyx'),
-    # Need to exclude pdfs in graphics/
-    output: pdf='{basename,(?!graphics/).*}-final.pdf',
-            lyxtemp='{basename,(?!graphics/).*}-final.lyx',
+checkpoint lyx_add_final:
+    '''Copy LyX file and add final option.'''
+    input: lyxfile = '{basename}.lyx'
+    # Ensure we can't get file-final-final-final-final.lyx
+    output: lyxtemp = temp('{basename,(?!graphics/).*(?<!-final)}-final.lyx')
     run:
-        if not LYX_PATH or LYX_PATH == '/bin/false':
-            raise Exception('PAth to LyX  executable could not be found.')
         with open(input.lyxfile, 'r') as infile, \
              open(output.lyxtemp, 'w') as outfile:
             lyx_text = infile.read()
             if not regex.search('\\\\options final', lyx_text):
                 lyx_text = regex.sub('\\\\use_default_options true', '\\\\options final\n\\\\use_default_options true', lyx_text)
             outfile.write(lyx_text)
-        shell('''{LYX_PATH:q} -batch --verbose --export-to pdf4 {output.pdf:q} {output.lyxtemp:q}''')
-        if PDFINFO_PATH:
-            shell('''{PDFINFO_PATH} {output.pdf:q}''')
 
 # TODO: Remove all URLs from entries with a DOI
 rule process_bib:
