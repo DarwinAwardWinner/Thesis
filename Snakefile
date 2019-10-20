@@ -367,7 +367,9 @@ rule build_presentation:
     output:
         pdf='{basename,presentation.*}.pdf'
     params:
-        theme='Warsaw'
+        # https://pandoc.org/MANUAL.html#variables-for-beamer-slides
+        theme='Warsaw',
+        aspectratio='169',
     shell: '''
     pandoc \
       -f markdown -t beamer \
@@ -375,6 +377,7 @@ rule build_presentation:
       -o {output.pdf:q} \
       -H {input.extra_preamble:q} \
       -V theme:{params.theme:q} \
+      -V aspectratio:{params.aspectratio:q} \
       {input.mkdn_file:q}
     '''
 
