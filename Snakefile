@@ -367,8 +367,9 @@ rule build_presentation:
     output:
         pdf='{basename,presentation.*}.pdf'
     params:
+        # http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+        theme='Boadilla',
         # https://pandoc.org/MANUAL.html#variables-for-beamer-slides
-        theme='Warsaw',
         aspectratio='169',
     shell: '''
     pandoc \
