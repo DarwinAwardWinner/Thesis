@@ -309,10 +309,20 @@ rule pdf_crop:
     shell: 'pdfcrop --resolution 300 {input:q} {output:q}'
 
 rule pdf_raster:
-    '''Rasterize PDF to PNG at 600 PPI.'''
+    '''Rasterize PDF to PNG at 600 PPI.
+
+    The largest dimension is scaled '''
     input: pdf = 'graphics/{basename}.pdf'
     output: png = 'graphics/{basename}-RASTER.png'
-    shell: 'pdftoppm -r 600 {input:q} | convert - {output:q}'
+    shell: 'pdftoppm -singlefile -r 600 {input:q} | convert - {output:q}'
+
+rule pdf_raster_res:
+    '''Rasterize PDF to PNG at specific PPI.
+
+    The largest dimension is scaled '''
+    input: pdf = 'graphics/{basename}.pdf'
+    output: png = 'graphics/{basename}-RASTER{res,[1-9][0-9]+}.png'
+    shell: 'pdftoppm -singlefile -r {wildcards.res} {input:q} | convert - {output:q}'
 
 rule png_crop:
     '''Crop away empty margins from a PNG.'''
@@ -333,6 +343,14 @@ rule svg_to_pdf:
         infile = os.path.join(os.path.abspath("."), input[0])
         outfile = os.path.join(os.path.abspath("."), output[0])
         shell('''inkscape {infile:q} --export-pdf={outfile:q} --export-dpi=300''')
+
+rule svg_raster:
+    input: 'graphics/{filename}.svg'
+    output: 'graphics/{filename}-SVG.png'
+    run:
+        infile = os.path.join(os.path.abspath("."), input[0])
+        outfile = os.path.join(os.path.abspath("."), output[0])
+        shell('''inkscape {infile:q} --export-png={outfile:q} --export-dpi=300''')
 
 rule R_to_html:
     '''Render an R script as syntax-hilighted HTML.'''
