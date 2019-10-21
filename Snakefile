@@ -358,7 +358,7 @@ rule R_to_html:
     output: '{dirname}/{basename,[^/]+}.R.html'
     shell: 'pygmentize -f html -O full -l R -o {output:q} {input:q}'
 
-rule build_presentation:
+rule build_presentation_beamer:
     input:
         extra_preamble='extra-preamble.latex',
         mkdn_file='{basename}.mkdn',
@@ -381,6 +381,26 @@ rule build_presentation:
       -V aspectratio:{params.aspectratio:q} \
       {input.mkdn_file:q}
     '''
+
+rule build_presentation_ppt:
+    input:
+        extra_preamble='extra-preamble.latex',
+        mkdn_file='{basename}.mkdn',
+        images=lambda wildcards: get_mkdn_included_images('{basename}.mkdn'.format(**wildcards)),
+        pdfs=lambda wildcards: get_mkdn_included_pdfs('{basename}.mkdn'.format(**wildcards)),
+    output:
+        pptx='{basename,presentation.*}.pptx'
+    shell: '''
+    pandoc \
+      -f markdown -t pptx \
+      -o {output.pptx:q} \
+      {input.mkdn_file:q}
+    '''
+
+rule build_all_presentations:
+    input:
+        'presentation.pdf',
+        'presentation.pptx',
 
 rule make_transplant_organs_graph:
     input:
