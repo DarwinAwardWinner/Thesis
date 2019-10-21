@@ -377,8 +377,6 @@ rule build_presentation_beamer:
       --pdf-engine=xelatex \
       -o {output.pdf:q} \
       -H {input.extra_preamble:q} \
-      -V theme:{params.theme:q} \
-      -V aspectratio:{params.aspectratio:q} \
       {input.mkdn_file:q}
     '''
 
