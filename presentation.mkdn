@@ -6,18 +6,18 @@
 
 ## Organ transplants are a life-saving treatment for many
 
-\Large
+\LARGE <!-- This should probably be my default bullet point size -->
+
+::: incremental
 
 * 36,528 transplants performed in the USA in 2018[^1]
 
-. . .
-
 * 100 transplants every day!
-
-. . .
 
 * Over 113,000 people on the national transplant waiting list as of
   July 2019
+
+:::
 
 [^1]: Source: https://www.organdonor.gov/statistics-stories/statistics.html
 
@@ -29,22 +29,24 @@
 
 ## Rejection is an adaptive immune response against a graft
 
+<!-- TODO: Need a graphic for this -->
+
+\LARGE
+
+::: incremental
+
 * The host's adaptive immune system identifies and attacks cells
   bearing non-self antigens
-
-. . .
 
 * An allograft contains differnet genetic variants from the host,
   resulting in protein-coding differences
 
-. . .
-
 * Left unchecked, the host immune system eventually notices these
   alloantigens and begins attacking (rejecting) the graft
 
-. . .
-
 * Rejection is the major long-term threat to organ allografts
+
+:::
 
 ## Allograft rejection remains a major long-term problem
 
@@ -54,6 +56,13 @@
 
 ## Rejection is treated with immune suppressive drugs
 
+<!-- TODO: Need a graphic, or maybe a table of common drugs +
+mechanisms, or a diagram for periodic checking. -->
+
+\LARGE
+
+::: incremental
+
 * To prevent rejection, a graft recipient must take immune suppressive
   drugs for the rest of their life
 
@@ -62,24 +71,20 @@
 
 * Immune suppression is a delicate balance: too much leads to immune
   compromise; too little leads to rejection.
-
-. . .
-
-* Both diagnosis and treatment present significant challenges
-
-* Immune memory is the major contributor to long-term rejection
+  
+:::
 
 ## My thesis topics
 
-### Chapter 2
+### Topic 1: Immune memory
 Genome-wide epigenetic analysis of H3K4 and H3K27 methylation in naïve
 and memory $\mathsf{CD4}^{+}$ T-cell activation
 
-### Chapter 3
+### Topic 2: Diagnostics for rejection
 Improving array-based diagnostics for transplant rejection by
 optimizing data preprocessing
 
-### Chapter 4
+### Topic 3: Blood profiling during treatment
 Globin-blocking for more effective blood RNA-seq analysis in primate
 animal model for experimental graft rejection treatment
 
@@ -93,6 +98,8 @@ Genome-wide epigenetic analysis of H3K4 and H3K27 methylation in naïve
 and memory $\mathsf{CD4}^{+}$ T-cell activation
 
 ## Memory cells: faster, stronger, and more independent
+
+<!-- TODO: Implement progressive reveal -->
 
 ![Memory T-cells proliferate and respond more quickly](graphics/presentation/T-cells-SVG.png)
 
