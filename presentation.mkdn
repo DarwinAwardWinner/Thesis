@@ -12,8 +12,6 @@ fontsize: 14pt
 
 ## Organ transplants are a life-saving treatment
 
-<!-- \LARGE --> <!-- This should probably be my default bullet point size -->
-
 ::: incremental
 
 * 36,528 transplants performed in the USA in 2018[^1]
@@ -36,8 +34,6 @@ fontsize: 14pt
 ## Graft rejection is an adaptive immune response
 
 <!-- TODO: Need a graphic for this -->
-
-<!-- \LARGE -->
 
 ::: incremental
 
@@ -64,8 +60,6 @@ fontsize: 14pt
 
 <!-- TODO: Need a graphic, or maybe a table of common drugs +
 mechanisms, or a diagram for periodic checking. -->
-
-<!-- \LARGE -->
 
 ::: incremental
 
