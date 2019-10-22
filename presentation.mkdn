@@ -99,9 +99,19 @@ and memory $\mathsf{CD4}^{+}$ T-cell activation
 
 ## Memory cells: faster, stronger, and more independent
 
-<!-- TODO: Implement progressive reveal -->
+![Naïve and memory T-cell responses to activation](graphics/presentation/T-cells-A-SVG.png)
 
-![Memory T-cells proliferate and respond more quickly](graphics/presentation/T-cells-SVG.png)
+## Memory cells: faster, stronger, and more independent
+
+![Naïve and memory T-cell responses to activation](graphics/presentation/T-cells-B-SVG.png)
+
+## Memory cells: faster, stronger, and more independent
+
+![Naïve and memory T-cell responses to activation](graphics/presentation/T-cells-C-SVG.png)
+
+## Memory cells: faster, stronger, and more independent
+
+![Naïve and memory T-cell responses to activation](graphics/presentation/T-cells-D-SVG.png)
 
 ## Memory cells are a problem for immune suppression
 
