@@ -25,9 +25,11 @@ fontsize: 14pt
 
 [^organdonor]: [organdonor.gov](https://www.organdonor.gov/statistics-stories/statistics.html)
 
-## Organ transplants are a life-saving treatment
+## Organ donation statistics for the USA in 2018[^organdonor]
 
-![Organ donation statistics for the USA in 2018[^organdonor]](graphics/presentation/transplants-organ-CROP.pdf){ height=70% }
+\centering
+
+![](graphics/presentation/transplants-organ-CROP.pdf)
 
 ## Graft rejection is an adaptive immune response
 
