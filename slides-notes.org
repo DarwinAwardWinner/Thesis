@@ -1,0 +1,44 @@
+* Notes from lab meeting practice run
+
+** DONE Mechanical issues
+- [X] Blurry slide changes
+  - Solution: use Acrobat for presenting
+- [X] Use widescreen aspect ratio -- option to show 2 figures side by
+  side
+- [X] Header is hard to read/easy to ignore because of color scheme.
+  Consider dark text on white bg instead.
+- [X] No figure numbers
+- [X] No chapter numbers, just "3 parts"
+- [X] Way to display speaker notes alongside slides? Maybe import into
+  PPT?
+  - https://pandoc.org/MANUAL.html#speaker-notes
+
+** TODO Presentation issues
+- [ ] Bigger axis labels
+- [ ] Better cluster ordering, labeling, and transpose violin plots
+  for consistency
+- [ ] Whenever possible: micro first to introduce the plot, then macro
+  to show the full plot
+- [ ] For PCoA plots, show just one donor at a time first to show
+  the trend in a simpler context
+
+** TODO Content issues
+- [ ] Maybe show more preprocessing, batch correction, etc.
+- [ ] Tie conclusions back to intro, add future directions
+- [ ] Don't say "too complicated to explain"
+- [ ] Intro slide for MOFA: how and why
+- [ ] Too many bullet points. Don't need to write everything I say.
+  Move to speaker notes.
+- [ ] Intro the histone marks and why we picked them
+- [ ] Brief 30 second intro to RNA-seq & ChIP-seq
+- [ ] Rephrase 3 topics as questions/hypotheses
+- [ ] Talk about 3 main take-home points at the beginning as well as
+  the end
+- [ ] Keep reserve slides at the end with cut figures in case they
+  come in handy for answering audience questions
+- [ ] On summary slides, bullets on left, image on right for each
+  bullet
+- [ ] Time was around 40 minutes, so add at least 5 minutes of content
+
+* Useful links
+- https://pandoc.org/MANUAL.html#speaker-notes
