@@ -352,6 +352,14 @@ rule svg_raster:
         outfile = os.path.join(os.path.abspath("."), output[0])
         shell('''inkscape {infile:q} --export-png={outfile:q} --export-dpi=300''')
 
+rule png_rotate:
+    input: 'graphics/{filename}.png'
+    output: 'graphics/{filename}-ROT{angle,[1-9][0-9]*}.png'
+    run:
+        if re.search('-ROT[1-9][0-9]*$', wildcards.filename):
+            raise ValueError("Cannot double-rotate")
+        shell('convert {input:q} -rotate {wildcards.angle:q} {output:q}')
+
 rule R_to_html:
     '''Render an R script as syntax-hilighted HTML.'''
     input: '{dirname}/{basename}.R'
@@ -382,7 +390,6 @@ rule build_presentation_beamer:
         ''')
         if PDFINFO_PATH:
             shell('''{PDFINFO_PATH} {output.pdf:q}''')
-
 
 rule build_presentation_ppt:
     input:
