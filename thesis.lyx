@@ -22214,11 +22214,11 @@ cpm
  function.
  For each pair of biological samples, the Pearson correlation between those
  samples' GB libraries was plotted against the correlation between the same
- samples’ non-GB libraries.
+ samples' non-GB libraries.
  Each point represents an unique pair of samples.
- The solid gray line shows a quantile-quantile plot of distribution of GB
- correlations vs.
- that of non-GB correlations.
+ The solid gray line shows a quantile-quantile plot of the distribution
+ of inter-sample correlations with GB vs.
+ without GB.
  The thin dashed line is the identity line, provided for reference.
 \end_layout
 
