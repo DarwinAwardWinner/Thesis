@@ -280,11 +280,7 @@ presence or absence anywhere within the promoter?
 :::
 :::::
 
-## H3K4me3 promoter neighborhood K-means clusters
-
-![Cluster means for H3K4me3](graphics/CD4-csaw/ChIP-seq/H3K4me3-neighborhood-clusters-CROP.png)
-
-## H3K4me3 promoter neighborhood K-means clusters
+## H3K4me3 promoter neighborhood cluster PCA
 
 ::::: {.columns}
 ::: {.column width="50%"}
@@ -306,11 +302,7 @@ presence or absence anywhere within the promoter?
 :::
 :::::
 
-## H3K27me3 promoter neighborhood K-means clusters
-
-![Cluster means for H3K27me3](graphics/CD4-csaw/ChIP-seq/H3K27me3-neighborhood-clusters-CROP.png)
-
-## H3K27me3 promoter neighborhood K-means clusters
+## H3K27me3 promoter neighborhood cluster PCA
 
 ::::: {.columns}
 ::: {.column width="50%"}
