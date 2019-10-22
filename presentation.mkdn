@@ -1,5 +1,5 @@
 ---
-title: Bioinformaticanalysis of complex, high-throughput genomic and epigenomic data in the context of $\mathsf{CD4}^{+}$ T-cell differentiation and diagnosis and treatment of transplant rejection
+title: Bioinformatic analysis of complex, high-throughput genomic and epigenomic data in the context of $\mathsf{CD4}^{+}$ T-cell differentiation and diagnosis and treatment of transplant rejection
 author: |
     Ryan C. Thompson \
     Su Lab \
