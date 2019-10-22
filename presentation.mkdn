@@ -31,6 +31,29 @@ fontsize: 14pt
 
 ![](graphics/presentation/transplants-organ-CROP.pdf)
 
+## Types of grafts
+
+A graft is categorized based on the relationship between donor and recipient:
+
+. . .
+
+::: incremental
+
+* **Autograft:** Donor and recipient are the *same individual*
+
+* **Allograft:** Donor and recipient are *different individuals* of
+  the *same species*
+
+* **Xenograft:** Donor and recipient are *different species*
+
+:::
+
+## Allograft rejection is a major long-term problem
+
+![Kidney allograft survival rates in children by transplant year[^kim-marks]](graphics/presentation/kidney-graft-survival.png){ height=65% }
+
+[^kim-marks]:[ Kim & Marks. "Long-term outcomes of children after solid organ transplantation". In: Clinics (2014)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3884158/?report=classic)
+
 ## Graft rejection is an adaptive immune response
 
 <!-- TODO: Need a graphic for this -->
@@ -49,12 +72,6 @@ fontsize: 14pt
 * Rejection is the major long-term threat to organ allografts
 
 :::
-
-## Allograft rejection remains a major long-term problem
-
-![Kidney allograft survival rates in children by transplant year[^kim-marks]](graphics/presentation/kidney-graft-survival.png){ height=65% }
-
-[^kim-marks]:[ Kim & Marks. "Long-term outcomes of children after solid organ transplantation". In: Clinics (2014)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3884158/?report=classic)
 
 ## Rejection is treated with immune suppressive drugs
 
