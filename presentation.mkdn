@@ -376,7 +376,11 @@ presence or absence anywhere within the promoter?
 
 ## MOFA identifies shared variation across all 4 data sets
 
-![(Insert figure legend)](graphics/CD4-csaw/MOFA-varExplained-matrix-CROP.png)
+![(Insert figure legend)](graphics/presentation/MOFA-varExplained-matrix-A-CROP.png)
+
+## MOFA identifies shared variation across all 4 data sets
+
+![(Insert figure legend)](graphics/presentation/MOFA-varExplained-matrix-B-CROP.png)
 
 ## MOFA shared variation captures convergence pattern
 
