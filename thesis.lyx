@@ -2712,7 +2712,7 @@ IDR
  for this purpose 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Li2006"
+key "Li2011"
 literal "false"
 
 \end_inset
@@ -5201,7 +5201,7 @@ IDR
  framework 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Li2006,gh-idr"
+key "Li2011,gh-idr"
 literal "false"
 
 \end_inset
