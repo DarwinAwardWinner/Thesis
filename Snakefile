@@ -371,14 +371,18 @@ rule build_presentation_beamer:
         theme='Boadilla',
         # https://pandoc.org/MANUAL.html#variables-for-beamer-slides
         aspectratio='169',
-    shell: '''
-    pandoc \
-      -f markdown -t beamer \
-      --pdf-engine=xelatex \
-      -o {output.pdf:q} \
-      -H {input.extra_preamble:q} \
-      {input.mkdn_file:q}
-    '''
+    run:
+        shell('''
+        pandoc \
+          -f markdown -t beamer \
+          --pdf-engine=xelatex \
+          -o {output.pdf:q} \
+          -H {input.extra_preamble:q} \
+          {input.mkdn_file:q}
+        ''')
+        if PDFINFO_PATH:
+            shell('''{PDFINFO_PATH} {output.pdf:q}''')
+
 
 rule build_presentation_ppt:
     input:
