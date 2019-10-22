@@ -40,5 +40,44 @@
   bullet
 - [ ] Time was around 40 minutes, so add at least 5 minutes of content
 
+* Notes from Sabah
+
+- [X] Slide 1: Is the title final? If not, would adjust to (also note
+  space in title slide for bioinformaticsanalysis) "Bioinformatic
+  analysis of genomic and epigenomic data in the context of CD4+T-cell
+  differentiation and diagnosis and treatment of transplant rejection"
+- [X] Slide with organ bar chart: Adjust title to 'Organ donation
+  statistics for the USA in 2018', remove from bottom and make image
+  itself bigger
+- [ ] What's the connection between organ transplant, graft rejection,
+  and immune response? Make that clear in the transition between
+  slides. We now want to know about graft rejection because.... why?
+  what about what we just learned with the organ transplants directly
+  connects?
+- [ ] Condense these bullet points. The previous set of bullet points
+  is a perfect example of spacing and length readable in a short
+  amount of time for the audience
+- [ ] More time on allografting and less time on graft rejection. What
+  is it? How does it work? Provide a brief example/image right before
+  the chart
+- [ ] Rejection and immmuno suppressive drugs -- this is a great
+  transition (well explained) but again the bullet points need to be
+  condensed. Bring in an image with these as well to give the audience
+  'a visual break' before you intro your topics
+- [ ] I like the update to thesis topics. I would adjust such that 'my
+  thesis topics' is replaced with the overarching question you want to
+  answer for these 3 topics and make that the heading.
+- [ ] Then, introduce the 3 topics in the next slide (blue font of
+  topic 1, 2... etc)
+- [ ] Then, introduce the additional text for each topic in the next
+  slide
+- [ ] I like what you did with the font. It's more balanced now and
+  reads as one composed slide
+- [ ] You have the 'memory cells' slides repeated 4x, and I see that
+  you're highlighting different sections each time. Pair the heading
+  to match with this (what you want to say in each as the take-home) >
+  having the same heading repeated
+
+
 * Useful links
 - https://pandoc.org/MANUAL.html#speaker-notes
