@@ -1,6 +1,7 @@
 # -*- coding: utf-8; -*-
 
 import locale
+import os
 import os.path
 import regex
 import urllib.parse
@@ -67,10 +68,10 @@ def find_mac_app(name):
         result = \
             check_output_decode(
                 ['mdfind',
-                'kMDItemDisplayName=={name}.app&&kMDItemKind==Application'.format(name=name)]).split('\n')[0] or \
+                'kMDItemDisplayName=="{name}.app"c&&kMDItemKind==Application'.format(name=name)]).split('\n')[0] or \
             check_output_decode(
                 ['mdfind',
-                 'kMDItemDisplayName=={name}&&kMDItemKind==Application'.format(name=name)]).split('\n')[0]
+                 'kMDItemDisplayName=="{name}"c&&kMDItemKind==Application'.format(name=name)]).split('\n')[0]
         if result:
             return result
         else:
@@ -78,30 +79,34 @@ def find_mac_app(name):
     except Exception:
         return None
 
-def find_lyx():
-    lyx_finders = [
-        lambda: find_executable('lyx'),
-        lambda: os.path.join(find_mac_app('LyX'), 'Contents/MacOS/lyx'),
-        lambda: '/Applications/Lyx.app/Contents/MacOS/lyx',
-    ]
-    for finder in lyx_finders:
-        try:
-            lyxpath = finder()
-            if not lyxpath:
-                continue
-            elif not os.access(lyxpath, os.X_OK):
-                continue
-            else:
-                return lyxpath
-        except Exception:
-            pass
+def find_executable_on_mac(executable, path=None, app_name=None, app_paths=None):
+    # Easy case
+    found_executable = find_executable(executable, path)
+    if found_executable:
+        return found_executable
+    # Ok, now we search
+    if app_paths is None:
+        app_paths = []
+    if app_name is None:
+        app_name = executable
+    found_app_path = find_mac_app(app_name)
+    if found_app_path:
+        app_paths.append(found_app_path)
+    if app_paths:
+        new_search_path = ":".join(os.path.join(p, 'Contents/MacOS') for p in app_paths)
+        return find_executable(executable, path=new_search_path)
     else:
-        # Fallback which will just trigger an error when run (we don't
-        # want to trigger an error now, while building the rules)
-        return '/bin/false'
+        return None
 
-LYX_PATH = find_lyx()
+# Fallback to /bin/false to trigger an error when run (we don't want
+# to trigger an error now, while building the rules)
+LYX_PATH = find_executable_on_mac('lyx') or '/bin/false'
+# GIMP_PATH = find_executable_on_mac('gimp', app_name='gimp*') or '/bin/false'
 PDFINFO_PATH = find_executable('pdfinfo')
+
+def print_pdfinfo(filename):
+    if PDFINFO_PATH:
+        shell('''{PDFINFO_PATH} {filename:q}''')
 
 def glob_recursive(pattern, top='.', include_hidden=False, *args, **kwargs):
     '''Combination of glob.glob and os.walk.
@@ -238,8 +243,7 @@ rule thesis_lyx_to_pdf:
         if not LYX_PATH or LYX_PATH == '/bin/false':
             raise Exception('Path to LyX  executable could not be found.')
         shell('''{LYX_PATH:q} -batch --verbose --export-to pdf4 {output.pdf:q} {input.lyxfile:q}''')
-        if PDFINFO_PATH:
-            shell('''{PDFINFO_PATH} {output.pdf:q}''')
+        print_pdfinfo(output.pdf)
 
 checkpoint lyx_add_final:
     '''Copy LyX file and add final option.'''
@@ -393,8 +397,7 @@ rule build_presentation_beamer:
           -H {input.extra_preamble:q} \
           {input.mkdn_file:q}
         ''')
-        if PDFINFO_PATH:
-            shell('''{PDFINFO_PATH} {output.pdf:q}''')
+        print_pdfinfo(output.pdf)
 
 rule build_presentation_ppt:
     input:
