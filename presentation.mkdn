@@ -56,22 +56,12 @@ A graft is categorized based on the relationship between donor and recipient:
 
 :::: incremental
 
-<!-- Vertical alignment hacks -->
-
-\rule{\linewidth}{0pt}
-
-\vspace*{12pt}
-
 * TCR binds to both antigen *and* MHC surface \vspace{10pt}
 
 * HLA genes encoding MHC proteins are highly polymorphic \vspace{10pt}
 
 * Variants in donor MHC can trigger the same T-cell response as a
   foreign antigen
-
-\vspace*{12pt}
-
-\rule{\linewidth}{0pt}
 
 ::::
 
