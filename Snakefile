@@ -212,17 +212,17 @@ def tex_gfx_extensions(tex_format = 'xetex'):
     except FileNotFoundError:
         return ()
 
-def get_mkdn_included_images(fname):
-    '''Return list of all images references in a markdown file.'''
-    with open(fname) as f:
-        tree = html.fromstring(pypandoc.convert_text(f.read(), 'html', format='md'))
-    return list(map(str, tree.xpath("//img/@src")))
-
-def get_mkdn_included_pdfs(fname):
-    '''Return list of all images references in a markdown file.'''
-    with open(fname) as f:
-        tree = html.fromstring(pypandoc.convert_text(f.read(), 'html', format='md'))
-    return list(map(str, tree.xpath("//embed/@src")))
+def get_latex_included_gfx(fname):
+    '''Return list of all graphics included from '''
+    try:
+        with open(fname) as infile:
+            beamer_latex = infile.read()
+        # Remove comments
+        beamer_latex = regex.sub('^%.*$','', beamer_latex)
+        # Find graphics included
+        return [ m.group(1) for m in regex.finditer(r'\includegraphics(?:\[.*?\])?\{(.+?)\}', beamer_latex) ]
+    except FileNotFoundError:
+        return ()
 
 rsync_common_args = ['-rL', '--size-only', '--delete', '--exclude', '.DS_Store', '--delete-excluded',]
 
@@ -375,44 +375,37 @@ rule R_to_html:
     output: '{dirname}/{basename,[^/]+}.R.html'
     shell: 'pygmentize -f html -O full -l R -o {output:q} {input:q}'
 
-rule build_presentation_beamer:
+checkpoint build_beamer_latex:
     input:
         extra_preamble='extra-preamble.latex',
         mkdn_file='{basename}.mkdn',
-        images=lambda wildcards: get_mkdn_included_images('{basename}.mkdn'.format(**wildcards)),
-        pdfs=lambda wildcards: get_mkdn_included_pdfs('{basename}.mkdn'.format(**wildcards)),
+        # images=lambda wildcards: get_mkdn_included_images('{basename}.mkdn'.format(**wildcards)),
+        # pdfs=lambda wildcards: get_mkdn_included_pdfs('{basename}.mkdn'.format(**wildcards)),
+    output:
+        latex=temp('{basename,presentation.*}.tex'),
+    # TODO: should work with shadow minimal but doesn't
+    run:
+        beamer_latex = pypandoc.convert_file(
+            input.mkdn_file, 'beamer', format='md',
+            extra_args = [
+                '-H', input.extra_preamble,
+                '--pdf-engine=xelatex',
+            ])
+        # Center all columns vertically
+        beamer_latex = beamer_latex.replace(r'\begin{columns}[T]', r'\begin{columns}[c]')
+        with open(output.latex, 'w') as latex_output:
+            latex_output.write(beamer_latex)
+
+rule build_beamer_pdf:
+    input:
+        latex='{basename}.tex',
+        gfx=lambda wildcards: get_latex_included_gfx('{basename}.tex'.format(**wildcards)),
     output:
         pdf='{basename,presentation.*}.pdf'
-    params:
-        # http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
-        theme='Boadilla',
-        # https://pandoc.org/MANUAL.html#variables-for-beamer-slides
-        aspectratio='169',
+    shadow: 'minimal'
     run:
-        shell('''
-        pandoc \
-          -f markdown -t beamer \
-          --pdf-engine=xelatex \
-          -o {output.pdf:q} \
-          -H {input.extra_preamble:q} \
-          {input.mkdn_file:q}
-        ''')
+        shell('''xelatex {input.latex:q} </dev/null''')
         print_pdfinfo(output.pdf)
-
-rule build_presentation_ppt:
-    input:
-        extra_preamble='extra-preamble.latex',
-        mkdn_file='{basename}.mkdn',
-        images=lambda wildcards: get_mkdn_included_images('{basename}.mkdn'.format(**wildcards)),
-        pdfs=lambda wildcards: get_mkdn_included_pdfs('{basename}.mkdn'.format(**wildcards)),
-    output:
-        pptx='{basename,presentation.*}.pptx'
-    shell: '''
-    pandoc \
-      -f markdown -t pptx \
-      -o {output.pptx:q} \
-      {input.mkdn_file:q}
-    '''
 
 rule build_all_presentations:
     input:
