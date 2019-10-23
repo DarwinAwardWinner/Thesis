@@ -50,9 +50,9 @@ A graft is categorized based on the relationship between donor and recipient:
 
 ## Recipient T-cells reject allogenic MHCs
 
-::::: {.columns}
+:::::::::: {.columns}
 
-::: {.column width="75%"}
+::: {.column width="55%"}
 
 :::: incremental
 
@@ -60,7 +60,7 @@ A graft is categorized based on the relationship between donor and recipient:
 
 \rule{\linewidth}{0pt}
 
-\vspace*{36pt}
+\vspace*{12pt}
 
 * TCR binds to both antigen *and* MHC surface \vspace{10pt}
 
@@ -69,7 +69,7 @@ A graft is categorized based on the relationship between donor and recipient:
 * Variants in donor MHC can trigger the same T-cell response as a
   foreign antigen
 
-\vspace*{36pt}
+\vspace*{12pt}
 
 \rule{\linewidth}{0pt}
 
@@ -77,17 +77,20 @@ A graft is categorized based on the relationship between donor and recipient:
 
 :::
 
-::: {.column width="25%"}
-![\footnotesize Janeway's Immunobio- logy (2012), Fig. 9.19](graphics/presentation/janeway-fig9.19-TCR.png){ height=70% }
+::: {.column width="40%"}
+<!-- ![\footnotesize Janeway's Immunobio- logy (2012), Fig. 9.19](graphics/presentation/janeway-fig9.19-TCR.png){ height=70% } -->
+![TCR binding to self (right) and allogenic (left) MHC\footnotemark](graphics/presentation/tcr_mhc.jpg){ height=70% }
 :::
 
-:::::
+::::::::::
+
+\footnotetext[3]{\href{https://doi.org/10.1016/j.cell.2007.01.048}{Colf, Bankovich, et al. "How a Single T Cell Receptor Recognizes Both Self and Foreign MHC". In: Cell (2007)}}
 
 ## Allograft rejection is a major long-term problem
 
 ![Kidney allograft survival rates in children by transplant year[^kim-marks]](graphics/presentation/kidney-graft-survival.png){ height=65% }
 
-[^kim-marks]:[ Kim & Marks. "Long-term outcomes of children after solid organ transplantation". In: Clinics (2014)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3884158/?report=classic)
+[^kim-marks]: [Kim & Marks. "Long-term outcomes of children after solid organ transplantation". In: Clinics (2014)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3884158/?report=classic)
 
 ## Rejection is treated with immune suppressive drugs
 
@@ -293,69 +296,69 @@ presence or absence anywhere within the promoter?
 
 ## H3K4me2 promoter neighborhood cluster PCA
 
-::::: {.columns}
+:::::::::: {.columns}
 ::: {.column width="50%"}
 ![Cluster means for H3K4me2](graphics/CD4-csaw/ChIP-seq/H3K4me2-neighborhood-clusters-CROP.png)
 :::
 ::: {.column width="50%"}
 ![PCA plot of promoters](graphics/CD4-csaw/ChIP-seq/H3K4me2-neighborhood-PCA-CROP.png)
 :::
-:::::
+::::::::::
 
 ## H3K4me2 promoter neighborhood cluster expression
 
-::::: {.columns}
+:::::::::: {.columns}
 ::: {.column width="50%"}
 ![Cluster means for H3K4me2](graphics/CD4-csaw/ChIP-seq/H3K4me2-neighborhood-clusters-CROP.png)
 :::
 ::: {.column width="50%"}
 ![Cluster expression distributions](graphics/CD4-csaw/ChIP-seq/H3K4me2-neighborhood-expression-CROP-ROT90.png)
 :::
-:::::
+::::::::::
 
 ## H3K4me3 promoter neighborhood cluster PCA
 
-::::: {.columns}
+:::::::::: {.columns}
 ::: {.column width="50%"}
 ![Cluster means for H3K4me3](graphics/CD4-csaw/ChIP-seq/H3K4me3-neighborhood-clusters-CROP.png)
 :::
 ::: {.column width="50%"}
 ![PCA plot of promoters](graphics/CD4-csaw/ChIP-seq/H3K4me3-neighborhood-PCA-CROP.png)
 :::
-:::::
+::::::::::
 
 ## H3K4me3 promoter neighborhood cluster expression
 
-::::: {.columns}
+:::::::::: {.columns}
 ::: {.column width="50%"}
 ![Cluster means for H3K4me3](graphics/CD4-csaw/ChIP-seq/H3K4me3-neighborhood-clusters-CROP.png)
 :::
 ::: {.column width="50%"}
 ![Cluster expression distributions](graphics/CD4-csaw/ChIP-seq/H3K4me3-neighborhood-expression-CROP-ROT90.png)
 :::
-:::::
+::::::::::
 
 ## H3K27me3 promoter neighborhood cluster PCA
 
-::::: {.columns}
+:::::::::: {.columns}
 ::: {.column width="50%"}
 ![Cluster means for H3K27me3](graphics/CD4-csaw/ChIP-seq/H3K27me3-neighborhood-clusters-CROP.png)
 :::
 ::: {.column width="50%"}
 ![PCA plot of promoters](graphics/CD4-csaw/ChIP-seq/H3K27me3-neighborhood-PCA-CROP.png)
 :::
-:::::
+::::::::::
 
 ## H3K27me3 promoter neighborhood cluster expression
 
-::::: {.columns}
+:::::::::: {.columns}
 ::: {.column width="50%"}
 ![Cluster means for H3K27me3](graphics/CD4-csaw/ChIP-seq/H3K27me3-neighborhood-clusters-CROP.png)
 :::
 ::: {.column width="50%"}
 ![Cluster expression distributions](graphics/CD4-csaw/ChIP-seq/H3K27me3-neighborhood-expression-CROP-ROT90.png)
 :::
-:::::
+::::::::::
 
 ## What have we learned?
 
