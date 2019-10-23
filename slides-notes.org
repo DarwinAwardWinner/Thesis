@@ -49,18 +49,18 @@
 - [X] Slide with organ bar chart: Adjust title to 'Organ donation
   statistics for the USA in 2018', remove from bottom and make image
   itself bigger
-- [ ] What's the connection between organ transplant, graft rejection,
+- [X] What's the connection between organ transplant, graft rejection,
   and immune response? Make that clear in the transition between
   slides. We now want to know about graft rejection because.... why?
   what about what we just learned with the organ transplants directly
   connects?
-- [ ] Condense these bullet points. The previous set of bullet points
+- [X] Condense these bullet points. The previous set of bullet points
   is a perfect example of spacing and length readable in a short
   amount of time for the audience
-- [ ] More time on allografting and less time on graft rejection. What
+- [X] More time on allografting and less time on graft rejection. What
   is it? How does it work? Provide a brief example/image right before
   the chart
-- [ ] Rejection and immmuno suppressive drugs -- this is a great
+- [X] Rejection and immmuno suppressive drugs -- this is a great
   transition (well explained) but again the bullet points need to be
   condensed. Bring in an image with these as well to give the audience
   'a visual break' before you intro your topics

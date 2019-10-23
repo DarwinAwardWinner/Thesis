@@ -48,30 +48,46 @@ A graft is categorized based on the relationship between donor and recipient:
 
 :::
 
+## Recipient T-cells reject allogenic MHCs
+
+::::: {.columns}
+
+::: {.column width="75%"}
+
+:::: incremental
+
+<!-- Vertical alignment hacks -->
+
+\rule{\linewidth}{0pt}
+
+\vspace*{36pt}
+
+* TCR binds to both antigen *and* MHC surface \vspace{10pt}
+
+* HLA genes encoding MHC proteins are highly polymorphic \vspace{10pt}
+
+* Variants in donor MHC can trigger the same T-cell response as a
+  foreign antigen
+
+\vspace*{36pt}
+
+\rule{\linewidth}{0pt}
+
+::::
+
+:::
+
+::: {.column width="25%"}
+![\footnotesize Janeway's Immunobio- logy (2012), Fig. 9.19](graphics/presentation/janeway-fig9.19-TCR.png){ height=70% }
+:::
+
+:::::
+
 ## Allograft rejection is a major long-term problem
 
 ![Kidney allograft survival rates in children by transplant year[^kim-marks]](graphics/presentation/kidney-graft-survival.png){ height=65% }
 
 [^kim-marks]:[ Kim & Marks. "Long-term outcomes of children after solid organ transplantation". In: Clinics (2014)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3884158/?report=classic)
-
-## Graft rejection is an adaptive immune response
-
-<!-- TODO: Need a graphic for this -->
-
-::: incremental
-
-* The host's adaptive immune system identifies and attacks cells
-  bearing non-self antigens
-
-* An allograft contains differnet genetic variants from the host,
-  resulting in protein-coding differences
-
-* Left unchecked, the host immune system eventually notices these
-  alloantigens and begins attacking (rejecting) the graft
-
-* Rejection is the major long-term threat to organ allografts
-
-:::
 
 ## Rejection is treated with immune suppressive drugs
 
@@ -80,18 +96,18 @@ mechanisms, or a diagram for periodic checking. -->
 
 ::: incremental
 
-* To prevent rejection, a graft recipient must take immune suppressive
-  drugs for the rest of their life
+* Graft recipient must take immune suppressive drugs indefinitely
 
-* The graft is periodically checked for signs of rejection, and immune
-  suppression dosage is adjusted accordingly
+* Graft is monitored for rejection and dosage adjusted over time
 
-* Immune suppression is a delicate balance: too much leads to immune
-  compromise; too little leads to rejection.
-  
+* Immune suppression is a delicate balance: too much and too little
+  are both problematic.
+
 :::
 
 ## My thesis topics
+
+<!-- Needs revision -->
 
 ### Topic 1: Immune memory
 Genome-wide epigenetic analysis of H3K4 and H3K27 methylation in naïve
