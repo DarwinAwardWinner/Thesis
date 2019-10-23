@@ -360,10 +360,10 @@ rule png_rotate:
             raise ValueError("Cannot double-rotate")
         shell('convert {input:q} -rotate {wildcards.angle:q} {output:q}')
 
-rule xcf_to_png:
-    input: 'graphics/{filename}.xcf'
-    output: 'graphics/{filename}.png'
-    shell: 'convert {input:q} -flatten {output:q}'
+# rule xcf_to_png:
+#     input: 'graphics/{filename}.xcf'
+#     output: 'graphics/{filename}.png'
+#     shell: 'convert {input:q} -flatten {output:q}'
 
 rule R_to_html:
     '''Render an R script as syntax-hilighted HTML.'''
