@@ -110,7 +110,7 @@ mechanisms, or a diagram for periodic checking. -->
 
 ## My thesis topics
 
-<!-- Needs revision -->
+<!-- TODO: Needs revision -->
 
 ### Topic 1: Immune memory
 Genome-wide epigenetic analysis of H3K4 and H3K27 methylation in naïve
@@ -135,19 +135,19 @@ and memory $\mathsf{CD4}^{+}$ T-cell activation
 
 ## Memory cells: faster, stronger, and more independent
 
-![Naïve and memory T-cell responses to activation](graphics/presentation/T-cells-A-SVG.png)
+![Naïve T-cell activated by APC](graphics/presentation/T-cells-A-SVG.png)
 
 ## Memory cells: faster, stronger, and more independent
 
-![Naïve and memory T-cell responses to activation](graphics/presentation/T-cells-B-SVG.png)
+![Naïve T-cell differentiates and proliferates into effector T-cells](graphics/presentation/T-cells-B-SVG.png)
 
 ## Memory cells: faster, stronger, and more independent
 
-![Naïve and memory T-cell responses to activation](graphics/presentation/T-cells-C-SVG.png)
+![Post-infection, some effectors cells remain as memory cells](graphics/presentation/T-cells-C-SVG.png)
 
 ## Memory cells: faster, stronger, and more independent
 
-![Naïve and memory T-cell responses to activation](graphics/presentation/T-cells-D-SVG.png)
+![Memory T-cells respond more strongly to activation](graphics/presentation/T-cells-D-SVG.png)
 
 ## Memory cells are a problem for immune suppression
 
