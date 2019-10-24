@@ -14,10 +14,10 @@
   - https://pandoc.org/MANUAL.html#speaker-notes
 
 ** TODO Presentation issues
-- [ ] Bigger axis labels
-- [ ] Better cluster ordering, labeling, and transpose violin plots
+- [X] Bigger axis labels
+- [X] Better cluster ordering, labeling, and transpose violin plots
   for consistency
-- [ ] Whenever possible: micro first to introduce the plot, then macro
+- [X] Whenever possible: micro first to introduce the plot, then macro
   to show the full plot
 - [ ] For PCoA plots, show just one donor at a time first to show
   the trend in a simpler context
@@ -25,13 +25,12 @@
 ** TODO Content issues
 - [ ] Maybe show more preprocessing, batch correction, etc.
 - [ ] Tie conclusions back to intro, add future directions
-- [ ] Don't say "too complicated to explain"
-- [ ] Intro slide for MOFA: how and why
-- [ ] Too many bullet points. Don't need to write everything I say.
+- [X] Intro slide for MOFA: how and why
+- [X] Too many bullet points. Don't need to write everything I say.
   Move to speaker notes.
-- [ ] Intro the histone marks and why we picked them
-- [ ] Brief 30 second intro to RNA-seq & ChIP-seq
-- [ ] Rephrase 3 topics as questions/hypotheses
+- [X] Intro the histone marks and why we picked them
+- [X] Brief 30 second intro to RNA-seq & ChIP-seq
+- [X] Rephrase 3 topics as questions/hypotheses
 - [ ] Talk about 3 main take-home points at the beginning as well as
   the end
 - [ ] Keep reserve slides at the end with cut figures in case they
@@ -40,7 +39,7 @@
   bullet
 - [ ] Time was around 40 minutes, so add at least 5 minutes of content
 
-* Notes from Sabah
+* DONE Notes from Sabah
 
 - [X] Slide 1: Is the title final? If not, would adjust to (also note
   space in title slide for bioinformaticsanalysis) "Bioinformatic
@@ -64,16 +63,14 @@
   transition (well explained) but again the bullet points need to be
   condensed. Bring in an image with these as well to give the audience
   'a visual break' before you intro your topics
-- [ ] I like the update to thesis topics. I would adjust such that 'my
+- [X] I like the update to thesis topics. I would adjust such that 'my
   thesis topics' is replaced with the overarching question you want to
   answer for these 3 topics and make that the heading.
-- [ ] Then, introduce the 3 topics in the next slide (blue font of
+- [X] Then, introduce the 3 topics in the next slide (blue font of
   topic 1, 2... etc)
-- [ ] Then, introduce the additional text for each topic in the next
+- [X] Then, introduce the additional text for each topic in the next
   slide
-- [ ] I like what you did with the font. It's more balanced now and
-  reads as one composed slide
-- [ ] You have the 'memory cells' slides repeated 4x, and I see that
+- [X] You have the 'memory cells' slides repeated 4x, and I see that
   you're highlighting different sections each time. Pair the heading
   to match with this (what you want to say in each as the take-home) >
   having the same heading repeated
