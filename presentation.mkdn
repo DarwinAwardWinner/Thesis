@@ -547,7 +547,7 @@ differentiation?
 <!-- ![(Insert figure legend)](graphics/CD4-csaw/LaMere2016_fig8.pdf) -->
 
 
-## Questions to focus on
+## Answers to key questions
 
 ### How do we define the "promoter region" for each gene?
 
@@ -570,7 +570,7 @@ activation, consistent with naïve differentiation into memory.
 
 ## Further conclusions & future directions
 
-* "Effective promoter region" is a valid concept but "radius"
+* "Effective promoter region" is a useful concept but "radius"
   oversimplifies: seek a better definition
 
 * Coverage profiles were only examined in naïve day 0 samples: further
