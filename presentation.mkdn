@@ -434,7 +434,35 @@ presence or absence anywhere within the promoter?
 
 ![](graphics/CD4-csaw/RNA-seq/PCA-final-23-CROP.png)
 
+## But the data isn't really that clean...
+
+:::::::::: {.columns}
+::: {.column width="50%"}
+![H3K4me2](graphics/CD4-csaw/ChIP-seq/H3K4me2-PCA-raw-CROP.png)
+:::
+::: {.column width="50%"}
+![H3K4me3](graphics/CD4-csaw/ChIP-seq/H3K4me3-PCA-raw-CROP.png)
+:::
+::::::::::
+
+## But the data isn't really that clean...
+
+:::::::::: {.columns}
+::: {.column width="50%"}
+![H3K27me3](graphics/CD4-csaw/ChIP-seq/H3K27me3-PCA-raw-CROP.png)
+:::
+::: {.column width="50%"}
+![RNA-seq](graphics/CD4-csaw/RNA-seq/PCA-no-batchsub-CROP.png)
+:::
+::::::::::
+
 <!-- TODO: Intro MOFA, motivate by showing uncorrected PCA -->
+
+## MOFA identifies cross-dataset patterns of variation
+
+![MOFA factor analysis schematic[^mofa]](graphics/presentation/MOFA-fig1A-SVG.png)
+
+[^mofa]: [Argelaguet, Velten, et. al. (2018)](https://onlinelibrary.wiley.com/doi/abs/10.15252/msb.20178124)
 
 ## MOFA LFs explain variation in all 4 data sets
 
