@@ -306,80 +306,90 @@ presence or absence anywhere within the promoter?
   
 ## H3K4me2 promoter neighborhood K-means clusters
 
-![Cluster means for H3K4me2](graphics/CD4-csaw/ChIP-seq/H3K4me2-neighborhood-clusters-CROP.png)
+![Cluster means for H3K4me2](graphics/presentation/H3K4me2-neighborhood-clusters-CROP.png){ height=70% }
 
-## H3K4me2 promoter neighborhood cluster PCA
-
-:::::::::: {.columns}
-::: {.column width="50%"}
-![Cluster means for H3K4me2](graphics/CD4-csaw/ChIP-seq/H3K4me2-neighborhood-clusters-CROP.png)
-:::
-::: {.column width="50%"}
-![PCA plot of promoters](graphics/CD4-csaw/ChIP-seq/H3K4me2-neighborhood-PCA-CROP.png)
-:::
-::::::::::
-
-## H3K4me2 promoter neighborhood cluster expression
+## H3K4me2 promoter neighborhood K-means clusters
 
 :::::::::: {.columns}
 ::: {.column width="50%"}
-![Cluster means for H3K4me2](graphics/CD4-csaw/ChIP-seq/H3K4me2-neighborhood-clusters-CROP.png)
+![Cluster means for H3K4me2](graphics/presentation/H3K4me2-neighborhood-clusters-CROP.png){ height=70% }
 :::
 ::: {.column width="50%"}
-![Cluster expression distributions](graphics/CD4-csaw/ChIP-seq/H3K4me2-neighborhood-expression-CROP-ROT90.png)
+<!-- This space intentionally left blank -->
 :::
 ::::::::::
 
-## H3K4me3 promoter neighborhood cluster PCA
+## H3K4me2 cluster PCA shows a semicircular "fan"
 
 :::::::::: {.columns}
 ::: {.column width="50%"}
-![Cluster means for H3K4me3](graphics/CD4-csaw/ChIP-seq/H3K4me3-neighborhood-clusters-CROP.png)
+![Cluster means for H3K4me2](graphics/presentation/H3K4me2-neighborhood-clusters-CROP.png){ height=70% }
 :::
 ::: {.column width="50%"}
-![PCA plot of promoters](graphics/CD4-csaw/ChIP-seq/H3K4me3-neighborhood-PCA-CROP.png)
+![PCA plot of promoters](graphics/presentation/H3K4me2-neighborhood-PCA-CROP.png){ height=70% }
 :::
 ::::::::::
 
-## H3K4me3 promoter neighborhood cluster expression
+## H3K4me2 near TSS correlates with expression
 
 :::::::::: {.columns}
 ::: {.column width="50%"}
-![Cluster means for H3K4me3](graphics/CD4-csaw/ChIP-seq/H3K4me3-neighborhood-clusters-CROP.png)
+![Cluster means for H3K4me2](graphics/presentation/H3K4me2-neighborhood-clusters-CROP.png){ height=70% }
 :::
 ::: {.column width="50%"}
-![Cluster expression distributions](graphics/CD4-csaw/ChIP-seq/H3K4me3-neighborhood-expression-CROP-ROT90.png)
+![Cluster expression distributions](graphics/presentation/H3K4me2-neighborhood-expression-CROP-ROT90.png){ height=70% }
 :::
 ::::::::::
 
-## H3K27me3 promoter neighborhood cluster PCA
+## H3K4me3 pattern is similar to H3K4me2
 
 :::::::::: {.columns}
 ::: {.column width="50%"}
-![Cluster means for H3K27me3](graphics/CD4-csaw/ChIP-seq/H3K27me3-neighborhood-clusters-CROP.png)
+![Cluster means for H3K4me3](graphics/presentation/H3K4me3-neighborhood-clusters-CROP.png){ height=70% }
 :::
 ::: {.column width="50%"}
-![PCA plot of promoters](graphics/CD4-csaw/ChIP-seq/H3K27me3-neighborhood-PCA-CROP.png)
+![PCA plot of promoters](graphics/presentation/H3K4me3-neighborhood-PCA-CROP.png){ height=70% }
 :::
 ::::::::::
 
-## H3K27me3 promoter neighborhood cluster expression
+## H3K4me3 pattern is similar to H3K4me2
 
 :::::::::: {.columns}
 ::: {.column width="50%"}
-![Cluster means for H3K27me3](graphics/CD4-csaw/ChIP-seq/H3K27me3-neighborhood-clusters-CROP.png)
+![Cluster means for H3K4me3](graphics/presentation/H3K4me3-neighborhood-clusters-CROP.png){ height=70% }
 :::
 ::: {.column width="50%"}
-![Cluster expression distributions](graphics/CD4-csaw/ChIP-seq/H3K27me3-neighborhood-expression-CROP-ROT90.png)
+![Cluster expression distributions](graphics/presentation/H3K4me3-neighborhood-expression-CROP-ROT90.png){ height=70% }
 :::
 ::::::::::
 
-## What have we learned?
+## H3K27me3 clusters organize into 3 opposed pairs
+
+:::::::::: {.columns}
+::: {.column width="50%"}
+![Cluster means for H3K27me3](graphics/presentation/H3K27me3-neighborhood-clusters-CROP.png){ height=70% }
+:::
+::: {.column width="50%"}
+![PCA plot of promoters](graphics/presentation/H3K27me3-neighborhood-PCA-CROP.png){ height=70% }
+:::
+::::::::::
+
+## Specific H3K27me3 profiles show elevated expression
+
+:::::::::: {.columns}
+::: {.column width="50%"}
+![Cluster means for H3K27me3](graphics/presentation/H3K27me3-neighborhood-clusters-CROP.png){ height=70% }
+:::
+::: {.column width="50%"}
+![Cluster expression distributions](graphics/presentation/H3K27me3-neighborhood-expression-CROP-ROT90.png){ height=70% }
+:::
+::::::::::
+
+## Summary of promoter relative coverage findings
 
 ### H3K4me2 & H3K4me3
 
-* Peak closer to promoter $\Rightarrow$ more likely gene is highly
-  expressed
+* Peak closer to promoter $\Rightarrow$ higher gene expression
 * Slightly asymmetric in favor of peaks downstream of TSS
 
 . . .
@@ -400,33 +410,47 @@ presence or absence anywhere within the promoter?
 
 ![Differential modification between naïve and memory samples at each time point](graphics/presentation/RCT-thesis-table2.4-B-SVG-CROP.png)
 
-## Convergence at Day 14 H3K4me2
+## Promoter H3K4me2 levels converge at Day 14
 
-![(Insert figure legend)](graphics/CD4-csaw/ChIP-seq/H3K4me2-promoter-PCA-group-CROP.png)
+\centering
 
-## Convergence at Day 14 H3K4me3
+![](graphics/CD4-csaw/ChIP-seq/H3K4me2-promoter-PCA-group-CROP.png)
 
-![(Insert figure legend)](graphics/CD4-csaw/ChIP-seq/H3K4me3-promoter-PCA-group-CROP.png)
+## Promoter H3K4me3 levels converge at Day 14
 
-## Convergence at Day 14 H3K27me3
+\centering
 
-![(Insert figure legend)](graphics/CD4-csaw/ChIP-seq/H3K27me3-promoter-PCA-group-CROP.png)
+![](graphics/CD4-csaw/ChIP-seq/H3K4me3-promoter-PCA-group-CROP.png)
 
-## Convergence at Day 14 RNA-seq (PC 2 & 3)
+## Promoter H3K27me3 levels converge at Day 14?
 
-![(Insert figure legend)](graphics/CD4-csaw/RNA-seq/PCA-final-23-CROP.png)
+\centering
 
-## MOFA identifies shared variation across all 4 data sets
+![](graphics/CD4-csaw/ChIP-seq/H3K27me3-promoter-PCA-group-CROP.png)
 
-![(Insert figure legend)](graphics/presentation/MOFA-varExplained-matrix-A-CROP.png)
+## Expression converges at Day 14 (in PC 2 & 3)
 
-## MOFA identifies shared variation across all 4 data sets
+\centering
 
-![(Insert figure legend)](graphics/presentation/MOFA-varExplained-matrix-B-CROP.png)
+![](graphics/CD4-csaw/RNA-seq/PCA-final-23-CROP.png)
 
-## MOFA shared variation captures convergence pattern
+<!-- TODO: Intro MOFA, motivate by showing uncorrected PCA -->
 
-![(Insert figure legend)](graphics/CD4-csaw/MOFA-LF-scatter-small.png)
+## MOFA LFs explain variation in all 4 data sets
+
+\centering
+
+![Variance explained in each data set by each LF](graphics/presentation/MOFA-varExplained-matrix-A-CROP.png){ height=70% }
+
+## 3 LFs are shared across all 4 data sets
+
+\centering
+
+![LFs 1, 4, and 5 explain variation in all 4 data sets](graphics/presentation/MOFA-varExplained-matrix-B-CROP.png){ height=70% }
+
+## MOFA LF5 captures convergence pattern
+
+![LF1 & LF4: time point effect; LF5: convergence](graphics/CD4-csaw/MOFA-LF-scatter-small.png){ height=70% }
 
 ## What have we learned?
 
