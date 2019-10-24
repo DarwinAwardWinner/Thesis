@@ -23,21 +23,21 @@
   the trend in a simpler context
 
 ** TODO Content issues
-- [ ] Maybe show more preprocessing, batch correction, etc.
-- [ ] Tie conclusions back to intro, add future directions
+- [X] Maybe show more preprocessing, batch correction, etc.
+- [X] Tie conclusions back to intro, add future directions
 - [X] Intro slide for MOFA: how and why
 - [X] Too many bullet points. Don't need to write everything I say.
   Move to speaker notes.
 - [X] Intro the histone marks and why we picked them
 - [X] Brief 30 second intro to RNA-seq & ChIP-seq
 - [X] Rephrase 3 topics as questions/hypotheses
-- [ ] Talk about 3 main take-home points at the beginning as well as
+- [X] Talk about 3 main take-home points at the beginning as well as
   the end
+- [X] On summary slides, bullets on left, image on right for each
+  bullet
+- [X] Time was around 40 minutes, so add at least 5 minutes of content
 - [ ] Keep reserve slides at the end with cut figures in case they
   come in handy for answering audience questions
-- [ ] On summary slides, bullets on left, image on right for each
-  bullet
-- [ ] Time was around 40 minutes, so add at least 5 minutes of content
 
 * DONE Notes from Sabah
 
