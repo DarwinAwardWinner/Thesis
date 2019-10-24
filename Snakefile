@@ -382,7 +382,7 @@ checkpoint build_beamer_latex:
         # images=lambda wildcards: get_mkdn_included_images('{basename}.mkdn'.format(**wildcards)),
         # pdfs=lambda wildcards: get_mkdn_included_pdfs('{basename}.mkdn'.format(**wildcards)),
     output:
-        latex=temp('{basename,presentation.*}.tex'),
+        latex='{basename,presentation.*}.tex',
     # TODO: should work with shadow minimal but doesn't
     run:
         beamer_latex = pypandoc.convert_file(
