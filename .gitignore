@@ -21,3 +21,5 @@
 tmp-*
 *-PROCESSED.*
 *-final.lyx
+*ROT[0-9]*.png
+*SVG.png

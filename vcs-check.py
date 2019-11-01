@@ -14,11 +14,11 @@ def check_output_lines(*args, **kwargs):
 
 git_tracked_files = set(check_output_lines(
     ["git", "ls-tree", "-r", "HEAD", "--name-only"],
-    text = True))
+    universal_newlines = True))
 
 snakemake_untracked_files = set(run(
     ["snakemake", "--list-untracked"],
-    capture_output = True, text = True, check = True
+    stdout = PIPE, stderr = PIPE, universal_newlines = True, check = True
 ).stderr.rstrip('\n').split('\n'))
 
 all_files = set()
@@ -29,7 +29,7 @@ for curdir, subdirs, files in os.walk('.'):
             continue
         all_files.add(os.path.normpath(os.path.join(curdir, f)))
 
-snakemake_summary_output = check_output(['snakemake', '--summary'], text = True, stderr=DEVNULL)
+snakemake_summary_output = check_output(['snakemake', '--summary'], universal_newlines = True, stderr=DEVNULL)
 snakemake_summary_table = pandas.read_csv(StringIO(snakemake_summary_output), sep='\t')
 snakemake_generated_files = {os.path.normpath(f) for f in snakemake_summary_table.output_file}
 

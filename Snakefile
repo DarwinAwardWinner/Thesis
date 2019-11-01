@@ -1,11 +1,13 @@
 # -*- coding: utf-8; -*-
 
 import locale
+import os
 import os.path
 import regex
 import urllib.parse
 import os.path
 import bibtexparser
+import pypandoc
 
 from collections.abc import Iterable, Mapping
 from distutils.spawn import find_executable
@@ -13,6 +15,10 @@ from fnmatch import fnmatch
 from subprocess import check_output, check_call
 from tempfile import NamedTemporaryFile
 from bibtexparser.bibdatabase import BibDatabase
+from lxml import html
+from snakemake.utils import min_version
+
+min_version('3.7.1')
 
 try:
     from os import scandir, walk
@@ -62,10 +68,10 @@ def find_mac_app(name):
         result = \
             check_output_decode(
                 ['mdfind',
-                'kMDItemDisplayName=={name}.app&&kMDItemKind==Application'.format(name=name)]).split('\n')[0] or \
+                'kMDItemDisplayName=="{name}.app"c&&kMDItemKind==Application'.format(name=name)]).split('\n')[0] or \
             check_output_decode(
                 ['mdfind',
-                 'kMDItemDisplayName=={name}&&kMDItemKind==Application'.format(name=name)]).split('\n')[0]
+                 'kMDItemDisplayName=="{name}"c&&kMDItemKind==Application'.format(name=name)]).split('\n')[0]
         if result:
             return result
         else:
@@ -73,29 +79,34 @@ def find_mac_app(name):
     except Exception:
         return None
 
-def find_lyx():
-    lyx_finders = [
-        lambda: find_executable('lyx'),
-        lambda: os.path.join(find_mac_app('LyX'), 'Contents/MacOS/lyx'),
-        lambda: '/Applications/Lyx.app/Contents/MacOS/lyx',
-    ]
-    for finder in lyx_finders:
-        try:
-            lyxpath = finder()
-            if not lyxpath:
-                continue
-            elif not os.access(lyxpath, os.X_OK):
-                continue
-            else:
-                return lyxpath
-        except Exception:
-            pass
+def find_executable_on_mac(executable, path=None, app_name=None, app_paths=None):
+    # Easy case
+    found_executable = find_executable(executable, path)
+    if found_executable:
+        return found_executable
+    # Ok, now we search
+    if app_paths is None:
+        app_paths = []
+    if app_name is None:
+        app_name = executable
+    found_app_path = find_mac_app(app_name)
+    if found_app_path:
+        app_paths.append(found_app_path)
+    if app_paths:
+        new_search_path = ":".join(os.path.join(p, 'Contents/MacOS') for p in app_paths)
+        return find_executable(executable, path=new_search_path)
     else:
-        # Fallback which will just trigger an error when run
-        return '/bin/false'
+        return None
 
-LYX_PATH = find_lyx()
+# Fallback to /bin/false to trigger an error when run (we don't want
+# to trigger an error now, while building the rules)
+LYX_PATH = find_executable_on_mac('lyx') or '/bin/false'
+# GIMP_PATH = find_executable_on_mac('gimp', app_name='gimp*') or '/bin/false'
 PDFINFO_PATH = find_executable('pdfinfo')
+
+def print_pdfinfo(filename):
+    if PDFINFO_PATH:
+        shell('''{PDFINFO_PATH} {filename:q}''')
 
 def glob_recursive(pattern, top='.', include_hidden=False, *args, **kwargs):
     '''Combination of glob.glob and os.walk.
@@ -201,28 +212,38 @@ def tex_gfx_extensions(tex_format = 'xetex'):
     except FileNotFoundError:
         return ()
 
+def get_latex_included_gfx(fname):
+    '''Return list of all graphics included from '''
+    try:
+        with open(fname) as infile:
+            beamer_latex = infile.read()
+        # Remove comments
+        beamer_latex = regex.sub('^%.*$','', beamer_latex)
+        # Find graphics included
+        return [ m.group(1) for m in regex.finditer(r'\includegraphics(?:\[.*?\])?\{(.+?)\}', beamer_latex) ]
+    except FileNotFoundError:
+        return ()
+
 rsync_common_args = ['-rL', '--size-only', '--delete', '--exclude', '.DS_Store', '--delete-excluded',]
 
 rule build_all:
-    input: 'thesis.pdf', 'thesis-final.pdf'
+    input: 'thesis.pdf', 'thesis-final.pdf', 'presentation.pdf'
 
 # Note: Any rule that generates an input LyX file for this rule must
 # be marked as a checkpoint. See
 # https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#data-dependent-conditional-execution
-rule lyx_to_pdf:
+rule thesis_lyx_to_pdf:
     '''Produce PDF output for a LyX file.'''
     input: lyxfile = '{basename}.lyx',
            gfx_deps = lambda wildcards: lyx_gfx_deps(wildcards.basename + '.lyx'),
            bib_deps = lambda wildcards: lyx_bib_deps(wildcards.basename + '.lyx'),
            tex_deps = lambda wildcards: lyx_input_deps(wildcards.basename + '.lyx'),
-    # This rule doesn't produce the PDFs in graphics/
-    output: pdf='{basename,(?!graphics/).*}.pdf'
+    output: pdf='{basename,thesis.*}.pdf'
     run:
         if not LYX_PATH or LYX_PATH == '/bin/false':
             raise Exception('Path to LyX  executable could not be found.')
         shell('''{LYX_PATH:q} -batch --verbose --export-to pdf4 {output.pdf:q} {input.lyxfile:q}''')
-        if PDFINFO_PATH:
-            shell('''{PDFINFO_PATH} {output.pdf:q}''')
+        print_pdfinfo(output.pdf)
 
 checkpoint lyx_add_final:
     '''Copy LyX file and add final option.'''
@@ -292,10 +313,20 @@ rule pdf_crop:
     shell: 'pdfcrop --resolution 300 {input:q} {output:q}'
 
 rule pdf_raster:
-    '''Rasterize PDF to PNG at 600 PPI.'''
+    '''Rasterize PDF to PNG at 600 PPI.
+
+    The largest dimension is scaled '''
     input: pdf = 'graphics/{basename}.pdf'
     output: png = 'graphics/{basename}-RASTER.png'
-    shell: 'pdftoppm -r 600 {input:q} | convert - {output:q}'
+    shell: 'pdftoppm -singlefile -r 600 {input:q} | convert - {output:q}'
+
+rule pdf_raster_res:
+    '''Rasterize PDF to PNG at specific PPI.
+
+    The largest dimension is scaled '''
+    input: pdf = 'graphics/{basename}.pdf'
+    output: png = 'graphics/{basename}-RASTER{res,[1-9][0-9]+}.png'
+    shell: 'pdftoppm -singlefile -r {wildcards.res} {input:q} | convert - {output:q}'
 
 rule png_crop:
     '''Crop away empty margins from a PNG.'''
@@ -303,13 +334,91 @@ rule png_crop:
     output: pdf = 'graphics/{basename,.*(?<!-CROP)}-CROP.png'
     shell: 'convert {input:q} -trim {output:q}'
 
+rule jpg_crop:
+    '''Crop away empty margins from a JPG.'''
+    input: pdf = 'graphics/{basename}.jpg'
+    output: pdf = 'graphics/{basename,.*(?<!-CROP)}-CROP.jpg'
+    shell: 'convert {input:q} -trim {output:q}'
+
 rule svg_to_pdf:
     input: 'graphics/{filename}.svg'
     output: 'graphics/{filename}-SVG.pdf'
-    shell: '''inkscape {input:q} --export-pdf={output:q} --export-dpi=300'''
+    run:
+        infile = os.path.join(os.path.abspath("."), input[0])
+        outfile = os.path.join(os.path.abspath("."), output[0])
+        shell('''inkscape {infile:q} --export-pdf={outfile:q} --export-dpi=300''')
+
+rule svg_raster:
+    input: 'graphics/{filename}.svg'
+    output: 'graphics/{filename}-SVG.png'
+    run:
+        infile = os.path.join(os.path.abspath("."), input[0])
+        outfile = os.path.join(os.path.abspath("."), output[0])
+        shell('''inkscape {infile:q} --export-png={outfile:q} --export-dpi=300''')
+
+rule png_rotate:
+    input: 'graphics/{filename}.png'
+    output: 'graphics/{filename}-ROT{angle,[1-9][0-9]*}.png'
+    run:
+        if re.search('-ROT[1-9][0-9]*$', wildcards.filename):
+            raise ValueError("Cannot double-rotate")
+        shell('convert {input:q} -rotate {wildcards.angle:q} {output:q}')
+
+# rule xcf_to_png:
+#     input: 'graphics/{filename}.xcf'
+#     output: 'graphics/{filename}.png'
+#     shell: 'convert {input:q} -flatten {output:q}'
 
 rule R_to_html:
     '''Render an R script as syntax-hilighted HTML.'''
     input: '{dirname}/{basename}.R'
     output: '{dirname}/{basename,[^/]+}.R.html'
     shell: 'pygmentize -f html -O full -l R -o {output:q} {input:q}'
+
+checkpoint build_beamer_latex:
+    input:
+        extra_preamble='extra-preamble.latex',
+        mkdn_file='{basename}.mkdn',
+        # images=lambda wildcards: get_mkdn_included_images('{basename}.mkdn'.format(**wildcards)),
+        # pdfs=lambda wildcards: get_mkdn_included_pdfs('{basename}.mkdn'.format(**wildcards)),
+    output:
+        latex='{basename,presentation.*}.tex',
+    # TODO: should work with shadow minimal but doesn't
+    run:
+        beamer_latex = pypandoc.convert_file(
+            input.mkdn_file, 'beamer', format='md',
+            extra_args = [
+                '-H', input.extra_preamble,
+                '--pdf-engine=xelatex',
+            ])
+        # Center all columns vertically
+        beamer_latex = beamer_latex.replace(r'\begin{columns}[T]', r'\begin{columns}[c]')
+        with open(output.latex, 'w') as latex_output:
+            latex_output.write(beamer_latex)
+
+rule build_beamer_pdf:
+    input:
+        latex='{basename}.tex',
+        gfx=lambda wildcards: get_latex_included_gfx('{basename}.tex'.format(**wildcards)),
+    output:
+        pdf='{basename,presentation.*}.pdf'
+    shadow: 'minimal'
+    run:
+        shell('''xelatex {input.latex:q} </dev/null''')
+        print_pdfinfo(output.pdf)
+
+rule build_all_presentations:
+    input:
+        'presentation.pdf',
+        'presentation.pptx',
+
+rule make_transplant_organs_graph:
+    input:
+        Rscript='graphics/presentation/transplants-organ.R',
+        data='graphics/presentation/transplants-organ.xlsx',
+    output:
+        pdf='graphics/presentation/transplants-organ.pdf'
+
+    shell: '''
+    Rscript 'graphics/presentation/transplants-organ.R'
+    '''

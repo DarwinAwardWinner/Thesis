@@ -1,0 +1,80 @@
+* Notes from lab meeting practice run
+
+** DONE Mechanical issues
+- [X] Blurry slide changes
+  - Solution: use Acrobat for presenting
+- [X] Use widescreen aspect ratio -- option to show 2 figures side by
+  side
+- [X] Header is hard to read/easy to ignore because of color scheme.
+  Consider dark text on white bg instead.
+- [X] No figure numbers
+- [X] No chapter numbers, just "3 parts"
+- [X] Way to display speaker notes alongside slides? Maybe import into
+  PPT?
+  - https://pandoc.org/MANUAL.html#speaker-notes
+
+** TODO Presentation issues
+- [X] Bigger axis labels
+- [X] Better cluster ordering, labeling, and transpose violin plots
+  for consistency
+- [X] Whenever possible: micro first to introduce the plot, then macro
+  to show the full plot
+- [ ] For PCoA plots, show just one donor at a time first to show
+  the trend in a simpler context
+
+** TODO Content issues
+- [X] Maybe show more preprocessing, batch correction, etc.
+- [X] Tie conclusions back to intro, add future directions
+- [X] Intro slide for MOFA: how and why
+- [X] Too many bullet points. Don't need to write everything I say.
+  Move to speaker notes.
+- [X] Intro the histone marks and why we picked them
+- [X] Brief 30 second intro to RNA-seq & ChIP-seq
+- [X] Rephrase 3 topics as questions/hypotheses
+- [X] Talk about 3 main take-home points at the beginning as well as
+  the end
+- [X] On summary slides, bullets on left, image on right for each
+  bullet
+- [X] Time was around 40 minutes, so add at least 5 minutes of content
+- [ ] Keep reserve slides at the end with cut figures in case they
+  come in handy for answering audience questions
+
+* DONE Notes from Sabah
+
+- [X] Slide 1: Is the title final? If not, would adjust to (also note
+  space in title slide for bioinformaticsanalysis) "Bioinformatic
+  analysis of genomic and epigenomic data in the context of CD4+T-cell
+  differentiation and diagnosis and treatment of transplant rejection"
+- [X] Slide with organ bar chart: Adjust title to 'Organ donation
+  statistics for the USA in 2018', remove from bottom and make image
+  itself bigger
+- [X] What's the connection between organ transplant, graft rejection,
+  and immune response? Make that clear in the transition between
+  slides. We now want to know about graft rejection because.... why?
+  what about what we just learned with the organ transplants directly
+  connects?
+- [X] Condense these bullet points. The previous set of bullet points
+  is a perfect example of spacing and length readable in a short
+  amount of time for the audience
+- [X] More time on allografting and less time on graft rejection. What
+  is it? How does it work? Provide a brief example/image right before
+  the chart
+- [X] Rejection and immmuno suppressive drugs -- this is a great
+  transition (well explained) but again the bullet points need to be
+  condensed. Bring in an image with these as well to give the audience
+  'a visual break' before you intro your topics
+- [X] I like the update to thesis topics. I would adjust such that 'my
+  thesis topics' is replaced with the overarching question you want to
+  answer for these 3 topics and make that the heading.
+- [X] Then, introduce the 3 topics in the next slide (blue font of
+  topic 1, 2... etc)
+- [X] Then, introduce the additional text for each topic in the next
+  slide
+- [X] You have the 'memory cells' slides repeated 4x, and I see that
+  you're highlighting different sections each time. Pair the heading
+  to match with this (what you want to say in each as the take-home) >
+  having the same heading repeated
+
+
+* Useful links
+- https://pandoc.org/MANUAL.html#speaker-notes
