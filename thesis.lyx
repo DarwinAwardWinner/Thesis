@@ -1013,34 +1013,6 @@ name "sec:Biological-motivation"
 Biological motivation
 \end_layout
 
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Find some figures to include even if permission is not obtained.
- Try to obtain permission, and if it cannot be obtained, remove/replace
- them later.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Rethink the subsection organization after the intro is written.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Subsection
 Rejection is the major long-term threat to organ and tissue allografts
 \end_layout
@@ -6479,23 +6451,6 @@ Result of RNA-seq batch-correction using MOFA latent factors
 Results
 \end_layout
 
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Focus on what hypotheses were tested, then select figures that show how
- those hypotheses were tested, even if the result is a negative.
- Not every interesting result needs to be in here.
- Chapter should tell a story.
- 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Subsection
 Interpretation of RNA-seq analysis is limited by a major confounding factor
 \end_layout
@@ -7469,19 +7424,6 @@ noprefix "false"
 , which remains strong much farther out for H3K27me3 than the other marks,
  showing H3K27me3 especially tends to be found on long runs of consecutive
  histones.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -10167,20 +10109,6 @@ Gene expression grouped by promoter coverage clusters.
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Repeated figure legends are kind of an issue here.
- What to do?
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
@@ -10398,19 +10326,6 @@ I forgot until recently about the work I did on this.
 
 \begin_layout Section
 Discussion
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Write better section headers
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Subsection
@@ -11412,32 +11327,6 @@ MACS
 y.
 \end_layout
 
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Subsection
-Data quality issues limit conclusions
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Is this needed?
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Section
 Future Directions
 \end_layout
@@ -12243,8 +12132,13 @@ Fill this out
 Arrays for diagnostics
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 Arrays are an attractive platform for diagnostics
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -14020,32 +13914,6 @@ literal "false"
 
 \begin_layout Section
 Results
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Improve subsection titles in this section.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Reconsider subsection organization?
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Subsection
@@ -17038,20 +16906,6 @@ sideways false
 status collapsed
 
 \begin_layout Plain Layout
-\align center
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Consider transposing these tables
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
 \begin_inset Float table
 wide false
 sideways false
@@ -18622,20 +18476,6 @@ SVA
 
 \begin_layout Section
 Future Directions
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Some work was already being done with the existing fRMA vectors.
- Do I mention that here?
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Subsection
@@ -21663,27 +21503,6 @@ GB
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Standardize on 
-\begin_inset Quotes eld
-\end_inset
-
-log2
-\begin_inset Quotes erd
-\end_inset
-
- notation
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 The data do indeed show small systematic perturbations in gene levels (Figure
  
 \begin_inset CommandInset ref
@@ -21884,19 +21703,6 @@ edgeR
 \end_inset
 
 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Give these numbers the LaTeX math treatment
 \end_layout
 
 \end_inset
