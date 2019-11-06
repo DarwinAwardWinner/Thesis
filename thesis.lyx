@@ -4954,36 +4954,6 @@ ChIP-seq analyses
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Be consistent about use of 
-\begin_inset Quotes eld
-\end_inset
-
-differential binding
-\begin_inset Quotes erd
-\end_inset
-
- vs 
-\begin_inset Quotes eld
-\end_inset
-
-differential modification
-\begin_inset Quotes erd
-\end_inset
-
- throughout this chapter.
- The latter is usually preferred.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 Sequence reads were retrieved from 
 \begin_inset Flex Glossary Term
 status open
@@ -5208,7 +5178,7 @@ begin{landscape}
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -7115,7 +7085,7 @@ H3K4 and H3K27 methylation occur in broad regions and are enriched near
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -12113,36 +12083,6 @@ Reintroduce all abbreviations
 
 \begin_layout Section
 Introduction
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Fill this out, maybe
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-Arrays for diagnostics
-\end_layout
-
-\begin_layout Plain Layout
-Arrays are an attractive platform for diagnostics
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Subsection
