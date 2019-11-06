@@ -6192,7 +6192,7 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/CD4-csaw/MOFA-varExplained-matrix-CROP.png
 	lyxscale 25
-	width 45col%
+	height 70theight%
 	groupId mofa-subfig
 
 \end_inset
@@ -6251,7 +6251,7 @@ status collapsed
 \begin_inset Graphics
 	filename graphics/CD4-csaw/MOFA-LF-scatter-small.png
 	lyxscale 25
-	width 45col%
+	height 70theight%
 	groupId mofa-subfig
 
 \end_inset
@@ -6283,19 +6283,6 @@ Scatter plots of specific pairs of MOFA latent factors.
 \end_inset
 
 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Figure font a bit too small
 \end_layout
 
 \end_inset
@@ -6479,6 +6466,21 @@ noprefix "false"
 \end_inset
 
 ).
+ The batch effect has both a systematic component and a random noise component.
+ While the systematic component was subtracted out using ComBat (Figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:RNA-PCA"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+), no such correction is possible for the noise component: Batch 1 simply
+ has substantially more random noise in it, which reduces the statistical
+ power for any differential expression tests involving samples in that batch.
  
 \begin_inset Float table
 wide false
@@ -6907,21 +6909,6 @@ If float lost issues, reposition randomly until success.
 
 \end_inset
 
- The batch effect has both a systematic component and a random noise component.
- While the systematic component was subtracted out using ComBat (Figure
- 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:RNA-PCA"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-), no such correction is possible for the noise component: Batch 1 simply
- has substantially more random noise in it, which reduces the statistical
- power for any differential expression tests involving samples in that batch.
  
 \end_layout
 
