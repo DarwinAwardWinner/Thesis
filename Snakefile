@@ -258,7 +258,6 @@ checkpoint lyx_add_final:
                 lyx_text = regex.sub('\\\\use_default_options true', '\\\\options final\n\\\\use_default_options true', lyx_text)
             outfile.write(lyx_text)
 
-# TODO: Remove all URLs from entries with a DOI
 rule process_bib:
     '''Preprocess bib file for LaTeX.
 

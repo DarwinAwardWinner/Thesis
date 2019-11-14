@@ -852,7 +852,7 @@ asticity inherent in the data.
 
 \begin_layout Standard
 \begin_inset Note Note
-status collapsed
+status open
 
 \begin_layout Chapter*
 Notes to draft readers
@@ -23621,6 +23621,45 @@ LatexCommand bibtex
 btprint "btPrintCited"
 bibfiles "code-refs,refs-PROCESSED"
 options "bibtotoc"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+How to include other PDFs: https://tex.stackexchange.com/a/28323/5654
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Appendix: Publications?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Curriculum vitae
+\end_layout
 
 \end_inset
 
