@@ -4484,7 +4484,7 @@ RNA-seq
  data 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Dobin2012,Kim2019,Liao2014,Pimentel2016,Patro2017,gh-shoal,gh-hg38-ref"
+key "Dobin2013b,Kim2019,Liao2014,Pimentel2016,Patro2017,gh-shoal,gh-hg38-ref"
 literal "false"
 
 \end_inset
@@ -11181,7 +11181,7 @@ noprefix "false"
  
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Young2011"
+key "youngChIPseqAnalysisReveals2011"
 literal "false"
 
 \end_inset
@@ -23619,7 +23619,7 @@ bibname}{References}
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 btprint "btPrintCited"
-bibfiles "code-refs,refs-PROCESSED"
+bibfiles "library"
 options "bibtotoc"
 
 \end_inset
