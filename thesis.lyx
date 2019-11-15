@@ -1682,7 +1682,7 @@ Linear models are a generalization of the
 -test and ANOVA to arbitrarily complex experimental designs 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "chambers:1992"
+key "chambersStatisticalModels1992"
 literal "false"
 
 \end_inset
