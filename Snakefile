@@ -276,6 +276,7 @@ shortest URL is kept.'''
             bib_db = bibtexparser.load(infile, parser)
         entries = bib_db.entries
         for entry in entries:
+            # Ensure only one of DOI and URL are present, preferring DOI
             if 'doi' in entry:
                 try:
                     del entry['url']
@@ -283,11 +284,19 @@ shortest URL is kept.'''
                     pass
             else:
                 try:
+                    # Only keep single shortest URL
                     entry_urls = regex.split('\\s+', entry['url'])
                     shortest_url = min(entry_urls, key=len)
                     entry['url'] = shortest_url
                 except KeyError:
                     pass
+            # Delete PMID because it doesn't make a functional link
+            try:
+                if entry['eprinttype'] == 'pmid':
+                    del entry['eprinttype']
+                    del entry['eprint']
+            except KeyError:
+                pass
         new_db = BibDatabase()
         new_db.entries = entries
         with open(output[0], 'w') as outfile:
