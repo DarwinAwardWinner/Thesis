@@ -23619,7 +23619,7 @@ bibname}{References}
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 btprint "btPrintCited"
-bibfiles "library"
+bibfiles "library-PROCESSED"
 options "bibtotoc"
 
 \end_inset

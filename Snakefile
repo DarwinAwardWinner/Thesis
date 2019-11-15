@@ -15,6 +15,7 @@ from fnmatch import fnmatch
 from subprocess import check_output, check_call
 from tempfile import NamedTemporaryFile
 from bibtexparser.bibdatabase import BibDatabase
+from bibtexparser.bparser import BibTexParser
 from lxml import html
 from snakemake.utils import min_version
 
@@ -269,7 +270,10 @@ shortest URL is kept.'''
     output: '{basename,.*(?<!-PROCESSED)}-PROCESSED.bib'
     run:
         with open(input[0]) as infile:
-            bib_db = bibtexparser.load(infile)
+            parser = BibTexParser(
+                ignore_nonstandard_types = False,
+            )
+            bib_db = bibtexparser.load(infile, parser)
         entries = bib_db.entries
         for entry in entries:
             if 'doi' in entry:
@@ -281,8 +285,6 @@ shortest URL is kept.'''
                 try:
                     entry_urls = regex.split('\\s+', entry['url'])
                     shortest_url = min(entry_urls, key=len)
-                    # Need to fix e.g. 'http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=55329{\\&}tool=pmcentrez{\\&}rendertype=abstract'
-                    shortest_url = re.sub('\\{\\\\(.)\\}', '\\1', shortest_url)
                     entry['url'] = shortest_url
                 except KeyError:
                     pass
