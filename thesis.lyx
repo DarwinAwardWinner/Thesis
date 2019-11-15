@@ -4183,7 +4183,65 @@ ChIP-seq
 \end_inset
 
  input DNA was also sequenced for each sample.
- The result was 32 samples for each assay.
+ The result was 32 samples for each assay (see Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Experimental-design"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graphics/presentation/expdesign-CROP.pdf
+	lyxscale 50
+	width 100col%
+	groupId colfullwidth
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Experimental-design"
+
+\end_inset
+
+Overview of the experimental design.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
