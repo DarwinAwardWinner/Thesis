@@ -173,13 +173,22 @@ def lyx_bib_deps(lyxfile):
     except FileNotFoundError:
         pass
 
-
 def lyx_gfx_deps(lyxfile):
     '''Return an iterator over all graphics files included by a LyX file.'''
     try:
         with open(lyxfile) as f:
             lyx_text = f.read()
         for m in regex.finditer('\\\\begin_inset Graphics\\s+filename (.*?)$', lyx_text, regex.MULTILINE):
+            yield m.group(1)
+    except FileNotFoundError:
+        pass
+
+def lyx_pdfpages_deps(lyxfile):
+    try:
+        with open(lyxfile) as f:
+            lyx_text = f.read()
+
+        for m in regex.finditer('\\\\begin_inset External\\s+template\s+PDFPages\s+filename\s+(.*?)\n', lyx_text, regex.MULTILINE):
             yield m.group(1)
     except FileNotFoundError:
         pass
@@ -239,6 +248,7 @@ rule thesis_lyx_to_pdf:
            gfx_deps = lambda wildcards: lyx_gfx_deps(wildcards.basename + '.lyx'),
            bib_deps = lambda wildcards: lyx_bib_deps(wildcards.basename + '.lyx'),
            tex_deps = lambda wildcards: lyx_input_deps(wildcards.basename + '.lyx'),
+           pdfpages_deps = lambda wildcards: lyx_pdfpages_deps(wildcards.basename + '.lyx'),
     output: pdf='{basename,thesis.*}.pdf'
     run:
         if not LYX_PATH or LYX_PATH == '/bin/false':

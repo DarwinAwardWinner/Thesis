@@ -20,6 +20,7 @@
 % Make watermark not copyable (in Adobe Reader)
 \SetWatermarkText{\BeginAccSupp{method=escape,ActualText={}}DRAFT\EndAccSupp{}}
 
+
 % Set up required header format
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -367,6 +368,7 @@ Use roman numeral page numbers
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Note Note
 status open
 
@@ -23774,11 +23776,24 @@ options "bibtotoc"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
+\align center
+\begin_inset ERT
 status open
 
 \begin_layout Plain Layout
-How to include other PDFs: https://tex.stackexchange.com/a/28323/5654
+
+
+\backslash
+phantomsection
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addcontentsline{toc}{chapter}{
+\backslash
+emph{Curriculum vitae}}
 \end_layout
 
 \end_inset
@@ -23787,25 +23802,10 @@ How to include other PDFs: https://tex.stackexchange.com/a/28323/5654
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Appendix: Publications?
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex TODO Note (inline)
-status open
-
-\begin_layout Plain Layout
-Curriculum vitae
-\end_layout
+\begin_inset External
+	template PDFPages
+	filename ryan_thompson_cv.pdf
+	extra LaTeX "pages=-"
 
 \end_inset
 
